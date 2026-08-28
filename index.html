@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recapadora — Mais Quilômetros por Real</title>
+<meta name="description" content="Recapagem de pneus de carga com garantia, coleta e entrega na sua transportadora. Reduza até 60% do custo por quilômetro da sua frota. Peça um orçamento pelo WhatsApp.">
+<meta name="theme-color" content="#100E0D">
+<link rel="canonical" href="https://SEU-DOMINIO.com.br/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Recapagem de pneus com garantia — até 60% de economia por km">
+<meta property="og:description" content="Recapagem a frio e a quente, vulcanização e inspeção técnica para frotas. Coleta e entrega. Orçamento na hora pelo WhatsApp.">
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/capa.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Saira+Condensed:wght@600;700;800&display=swap">
+
+<style>
+/* ============================================================
+   TOKENS — identidade visual "borracha + sinalização"
+   ============================================================ */
+:root{
+  color-scheme: dark;
+
+  --rubber-900:#100E0D;
+  --rubber-850:#15120F;
+  --rubber-800:#1A1714;
+  --rubber-700:#211D19;
+  --rubber-600:#2B2621;
+  --line:#332D27;
+  --line-soft:#282320;
+
+  --text:#ECE7E1;
+  --text-2:#B9B1A8;
+  --text-3:#8C837A;
+
+  --amber:#F5A524;
+  --amber-deep:#C87F10;
+  --amber-glow:rgba(245,165,36,.14);
+  --ember:#D9502B;
+  --steel:#7E8890;
+  --ok:#5FA97B;
+
+  --r-sm:3px;
+  --r-md:6px;
+  --r-lg:10px;
+
+  --display:"Saira Condensed", "Arial Narrow", Impact, sans-serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --pad: clamp(20px, 5vw, 40px);
+  --wrap: 1180px;
+  --sec-y: clamp(64px, 9vw, 120px);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+
+body{
+  margin:0;
+  background:var(--rubber-900);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{ max-width:100%; display:block; }
+figure, blockquote, dl, dd, fieldset{ margin:0; padding:0; }
+a{ color:inherit; }
+
+h1,h2,h3,h4{
+  font-family:var(--display);
+  font-weight:800;
+  line-height:.98;
+  letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-wrap:balance;
+  margin:0;
+}
+h1{ font-size:clamp(2.65rem, 6.4vw, 4.6rem); }
+h2{ font-size:clamp(2rem, 4.4vw, 3.15rem); }
+h3{ font-size:clamp(1.25rem, 2.2vw, 1.5rem); letter-spacing:0; }
+p{ margin:0; }
+
+:focus-visible{ outline:2px solid var(--amber); outline-offset:3px; border-radius:2px; }
+
+.wrap{ width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad); }
+/* compensa o cabecalho fixo ao usar os links de ancora */
+section[id], .calc[id], form[id]{ scroll-margin-top:86px; }
+.section{ padding-block:var(--sec-y); }
+
+/* rótulo técnico — usado como "eyebrow" de seção */
+.tag{
+  font-family:var(--mono);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--amber);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.tag::before{
+  content:"";
+  width:26px; height:2px;
+  background:var(--amber);
+  display:block;
+}
+
+.lede{ color:var(--text-2); font-size:1.08rem; max-width:62ch; }
+
+/* banda de rodagem — divisor derivado do produto */
+.tread{
+  height:12px;
+  background:
+    repeating-linear-gradient(115deg,
+      var(--rubber-600) 0 9px,
+      transparent 9px 20px),
+    var(--rubber-850);
+  border-block:1px solid var(--line-soft);
+}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--display); font-weight:700; font-size:1.06rem;
+  text-transform:uppercase; letter-spacing:.045em;
+  padding:15px 26px;
+  border-radius:var(--r-md);
+  border:1px solid transparent;
+  text-decoration:none; cursor:pointer;
+  transition:transform .12s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-zap{
+  background:var(--amber); color:#17120A;
+  box-shadow:0 0 0 0 var(--amber-glow);
+}
+.btn-zap:hover{ background:#FFB63C; box-shadow:0 10px 30px -12px rgba(245,165,36,.55); }
+.btn-ghost{
+  background:transparent; color:var(--text);
+  border-color:var(--line);
+}
+.btn-ghost:hover{ border-color:var(--steel); background:var(--rubber-700); }
+.btn svg{ width:19px; height:19px; flex:none; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.topbar{
+  position:sticky; top:0; z-index:60;
+  background:rgba(16,14,13,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-soft);
+}
+.topbar-in{
+  display:flex; align-items:center; gap:20px;
+  min-height:66px;
+}
+.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; margin-right:auto; }
+.brand-mark{
+  width:34px; height:34px; flex:none;
+  border-radius:50%;
+  border:3px solid var(--amber);
+  background:
+    repeating-conic-gradient(var(--rubber-600) 0 8deg, transparent 8deg 20deg);
+  box-shadow:inset 0 0 0 4px var(--rubber-900);
+}
+.brand-name{
+  font-family:var(--display); font-weight:800; text-transform:uppercase;
+  font-size:1.22rem; letter-spacing:.01em; line-height:1;
+}
+.brand-sub{
+  font-family:var(--mono); font-size:.63rem; letter-spacing:.16em;
+  color:var(--text-3); text-transform:uppercase;
+}
+.nav{ display:none; gap:26px; }
+.nav a{
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--text-2); text-decoration:none;
+  padding-block:6px; border-bottom:1px solid transparent;
+}
+.nav a:hover{ color:var(--text); border-bottom-color:var(--amber); }
+.topbar .btn{ padding:11px 18px; font-size:.95rem; }
+.tel-link{
+  display:none; font-family:var(--mono); font-size:.92rem; color:var(--text);
+  text-decoration:none; white-space:nowrap;
+}
+.tel-link:hover{ color:var(--amber); }
+@media (min-width:900px){ .nav{ display:flex; } .tel-link{ display:inline; } }
+@media (max-width:520px){ .brand-sub{ display:none; } .brand-name{ font-size:1.1rem; } }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  padding-block:clamp(46px, 7vw, 84px) clamp(56px, 8vw, 96px);
+  background:
+    radial-gradient(120% 85% at 8% -10%, rgba(245,165,36,.10), transparent 60%),
+    linear-gradient(180deg, var(--rubber-850), var(--rubber-900));
+  overflow:hidden;
+}
+.hero::after{ /* sulco de pneu ao fundo, bem discreto */
+  content:"";
+  position:absolute; inset:auto -10% -40px auto;
+  width:520px; height:520px; border-radius:50%;
+  border:64px solid rgba(255,255,255,.018);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid; gap:clamp(38px, 5vw, 56px);
+  align-items:start;
+  position:relative; z-index:1;
+}
+@media (min-width:1000px){
+  .hero-grid{ grid-template-columns:1.06fr .94fr; gap:56px; align-items:center; }
+}
+.hero h1 span{ color:var(--amber); display:block; }
+.hero-copy > * + *{ margin-top:22px; }
+.hero-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+.hero-note{
+  font-family:var(--mono); font-size:.8rem; color:var(--text-3);
+}
+
+.chips{ display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:0; }
+.chips li{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--line); background:var(--rubber-800);
+  border-radius:100px; padding:7px 14px;
+  font-size:.84rem; color:var(--text-2);
+}
+.chips li b{ color:var(--text); font-weight:600; }
+.dot{ width:7px; height:7px; border-radius:50%; background:var(--ok); flex:none; }
+
+/* ---------- calculadora ---------- */
+.calc{
+  background:var(--rubber-800);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  box-shadow:0 40px 80px -50px #000;
+  overflow:hidden;
+}
+.calc-head{
+  padding:18px 22px;
+  border-bottom:1px solid var(--line-soft);
+  background:linear-gradient(180deg, var(--rubber-700), var(--rubber-800));
+  display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+}
+.calc-head h2{ font-size:1.32rem; letter-spacing:0; }
+.calc-head span{ font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; color:var(--text-3); text-transform:uppercase; }
+.calc-body{ padding:22px; display:grid; gap:16px; }
+.field{ display:grid; gap:7px; }
+.field label{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-2);
+}
+.input-wrap{ position:relative; display:flex; align-items:center; }
+.input-wrap .prefix{
+  position:absolute; left:13px; font-family:var(--mono); font-size:.9rem; color:var(--text-3);
+}
+.field input{
+  width:100%;
+  font-family:var(--mono); font-size:1.02rem; font-weight:500;
+  color:var(--text);
+  background:var(--rubber-900);
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  padding:13px 14px 13px 34px;
+}
+.field input.no-prefix{ padding-left:14px; }
+.field input:focus{ border-color:var(--amber); outline:none; }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+.result{
+  border-top:1px dashed var(--line);
+  padding:20px 22px 22px;
+  background:
+    repeating-linear-gradient(90deg, rgba(245,165,36,.05) 0 2px, transparent 2px 9px),
+    var(--rubber-850);
+}
+.result-top{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.result-label{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--text-2);
+}
+.result-value{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(2.4rem, 6vw, 3.3rem); line-height:1;
+  color:var(--amber);
+  font-variant-numeric:tabular-nums;
+}
+.result-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px;
+}
+.result-grid div{
+  border:1px solid var(--line-soft); border-radius:var(--r-md);
+  padding:11px 13px; background:var(--rubber-800);
+}
+.result-grid dt{
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-3); margin:0 0 4px;
+}
+.result-grid dd{
+  margin:0; font-family:var(--mono); font-size:1.02rem; font-weight:600;
+  font-variant-numeric:tabular-nums;
+}
+.result .btn{ width:100%; margin-top:16px; }
+.result small{ display:block; margin-top:10px; font-size:.74rem; color:var(--text-3); line-height:1.5; }
+
+/* ============================================================
+   NÚMEROS / PROVA
+   ============================================================ */
+.proof{ background:var(--rubber-850); border-block:1px solid var(--line-soft); }
+.proof-grid{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  padding-block:clamp(30px,4vw,44px);
+}
+@media (min-width:820px){ .proof-grid{ grid-template-columns:repeat(4,1fr); } }
+.proof-grid > div{ padding:14px 18px; border-left:1px solid var(--line-soft); }
+.proof-grid > div:first-child{ border-left:0; }
+@media (max-width:819px){
+  .proof-grid > div:nth-child(odd){ border-left:0; }
+  .proof-grid > div:nth-child(n+3){ border-top:1px solid var(--line-soft); margin-top:14px; padding-top:20px; }
+}
+.proof-num{
+  font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,4vw,2.9rem);
+  line-height:1; color:var(--text); font-variant-numeric:tabular-nums;
+}
+.proof-num em{ font-style:normal; color:var(--amber); }
+.proof-cap{ font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin-top:9px; }
+
+/* ============================================================
+   SEÇÕES GENÉRICAS
+   ============================================================ */
+.sec-head{ max-width:64ch; display:grid; gap:16px; margin-bottom:clamp(34px,4.5vw,52px); }
+
+.cards{ display:grid; gap:14px; grid-template-columns:1fr; }
+@media (min-width:700px){ .cards{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1020px){ .cards{ grid-template-columns:repeat(3,1fr); } }
+.card{
+  background:var(--rubber-800);
+  border:1px solid var(--line-soft);
+  border-radius:var(--r-lg);
+  padding:26px 24px 28px;
+  display:flex; flex-direction:column; gap:12px;
+  transition:border-color .18s ease, transform .18s ease;
+}
+.card:hover{ border-color:var(--line); transform:translateY(-3px); }
+.card-ico{
+  width:38px; height:38px; color:var(--amber);
+}
+.card-ico svg{ width:100%; height:100%; }
+.card p{ color:var(--text-2); font-size:.98rem; }
+.card .meta{
+  margin-top:auto; padding-top:14px; border-top:1px solid var(--line-soft);
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--text-3);
+}
+
+/* ---------- processo (sequência real, por isso numerado) ---------- */
+.steps{ display:grid; gap:0; counter-reset:step; }
+.step{
+  display:grid; gap:6px 22px;
+  grid-template-columns:auto 1fr;
+  padding:22px 0;
+  border-top:1px solid var(--line-soft);
+  align-items:start;
+}
+.step:last-child{ border-bottom:1px solid var(--line-soft); }
+.step-n{
+  counter-increment:step;
+  font-family:var(--mono); font-size:.8rem; font-weight:600; color:var(--amber);
+  border:1px solid var(--line); border-radius:50%;
+  width:40px; height:40px; display:grid; place-items:center;
+  background:var(--rubber-800);
+}
+.step-n::before{ content:counter(step, decimal-leading-zero); }
+.step h3{ align-self:center; }
+.step p{ grid-column:2; color:var(--text-2); font-size:.98rem; max-width:66ch; }
+@media (max-width:620px){
+  .step{ grid-template-columns:1fr; }
+  .step p{ grid-column:1; }
+}
+
+/* ---------- comparativo ---------- */
+.compare{
+  display:grid; gap:14px; grid-template-columns:1fr;
+}
+@media (min-width:800px){ .compare{ grid-template-columns:1fr 1fr; } }
+.col{
+  border:1px solid var(--line-soft); border-radius:var(--r-lg);
+  padding:26px 24px; background:var(--rubber-800);
+}
+.col.win{ border-color:rgba(245,165,36,.42); background:linear-gradient(180deg, rgba(245,165,36,.06), var(--rubber-800) 55%); }
+.col h3{ display:flex; align-items:center; gap:12px; }
+.col .price{
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-3); margin-top:6px;
+}
+.col ul{ list-style:none; padding:0; margin:20px 0 0; display:grid; gap:12px; }
+.col li{ display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start; font-size:.97rem; color:var(--text-2); }
+.col li b{ color:var(--text); font-weight:600; }
+.mark{ width:18px; height:18px; margin-top:3px; flex:none; }
+.mark.yes{ color:var(--ok); }
+.mark.no{ color:var(--text-3); }
+
+/* ---------- depoimentos ---------- */
+.quotes{ display:grid; gap:14px; grid-template-columns:1fr; }
+@media (min-width:900px){ .quotes{ grid-template-columns:repeat(3,1fr); } }
+.quote{
+  border:1px solid var(--line-soft); border-radius:var(--r-lg);
+  background:var(--rubber-800); padding:24px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.stars{ color:var(--amber); font-size:.95rem; letter-spacing:.15em; }
+.quote p{ font-size:1rem; color:var(--text); }
+.quote footer{
+  margin-top:auto; font-family:var(--mono); font-size:.74rem; letter-spacing:.06em;
+  color:var(--text-3); text-transform:uppercase; line-height:1.6;
+}
+.quote footer b{ display:block; color:var(--text-2); font-weight:600; letter-spacing:.08em; }
+
+/* ---------- FAQ ---------- */
+.faq{ border-top:1px solid var(--line-soft); }
+.faq details{ border-bottom:1px solid var(--line-soft); }
+.faq summary{
+  list-style:none; cursor:pointer;
+  padding:20px 44px 20px 0; position:relative;
+  font-family:var(--display); font-weight:700; text-transform:uppercase;
+  font-size:1.12rem; letter-spacing:.005em;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{
+  content:"+"; position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  font-family:var(--mono); font-size:1.4rem; color:var(--amber); line-height:1;
+  transition:transform .2s ease;
+}
+.faq details[open] summary::after{ content:"–"; }
+.faq summary:hover{ color:var(--amber); }
+.faq .answer{ padding:0 8px 22px 0; color:var(--text-2); max-width:70ch; font-size:.99rem; }
+
+/* ---------- faixa de CTA (risco/sinalização) ---------- */
+.cta-band{
+  position:relative;
+  background:var(--rubber-850);
+  border-block:1px solid var(--line);
+}
+.cta-band::before, .cta-band::after{
+  content:""; position:absolute; left:0; right:0; height:9px;
+  background:repeating-linear-gradient(45deg, var(--amber) 0 14px, var(--rubber-900) 14px 28px);
+  opacity:.85;
+}
+.cta-band::before{ top:0; }
+.cta-band::after{ bottom:0; }
+.cta-in{
+  display:grid; gap:26px; padding-block:clamp(52px,7vw,80px);
+  align-items:center;
+}
+@media (min-width:900px){ .cta-in{ grid-template-columns:1.2fr auto; gap:40px; } }
+.cta-in h2{ font-size:clamp(1.9rem,4vw,2.9rem); }
+.cta-in p{ color:var(--text-2); margin-top:14px; max-width:56ch; }
+.cta-actions{ display:flex; flex-wrap:wrap; gap:14px; }
+
+/* ---------- formulário / contato ---------- */
+.contact-grid{ display:grid; gap:clamp(30px,4vw,48px); }
+@media (min-width:960px){ .contact-grid{ grid-template-columns:1.05fr .95fr; } }
+.form{
+  background:var(--rubber-800); border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:clamp(22px,3vw,30px);
+  display:grid; gap:16px;
+}
+.form select, .form textarea, .form input{
+  width:100%; font-family:var(--body); font-size:1rem; color:var(--text);
+  background:var(--rubber-900); border:1px solid var(--line);
+  border-radius:var(--r-md); padding:13px 14px;
+}
+.form textarea{ resize:vertical; min-height:92px; }
+.form select:focus, .form textarea:focus, .form input:focus{ border-color:var(--amber); outline:none; }
+.form .field label{ color:var(--text-2); }
+.form .btn{ width:100%; margin-top:4px; }
+.form .privacy{ font-size:.78rem; color:var(--text-3); text-align:center; }
+
+.info-list{ list-style:none; padding:0; margin:0; display:grid; gap:2px; }
+.info-list li{
+  display:grid; grid-template-columns:26px 1fr; gap:16px;
+  padding:16px 0; border-bottom:1px solid var(--line-soft); align-items:start;
+}
+.info-list svg{ width:20px; height:20px; color:var(--amber); margin-top:3px; }
+.info-list b{ display:block; font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-3); margin-bottom:5px; font-weight:500; }
+.info-list a{ color:var(--text); text-decoration:none; border-bottom:1px solid var(--line); }
+.info-list a:hover{ color:var(--amber); border-color:var(--amber); }
+.hours{ font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:.92rem; color:var(--text-2); }
+
+/* ---------- rodapé ---------- */
+footer.site{
+  background:var(--rubber-850); border-top:1px solid var(--line-soft);
+  padding-block:44px 40px;
+}
+.foot-grid{ display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between; }
+.foot-grid p{ font-size:.85rem; color:var(--text-3); }
+.foot-nav{ display:flex; flex-wrap:wrap; gap:18px; }
+.foot-nav a{
+  font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-3); text-decoration:none;
+}
+.foot-nav a:hover{ color:var(--amber); }
+
+/* ---------- botão flutuante ---------- */
+.float-zap{
+  position:fixed; right:16px; bottom:16px; z-index:80;
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--amber); color:#17120A;
+  font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+  padding:14px 20px; border-radius:100px; text-decoration:none;
+  box-shadow:0 14px 34px -12px rgba(0,0,0,.8);
+}
+.float-zap svg{ width:22px; height:22px; }
+.float-zap span{ display:none; }
+@media (min-width:560px){ .float-zap span{ display:inline; } }
+.float-zap:hover{ background:#FFB63C; }
+
+.sr{
+  position:absolute; width:1px; height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap;
+}
+
+/* revelação suave ao rolar */
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CABEÇALHO
+     ============================================================ -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#topo">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>
+        <span class="brand-name" data-cfg="nome">Recapadora</span>
+        <span class="brand-sub" data-cfg="cidade">Cidade / UF</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#economia">Economia</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="tel-link" data-tel href="tel:+550000000000"><span data-cfg="telefone">(00) 0000-0000</span></a>
+    <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Vim pelo site e quero um orçamento de recapagem.">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO + CALCULADORA
+     ============================================================ -->
+<main id="topo">
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <span class="tag">Recapagem de pneus de carga</span>
+      <h1>Cada pneu da sua frota<span>vale mais uma vida.</span></h1>
+      <p class="lede">
+        Recapagem a frio e a quente com inspeção técnica, garantia por escrito e
+        coleta na sua garagem. Você roda os mesmos quilômetros pagando uma fração
+        do preço de um pneu novo — sem abrir mão da segurança.
+      </p>
+      <ul class="chips">
+        <li><span class="dot" aria-hidden="true"></span> <b>Garantia</b> por escrito</li>
+        <li><span class="dot" aria-hidden="true"></span> <b>Coleta e entrega</b> na transportadora</li>
+        <li><span class="dot" aria-hidden="true"></span> Pronto em <b>até 5 dias úteis</b></li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Quero um orçamento de recapagem para a minha frota.">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+          Pedir orçamento agora
+        </a>
+        <a class="btn btn-ghost" href="#economia">Ver quanto eu economizo</a>
+      </div>
+      <p class="hero-note">Resposta no mesmo dia útil · Atendemos frota e autônomo</p>
+    </div>
+
+    <!-- calculadora: o momento interativo do hero -->
+    <div class="calc" id="economia">
+      <div class="calc-head">
+        <h2>Calculadora de economia</h2>
+        <span>simulação</span>
+      </div>
+      <div class="calc-body">
+        <div class="field">
+          <label for="qtd">Pneus trocados por mês</label>
+          <div class="input-wrap">
+            <input class="no-prefix" id="qtd" type="number" inputmode="numeric" min="1" max="2000" step="1" value="20">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="novo">Preço do pneu novo</label>
+            <div class="input-wrap">
+              <span class="prefix">R$</span>
+              <input id="novo" type="number" inputmode="numeric" min="1" step="50" value="2200">
+            </div>
+          </div>
+          <div class="field">
+            <label for="recap">Preço da recapagem</label>
+            <div class="input-wrap">
+              <span class="prefix">R$</span>
+              <input id="recap" type="number" inputmode="numeric" min="1" step="50" value="780">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result-top">
+          <span class="result-label">Economia por ano</span>
+          <span class="result-value" id="r-ano">R$ 340.800</span>
+        </div>
+        <dl class="result-grid">
+          <div><dt>Por pneu</dt><dd id="r-pneu">R$ 1.420</dd></div>
+          <div><dt>Por mês</dt><dd id="r-mes">R$ 28.400</dd></div>
+          <div><dt>Redução do custo</dt><dd id="r-pct">65%</dd></div>
+          <div><dt>Pneus novos evitados</dt><dd id="r-qtd">240/ano</dd></div>
+        </dl>
+        <a class="btn btn-zap" id="calc-cta" data-zap href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+          Enviar esta simulação
+        </a>
+        <small>Estimativa com base nos valores informados. Envie a simulação e devolvemos o preço real para as medidas da sua frota.</small>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="tread" aria-hidden="true"></div>
+
+<!-- ============================================================
+     PROVA / NÚMEROS   (ajuste no bloco CONFIG do rodapé)
+     ============================================================ -->
+<section class="proof">
+  <div class="wrap proof-grid">
+    <div>
+      <div class="proof-num" data-cfg="anos">+20</div>
+      <div class="proof-cap">Anos na estrada</div>
+    </div>
+    <div>
+      <div class="proof-num" data-cfg="pneus">+80 mil</div>
+      <div class="proof-cap">Pneus recapados</div>
+    </div>
+    <div>
+      <div class="proof-num" data-cfg="frotas">+300</div>
+      <div class="proof-cap">Frotas atendidas</div>
+    </div>
+    <div>
+      <div class="proof-num"><em data-cfg="garantia">100%</em></div>
+      <div class="proof-cap">Com garantia por escrito</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVIÇOS
+     ============================================================ -->
+<section class="section" id="servicos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">O que fazemos</span>
+      <h2>Da carcaça inspecionada ao pneu pronto para rodar</h2>
+      <p class="lede">Tudo em uma casa só: você deixa o pneu, a gente devolve rodando. Nada de mandar carcaça para três lugares diferentes.</p>
+    </div>
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg></div>
+        <h3>Recapagem a frio</h3>
+        <p>Banda pré-vulcanizada aplicada em autoclave, com controle de temperatura e pressão. Ideal para linha rodoviária, onde o desenho da banda e o consumo importam.</p>
+        <div class="meta">Rodoviário · Longa distância</div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c1.8 3 4.5 4.6 4.5 8a4.5 4.5 0 0 1-9 0c0-3.4 2.7-5 4.5-8Z"/><path d="M6 20h12"/></svg></div>
+        <h3>Recapagem a quente</h3>
+        <p>Matriz aquecida para pneus de uso severo — obra, canavial, terra e caçamba. Borracha mais robusta para quem trabalha fora do asfalto.</p>
+        <div class="meta">Fora de estrada · Uso severo</div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 4.5 19 9l-8.5 8.5H6v-4.5Z"/><path d="m4 20 3-1"/></svg></div>
+        <h3>Reparo e vulcanização</h3>
+        <p>Furos, cortes laterais e reparos de talão avaliados um a um. Carcaça que dá para salvar, a gente salva; a que não dá, a gente avisa antes de cobrar.</p>
+        <div class="meta">Manchão · Reparo a quente</div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 1 9 9"/><path d="M3 12h4M12 3v4"/><path d="m8 16 3 3-3 3"/></svg></div>
+        <h3>Inspeção e laudo de carcaça</h3>
+        <p>Toda carcaça passa por inspeção antes de entrar na linha. Você recebe o parecer do que foi aprovado e do que foi recusado — sem surpresa na entrega.</p>
+        <div class="meta">Laudo por pneu</div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16V7h11v9"/><path d="M13 10h4l4 3v3h-8"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></div>
+        <h3>Coleta e entrega</h3>
+        <p>Buscamos os pneus na sua garagem e devolvemos prontos. Sua equipe não perde meio dia de carreta parada para levar carcaça.</p>
+        <div class="meta">Frota · Sem custo na região</div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5"/><path d="M8 19V9M12 19v-6M16 19v-9M20 19V7"/></svg></div>
+        <h3>Gestão de pneus da frota</h3>
+        <p>Controle de vidas por carcaça, sulco e custo por quilômetro. Você enxerga qual eixo, qual motorista e qual rota estão comendo borracha.</p>
+        <div class="meta">Relatório mensal</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="tread" aria-hidden="true"></div>
+
+<!-- ============================================================
+     PROCESSO — sequência real, por isso numerada
+     ============================================================ -->
+<section class="section" id="processo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Como funciona</span>
+      <h2>Cinco etapas, do telefonema à carreta rodando</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n" aria-hidden="true"></div>
+        <h3>Você chama no WhatsApp</h3>
+        <p>Diga a medida e a quantidade. Em minutos você tem preço, prazo e a lista do que aceitamos recapar.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n" aria-hidden="true"></div>
+        <h3>Coleta na sua garagem</h3>
+        <p>Retiramos as carcaças no seu pátio, com romaneio assinado. Cada pneu entra numerado no nosso controle.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n" aria-hidden="true"></div>
+        <h3>Inspeção e raspagem</h3>
+        <p>Carcaça examinada por dentro e por fora. Aprovada, vai para raspagem e preparação; recusada, volta para você com o motivo.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n" aria-hidden="true"></div>
+        <h3>Vulcanização e teste</h3>
+        <p>Aplicação da banda, cura em autoclave e inspeção final com teste de pressão. Só sai da linha o pneu que passa.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n" aria-hidden="true"></div>
+        <h3>Entrega com garantia</h3>
+        <p>Devolvemos no seu pátio, com nota e termo de garantia. Deu problema de fabricação dentro do prazo? A gente resolve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMPARATIVO
+     ============================================================ -->
+<section class="section" style="background:var(--rubber-850); border-block:1px solid var(--line-soft);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Por que recapar</span>
+      <h2>A carcaça é o que custa caro. Ela ainda é sua.</h2>
+      <p class="lede">Um pneu de carga foi projetado para rodar três vidas. Jogar a carcaça fora na primeira é comprar o mesmo aço e a mesma lona de novo.</p>
+    </div>
+    <div class="compare">
+      <div class="col win">
+        <h3>Pneu recapado</h3>
+        <div class="price">Custo típico: 30% a 40% do pneu novo</div>
+        <ul>
+          <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Mesma carcaça, borracha nova.</b> Você paga a banda, não o pneu inteiro.</span></li>
+          <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Garantia por escrito</b> contra defeito de processo.</span></li>
+          <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Banda escolhida pela sua operação</b> — rodovia, misto ou fora de estrada.</span></li>
+          <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Cerca de 30 litros de petróleo poupados</b> por pneu de carga recapado.</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Pneu novo a cada troca</h3>
+        <div class="price">Custo: 100%, toda vez</div>
+        <ul>
+          <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Você compra de novo a carcaça que já tinha.</span></li>
+          <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Capital parado em estoque de pneu novo.</span></li>
+          <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Carcaça boa vendida como sucata por trocado.</span></li>
+          <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Custo por quilômetro sobe e ninguém percebe.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DEPOIMENTOS
+     >>> IMPORTANTE: os textos abaixo são MODELOS de exemplo.
+     >>> Substitua pelos depoimentos REAIS dos seus clientes
+     >>> (pode copiar as avaliações do seu perfil no Google).
+     ============================================================ -->
+<section class="section" id="clientes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Quem já roda com a gente</span>
+      <h2>Frota parada não paga boleto</h2>
+      <p class="lede">Prazo combinado é prazo cumprido — é isso que faz o cliente voltar com o próximo lote de carcaças.</p>
+    </div>
+    <div class="quotes">
+      <figure class="quote reveal">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <blockquote><p>“Levo carcaça há anos e nunca tive pneu voltando da estrada. O laudo vem junto, então eu sei exatamente o que foi aprovado e o que não deu.”</p></blockquote>
+        <figcaption><b>[Nome do cliente]</b>[Transportadora] · [Cidade/UF]</figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <blockquote><p>“Buscaram os pneus no pátio na terça e devolveram na sexta. Para quem tem carreta esperando, esse prazo vale mais que desconto.”</p></blockquote>
+        <figcaption><b>[Nome do cliente]</b>[Empresa] · [Cidade/UF]</figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <blockquote><p>“Cortei quase pela metade o que eu gastava com pneu no ano. Fiz a conta com o contador e não acreditei na primeira vez.”</p></blockquote>
+        <figcaption><b>[Nome do cliente]</b>[Autônomo] · [Cidade/UF]</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section" id="duvidas" style="background:var(--rubber-850); border-block:1px solid var(--line-soft);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Dúvidas frequentes</span>
+      <h2>O que todo mundo pergunta antes do primeiro lote</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Pneu recapado é seguro?</summary>
+        <div class="answer">É — desde que a carcaça seja inspecionada e o processo seja controlado. Toda carcaça passa por exame antes de entrar na linha e por teste após a vulcanização. Ônibus urbanos, frotas de transportadoras e caminhões de coleta rodam com pneu recapado no eixo traseiro há décadas no Brasil inteiro.</div>
+      </details>
+      <details>
+        <summary>Quantas vezes posso recapar o mesmo pneu?</summary>
+        <div class="answer">Depende da conservação da carcaça. Um pneu radial de carga bem calibrado e sem abuso costuma aceitar duas ou três recapagens. Quem controla pressão e faz rodízio tira mais vidas do mesmo pneu — e é justamente isso que o relatório de gestão mostra.</div>
+      </details>
+      <details>
+        <summary>E se a minha carcaça for reprovada?</summary>
+        <div class="answer">Você é avisado antes de qualquer cobrança, com o motivo da recusa (corte de lona, separação, dano de talão, reparo mal feito). A carcaça reprovada volta com o lote ou fica à sua disposição — a decisão é sua.</div>
+      </details>
+      <details>
+        <summary>Qual é o prazo de entrega?</summary>
+        <div class="answer">O padrão é de 3 a 5 dias úteis a partir da coleta, conforme a medida e o volume do lote. Lote grande fechado com antecedência entra programado na linha, e você recebe a data por escrito no orçamento.</div>
+      </details>
+      <details>
+        <summary>A garantia cobre o quê?</summary>
+        <div class="answer">Defeito do processo de recapagem — descolamento de banda, falha de vulcanização, defeito do material aplicado. Não cobre dano de uso, como corte por objeto na pista, rodagem com pressão baixa ou sobrecarga. Tudo isso vai escrito no termo que acompanha a entrega.</div>
+      </details>
+      <details>
+        <summary>Vocês atendem autônomo, ou só frota?</summary>
+        <div class="answer">Os dois. Quem tem um caminhão só recebe o mesmo processo e a mesma garantia de quem manda cem pneus por mês. A diferença fica no prazo de programação e nas condições de lote.</div>
+      </details>
+      <details>
+        <summary>Quais medidas vocês trabalham?</summary>
+        <div class="answer">As medidas de carga mais rodadas no país — 295/80R22.5, 275/80R22.5, 1000R20, 900R20 e similares — além de linha agrícola e fora de estrada sob consulta. Mande a medida no WhatsApp e confirmamos na hora.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAIXA DE CTA
+     ============================================================ -->
+<section class="cta-band">
+  <div class="wrap cta-in">
+    <div>
+      <h2>Manda a medida. Devolvemos o preço.</h2>
+      <p>Fotografe o pneu ou escreva a medida no WhatsApp. Em minutos você tem preço, prazo e a data da coleta — sem cadastro, sem formulário longo, sem esperar vendedor.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Quero saber o preço da recapagem. Medida:">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-ghost" data-tel href="tel:+550000000000">Ligar agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTATO
+     ============================================================ -->
+<section class="section" id="contato">
+  <div class="wrap contact-grid">
+
+    <div>
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="tag">Orçamento</span>
+        <h2>Peça o seu em um minuto</h2>
+        <p class="lede">Preencha e o WhatsApp abre com a mensagem pronta. Se preferir, ligue — atendemos no horário comercial.</p>
+      </div>
+      <form class="form" id="orcamento" novalidate>
+        <div class="field">
+          <label for="f-nome">Seu nome</label>
+          <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Como podemos te chamar" required>
+        </div>
+        <div class="field">
+          <label for="f-empresa">Empresa (opcional)</label>
+          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Transportadora, frota ou autônomo">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-medida">Medida do pneu</label>
+            <input id="f-medida" name="medida" type="text" placeholder="Ex.: 295/80R22.5">
+          </div>
+          <div class="field">
+            <label for="f-qtd">Quantidade</label>
+            <input id="f-qtd" name="quantidade" type="number" min="1" step="1" placeholder="Ex.: 12">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-servico">Serviço</label>
+          <select id="f-servico" name="servico">
+            <option>Recapagem a frio</option>
+            <option>Recapagem a quente</option>
+            <option>Reparo / vulcanização</option>
+            <option>Inspeção de carcaça</option>
+            <option>Ainda não sei — quero orientação</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-obs">Observações</label>
+          <textarea id="f-obs" name="observacoes" placeholder="Prazo desejado, cidade da coleta, condição das carcaças…"></textarea>
+        </div>
+        <button class="btn btn-zap" type="submit">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+          Enviar pelo WhatsApp
+        </button>
+        <p class="privacy">Seus dados vão direto para o nosso WhatsApp. Nada é armazenado neste site.</p>
+      </form>
+    </div>
+
+    <div>
+      <div class="sec-head" style="margin-bottom:8px">
+        <span class="tag">A oficina</span>
+        <h2>Onde a gente trabalha</h2>
+      </div>
+      <ul class="info-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div>
+            <b>Endereço</b>
+            <a data-maps href="#" target="_blank" rel="noopener"><span data-cfg="endereco">Rua Exemplo, 000 — Bairro, Cidade/UF</span></a>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5c0-.6.4-1 1-1h3l2 5-2.2 1.4a12 12 0 0 0 5.8 5.8L15 14l5 2v3c0 .6-.4 1-1 1A15 15 0 0 1 4 5Z"/></svg>
+          <div>
+            <b>Telefone</b>
+            <a data-tel href="tel:+550000000000"><span data-cfg="telefone">(00) 0000-0000</span></a>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg>
+          <div>
+            <b>Horário</b>
+            <div class="hours" data-cfg="horario">Seg a Sex, 08h–18h · Sáb, 08h–12h</div>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 16V7h11v9"/><path d="M13 10h4l4 3v3h-8"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>
+          <div>
+            <b>Área de coleta</b>
+            <div class="hours" data-cfg="area">Cidade e região — consulte o raio de atendimento</div>
+          </div>
+        </li>
+      </ul>
+      <p style="margin-top:22px">
+        <a class="btn btn-ghost" data-maps href="#" target="_blank" rel="noopener">Ver rota no Google Maps</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot-grid">
+    <p>
+      <span data-cfg="nome">Recapadora</span> · <span data-cfg="endereco">Rua Exemplo, 000 — Cidade/UF</span><br>
+      <span data-cfg="cnpj">CNPJ 00.000.000/0001-00</span>
+    </p>
+    <nav class="foot-nav" aria-label="Rodapé">
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato">Orçamento</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="float-zap" data-zap href="#" data-msg="Olá! Vim pelo site e quero um orçamento de recapagem." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+  <span>Orçamento no WhatsApp</span>
+</a>
+
+<script>
+/* ============================================================================
+   ►►►  CONFIGURE AQUI  ◄◄◄
+   Troque apenas os valores abaixo. Tudo no site (links do WhatsApp, telefone,
+   endereço, mapa, nome, dados do Google) é preenchido a partir daqui.
+   ============================================================================ */
+const NEGOCIO = {
+  nome:      "Recapadora",                                   // nome fantasia
+  cidade:    "Cidade / UF",                                  // aparece abaixo do nome
+  telefone:  "(00) 0000-0000",                               // como o cliente lê
+  telefoneE164: "+550000000000",                             // usado no link de ligação
+  whatsapp:  "5500000000000",                                // só números: 55 + DDD + número
+  endereco:  "Rua Exemplo, 000 — Bairro, Cidade/UF, 00000-000",
+  mapsUrl:   "https://maps.app.goo.gl/635p5LQNpsVNpovk8",    // link do perfil no Google Maps
+  horario:   "Seg a Sex, 08h–18h · Sáb, 08h–12h",
+  area:      "Cidade e região — consulte o raio de atendimento",
+  cnpj:      "CNPJ 00.000.000/0001-00",
+  site:      "https://SEU-DOMINIO.com.br",
+
+  // números da barra de prova (use os seus)
+  anos:      "+20",
+  pneus:     "+80 mil",
+  frotas:    "+300",
+  garantia:  "100%",
+
+  // horários no formato do Google (para os dados estruturados)
+  horarioSchema: ["Mo-Fr 08:00-18:00", "Sa 08:00-12:00"]
+};
+/* ==========================  fim da configuração  ========================== */
+
+
+/* --- preenche os textos marcados com data-cfg --- */
+document.querySelectorAll("[data-cfg]").forEach(function (el) {
+  var chave = el.getAttribute("data-cfg");
+  if (NEGOCIO[chave]) el.textContent = NEGOCIO[chave];
+});
+
+/* --- links de telefone e mapa --- */
+document.querySelectorAll("[data-tel]").forEach(function (el) {
+  el.href = "tel:" + NEGOCIO.telefoneE164;
+});
+document.querySelectorAll("[data-maps]").forEach(function (el) {
+  el.href = NEGOCIO.mapsUrl;
+});
+
+/* --- links de WhatsApp (cada botão leva sua própria mensagem) --- */
+function linkZap(msg) {
+  return "https://wa.me/" + NEGOCIO.whatsapp + "?text=" + encodeURIComponent(msg);
+}
+document.querySelectorAll("[data-zap]").forEach(function (el) {
+  var msg = el.getAttribute("data-msg") || "Olá! Vim pelo site e quero um orçamento de recapagem.";
+  el.href = linkZap(msg);
+  el.target = "_blank";
+  el.rel = "noopener";
+});
+
+/* --- calculadora de economia --- */
+(function () {
+  var brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  var num = new Intl.NumberFormat("pt-BR");
+  var campos = {
+    qtd:   document.getElementById("qtd"),
+    novo:  document.getElementById("novo"),
+    recap: document.getElementById("recap")
+  };
+  var saida = {
+    ano:  document.getElementById("r-ano"),
+    pneu: document.getElementById("r-pneu"),
+    mes:  document.getElementById("r-mes"),
+    pct:  document.getElementById("r-pct"),
+    qtd:  document.getElementById("r-qtd")
+  };
+  var cta = document.getElementById("calc-cta");
+  if (!campos.qtd || !cta) return;
+
+  function ler(el, padrao) {
+    var v = parseFloat(el.value);
+    return isFinite(v) && v > 0 ? v : padrao;
+  }
+
+  function calcular() {
+    var qtd   = Math.min(ler(campos.qtd, 20), 2000);
+    var novo  = ler(campos.novo, 2200);
+    var recap = Math.min(ler(campos.recap, 780), novo);
+
+    var porPneu = novo - recap;
+    var mes     = porPneu * qtd;
+    var ano     = mes * 12;
+    var pct     = novo > 0 ? Math.round((porPneu / novo) * 100) : 0;
+
+    saida.pneu.textContent = brl.format(porPneu);
+    saida.mes.textContent  = brl.format(mes);
+    saida.ano.textContent  = brl.format(ano);
+    saida.pct.textContent  = pct + "%";
+    saida.qtd.textContent  = num.format(qtd * 12) + "/ano";
+
+    cta.href = linkZap(
+      "Olá! Fiz a simulação no site:\n" +
+      "• Pneus por mês: " + num.format(qtd) + "\n" +
+      "• Pneu novo: " + brl.format(novo) + "\n" +
+      "• Recapagem: " + brl.format(recap) + "\n" +
+      "• Economia estimada no ano: " + brl.format(ano) + "\n\n" +
+      "Quero confirmar o preço para as medidas da minha frota."
+    );
+  }
+
+  Object.keys(campos).forEach(function (k) {
+    campos[k].addEventListener("input", calcular);
+  });
+  calcular();
+})();
+
+/* --- formulário: monta a mensagem e abre o WhatsApp --- */
+(function () {
+  var form = document.getElementById("orcamento");
+  if (!form) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var v = function (k) { return (d.get(k) || "").toString().trim(); };
+
+    if (!v("nome")) {
+      form.querySelector("#f-nome").focus();
+      return;
+    }
+
+    var linhas = ["Olá! Quero um orçamento de recapagem.", ""];
+    linhas.push("• Nome: " + v("nome"));
+    if (v("empresa"))     linhas.push("• Empresa: " + v("empresa"));
+    if (v("medida"))      linhas.push("• Medida: " + v("medida"));
+    if (v("quantidade"))  linhas.push("• Quantidade: " + v("quantidade"));
+    linhas.push("• Serviço: " + v("servico"));
+    if (v("observacoes")) linhas.push("• Observações: " + v("observacoes"));
+
+    window.open(linkZap(linhas.join("\n")), "_blank", "noopener");
+  });
+})();
+
+/* --- revelação suave ao rolar --- */
+(function () {
+  var alvos = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    alvos.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (entrada) {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add("in");
+        obs.unobserve(entrada.target);
+      }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+  alvos.forEach(function (el, i) {
+    el.style.transitionDelay = (i % 3) * 70 + "ms";
+    obs.observe(el);
+  });
+})();
+
+/* --- título da aba e dados estruturados a partir da configuração --- */
+(function () {
+  document.title = NEGOCIO.nome + " — Recapagem de Pneus";
+
+  var dados = {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": NEGOCIO.nome,
+    "description": "Recapagem de pneus de carga a frio e a quente, vulcanização, inspeção de carcaça e coleta na frota.",
+    "url": NEGOCIO.site,
+    "telephone": NEGOCIO.telefoneE164,
+    "address": { "@type": "PostalAddress", "streetAddress": NEGOCIO.endereco, "addressCountry": "BR" },
+    "hasMap": NEGOCIO.mapsUrl,
+    "openingHours": NEGOCIO.horarioSchema,
+    "priceRange": "$$",
+    "areaServed": NEGOCIO.area,
+    "makesOffer": [
+      "Recapagem a frio", "Recapagem a quente", "Vulcanização e reparo",
+      "Inspeção de carcaça", "Coleta e entrega de pneus"
+    ].map(function (s) {
+      return { "@type": "Offer", "itemOffered": { "@type": "Service", "name": s } };
+    })
+  };
+
+  var perguntas = [];
+  document.querySelectorAll(".faq details").forEach(function (d) {
+    perguntas.push({
+      "@type": "Question",
+      "name": d.querySelector("summary").textContent.trim(),
+      "acceptedAnswer": { "@type": "Answer", "text": d.querySelector(".answer").textContent.trim() }
+    });
+  });
+
+  var tag = document.createElement("script");
+  tag.type = "application/ld+json";
+  tag.textContent = JSON.stringify([dados, { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": perguntas }]);
+  document.head.appendChild(tag);
+})();
+</script>
+
+</body>
+</html>
