@@ -3,16 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Recapadora — Mais Quilômetros por Real</title>
-<meta name="description" content="Recapagem de pneus de carga com garantia, coleta e entrega na sua transportadora. Reduza até 60% do custo por quilômetro da sua frota. Peça um orçamento pelo WhatsApp.">
+<title>WR Lopes Pneus</title>
+<meta name="description" content="WR Lopes Pneus: recapagem, vulcanização, compra e venda de pneus. Reduza o custo por quilômetro do seu caminhão pagando uma fração do preço do pneu novo. Orçamento na hora pelo WhatsApp.">
 <meta name="theme-color" content="#100E0D">
 <link rel="canonical" href="https://SEU-DOMINIO.com.br/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Recapagem de pneus com garantia — até 60% de economia por km">
-<meta property="og:description" content="Recapagem a frio e a quente, vulcanização e inspeção técnica para frotas. Coleta e entrega. Orçamento na hora pelo WhatsApp.">
-<meta property="og:image" content="https://SEU-DOMINIO.com.br/capa.jpg">
+<meta property="og:title" content="WR Lopes Pneus — Recapagem, vulcanização e venda de pneus">
+<meta property="og:description" content="Seu pneu rodando de novo por uma fração do preço. Recapagem, vulcanização, compra e venda de pneus. Fale com a gente no WhatsApp.">
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/assets/compartilhamento.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icone-wr.png">
+<link rel="apple-touch-icon" href="assets/icone-wr.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,6 +64,7 @@
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
+[hidden]{ display:none !important; }
 html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
@@ -170,22 +176,12 @@ section[id], .calc[id], form[id]{ scroll-margin-top:86px; }
   display:flex; align-items:center; gap:20px;
   min-height:66px;
 }
-.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; margin-right:auto; }
-.brand-mark{
-  width:34px; height:34px; flex:none;
-  border-radius:50%;
-  border:3px solid var(--amber);
-  background:
-    repeating-conic-gradient(var(--rubber-600) 0 8deg, transparent 8deg 20deg);
-  box-shadow:inset 0 0 0 4px var(--rubber-900);
-}
-.brand-name{
-  font-family:var(--display); font-weight:800; text-transform:uppercase;
-  font-size:1.22rem; letter-spacing:.01em; line-height:1;
-}
+.brand{ display:flex; align-items:center; gap:14px; text-decoration:none; margin-right:auto; }
+.brand img{ height:38px; width:auto; }
 .brand-sub{
   font-family:var(--mono); font-size:.63rem; letter-spacing:.16em;
   color:var(--text-3); text-transform:uppercase;
+  padding-left:14px; border-left:1px solid var(--line);
 }
 .nav{ display:none; gap:26px; }
 .nav a{
@@ -201,7 +197,7 @@ section[id], .calc[id], form[id]{ scroll-margin-top:86px; }
 }
 .tel-link:hover{ color:var(--amber); }
 @media (min-width:900px){ .nav{ display:flex; } .tel-link{ display:inline; } }
-@media (max-width:520px){ .brand-sub{ display:none; } .brand-name{ font-size:1.1rem; } }
+@media (max-width:520px){ .brand-sub{ display:none; } .brand img{ height:32px; } }
 
 /* ============================================================
    HERO
@@ -336,12 +332,13 @@ section[id], .calc[id], form[id]{ scroll-margin-top:86px; }
   .proof-grid > div:nth-child(odd){ border-left:0; }
   .proof-grid > div:nth-child(n+3){ border-top:1px solid var(--line-soft); margin-top:14px; padding-top:20px; }
 }
-.proof-num{
-  font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,4vw,2.9rem);
-  line-height:1; color:var(--text); font-variant-numeric:tabular-nums;
+.proof-ico{ width:26px; height:26px; color:var(--amber); margin-bottom:12px; }
+.proof-ico svg{ width:100%; height:100%; }
+.proof-name{
+  font-family:var(--display); font-weight:800; font-size:1.28rem;
+  text-transform:uppercase; line-height:1.05; color:var(--text);
 }
-.proof-num em{ font-style:normal; color:var(--amber); }
-.proof-cap{ font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin-top:9px; }
+.proof-cap{ font-size:.88rem; color:var(--text-3); margin-top:7px; line-height:1.45; }
 
 /* ============================================================
    SEÇÕES GENÉRICAS
@@ -508,10 +505,13 @@ section[id], .calc[id], form[id]{ scroll-margin-top:86px; }
 /* ---------- rodapé ---------- */
 footer.site{
   background:var(--rubber-850); border-top:1px solid var(--line-soft);
-  padding-block:44px 40px;
+  /* folga extra embaixo para o botao flutuante nao cobrir os links */
+  padding-block:44px 104px;
 }
 .foot-grid{ display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between; }
 .foot-grid p{ font-size:.85rem; color:var(--text-3); }
+.foot-brand{ display:flex; align-items:center; gap:18px; }
+.foot-brand img{ height:44px; width:auto; opacity:.9; }
 .foot-nav{ display:flex; flex-wrap:wrap; gap:18px; }
 .foot-nav a{
   font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase;
@@ -552,11 +552,8 @@ footer.site{
 <header class="topbar">
   <div class="wrap topbar-in">
     <a class="brand" href="#topo">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>
-        <span class="brand-name" data-cfg="nome">Recapadora</span>
-        <span class="brand-sub" data-cfg="cidade">Cidade / UF</span>
-      </span>
+      <img src="assets/logo-wr-lopes-pneus.png" alt="WR Lopes Pneus" width="90" height="38">
+      <span class="brand-sub" data-cfg="cidade">Cidade / UF</span>
     </a>
     <nav class="nav" aria-label="Seções">
       <a href="#servicos">Serviços</a>
@@ -565,8 +562,8 @@ footer.site{
       <a href="#duvidas">Dúvidas</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a class="tel-link" data-tel href="tel:+550000000000"><span data-cfg="telefone">(00) 0000-0000</span></a>
-    <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Vim pelo site e quero um orçamento de recapagem.">
+    <a class="tel-link" data-tel data-so-com-telefone href="tel:+550000000000"><span data-cfg="telefone">(00) 0000-0000</span></a>
+    <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Vim pelo site da WR Lopes Pneus e quero um orçamento.">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
       WhatsApp
     </a>
@@ -581,26 +578,26 @@ footer.site{
   <div class="wrap hero-grid">
 
     <div class="hero-copy">
-      <span class="tag">Recapagem de pneus de carga</span>
-      <h1>Cada pneu da sua frota<span>vale mais uma vida.</span></h1>
+      <span class="tag">WR Lopes Pneus · Recapagem e vulcanização</span>
+      <h1>Cada pneu seu<span>vale mais uma vida.</span></h1>
       <p class="lede">
-        Recapagem a frio e a quente com inspeção técnica, garantia por escrito e
-        coleta na sua garagem. Você roda os mesmos quilômetros pagando uma fração
-        do preço de um pneu novo — sem abrir mão da segurança.
+        Recapagem, vulcanização, compra e venda de pneus na WR Lopes Pneus.
+        Sua carcaça volta para a estrada por uma fração do preço de um pneu novo —
+        e a que não servir mais, a gente compra de você.
       </p>
       <ul class="chips">
-        <li><span class="dot" aria-hidden="true"></span> <b>Garantia</b> por escrito</li>
-        <li><span class="dot" aria-hidden="true"></span> <b>Coleta e entrega</b> na transportadora</li>
-        <li><span class="dot" aria-hidden="true"></span> Pronto em <b>até 5 dias úteis</b></li>
+        <li><span class="dot" aria-hidden="true"></span> <b>Orçamento na hora</b> pelo WhatsApp</li>
+        <li><span class="dot" aria-hidden="true"></span> <b>Compramos</b> sua carcaça</li>
+        <li><span class="dot" aria-hidden="true"></span> Atendemos <b>frota e autônomo</b></li>
       </ul>
       <div class="hero-actions">
-        <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Quero um orçamento de recapagem para a minha frota.">
+        <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Vim pelo site da WR Lopes Pneus e quero um orçamento de recapagem.">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
           Pedir orçamento agora
         </a>
         <a class="btn btn-ghost" href="#economia">Ver quanto eu economizo</a>
       </div>
-      <p class="hero-note">Resposta no mesmo dia útil · Atendemos frota e autônomo</p>
+      <p class="hero-note">Você fala direto com quem faz o serviço</p>
     </div>
 
     <!-- calculadora: o momento interativo do hero -->
@@ -611,9 +608,9 @@ footer.site{
       </div>
       <div class="calc-body">
         <div class="field">
-          <label for="qtd">Pneus trocados por mês</label>
+          <label for="qtd">Pneus que você troca por mês</label>
           <div class="input-wrap">
-            <input class="no-prefix" id="qtd" type="number" inputmode="numeric" min="1" max="2000" step="1" value="20">
+            <input class="no-prefix" id="qtd" type="number" inputmode="numeric" min="1" max="2000" step="1" value="6">
           </div>
         </div>
         <div class="field-row">
@@ -636,19 +633,19 @@ footer.site{
       <div class="result">
         <div class="result-top">
           <span class="result-label">Economia por ano</span>
-          <span class="result-value" id="r-ano">R$ 340.800</span>
+          <span class="result-value" id="r-ano">R$ 102.240</span>
         </div>
         <dl class="result-grid">
           <div><dt>Por pneu</dt><dd id="r-pneu">R$ 1.420</dd></div>
-          <div><dt>Por mês</dt><dd id="r-mes">R$ 28.400</dd></div>
+          <div><dt>Por mês</dt><dd id="r-mes">R$ 8.520</dd></div>
           <div><dt>Redução do custo</dt><dd id="r-pct">65%</dd></div>
-          <div><dt>Pneus novos evitados</dt><dd id="r-qtd">240/ano</dd></div>
+          <div><dt>Pneus novos evitados</dt><dd id="r-qtd">72/ano</dd></div>
         </dl>
         <a class="btn btn-zap" id="calc-cta" data-zap href="#">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
           Enviar esta simulação
         </a>
-        <small>Estimativa com base nos valores informados. Envie a simulação e devolvemos o preço real para as medidas da sua frota.</small>
+        <small>Estimativa com base nos valores informados. Envie a simulação e devolvemos o preço real para a sua medida.</small>
       </div>
     </div>
 
@@ -663,20 +660,24 @@ footer.site{
 <section class="proof">
   <div class="wrap proof-grid">
     <div>
-      <div class="proof-num" data-cfg="anos">+20</div>
-      <div class="proof-cap">Anos na estrada</div>
+      <div class="proof-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg></div>
+      <div class="proof-name">Recapagem</div>
+      <div class="proof-cap">Sua carcaça de volta à estrada</div>
     </div>
     <div>
-      <div class="proof-num" data-cfg="pneus">+80 mil</div>
-      <div class="proof-cap">Pneus recapados</div>
+      <div class="proof-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c1.8 3 4.5 4.6 4.5 8a4.5 4.5 0 0 1-9 0c0-3.4 2.7-5 4.5-8Z"/><path d="M6 20h12"/></svg></div>
+      <div class="proof-name">Vulcanização</div>
+      <div class="proof-cap">Furo, corte e reparo resolvidos</div>
     </div>
     <div>
-      <div class="proof-num" data-cfg="frotas">+300</div>
-      <div class="proof-cap">Frotas atendidas</div>
+      <div class="proof-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8Z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/><path d="M12 11v5M9.5 13.5 12 11l2.5 2.5"/></svg></div>
+      <div class="proof-name">Compra de pneus</div>
+      <div class="proof-cap">Pagamos pela sua carcaça</div>
     </div>
     <div>
-      <div class="proof-num"><em data-cfg="garantia">100%</em></div>
-      <div class="proof-cap">Com garantia por escrito</div>
+      <div class="proof-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5 12 4l9 4.5-9 4.5Z"/><path d="M3 8.5V16l9 4.5 9-4.5V8.5"/><path d="M12 13v7.5"/></svg></div>
+      <div class="proof-name">Venda de pneus</div>
+      <div class="proof-cap">Novos, semi-novos e recapados</div>
     </div>
   </div>
 </section>
@@ -688,8 +689,8 @@ footer.site{
   <div class="wrap">
     <div class="sec-head">
       <span class="tag">O que fazemos</span>
-      <h2>Da carcaça inspecionada ao pneu pronto para rodar</h2>
-      <p class="lede">Tudo em uma casa só: você deixa o pneu, a gente devolve rodando. Nada de mandar carcaça para três lugares diferentes.</p>
+      <h2>Pneu é com a gente, do começo ao fim</h2>
+      <p class="lede">Recapar, consertar, comprar ou vender: resolve tudo em uma casa só. Nada de rodar a cidade atrás de três oficinas diferentes.</p>
     </div>
     <div class="cards">
 
@@ -709,30 +710,30 @@ footer.site{
 
       <article class="card reveal">
         <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 4.5 19 9l-8.5 8.5H6v-4.5Z"/><path d="m4 20 3-1"/></svg></div>
-        <h3>Reparo e vulcanização</h3>
-        <p>Furos, cortes laterais e reparos de talão avaliados um a um. Carcaça que dá para salvar, a gente salva; a que não dá, a gente avisa antes de cobrar.</p>
+        <h3>Vulcanização e reparo</h3>
+        <p>Furo, corte e reparo de talão avaliados um a um. Carcaça que dá para salvar, a gente salva; a que não dá, a gente avisa antes de cobrar.</p>
         <div class="meta">Manchão · Reparo a quente</div>
       </article>
 
       <article class="card reveal">
-        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 1 9 9"/><path d="M3 12h4M12 3v4"/><path d="m8 16 3 3-3 3"/></svg></div>
-        <h3>Inspeção e laudo de carcaça</h3>
-        <p>Toda carcaça passa por inspeção antes de entrar na linha. Você recebe o parecer do que foi aprovado e do que foi recusado — sem surpresa na entrega.</p>
-        <div class="meta">Laudo por pneu</div>
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8Z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/><path d="M12 11v5M9.5 13.5 12 11l2.5 2.5"/></svg></div>
+        <h3>Compra de pneus e carcaças</h3>
+        <p>Pneu parado no fundo do pátio é dinheiro parado. A gente avalia o lote e paga pelo que tem valor — inclusive carcaça que já não serve para você.</p>
+        <div class="meta">Avaliação sem compromisso</div>
       </article>
 
       <article class="card reveal">
-        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16V7h11v9"/><path d="M13 10h4l4 3v3h-8"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></div>
-        <h3>Coleta e entrega</h3>
-        <p>Buscamos os pneus na sua garagem e devolvemos prontos. Sua equipe não perde meio dia de carreta parada para levar carcaça.</p>
-        <div class="meta">Frota · Sem custo na região</div>
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5 12 4l9 4.5-9 4.5Z"/><path d="M3 8.5V16l9 4.5 9-4.5V8.5"/><path d="M12 13v7.5"/></svg></div>
+        <h3>Venda de pneus</h3>
+        <p>Novos, semi-novos e recapados nas medidas mais rodadas. Diga a medida e o uso, e a gente indica o que cabe no seu bolso sem sacrificar a segurança.</p>
+        <div class="meta">Novo · Semi-novo · Recapado</div>
       </article>
 
       <article class="card reveal">
-        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5"/><path d="M8 19V9M12 19v-6M16 19v-9M20 19V7"/></svg></div>
-        <h3>Gestão de pneus da frota</h3>
-        <p>Controle de vidas por carcaça, sulco e custo por quilômetro. Você enxerga qual eixo, qual motorista e qual rota estão comendo borracha.</p>
-        <div class="meta">Relatório mensal</div>
+        <div class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L5 16v3h3l4.3-4.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2Z"/></svg></div>
+        <h3>Serviços gerais</h3>
+        <p>Montagem, desmontagem, calibragem e o quebra-galho que ninguém quer fazer. Chegou com problema no pneu, sai resolvido.</p>
+        <div class="meta">Borracharia · Serviços gerais</div>
       </article>
 
     </div>
@@ -748,33 +749,33 @@ footer.site{
   <div class="wrap">
     <div class="sec-head">
       <span class="tag">Como funciona</span>
-      <h2>Cinco etapas, do telefonema à carreta rodando</h2>
+      <h2>Cinco etapas, da foto no WhatsApp ao pneu rodando</h2>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-n" aria-hidden="true"></div>
         <h3>Você chama no WhatsApp</h3>
-        <p>Diga a medida e a quantidade. Em minutos você tem preço, prazo e a lista do que aceitamos recapar.</p>
+        <p>Manda a medida, a quantidade e uma foto do pneu. Já dá para adiantar boa parte da conversa por ali.</p>
       </div>
       <div class="step reveal">
         <div class="step-n" aria-hidden="true"></div>
-        <h3>Coleta na sua garagem</h3>
-        <p>Retiramos as carcaças no seu pátio, com romaneio assinado. Cada pneu entra numerado no nosso controle.</p>
+        <h3>A gente avalia a carcaça</h3>
+        <p>Olhamos o pneu por dentro e por fora para saber o que ele ainda aguenta: recapagem, reparo — ou se compensa mais a gente comprar de você.</p>
       </div>
       <div class="step reveal">
         <div class="step-n" aria-hidden="true"></div>
-        <h3>Inspeção e raspagem</h3>
-        <p>Carcaça examinada por dentro e por fora. Aprovada, vai para raspagem e preparação; recusada, volta para você com o motivo.</p>
+        <h3>Você aprova o orçamento</h3>
+        <p>Preço e prazo fechados antes de qualquer serviço. Carcaça que não passa na avaliação você fica sabendo na hora, com o motivo.</p>
       </div>
       <div class="step reveal">
         <div class="step-n" aria-hidden="true"></div>
-        <h3>Vulcanização e teste</h3>
-        <p>Aplicação da banda, cura em autoclave e inspeção final com teste de pressão. Só sai da linha o pneu que passa.</p>
+        <h3>Serviço executado</h3>
+        <p>Recapagem, vulcanização ou reparo feitos com o processo certo para o tipo de uso do seu pneu — rodovia, cidade ou fora de estrada.</p>
       </div>
       <div class="step reveal">
         <div class="step-n" aria-hidden="true"></div>
-        <h3>Entrega com garantia</h3>
-        <p>Devolvemos no seu pátio, com nota e termo de garantia. Deu problema de fabricação dentro do prazo? A gente resolve.</p>
+        <h3>Conferência e entrega</h3>
+        <p>Antes de sair, o pneu passa por conferência final. Deu qualquer coisa depois? Você fala direto com quem fez o serviço.</p>
       </div>
     </div>
   </div>
@@ -796,7 +797,7 @@ footer.site{
         <div class="price">Custo típico: 30% a 40% do pneu novo</div>
         <ul>
           <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Mesma carcaça, borracha nova.</b> Você paga a banda, não o pneu inteiro.</span></li>
-          <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Garantia por escrito</b> contra defeito de processo.</span></li>
+          <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Você aprova o orçamento</b> antes de qualquer serviço começar.</span></li>
           <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Banda escolhida pela sua operação</b> — rodovia, misto ou fora de estrada.</span></li>
           <li><svg class="mark yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg><span><b>Cerca de 30 litros de petróleo poupados</b> por pneu de carga recapado.</span></li>
         </ul>
@@ -807,7 +808,7 @@ footer.site{
         <ul>
           <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Você compra de novo a carcaça que já tinha.</span></li>
           <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Capital parado em estoque de pneu novo.</span></li>
-          <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Carcaça boa vendida como sucata por trocado.</span></li>
+          <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Carcaça boa parada no pátio, virando sucata.</span></li>
           <li><svg class="mark no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Custo por quilômetro sobe e ninguém percebe.</span></li>
         </ul>
       </div>
@@ -855,7 +856,7 @@ footer.site{
   <div class="wrap">
     <div class="sec-head">
       <span class="tag">Dúvidas frequentes</span>
-      <h2>O que todo mundo pergunta antes do primeiro lote</h2>
+      <h2>O que todo mundo pergunta antes de trazer o primeiro pneu</h2>
     </div>
     <div class="faq">
       <details>
@@ -867,24 +868,24 @@ footer.site{
         <div class="answer">Depende da conservação da carcaça. Um pneu radial de carga bem calibrado e sem abuso costuma aceitar duas ou três recapagens. Quem controla pressão e faz rodízio tira mais vidas do mesmo pneu — e é justamente isso que o relatório de gestão mostra.</div>
       </details>
       <details>
-        <summary>E se a minha carcaça for reprovada?</summary>
-        <div class="answer">Você é avisado antes de qualquer cobrança, com o motivo da recusa (corte de lona, separação, dano de talão, reparo mal feito). A carcaça reprovada volta com o lote ou fica à sua disposição — a decisão é sua.</div>
+        <summary>E se a minha carcaça não servir para recapagem?</summary>
+        <div class="answer">Você fica sabendo antes de qualquer cobrança, com o motivo da recusa — corte de lona, separação, dano de talão ou reparo mal feito de outro lugar. A carcaça volta para você ou, se preferir, a gente faz uma proposta para comprar. Melhor tirar algum valor dela do que deixar ocupando espaço no pátio.</div>
       </details>
       <details>
-        <summary>Qual é o prazo de entrega?</summary>
-        <div class="answer">O padrão é de 3 a 5 dias úteis a partir da coleta, conforme a medida e o volume do lote. Lote grande fechado com antecedência entra programado na linha, e você recebe a data por escrito no orçamento.</div>
+        <summary>Vocês compram pneu e carcaça usados?</summary>
+        <div class="answer">Compramos. Mande foto do lote e a medida pelo WhatsApp que a gente avalia e passa a proposta. Serve tanto para quem quer limpar o pátio quanto para quem prefere abater o valor no serviço de recapagem.</div>
       </details>
       <details>
-        <summary>A garantia cobre o quê?</summary>
-        <div class="answer">Defeito do processo de recapagem — descolamento de banda, falha de vulcanização, defeito do material aplicado. Não cobre dano de uso, como corte por objeto na pista, rodagem com pressão baixa ou sobrecarga. Tudo isso vai escrito no termo que acompanha a entrega.</div>
+        <summary>Qual é o prazo?</summary>
+        <div class="answer">Depende do serviço e do volume. Reparo simples costuma sair rápido; recapagem de lote leva mais tempo. O prazo é combinado junto com o orçamento, antes de o serviço começar — nada de você ficar no escuro esperando notícia.</div>
       </details>
       <details>
         <summary>Vocês atendem autônomo, ou só frota?</summary>
-        <div class="answer">Os dois. Quem tem um caminhão só recebe o mesmo processo e a mesma garantia de quem manda cem pneus por mês. A diferença fica no prazo de programação e nas condições de lote.</div>
+        <div class="answer">Os dois. Quem tem um caminhão só recebe a mesma atenção de quem traz um lote inteiro. A diferença fica no prazo de programação e nas condições combinadas para volume maior.</div>
       </details>
       <details>
         <summary>Quais medidas vocês trabalham?</summary>
-        <div class="answer">As medidas de carga mais rodadas no país — 295/80R22.5, 275/80R22.5, 1000R20, 900R20 e similares — além de linha agrícola e fora de estrada sob consulta. Mande a medida no WhatsApp e confirmamos na hora.</div>
+        <div class="answer">As medidas de carga mais rodadas — 295/80R22.5, 275/80R22.5, 1000R20, 900R20 e similares. Tem uma medida diferente? Manda no WhatsApp que a gente confirma na hora se atende.</div>
       </details>
     </div>
   </div>
@@ -897,14 +898,14 @@ footer.site{
   <div class="wrap cta-in">
     <div>
       <h2>Manda a medida. Devolvemos o preço.</h2>
-      <p>Fotografe o pneu ou escreva a medida no WhatsApp. Em minutos você tem preço, prazo e a data da coleta — sem cadastro, sem formulário longo, sem esperar vendedor.</p>
+      <p>Fotografe o pneu ou escreva a medida no WhatsApp. Você fala direto com quem faz o serviço — sem cadastro, sem formulário longo, sem esperar vendedor retornar.</p>
     </div>
     <div class="cta-actions">
-      <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Quero saber o preço da recapagem. Medida:">
+      <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Quero saber o preço do serviço. Medida do pneu:">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
         Falar no WhatsApp
       </a>
-      <a class="btn btn-ghost" data-tel href="tel:+550000000000">Ligar agora</a>
+      <a class="btn btn-ghost" data-tel data-so-com-telefone href="tel:+550000000000">Ligar agora</a>
     </div>
   </div>
 </section>
@@ -919,7 +920,7 @@ footer.site{
       <div class="sec-head" style="margin-bottom:24px">
         <span class="tag">Orçamento</span>
         <h2>Peça o seu em um minuto</h2>
-        <p class="lede">Preencha e o WhatsApp abre com a mensagem pronta. Se preferir, ligue — atendemos no horário comercial.</p>
+        <p class="lede">Preencha e o WhatsApp já abre com a mensagem pronta. Leva menos tempo do que ligar.</p>
       </div>
       <form class="form" id="orcamento" novalidate>
         <div class="field">
@@ -945,14 +946,16 @@ footer.site{
           <select id="f-servico" name="servico">
             <option>Recapagem a frio</option>
             <option>Recapagem a quente</option>
-            <option>Reparo / vulcanização</option>
-            <option>Inspeção de carcaça</option>
+            <option>Vulcanização / reparo</option>
+            <option>Quero vender meus pneus ou carcaças</option>
+            <option>Quero comprar pneus</option>
+            <option>Serviços gerais / borracharia</option>
             <option>Ainda não sei — quero orientação</option>
           </select>
         </div>
         <div class="field">
           <label for="f-obs">Observações</label>
-          <textarea id="f-obs" name="observacoes" placeholder="Prazo desejado, cidade da coleta, condição das carcaças…"></textarea>
+          <textarea id="f-obs" name="observacoes" placeholder="Prazo, cidade, condição do pneu…"></textarea>
         </div>
         <button class="btn btn-zap" type="submit">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
@@ -965,21 +968,28 @@ footer.site{
     <div>
       <div class="sec-head" style="margin-bottom:8px">
         <span class="tag">A oficina</span>
-        <h2>Onde a gente trabalha</h2>
+        <h2>Fale com a WR</h2>
       </div>
       <ul class="info-list">
-        <li>
+        <li data-so-com-endereco>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
           <div>
             <b>Endereço</b>
             <a data-maps href="#" target="_blank" rel="noopener"><span data-cfg="endereco">Rua Exemplo, 000 — Bairro, Cidade/UF</span></a>
           </div>
         </li>
-        <li>
+        <li data-so-com-telefone>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5c0-.6.4-1 1-1h3l2 5-2.2 1.4a12 12 0 0 0 5.8 5.8L15 14l5 2v3c0 .6-.4 1-1 1A15 15 0 0 1 4 5Z"/></svg>
           <div>
             <b>Telefone</b>
             <a data-tel href="tel:+550000000000"><span data-cfg="telefone">(00) 0000-0000</span></a>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+          <div>
+            <b>Instagram</b>
+            <a data-insta href="#" target="_blank" rel="noopener"><span data-cfg="instagram">@wr.lopespneus</span></a>
           </div>
         </li>
         <li>
@@ -992,14 +1002,18 @@ footer.site{
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 16V7h11v9"/><path d="M13 10h4l4 3v3h-8"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>
           <div>
-            <b>Área de coleta</b>
-            <div class="hours" data-cfg="area">Cidade e região — consulte o raio de atendimento</div>
+            <b>Atendimento</b>
+            <div class="hours" data-cfg="area">Frota e autônomo · Consulte a sua região</div>
           </div>
         </li>
       </ul>
-      <p style="margin-top:22px">
-        <a class="btn btn-ghost" data-maps href="#" target="_blank" rel="noopener">Ver rota no Google Maps</a>
-      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:24px">
+        <a class="btn btn-zap" data-zap href="#" data-msg="Olá! Vim pelo site da WR Lopes Pneus e quero falar sobre pneus.">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn-ghost" data-maps data-so-com-endereco href="#" target="_blank" rel="noopener">Ver rota no Maps</a>
+      </div>
     </div>
 
   </div>
@@ -1008,20 +1022,24 @@ footer.site{
 
 <footer class="site">
   <div class="wrap foot-grid">
-    <p>
-      <span data-cfg="nome">Recapadora</span> · <span data-cfg="endereco">Rua Exemplo, 000 — Cidade/UF</span><br>
-      <span data-cfg="cnpj">CNPJ 00.000.000/0001-00</span>
-    </p>
+    <div class="foot-brand">
+      <img src="assets/logo-wr-lopes-pneus.png" alt="WR Lopes Pneus" width="120" height="50">
+      <p>
+        <span data-so-com-endereco><span data-cfg="endereco">Rua Exemplo, 000 — Cidade/UF</span><br></span>
+        <span data-cfg="cnpj">CNPJ 00.000.000/0001-00</span>
+      </p>
+    </div>
     <nav class="foot-nav" aria-label="Rodapé">
       <a href="#servicos">Serviços</a>
       <a href="#processo">Como funciona</a>
       <a href="#duvidas">Dúvidas</a>
       <a href="#contato">Orçamento</a>
+      <a data-insta href="#" target="_blank" rel="noopener">Instagram</a>
     </nav>
   </div>
 </footer>
 
-<a class="float-zap" data-zap href="#" data-msg="Olá! Vim pelo site e quero um orçamento de recapagem." aria-label="Falar no WhatsApp">
+<a class="float-zap" data-zap href="#" data-msg="Olá! Vim pelo site da WR Lopes Pneus e quero um orçamento." aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.16c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37l.57.01c.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg>
   <span>Orçamento no WhatsApp</span>
 </a>
@@ -1033,23 +1051,31 @@ footer.site{
    endereço, mapa, nome, dados do Google) é preenchido a partir daqui.
    ============================================================================ */
 const NEGOCIO = {
-  nome:      "Recapadora",                                   // nome fantasia
-  cidade:    "Cidade / UF",                                  // aparece abaixo do nome
-  telefone:  "(00) 0000-0000",                               // como o cliente lê
-  telefoneE164: "+550000000000",                             // usado no link de ligação
-  whatsapp:  "5500000000000",                                // só números: 55 + DDD + número
-  endereco:  "Rua Exemplo, 000 — Bairro, Cidade/UF, 00000-000",
-  mapsUrl:   "https://maps.app.goo.gl/635p5LQNpsVNpovk8",    // link do perfil no Google Maps
-  horario:   "Seg a Sex, 08h–18h · Sáb, 08h–12h",
-  area:      "Cidade e região — consulte o raio de atendimento",
-  cnpj:      "CNPJ 00.000.000/0001-00",
-  site:      "https://SEU-DOMINIO.com.br",
+  nome:      "WR Lopes Pneus",
+  cidade:    "Cidade / UF",                                  // ← PREENCHER: aparece ao lado da logo
 
-  // números da barra de prova (use os seus)
-  anos:      "+20",
-  pneus:     "+80 mil",
-  frotas:    "+300",
-  garantia:  "100%",
+  // WhatsApp -------------------------------------------------------------
+  // Enquanto "whatsapp" estiver zerado, o site usa o link curto da bio do
+  // Instagram (funciona, mas SEM mensagem pronta). Assim que você colocar o
+  // número aqui, todos os botões passam a abrir a conversa já escrita.
+  whatsapp:      "5500000000000",           // ← PREENCHER: só números, 55 + DDD + número
+  whatsappCurto: "https://w.app/ucnmsz",    // link da bio do Instagram (usado como reserva)
+
+  // Telefone -------------------------------------------------------------
+  // Deixe zerado e os botões de ligação somem sozinhos do site.
+  telefone:     "(00) 0000-0000",           // ← PREENCHER: como o cliente lê
+  telefoneE164: "+550000000000",            // ← PREENCHER: +55DDDNÚMERO
+
+  // Endereço -------------------------------------------------------------
+  // Deixe começando com "Rua Exemplo" e o bloco de endereço some sozinho.
+  endereco:  "Rua Exemplo, 000 — Bairro, Cidade/UF",   // ← PREENCHER
+  mapsUrl:   "https://maps.app.goo.gl/635p5LQNpsVNpovk8",
+
+  instagram: "@wr.lopespneus",
+  horario:   "Seg a Sex, 08h–18h · Sáb, 08h–12h",      // ← CONFERIR
+  area:      "Cidade e região — consulte o atendimento",
+  cnpj:      "CNPJ 00.000.000/0001-00",                // ← PREENCHER (ou apague a linha)
+  site:      "https://SEU-DOMINIO.com.br",             // ← PREENCHER quando publicar
 
   // horários no formato do Google (para os dados estruturados)
   horarioSchema: ["Mo-Fr 08:00-18:00", "Sa 08:00-12:00"]
@@ -1063,17 +1089,43 @@ document.querySelectorAll("[data-cfg]").forEach(function (el) {
   if (NEGOCIO[chave]) el.textContent = NEGOCIO[chave];
 });
 
-/* --- links de telefone e mapa --- */
+/* --- o que já está preenchido e o que ainda não --- */
+function temTelefone() {
+  return /\d/.test((NEGOCIO.telefoneE164 || "").replace(/^\+?55/, "").replace(/0/g, ""));
+}
+function temEndereco() {
+  return !!NEGOCIO.endereco && NEGOCIO.endereco.indexOf("Rua Exemplo") === -1;
+}
+function temNumeroZap() {
+  var n = (NEGOCIO.whatsapp || "").replace(/\D/g, "");
+  return /^\d{12,13}$/.test(n) && /[1-9]/.test(n.slice(2));
+}
+
+/* esconde blocos que dependem de dado ainda não preenchido */
+if (!temTelefone()) {
+  document.querySelectorAll("[data-so-com-telefone]").forEach(function (el) { el.hidden = true; });
+}
+if (!temEndereco()) {
+  document.querySelectorAll("[data-so-com-endereco]").forEach(function (el) { el.hidden = true; });
+}
+
+/* --- links de telefone, mapa e Instagram --- */
 document.querySelectorAll("[data-tel]").forEach(function (el) {
   el.href = "tel:" + NEGOCIO.telefoneE164;
 });
 document.querySelectorAll("[data-maps]").forEach(function (el) {
   el.href = NEGOCIO.mapsUrl;
 });
+document.querySelectorAll("[data-insta]").forEach(function (el) {
+  el.href = "https://instagram.com/" + (NEGOCIO.instagram || "").replace("@", "");
+});
 
 /* --- links de WhatsApp (cada botão leva sua própria mensagem) --- */
 function linkZap(msg) {
-  return "https://wa.me/" + NEGOCIO.whatsapp + "?text=" + encodeURIComponent(msg);
+  if (temNumeroZap()) {
+    return "https://wa.me/" + NEGOCIO.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(msg);
+  }
+  return NEGOCIO.whatsappCurto;   // link da bio: abre a conversa, sem mensagem pronta
 }
 document.querySelectorAll("[data-zap]").forEach(function (el) {
   var msg = el.getAttribute("data-msg") || "Olá! Vim pelo site e quero um orçamento de recapagem.";
@@ -1107,7 +1159,7 @@ document.querySelectorAll("[data-zap]").forEach(function (el) {
   }
 
   function calcular() {
-    var qtd   = Math.min(ler(campos.qtd, 20), 2000);
+    var qtd   = Math.min(ler(campos.qtd, 6), 2000);
     var novo  = ler(campos.novo, 2200);
     var recap = Math.min(ler(campos.recap, 780), novo);
 
@@ -1128,7 +1180,7 @@ document.querySelectorAll("[data-zap]").forEach(function (el) {
       "• Pneu novo: " + brl.format(novo) + "\n" +
       "• Recapagem: " + brl.format(recap) + "\n" +
       "• Economia estimada no ano: " + brl.format(ano) + "\n\n" +
-      "Quero confirmar o preço para as medidas da minha frota."
+      "Quero confirmar o preço para a minha medida."
     );
   }
 
@@ -1188,27 +1240,33 @@ document.querySelectorAll("[data-zap]").forEach(function (el) {
 
 /* --- título da aba e dados estruturados a partir da configuração --- */
 (function () {
-  document.title = NEGOCIO.nome + " — Recapagem de Pneus";
+  document.title = NEGOCIO.nome + " — Recapagem, Vulcanização e Venda de Pneus";
 
   var dados = {
     "@context": "https://schema.org",
     "@type": "AutoRepair",
     "name": NEGOCIO.nome,
-    "description": "Recapagem de pneus de carga a frio e a quente, vulcanização, inspeção de carcaça e coleta na frota.",
+    "description": "Recapagem de pneus a frio e a quente, vulcanização, reparo, compra e venda de pneus.",
     "url": NEGOCIO.site,
-    "telephone": NEGOCIO.telefoneE164,
-    "address": { "@type": "PostalAddress", "streetAddress": NEGOCIO.endereco, "addressCountry": "BR" },
+    "image": NEGOCIO.site + "/assets/compartilhamento.jpg",
+    "sameAs": ["https://instagram.com/" + (NEGOCIO.instagram || "").replace("@", "")],
     "hasMap": NEGOCIO.mapsUrl,
     "openingHours": NEGOCIO.horarioSchema,
+    "@id": NEGOCIO.site + "#negocio",
     "priceRange": "$$",
     "areaServed": NEGOCIO.area,
     "makesOffer": [
       "Recapagem a frio", "Recapagem a quente", "Vulcanização e reparo",
-      "Inspeção de carcaça", "Coleta e entrega de pneus"
+      "Compra de pneus e carcaças", "Venda de pneus", "Serviços gerais de borracharia"
     ].map(function (s) {
       return { "@type": "Offer", "itemOffered": { "@type": "Service", "name": s } };
     })
   };
+
+  if (temTelefone()) dados.telephone = NEGOCIO.telefoneE164;
+  if (temEndereco()) {
+    dados.address = { "@type": "PostalAddress", "streetAddress": NEGOCIO.endereco, "addressCountry": "BR" };
+  }
 
   var perguntas = [];
   document.querySelectorAll(".faq details").forEach(function (d) {
