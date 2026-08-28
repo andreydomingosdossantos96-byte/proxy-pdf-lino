@@ -1,0 +1,24 @@
+COLOQUE AS FOTOS AQUI
+=====================
+
+A página procura por estes arquivos. Enquanto eles não existirem, o site mostra
+um espaço estilizado no lugar (nada quebra).
+
+Galeria de trabalhos (formato retrato, ideal 1000x1250px, .jpg):
+  corte-1.jpg
+  corte-2.jpg
+  corte-3.jpg
+  corte-4.jpg
+  corte-5.jpg
+  corte-6.jpg
+
+Fotos dos barbeiros (quadradas, ideal 600x600px, .jpg):
+  barbeiro-joao.jpg
+  barbeiro-kelvin.jpg
+  barbeiro-gabriel.jpg
+
+Dicas:
+- Comprima as imagens antes de subir (squoosh.app ou tinypng.com). Cada foto
+  abaixo de 200 KB mantém o site rápido — site rápido converte mais.
+- Use fotos reais da barbearia e dos clientes (com autorização), não banco de imagens.
+- Antes/depois no mesmo enquadramento é o tipo de foto que mais gera agendamento.
