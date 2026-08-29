@@ -3,19 +3,25 @@
 Landing page de conversão para a **Taykan Barbearia** (Vilhena — RO, Edifício Capra).
 HTML, CSS e JavaScript puros: sem build, sem dependências, sem framework.
 
+**`index.html` é um arquivo único e autossuficiente**: estilos, comportamento e a
+logo estão dentro dele. Abra com dois cliques em qualquer computador ou celular
+que a página aparece completa, mesmo sem internet e sem nenhuma outra pasta.
+
 ```
-index.html               a página
-assets/styles.css        estilos
-assets/main.js           comportamento + CONFIG (WhatsApp, endereço)
-assets/logo-taykan*.png  logo em 3 versões (original, branca, escura)
+index.html               a página inteira (HTML + CSS + JS + logo)
+assets/logo-taykan*.png  logo solta em 3 versões (original, branca, escura)
 assets/fotos/            onde entram as fotos (veja LEIA-ME.txt)
 api/proxy-pdf.js         função serverless que já existia no projeto
 ```
 
+As fotos são o único conteúdo externo — e são opcionais: sem elas a página
+mostra espaços estilizados no lugar.
+
 ## 1. O que você PRECISA editar antes de publicar
 
 ### a) Número do WhatsApp  ⚠️ obrigatório
-Abra `assets/main.js` e troque o número no bloco `CONFIG`:
+Abra o `index.html` num editor de texto, vá até o fim do arquivo e troque o
+número no bloco `CONFIG` (procure por `whatsapp:`):
 
 ```js
 whatsapp: '5569000000000',   // 55 + DDD + número, só dígitos
@@ -27,7 +33,7 @@ são montados a partir dele, já com a mensagem preenchida — ex.: *"Olá! Quer
 agendar o combo Corte + Barba (R$ 65)."*
 
 ### b) Endereço completo
-No mesmo bloco `CONFIG`:
+No mesmo bloco `CONFIG`, logo abaixo:
 
 ```js
 endereco:   'Edifício Capra — Vilhena/RO',            // texto exibido
@@ -76,24 +82,20 @@ estilizado no lugar — nada quebra.
 Cada CTA tem um `data-track` (`cta_hero`, `servico_combo`, `barbeiro_joao`…).
 Ao clicar, a página dispara o evento `clique_cta` para o **Google Analytics**
 (`gtag`), o **Meta Pixel** (`fbq`) e o `dataLayer` do GTM — o que estiver
-instalado. Basta colar o script da ferramenta no `<head>` do `index.html`;
-não precisa mexer no `main.js`.
+instalado. Basta colar o script da ferramenta no `<head>` do `index.html`.
 
 ## 4. Publicar
 
-**Ver no computador antes:**
-
-```bash
-python3 -m http.server 8000
-# abra http://localhost:8000
-```
+**Ver antes de publicar:** dê dois cliques no `index.html`. Só isso — ele abre
+no navegador já com o visual completo.
 
 **Vercel** (o projeto já está pronto para isso): a página é servida na raiz e a
 função em `api/proxy-pdf.js` continua funcionando em `/api/proxy-pdf`. Basta
 importar o repositório na Vercel — não há build.
 
 Também funciona em qualquer hospedagem estática (Netlify, GitHub Pages,
-Hostinger): é só subir os arquivos.
+Hostinger): é só subir o `index.html` — e a pasta `assets/fotos/` quando você
+tiver as fotos.
 
 Depois de publicar, coloque o link na bio do Instagram
 [@taykan_barbearia](https://instagram.com/taykan_barbearia) — é de lá que vem
