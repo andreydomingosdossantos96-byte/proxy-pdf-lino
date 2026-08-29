@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EXECUTA Marcenaria | Móveis Planejados sob Medida em Vilhena - RO</title>
+<meta name="description" content="Móveis planejados sob medida em Vilhena-RO: cozinhas, quartos, salas, escritórios e projetos comerciais. Fábrica própria com CNC, projeto 3D e instalação da nossa equipe. Faça seu orçamento no WhatsApp.">
+<meta name="theme-color" content="#0B0B0C">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://executamarcenaria.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="EXECUTA Marcenaria">
+<meta property="og:title" content="EXECUTA Marcenaria | Móveis Planejados sob Medida em Vilhena - RO">
+<meta property="og:description" content="Cozinhas, quartos, salas, escritórios e projetos comerciais. Fábrica própria com CNC, projeto 3D e instalação própria. Orçamento pelo WhatsApp.">
+<meta property="og:image" content="assets/fachada.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preload" as="image" href="assets/ripado.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/fachada.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --preto:#0B0B0C;
+  --carvao:#141417;
+  --carvao-2:#1C1C20;
+  --linha:rgba(255,255,255,.10);
+  --areia:#F6F3EE;
+  --texto:#E9E7E3;
+  --texto-2:#A8A6A2;
+  --ouro-1:#8A6216;
+  --ouro-2:#D9AE4E;
+  --ouro-3:#F6E3A8;
+  --ouro:#D9AE4E;
+  --prata:#C9CDD3;
+  --zap:#25D366;
+  --zap-esc:#1EA952;
+  --raio:14px;
+  --raio-lg:22px;
+  --sombra:0 24px 60px -24px rgba(0,0,0,.75);
+  --max:1180px;
+  --grad-ouro:linear-gradient(135deg,#8A6216 0%,#D9AE4E 28%,#F6E3A8 52%,#C9962F 74%,#8A6216 100%);
+  --grad-texto:linear-gradient(96deg,#E7C067 0%,#F7E5AE 45%,#D3A340 100%);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--preto);color:var(--texto);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16.5px;line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:Archivo,Archivo,Inter,sans-serif;font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:0}
+p{margin:0}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:20px}
+.ouro{background:var(--grad-texto);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec{padding:clamp(60px,8vw,110px) 0;position:relative}
+section[id],[id^="orcamento"]{scroll-margin-top:96px}
+.sec--claro{background:var(--areia);color:#16150F}
+.sec--claro .subtitulo{color:#5C5A52}
+.olho{
+  display:inline-flex;align-items:center;gap:9px;font-family:Archivo,sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:.19em;text-transform:uppercase;color:var(--ouro);margin-bottom:16px;
+}
+.olho::before{content:"";width:26px;height:2px;background:var(--grad-ouro);border-radius:2px}
+.sec--claro .olho{color:#8A6216}
+h2.titulo{font-size:clamp(30px,4.6vw,50px);max-width:22ch}
+.subtitulo{margin-top:16px;color:var(--texto-2);font-size:clamp(15.5px,1.6vw,18px);max-width:60ch}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:16px;z-index:999;background:var(--ouro);color:#111;padding:10px 16px;border-radius:8px}
+:focus-visible{outline:3px solid var(--ouro-3);outline-offset:3px;border-radius:6px}
+
+/* ============ BOTÕES ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:Archivo,sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;
+  padding:16px 26px;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .2s ease,color .2s ease;
+  text-align:center;line-height:1.2;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn--zap{background:var(--zap);color:#05270F;box-shadow:0 14px 30px -12px rgba(37,211,102,.65)}
+.btn--zap:hover{background:#31e173;box-shadow:0 18px 38px -12px rgba(37,211,102,.8)}
+.btn--ouro{background:var(--grad-ouro);color:#1A1305;box-shadow:0 14px 30px -14px rgba(217,174,78,.7)}
+.btn--fantasma{border-color:rgba(255,255,255,.28);color:#fff;background:rgba(255,255,255,.04)}
+.btn--fantasma:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45)}
+.sec--claro .btn--fantasma{border-color:rgba(0,0,0,.2);color:#16150F;background:transparent}
+.sec--claro .btn--fantasma:hover{background:rgba(0,0,0,.05)}
+.btn--bloco{width:100%}
+.btn svg{flex:none}
+
+/* ============ TOPO ============ */
+.aviso{
+  background:linear-gradient(90deg,#1a1408,#2a2110 40%,#1a1408);
+  border-bottom:1px solid rgba(217,174,78,.22);
+  font-size:12.5px;color:#E6D5AA;text-align:center;padding:9px 16px;line-height:1.5;
+}
+.aviso .so-desktop{display:none}
+@media(min-width:700px){.aviso{font-size:13px}.aviso .so-desktop{display:inline}}
+.aviso b{color:var(--ouro-3);font-weight:600}
+header{position:sticky;top:0;z-index:60;transition:background .3s ease,box-shadow .3s ease,border-color .3s}
+header .barra{
+  background:rgba(11,11,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+}
+header.solido .barra{background:rgba(11,11,12,.96);border-bottom-color:var(--linha);box-shadow:0 12px 30px -20px #000}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:74px}
+.marca{display:flex;align-items:center;gap:11px}
+.marca__simbolo{height:38px;width:auto}
+.marca__nome{height:26px;width:auto}
+@media(min-width:640px){.marca__simbolo{height:42px}.marca__nome{height:29px}}
+.menu{display:none;gap:28px;align-items:center}
+.menu a{font-size:14.5px;font-weight:500;color:#D6D3CE;position:relative;padding:6px 0}
+.menu a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--grad-ouro);transition:right .25s ease}
+.menu a:hover::after{right:0}
+.nav .btn{padding:12px 20px;font-size:14.5px}
+.nav-cta{display:none}
+@media(min-width:900px){.menu{display:flex}.nav-cta{display:inline-flex}}
+
+/* ============ HERO ============ */
+.hero{position:relative;overflow:hidden;background:var(--preto)}
+.hero__bg{position:absolute;inset:0;z-index:0}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:blur(2px) saturate(.8);transform:scale(1.04)}
+.hero__bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,11,12,.94) 0%,rgba(11,11,12,.90) 40%,rgba(11,11,12,.98) 100%),
+             radial-gradient(80% 60% at 12% 18%,rgba(217,174,78,.20),transparent 62%);
+}
+.hero__conteudo{
+  position:relative;z-index:2;padding-block:clamp(46px,7vw,86px) clamp(44px,6vw,80px);
+  display:grid;gap:44px;grid-template-columns:1fr;align-items:center;
+}
+@media(min-width:1000px){.hero__conteudo{grid-template-columns:1.06fr .94fr;gap:56px}}
+.hero h1{font-size:clamp(33px,4.7vw,55px);max-width:17ch}
+.hero h1 em{font-style:normal;display:inline-block}
+.hero__sub{margin-top:20px;font-size:clamp(16px,1.9vw,19.5px);color:#CFCCC6;max-width:56ch}
+.hero__acoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero__acoes .btn{flex:1 1 240px}
+.micro{margin-top:14px;font-size:13.5px;color:#8F8C87;display:flex;align-items:flex-start;gap:8px}
+.micro svg{margin-top:4px}
+.micro svg{flex:none}
+.selos{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.selo{
+  display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid var(--linha);font-size:13.5px;color:#DCD9D4;
+  backdrop-filter:blur(6px);
+}
+.selo strong{color:#fff;font-weight:600}
+.estrelas{color:#F4C64A;letter-spacing:1px;font-size:13px}
+
+/* vitrine do hero */
+.vitrine{position:relative;display:none}
+@media(min-width:1000px){.vitrine{display:block}}
+.vitrine__foto{
+  margin:0;border-radius:26px;overflow:hidden;aspect-ratio:4/5;
+  border:1px solid rgba(217,174,78,.35);box-shadow:0 40px 90px -30px rgba(0,0,0,.9);
+}
+.vitrine__foto img{width:100%;height:100%;object-fit:cover}
+.vitrine__cartao{
+  position:absolute;left:-22px;bottom:32px;width:250px;padding:20px 22px;border-radius:18px;
+  background:rgba(15,15,17,.92);backdrop-filter:blur(10px);border:1px solid rgba(217,174,78,.32);
+  box-shadow:0 24px 50px -20px rgba(0,0,0,.9);
+}
+.vitrine__cartao b{display:block;font-family:Archivo,sans-serif;font-size:15px;margin-bottom:4px}
+.vitrine__cartao span{font-size:13px;color:var(--texto-2);line-height:1.5;display:block}
+.vitrine__mini{
+  display:none;position:absolute;right:-22px;top:-22px;width:150px;aspect-ratio:1;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 24px 50px -20px rgba(0,0,0,.9);
+}
+@media(min-width:1220px){.vitrine__mini{display:block}}
+.vitrine__mini img{width:100%;height:100%;object-fit:cover}
+
+/* faixa de números */
+.faixa{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);background:rgba(255,255,255,.02);position:relative;z-index:2}
+.faixa__grade{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--linha)}
+@media(min-width:820px){.faixa__grade{grid-template-columns:repeat(4,1fr)}}
+.faixa__item{background:var(--preto);padding:26px 20px;text-align:center}
+.faixa__item b{display:block;font-family:Archivo,sans-serif;font-size:clamp(22px,3vw,30px);font-weight:800;line-height:1}
+.faixa__item span{display:block;margin-top:7px;font-size:13px;color:var(--texto-2);letter-spacing:.04em}
+
+/* ============ AMBIENTES ============ */
+.grade-3{display:grid;gap:18px;grid-template-columns:1fr;margin-top:44px}
+@media(min-width:640px){.grade-3{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.grade-3{grid-template-columns:repeat(3,1fr)}}
+.card{
+  background:linear-gradient(180deg,var(--carvao-2),var(--carvao));
+  border:1px solid var(--linha);border-radius:var(--raio-lg);padding:28px 24px 26px;
+  position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  display:flex;flex-direction:column;
+}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--grad-ouro);opacity:0;transition:opacity .25s ease}
+.card:hover{transform:translateY(-5px);border-color:rgba(217,174,78,.4);box-shadow:var(--sombra)}
+.card:hover::before{opacity:1}
+.card__icone{
+  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;
+  background:rgba(217,174,78,.12);border:1px solid rgba(217,174,78,.28);color:var(--ouro);
+}
+.card h3{font-size:20px;margin-bottom:9px}
+.card p{color:var(--texto-2);font-size:15px}
+.card__link{margin-top:18px;font-size:14px;font-weight:600;color:var(--ouro);display:inline-flex;align-items:center;gap:7px}
+.card__link span{transition:transform .2s ease}
+.card:hover .card__link span{transform:translateX(4px)}
+
+/* ============ GALERIA ============ */
+.galeria{display:grid;gap:14px;grid-template-columns:1fr;margin-top:44px}
+@media(min-width:640px){.galeria{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.galeria{grid-template-columns:repeat(3,1fr)}}
+.galeria__item{
+  position:relative;overflow:hidden;border-radius:var(--raio-lg);border:1px solid var(--linha);
+  background:var(--carvao);cursor:zoom-in;aspect-ratio:4/3;margin:0;
+}
+.galeria__item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.galeria__item:hover img{transform:scale(1.06)}
+.galeria__item figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:44px 20px 18px;
+  background:linear-gradient(to top,rgba(6,6,7,.92),transparent);
+  font-family:Archivo,sans-serif;font-weight:600;font-size:15px;color:#fff;
+}
+.galeria__item figcaption small{display:block;font-family:Inter,sans-serif;font-weight:400;font-size:12.5px;color:#B9B6B1;margin-top:2px}
+
+/* ============ DIFERENCIAIS ============ */
+.dupla{display:grid;gap:44px;align-items:center;grid-template-columns:1fr}
+@media(min-width:960px){.dupla{grid-template-columns:1.05fr .95fr;gap:64px}}
+.lista-check{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:18px}
+.lista-check li{display:flex;gap:14px;align-items:flex-start}
+.lista-check .mark{
+  flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;margin-top:2px;
+  background:var(--grad-ouro);color:#1A1305;
+}
+.lista-check b{display:block;font-family:Archivo,sans-serif;font-weight:700;font-size:16.5px;margin-bottom:3px}
+.lista-check span{font-size:15px;color:var(--texto-2)}
+.sec--claro .lista-check span{color:#5C5A52}
+.moldura{position:relative;border-radius:var(--raio-lg);overflow:hidden;border:1px solid var(--linha);box-shadow:var(--sombra);aspect-ratio:4/3}
+.moldura img{width:100%;height:100%;object-fit:cover}
+.moldura__tag{
+  position:absolute;left:16px;bottom:16px;background:rgba(11,11,12,.82);backdrop-filter:blur(8px);
+  border:1px solid rgba(217,174,78,.35);border-radius:999px;padding:9px 16px;font-size:13px;color:#EEE9DC;
+}
+
+/* ============ PROCESSO ============ */
+.passos{display:grid;gap:18px;grid-template-columns:1fr;margin-top:46px;counter-reset:p}
+@media(min-width:720px){.passos{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.passos{grid-template-columns:repeat(4,1fr)}}
+.passo{position:relative;padding:30px 22px 26px;border-radius:var(--raio-lg);background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.08)}
+.passo::before{
+  counter-increment:p;content:"0" counter(p);
+  font-family:Archivo,sans-serif;font-weight:800;font-size:40px;line-height:1;
+  background:var(--grad-ouro);-webkit-background-clip:text;background-clip:text;color:transparent;
+  display:block;margin-bottom:12px;
+}
+.passo h3{font-size:18px;margin-bottom:7px;color:#16150F}
+.passo p{font-size:14.5px;color:#5C5A52}
+
+/* ============ PROVA SOCIAL ============ */
+.prova{display:grid;gap:30px;grid-template-columns:1fr}
+@media(min-width:900px){.prova{grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}}
+.nota{
+  background:linear-gradient(180deg,var(--carvao-2),var(--carvao));border:1px solid var(--linha);
+  border-radius:var(--raio-lg);padding:30px;text-align:center;
+}
+.nota__valor{font-family:Archivo,sans-serif;font-weight:800;font-size:64px;line-height:1}
+.nota .estrelas{font-size:20px;letter-spacing:3px;display:block;margin:8px 0 6px}
+.nota p{font-size:14px;color:var(--texto-2)}
+.nota a{display:inline-flex;margin-top:16px;font-size:14px;color:var(--ouro);font-weight:600;border-bottom:1px solid rgba(217,174,78,.4);padding-bottom:2px}
+
+/* ============ FORMULÁRIO ============ */
+.form-bloco{
+  background:linear-gradient(180deg,#1B1B1F,#111113);border:1px solid rgba(217,174,78,.24);
+  border-radius:26px;padding:clamp(26px,4vw,46px);box-shadow:var(--sombra);position:relative;overflow:hidden;
+}
+.form-bloco::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--grad-ouro)}
+.campos{display:grid;gap:16px;grid-template-columns:1fr;margin-top:26px}
+@media(min-width:680px){.campos{grid-template-columns:1fr 1fr}.campo--full{grid-column:1/-1}}
+.campo label{display:block;font-size:13px;font-weight:600;letter-spacing:.03em;color:#CFCCC6;margin-bottom:7px}
+.campo input,.campo select,.campo textarea{
+  width:100%;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.14);color:#fff;font-family:inherit;font-size:15.5px;
+  transition:border-color .2s ease,background .2s ease;
+}
+.campo textarea{min-height:112px;resize:vertical}
+.campo select{appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23D9AE4E' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.campo select option{background:#141417;color:#fff}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--ouro);background:rgba(255,255,255,.08)}
+.campo input::placeholder,.campo textarea::placeholder{color:#77746F}
+.erro{display:none;font-size:12.5px;color:#FF8A80;margin-top:6px}
+.campo.invalido input,.campo.invalido select{border-color:#FF8A80}
+.campo.invalido .erro{display:block}
+.form-rodape{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.form-nota{font-size:12.5px;color:#8F8C87;text-align:center}
+.form-ok{
+  display:none;margin-top:20px;padding:16px 18px;border-radius:14px;
+  background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.4);color:#9FF0C0;font-size:14.5px;
+}
+.form-ok.mostra{display:block}
+
+/* ============ FAQ ============ */
+.faq{margin-top:40px;display:grid;gap:12px;max-width:860px}
+.faq details{
+  background:linear-gradient(180deg,var(--carvao-2),var(--carvao));border:1px solid var(--linha);
+  border-radius:var(--raio);overflow:hidden;transition:border-color .2s ease;
+}
+.faq details[open]{border-color:rgba(217,174,78,.4)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:20px 56px 20px 22px;position:relative;
+  font-family:Archivo,sans-serif;font-weight:600;font-size:16.5px;color:#F1EFEB;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";position:absolute;right:22px;top:50%;width:11px;height:11px;margin-top:-6px;
+  border-right:2px solid var(--ouro);border-bottom:2px solid var(--ouro);
+  transform:rotate(45deg);transition:transform .25s ease;
+}
+.faq details[open] summary::after{transform:rotate(225deg);margin-top:-2px}
+.faq p{padding:0 22px 22px;color:var(--texto-2);font-size:15px}
+
+/* ============ CONTATO / MAPA ============ */
+.contato{display:grid;gap:26px;grid-template-columns:1fr;margin-top:44px}
+@media(min-width:900px){.contato{grid-template-columns:.85fr 1.15fr;gap:34px}}
+.info{display:grid;gap:14px;align-content:start}
+.info__item{display:flex;gap:14px;padding:18px;border-radius:var(--raio);background:rgba(255,255,255,.04);border:1px solid var(--linha)}
+.info__item svg{flex:none;color:var(--ouro);margin-top:2px}
+.info__item b{display:block;font-family:Archivo,sans-serif;font-size:15px;margin-bottom:3px}
+.info__item span,.info__item a{font-size:14.5px;color:var(--texto-2)}
+.info__item a:hover{color:var(--ouro)}
+.horarios{font-size:14.5px;color:var(--texto-2);display:grid;gap:4px;margin-top:4px}
+.horarios div{display:flex;justify-content:space-between;gap:16px;max-width:280px}
+.mapa{border-radius:var(--raio-lg);overflow:hidden;border:1px solid var(--linha);min-height:340px;background:var(--carvao);position:relative}
+.mapa iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:grayscale(.25) contrast(1.05)}
+
+/* ============ CTA FINAL ============ */
+.cta-final{
+  position:relative;overflow:hidden;border-radius:28px;padding:clamp(36px,6vw,68px) clamp(24px,5vw,60px);
+  background:linear-gradient(140deg,#191308 0%,#0E0E10 45%,#14100A 100%);
+  border:1px solid rgba(217,174,78,.32);text-align:center;
+}
+.cta-final::after{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(217,174,78,.2),transparent 65%)}
+.cta-final > *{position:relative;z-index:2}
+.cta-final h2{font-size:clamp(28px,4.4vw,46px);margin-inline:auto;max-width:20ch}
+.cta-final .subtitulo{margin-inline:auto;text-align:center}
+.cta-final .hero__acoes{justify-content:center;max-width:640px;margin-inline:auto}
+
+/* ============ RODAPÉ ============ */
+footer{background:#070708;border-top:1px solid var(--linha);padding:56px 0 120px}
+@media(min-width:900px){footer{padding-bottom:56px}}
+.rodape{display:grid;gap:32px;grid-template-columns:1fr}
+@media(min-width:820px){.rodape{grid-template-columns:1.3fr 1fr 1fr}}
+.rodape img{height:52px;width:auto;margin-bottom:16px}
+.rodape p{font-size:14.5px;color:var(--texto-2);max-width:38ch}
+.rodape h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);margin-bottom:16px}
+.rodape ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rodape ul a{font-size:14.5px;color:var(--texto-2)}
+.rodape ul a:hover{color:#fff}
+.sociais{display:flex;gap:12px;margin-top:18px}
+.sociais a{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(255,255,255,.05);border:1px solid var(--linha);color:#D6D3CE;transition:.2s;
+}
+.sociais a:hover{background:rgba(217,174,78,.14);border-color:rgba(217,174,78,.4);color:var(--ouro)}
+.creditos{margin-top:40px;padding-top:24px;border-top:1px solid var(--linha);font-size:13px;color:#6E6B67;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+
+/* ============ FLUTUANTES ============ */
+.zap-flutua{
+  position:fixed;right:18px;bottom:96px;z-index:70;width:60px;height:60px;border-radius:50%;
+  background:var(--zap);display:grid;place-items:center;color:#fff;
+  box-shadow:0 16px 34px -10px rgba(37,211,102,.7);transition:transform .2s ease;
+}
+.zap-flutua:hover{transform:scale(1.07)}
+.zap-flutua::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(37,211,102,.55);animation:pulso 2.4s infinite}
+@keyframes pulso{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+@media(min-width:900px){.zap-flutua{bottom:26px;right:26px}}
+.barra-mobile{
+  position:fixed;left:0;right:0;bottom:0;z-index:65;display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(9,9,10,.92);backdrop-filter:blur(12px);border-top:1px solid var(--linha);
+}
+.barra-mobile .btn{padding:13px 12px;font-size:14.5px}
+@media(min-width:900px){.barra-mobile{display:none}}
+
+/* ============ LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:120;background:rgba(6,6,7,.94);display:none;align-items:center;justify-content:center;padding:20px}
+.lb.aberto{display:flex}
+.lb img{max-width:min(1100px,94vw);max-height:88vh;width:auto;border-radius:12px;box-shadow:0 30px 80px -20px #000}
+.lb button{position:absolute;top:20px;right:20px;width:46px;height:46px;border-radius:50%;border:1px solid var(--linha);background:rgba(255,255,255,.08);color:#fff;font-size:24px;cursor:pointer;line-height:1}
+
+/* ============ ANIMAÇÃO ============ */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rev.visivel{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#orcamento">Ir para o orçamento</a>
+
+<div class="aviso">Orçamento e projeto <b>sem custo</b> &nbsp;•&nbsp; Vilhena/RO e região<span class="so-desktop"> &nbsp;•&nbsp; Fábrica própria com CNC</span></div>
+
+<header id="topo">
+  <div class="barra">
+    <div class="wrap nav">
+      <a href="#topo" class="marca" aria-label="EXECUTA Marcenaria - início">
+        <img class="marca__simbolo" src="assets/simbolo.png" alt="" width="696" height="360">
+        <img class="marca__nome" src="assets/wordmark.png" alt="EXECUTA Marcenaria" width="1026" height="246">
+      </a>
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#ambientes">Ambientes</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#diferenciais">Por que a Executa</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn--zap nav-cta" href="#" data-zap data-origem="menu">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+        Pedir orçamento
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="assets/fachada.jpg" alt="" aria-hidden="true" width="1400" height="1090">
+  </div>
+  <div class="wrap hero__conteudo">
+   <div>
+    <span class="olho">Marcenaria em Vilhena - RO</span>
+    <h1>Móveis planejados que <em class="ouro">valorizam</em> a sua casa &mdash; do projeto à instalação.</h1>
+    <p class="hero__sub">Cozinhas, quartos, salas, escritórios e ambientes comerciais feitos sob medida na nossa própria fábrica, com corte CNC de precisão e acabamento que você vê de perto antes de aprovar.</p>
+
+    <div class="hero__acoes">
+      <a class="btn btn--zap" href="#" data-zap data-origem="hero">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+        Falar no WhatsApp agora
+      </a>
+      <a class="btn btn--fantasma" href="#orcamento">Simular meu orçamento</a>
+    </div>
+    <p class="micro">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      Resposta no mesmo dia • Orçamento sem compromisso
+    </p>
+
+    <div class="selos">
+      <span class="selo"><span class="estrelas" aria-hidden="true">★★★★★</span><span><strong>4,8</strong> no Google</span></span>
+      <span class="selo">🏭 <span>Fábrica própria com <strong>CNC</strong></span></span>
+      <span class="selo">📐 <span>Projeto <strong>3D</strong> antes de produzir</span></span>
+      <span class="selo">📸 <span><strong>4,5 mil</strong> seguidores no Instagram</span></span>
+    </div>
+   </div>
+
+   <div class="vitrine" aria-hidden="false">
+     <figure class="vitrine__foto">
+       <img src="assets/ripado.jpg" alt="Painel ripado com iluminação embutida executado pela EXECUTA Marcenaria" fetchpriority="high" width="900" height="1213">
+     </figure>
+     <div class="vitrine__mini">
+       <img src="assets/balcao.jpg" alt="Balcão curvo sob medida em produção" loading="lazy" width="900" height="969">
+     </div>
+     <div class="vitrine__cartao">
+       <span class="estrelas" aria-hidden="true">★★★★★</span>
+       <b>4,8 de avaliação no Google</b>
+       <span>Marcenaria com loja e fábrica próprias no Bodanese, em Vilhena - RO.</span>
+     </div>
+   </div>
+  </div>
+</section>
+
+<div class="faixa">
+  <div class="wrap">
+    <div class="faixa__grade">
+      <div class="faixa__item"><b class="ouro">4,8★</b><span>Avaliação no Google</span></div>
+      <div class="faixa__item"><b class="ouro">100%</b><span>Sob medida, nada de kit pronto</span></div>
+      <div class="faixa__item"><b class="ouro">CNC</b><span>Corte e usinagem de precisão</span></div>
+      <div class="faixa__item"><b class="ouro">Vilhena</b><span>Loja física no Bodanese</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= AMBIENTES ================= -->
+<section class="sec" id="ambientes">
+  <div class="wrap">
+    <div class="rev">
+      <span class="olho">O que fazemos</span>
+      <h2 class="titulo">Um ambiente por vez ou a casa inteira planejada</h2>
+      <p class="subtitulo">Cada projeto sai da medição real do seu espaço &mdash; aproveitando cada centímetro, respeitando o seu orçamento e o jeito que a sua família usa a casa.</p>
+    </div>
+
+    <div class="grade-3">
+      <article class="card rev">
+        <div class="card__icone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h18v18H3z"/><path d="M3 10h18M9 10v11M14 6h4"/></svg></div>
+        <h3>Cozinhas planejadas</h3>
+        <p>Armários até o teto, torre quente, gavetões com corrediça telescópica e bancadas que aproveitam cada canto. Feitas para durar no uso pesado do dia a dia.</p>
+        <a class="card__link" href="#" data-zap data-origem="cozinha" data-msg="Quero um orçamento de cozinha planejada">Quero minha cozinha <span>&rarr;</span></a>
+      </article>
+
+      <article class="card rev">
+        <div class="card__icone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 18h18M6 18v2M18 18v2"/></svg></div>
+        <h3>Quartos e closets</h3>
+        <p>Guarda-roupas com divisão interna pensada para o que você realmente guarda, painéis de TV, cabeceiras estofadas e closets abertos com iluminação.</p>
+        <a class="card__link" href="#" data-zap data-origem="quarto" data-msg="Quero um orçamento de quarto/closet planejado">Planejar meu quarto <span>&rarr;</span></a>
+      </article>
+
+      <article class="card rev">
+        <div class="card__icone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16v10H4z"/><path d="M4 12h16M8 18v2M16 18v2M9 4h6"/></svg></div>
+        <h3>Salas e painéis ripados</h3>
+        <p>Home theater, racks, buffets e o painel ripado com iluminação embutida que transforma a sala inteira &mdash; exatamente como o da foto acima.</p>
+        <a class="card__link" href="#" data-zap data-origem="sala" data-msg="Quero um orçamento para sala/painel ripado">Ver para minha sala <span>&rarr;</span></a>
+      </article>
+
+      <article class="card rev">
+        <div class="card__icone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18v13H3z"/><path d="M8 7V4h8v3M3 13h18"/></svg></div>
+        <h3>Escritórios e home office</h3>
+        <p>Mesas em L, estações de trabalho, armários com fechadura e organização de cabos. Ambiente sério para receber cliente ou trabalhar concentrado.</p>
+        <a class="card__link" href="#" data-zap data-origem="escritorio" data-msg="Quero um orçamento para escritório/home office">Montar meu escritório <span>&rarr;</span></a>
+      </article>
+
+      <article class="card rev">
+        <div class="card__icone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l1.5-5h15L21 9M3 9h18v11H3z"/><path d="M9 20v-7h6v7"/></svg></div>
+        <h3>Comercial e corporativo</h3>
+        <p>Balcões de atendimento, recepções, expositores, consultórios e lojas. Executamos projeto de arquiteto ou desenvolvemos junto com você.</p>
+        <a class="card__link" href="#" data-zap data-origem="comercial" data-msg="Quero um orçamento para projeto comercial">Falar sobre meu ponto <span>&rarr;</span></a>
+      </article>
+
+      <article class="card rev">
+        <div class="card__icone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div>
+        <h3>Peças especiais em CNC</h3>
+        <p>Mesas redondas, curvas, ripados, formas orgânicas e usinagens que máquina comum não faz. É aqui que a marcenaria vira projeto exclusivo.</p>
+        <a class="card__link" href="#" data-zap data-origem="cnc" data-msg="Quero uma peça especial/sob medida em CNC">Tenho uma ideia <span>&rarr;</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJETOS ================= -->
+<section class="sec" id="projetos" style="background:#08080A;border-block:1px solid var(--linha)">
+  <div class="wrap">
+    <div class="rev">
+      <span class="olho">Projetos executados</span>
+      <h2 class="titulo">Trabalho nosso, feito aqui em Vilhena</h2>
+      <p class="subtitulo">Nada de imagem de catálogo: as fotos abaixo são de peças produzidas e instaladas pela nossa equipe. Toque para ampliar.</p>
+    </div>
+
+    <div class="galeria">
+      <figure class="galeria__item galeria__item--alto rev">
+        <img src="assets/ripado.jpg" alt="Painel ripado em corredor com iluminação embutida, executado pela EXECUTA Marcenaria" loading="lazy" width="900" height="1213">
+        <figcaption>Painel ripado com luz embutida<small>Residencial &middot; Vilhena/RO</small></figcaption>
+      </figure>
+      <figure class="galeria__item rev">
+        <img src="assets/balcao.jpg" alt="Balcão curvo com tampo branco e gavetas internas em madeira" loading="lazy" width="900" height="969">
+        <figcaption>Balcão curvo com tampo em Corian<small>Peça sob medida</small></figcaption>
+      </figure>
+      <figure class="galeria__item rev">
+        <img src="assets/mesa.jpg" alt="Mesa redonda com base cônica preta e tampo branco produzida na fábrica" loading="lazy" width="900" height="1351">
+        <figcaption>Mesa redonda com base cônica<small>Usinagem CNC</small></figcaption>
+      </figure>
+      <figure class="galeria__item rev">
+        <img src="assets/fabrica.jpg" alt="Equipe da EXECUTA Marcenaria durante montagem na fábrica" loading="lazy" width="850" height="440">
+        <figcaption>Montagem acompanhada de perto<small>Fábrica própria</small></figcaption>
+      </figure>
+      <figure class="galeria__item rev">
+        <img src="assets/chapas.jpg" alt="Chapas de MDF preparadas para corte na fábrica da EXECUTA" loading="lazy" width="850" height="540">
+        <figcaption>Chapas entrando para o corte CNC<small>Processo de produção</small></figcaption>
+      </figure>
+      <figure class="galeria__item rev">
+        <img src="assets/fachada.jpg" alt="Fachada da loja EXECUTA Marcenaria em Vilhena - RO" loading="lazy" width="1400" height="1090">
+        <figcaption>Nossa loja no Bodanese<small>Av. Edvaldo Luciano da Silva, 2154</small></figcaption>
+      </figure>
+    </div>
+
+    <div class="hero__acoes rev" style="margin-top:34px">
+      <a class="btn btn--zap" href="#" data-zap data-origem="galeria" data-msg="Vi os projetos no site e quero um orçamento">Quero algo assim na minha casa</a>
+      <a class="btn btn--fantasma" href="https://www.instagram.com/executa_marcenaria/" target="_blank" rel="noopener" data-evento="instagram">Ver mais no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIFERENCIAIS ================= -->
+<section class="sec" id="diferenciais">
+  <div class="wrap dupla">
+    <div class="rev">
+      <span class="olho">Por que a Executa</span>
+      <h2 class="titulo">Fábrica própria significa preço justo e prazo na mão</h2>
+      <p class="subtitulo">Quando a marcenaria terceiriza o corte, você paga a margem de outro e depende do prazo de outro. Aqui o projeto, o corte, a montagem e a instalação são nossos &mdash; do começo ao fim.</p>
+
+      <ul class="lista-check">
+        <li>
+          <span class="mark" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Você aprova em 3D antes de virar móvel</b><span>Nada é cortado antes de você ver o projeto, entender a distribuição interna e confirmar cores e acabamentos.</span></div>
+        </li>
+        <li>
+          <span class="mark" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Medição feita por quem vai produzir</b><span>Parede fora de esquadro, tubulação, rodapé e piso desnivelado entram na conta antes da fábrica &mdash; por isso o móvel encaixa.</span></div>
+        </li>
+        <li>
+          <span class="mark" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Corte CNC com precisão de máquina</b><span>Furação e usinagem padronizadas, portas alinhadas, gaveta que desliza macia e curvas que marcenaria manual não entrega.</span></div>
+        </li>
+        <li>
+          <span class="mark" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Equipe própria na instalação</b><span>Quem monta é da casa, com acabamento revisado no final e ajuste fino antes da entrega das chaves do ambiente.</span></div>
+        </li>
+        <li>
+          <span class="mark" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Loja física para você conferir</b><span>Estamos na Av. Edvaldo Luciano da Silva, 2154. Venha ver amostras, ferragens e a fábrica funcionando &mdash; sem intermediário.</span></div>
+        </li>
+      </ul>
+
+      <div class="hero__acoes" style="margin-top:32px">
+        <a class="btn btn--ouro" href="#orcamento">Quero meu projeto 3D</a>
+      </div>
+    </div>
+
+    <div class="rev">
+      <figure class="moldura" style="margin:0">
+        <img src="assets/fachada.jpg" alt="Loja e fábrica da EXECUTA Marcenaria em Vilhena, Rondônia" loading="lazy" width="1400" height="1090">
+        <figcaption class="moldura__tag">📍 Loja e fábrica &middot; Bodanese, Vilhena - RO</figcaption>
+      </figure>
+      <figure class="moldura" style="margin:16px 0 0">
+        <img src="assets/balcao.jpg" alt="Móvel curvo em produção na fábrica da EXECUTA" loading="lazy" width="900" height="969">
+        <figcaption class="moldura__tag">🛠️ Produção acompanhada de perto</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESSO ================= -->
+<section class="sec sec--claro" id="processo">
+  <div class="wrap">
+    <div class="rev">
+      <span class="olho">Como funciona</span>
+      <h2 class="titulo" style="color:#16150F">Do primeiro contato ao móvel instalado</h2>
+      <p class="subtitulo">Um caminho simples, sem surpresa no meio &mdash; você sabe o que acontece em cada etapa.</p>
+    </div>
+
+    <div class="passos">
+      <div class="passo rev"><h3>Conversa inicial</h3><p>Você chama no WhatsApp e conta o que precisa. Já damos uma orientação de faixa de investimento antes de qualquer visita.</p></div>
+      <div class="passo rev"><h3>Medição no local</h3><p>Vamos até o ambiente medir e entender a rotina de quem vai usar. Em obra, alinhamos pontos de elétrica e hidráulica antes.</p></div>
+      <div class="passo rev"><h3>Projeto 3D e orçamento</h3><p>Você vê o ambiente pronto na tela, escolhe acabamentos e ferragens e recebe o valor fechado. Ajustamos até ficar do seu jeito.</p></div>
+      <div class="passo rev"><h3>Produção e instalação</h3><p>Aprovado, entra na fábrica. Na data combinada nossa equipe instala, revisa o acabamento e entrega o ambiente limpo e pronto para usar.</p></div>
+    </div>
+
+    <div class="hero__acoes rev" style="margin-top:38px">
+      <a class="btn btn--zap" href="#" data-zap data-origem="processo" data-msg="Quero começar pela conversa inicial e agendar a medição">Começar pela etapa 1 no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROVA SOCIAL ================= -->
+<section class="sec" id="avaliacoes">
+  <div class="wrap prova">
+    <div class="nota rev">
+      <div class="nota__valor ouro">4,8</div>
+      <span class="estrelas" aria-hidden="true">★★★★★</span>
+      <p>Avaliação dos clientes no Google<br>com 6 avaliações públicas</p>
+      <a href="https://www.google.com/search?q=Executa+marcenaria+Vilhena" target="_blank" rel="noopener" data-evento="google">Ver avaliações no Google</a>
+    </div>
+    <div class="rev">
+      <span class="olho">Reputação</span>
+      <h2 class="titulo">Quem contrata em Vilhena costuma nos indicar</h2>
+      <p class="subtitulo">Somos uma marcenaria com nome, endereço e rosto: o proprietário Célio Campos acompanha os projetos de perto e a produção é mostrada aberta no nosso Instagram, onde já somos acompanhados por mais de 4,5 mil pessoas.</p>
+      <div class="hero__acoes" style="margin-top:28px">
+        <a class="btn btn--fantasma" href="https://www.instagram.com/executa_marcenaria/" target="_blank" rel="noopener" data-evento="instagram-prova">@executa_marcenaria</a>
+        <a class="btn btn--zap" href="#" data-zap data-origem="prova-social" data-msg="Vi o site da Executa e quero conversar sobre um projeto">Falar com a Executa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORÇAMENTO ================= -->
+<section class="sec" id="orcamento" style="background:#08080A;border-block:1px solid var(--linha)">
+  <div class="wrap" style="max-width:900px">
+    <div class="rev" style="text-align:center">
+      <span class="olho">Orçamento sem custo</span>
+      <h2 class="titulo" style="margin-inline:auto">Conte o que você precisa e receba seu orçamento</h2>
+      <p class="subtitulo" style="margin-inline:auto">Leva menos de 1 minuto. Ao enviar, seu pedido abre direto no WhatsApp da Executa já preenchido &mdash; é só apertar enviar.</p>
+    </div>
+
+    <form class="form-bloco rev" id="form-orcamento" novalidate style="margin-top:36px">
+      <div class="campos">
+        <div class="campo">
+          <label for="nome">Seu nome *</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Como podemos te chamar?" required>
+          <span class="erro">Por favor, informe seu nome.</span>
+        </div>
+        <div class="campo">
+          <label for="fone">WhatsApp *</label>
+          <input id="fone" name="fone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(69) 9 9999-9999" required>
+          <span class="erro">Informe um WhatsApp com DDD.</span>
+        </div>
+        <div class="campo">
+          <label for="ambiente">O que você quer planejar? *</label>
+          <select id="ambiente" name="ambiente" required>
+            <option value="">Selecione o ambiente</option>
+            <option>Cozinha</option>
+            <option>Quarto / guarda-roupa / closet</option>
+            <option>Sala / painel ripado / home</option>
+            <option>Escritório / home office</option>
+            <option>Projeto comercial (loja, clínica, escritório)</option>
+            <option>Casa inteira</option>
+            <option>Peça especial / móvel sob medida</option>
+          </select>
+          <span class="erro">Escolha uma opção.</span>
+        </div>
+        <div class="campo">
+          <label for="prazo">Quando pretende começar?</label>
+          <select id="prazo" name="prazo">
+            <option value="">Selecione (opcional)</option>
+            <option>O quanto antes</option>
+            <option>Nos próximos 30 dias</option>
+            <option>Em 2 a 3 meses</option>
+            <option>Ainda estou pesquisando</option>
+          </select>
+        </div>
+        <div class="campo campo--full">
+          <label for="cidade">Cidade / bairro</label>
+          <input id="cidade" name="cidade" type="text" placeholder="Ex.: Vilhena - Jardim América">
+        </div>
+        <div class="campo campo--full">
+          <label for="detalhes">Detalhes do projeto</label>
+          <textarea id="detalhes" name="detalhes" placeholder="Ex.: cozinha de 3,5 m com torre quente, apartamento em obra, entrega prevista para dezembro..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-rodape">
+        <button class="btn btn--zap btn--bloco" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+          Enviar e falar no WhatsApp
+        </button>
+        <p class="form-nota">Seus dados são usados apenas para o atendimento do seu orçamento. Sem spam, sem cadastro.</p>
+      </div>
+      <div class="form-ok" id="form-ok" role="status">
+        ✅ Tudo certo! Abrimos o WhatsApp com sua mensagem pronta. Se não abrir automaticamente,
+        <a href="#" data-zap data-origem="fallback" style="color:#9FF0C0;text-decoration:underline">toque aqui para falar com a gente</a>.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="rev">
+      <span class="olho">Dúvidas frequentes</span>
+      <h2 class="titulo">Respostas antes de você perguntar</h2>
+    </div>
+    <div class="faq">
+      <details class="rev"><summary>O orçamento e o projeto têm custo?</summary><p>Não. A conversa inicial, a medição e a apresentação do projeto são sem custo e sem compromisso. Você só investe quando aprovar o projeto e o valor.</p></details>
+      <details class="rev"><summary>Vocês atendem fora de Vilhena?</summary><p>Sim. Além de Vilhena, atendemos cidades da região. Chame no WhatsApp informando a sua cidade que confirmamos o atendimento e as condições de deslocamento.</p></details>
+      <details class="rev"><summary>Qual o prazo de entrega?</summary><p>O prazo depende do tamanho do projeto e da fila da fábrica no momento. Como produzimos aqui mesmo, informamos a data real na hora do fechamento &mdash; e é essa data que combinamos para a instalação.</p></details>
+      <details class="rev"><summary>Como funciona o pagamento?</summary><p>Trabalhamos com condições parceladas, definidas junto com você no fechamento do projeto. Fale com a gente no WhatsApp para conhecer as formas de pagamento disponíveis.</p></details>
+      <details class="rev"><summary>Dá para fazer só um ambiente?</summary><p>Claro. Muita gente começa pela cozinha ou pelo quarto do casal e depois planeja o restante da casa por etapas. O projeto é feito pensando nessa continuidade.</p></details>
+      <details class="rev"><summary>Meu apartamento ainda está em obra. Já posso chamar?</summary><p>Esse é o melhor momento. Medindo antes, conseguimos indicar onde deixar pontos de elétrica, tomadas e hidráulica para o móvel ficar perfeito &mdash; sem gambiarra depois.</p></details>
+      <details class="rev"><summary>Vocês executam projeto de arquiteto?</summary><p>Sim. Recebemos o projeto do seu arquiteto ou designer, fazemos o detalhamento executivo e produzimos com o acabamento especificado.</p></details>
+      <details class="rev"><summary>E depois da instalação, tem assistência?</summary><p>Tem. Somos empresa com endereço fixo em Vilhena: se algo precisar de ajuste depois da entrega, é só chamar que a nossa equipe resolve.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section class="sec" id="contato" style="background:#08080A;border-top:1px solid var(--linha)">
+  <div class="wrap">
+    <div class="rev">
+      <span class="olho">Onde estamos</span>
+      <h2 class="titulo">Venha tomar um café e ver a fábrica</h2>
+      <p class="subtitulo">Loja e produção no mesmo endereço, no Bodanese, às margens da BR-364 em Vilhena.</p>
+    </div>
+
+    <div class="contato">
+      <div class="info rev">
+        <div class="info__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><b>Endereço</b><a href="https://www.google.com/maps/search/?api=1&query=Executa+Marcenaria+Av.+Edvaldo+Luciano+da+Silva+2154+Bodanese+Vilhena+RO" target="_blank" rel="noopener" data-evento="mapa">Av. Edvaldo Luciano da Silva, 2154<br>Bodanese &middot; Vilhena - RO &middot; 76980-000</a></div>
+        </div>
+        <div class="info__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg>
+          <div><b>WhatsApp e telefone</b><a href="#" data-zap data-origem="contato">(69) 9 9300-6667</a></div>
+        </div>
+        <div class="info__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          <div><b>Horário de atendimento</b>
+            <div class="horarios">
+              <div><span>Segunda a sexta</span><span>07h &ndash; 18h</span></div>
+              <div><span>Sábado</span><span>07h &ndash; 12h</span></div>
+              <div><span>Domingo</span><span>Fechado</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="info__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <div><b>Instagram</b><a href="https://www.instagram.com/executa_marcenaria/" target="_blank" rel="noopener" data-evento="instagram-contato">@executa_marcenaria</a></div>
+        </div>
+      </div>
+
+      <div class="mapa rev">
+        <iframe title="Mapa da localização da EXECUTA Marcenaria em Vilhena - RO" src="https://www.google.com/maps?q=Av.%20Edvaldo%20Luciano%20da%20Silva%2C%202154%20-%20Bodanese%2C%20Vilhena%20-%20RO%2C%2076980-000&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="cta-final rev">
+      <span class="olho" style="justify-content:center">Última chamada</span>
+      <h2>O móvel dos seus sonhos começa com uma mensagem</h2>
+      <p class="subtitulo">Manda uma foto do ambiente ou a planta pelo WhatsApp. A gente já te dá o direcionamento &mdash; sem compromisso e sem enrolação.</p>
+      <div class="hero__acoes">
+        <a class="btn btn--zap" href="#" data-zap data-origem="cta-final">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn--fantasma" href="tel:+5569993006667" data-evento="ligar">Prefiro ligar: (69) 9 9300-6667</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="rodape">
+      <div>
+        <img src="assets/logo.png" alt="EXECUTA Marcenaria" width="531" height="330" loading="lazy">
+        <p>Móveis planejados sob medida com fábrica própria em Vilhena - RO. Projeto, produção e instalação feitos pela nossa equipe.</p>
+        <div class="sociais">
+          <a href="https://www.instagram.com/executa_marcenaria/" target="_blank" rel="noopener" aria-label="Instagram da Executa Marcenaria"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" data-zap data-origem="rodape" aria-label="WhatsApp da Executa Marcenaria"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg></a>
+          <a href="tel:+5569993006667" aria-label="Telefone da Executa Marcenaria"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.8 2.1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Ambientes</h4>
+        <ul>
+          <li><a href="#ambientes">Cozinhas planejadas</a></li>
+          <li><a href="#ambientes">Quartos e closets</a></li>
+          <li><a href="#ambientes">Salas e painéis ripados</a></li>
+          <li><a href="#ambientes">Escritórios e home office</a></li>
+          <li><a href="#ambientes">Projetos comerciais</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#" data-zap data-origem="rodape-link">WhatsApp (69) 9 9300-6667</a></li>
+          <li><a href="#orcamento">Pedir orçamento</a></li>
+          <li><a href="#projetos">Ver projetos</a></li>
+          <li><a href="#faq">Dúvidas frequentes</a></li>
+          <li><a href="#contato">Como chegar</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="creditos">
+      <span>&copy; <span id="ano">2026</span> EXECUTA Marcenaria &middot; Vilhena - RO. Todos os direitos reservados.</span>
+      <span>Seg a sex 07h&ndash;18h &middot; Sáb 07h&ndash;12h</span>
+    </div>
+  </div>
+</footer>
+
+<a class="zap-flutua" href="#" data-zap data-origem="flutuante" aria-label="Falar no WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.6z"/></svg>
+</a>
+
+<div class="barra-mobile">
+  <a class="btn btn--zap" href="#" data-zap data-origem="barra-mobile">WhatsApp</a>
+  <a class="btn btn--ouro" href="#orcamento">Orçamento</a>
+</div>
+
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button type="button" id="lb-fechar" aria-label="Fechar">&times;</button>
+  <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+</div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":["LocalBusiness","HomeAndConstructionBusiness"],
+  "name":"EXECUTA Marcenaria",
+  "description":"Marcenaria com fábrica própria em Vilhena - RO especializada em móveis planejados sob medida: cozinhas, quartos, salas, escritórios e projetos comerciais.",
+  "image":"assets/fachada.jpg",
+  "logo":"assets/logo.png",
+  "telephone":"+55 69 99300-6667",
+  "priceRange":"$$",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Av. Edvaldo Luciano da Silva, 2154 - Bodanese",
+    "addressLocality":"Vilhena",
+    "addressRegion":"RO",
+    "postalCode":"76980-000",
+    "addressCountry":"BR"
+  },
+  "areaServed":[{"@type":"City","name":"Vilhena"},{"@type":"State","name":"Rondônia"}],
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"07:00","closes":"12:00"}
+  ],
+  "sameAs":["https://www.instagram.com/executa_marcenaria/"],
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog","name":"Móveis planejados",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Cozinha planejada sob medida"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Guarda-roupa e closet planejado"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Painel ripado e móveis de sala"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Móveis para escritório e home office"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Marcenaria para ambientes comerciais"}}
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"O orçamento e o projeto têm custo?","acceptedAnswer":{"@type":"Answer","text":"Não. A conversa inicial, a medição e a apresentação do projeto são sem custo e sem compromisso. Você só investe quando aprovar o projeto e o valor."}},
+    {"@type":"Question","name":"Vocês atendem fora de Vilhena?","acceptedAnswer":{"@type":"Answer","text":"Sim. Além de Vilhena, atendemos cidades da região. Chame no WhatsApp informando a sua cidade que confirmamos o atendimento e as condições de deslocamento."}},
+    {"@type":"Question","name":"Qual o prazo de entrega?","acceptedAnswer":{"@type":"Answer","text":"O prazo depende do tamanho do projeto e da fila da fábrica. Como produzimos na nossa própria fábrica, informamos a data real no fechamento do projeto."}},
+    {"@type":"Question","name":"Dá para fazer só um ambiente?","acceptedAnswer":{"@type":"Answer","text":"Sim. Muitos clientes começam pela cozinha ou pelo quarto e planejam o restante da casa por etapas."}},
+    {"@type":"Question","name":"Vocês executam projeto de arquiteto?","acceptedAnswer":{"@type":"Answer","text":"Sim. Recebemos o projeto do arquiteto ou designer, fazemos o detalhamento executivo e produzimos com o acabamento especificado."}}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var FONE = "5569993006667";
+  var PADRAO = "Olá! Vim pelo site da EXECUTA Marcenaria e gostaria de um orçamento de móveis planejados.";
+
+  function evento(nome, dados){
+    try{
+      if (window.dataLayer) window.dataLayer.push(Object.assign({event:nome}, dados||{}));
+      if (typeof window.gtag === "function") window.gtag("event", nome, dados||{});
+      if (typeof window.fbq === "function") window.fbq("trackCustom", nome, dados||{});
+    }catch(e){}
+  }
+
+  function linkZap(texto){
+    return "https://wa.me/" + FONE + "?text=" + encodeURIComponent(texto || PADRAO);
+  }
+
+  /* --- todos os CTAs de WhatsApp --- */
+  document.querySelectorAll("[data-zap]").forEach(function(el){
+    var msg = el.getAttribute("data-msg");
+    var texto = msg ? msg + " (vim pelo site da Executa)" : PADRAO;
+    el.setAttribute("href", linkZap(texto));
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+    el.addEventListener("click", function(){
+      evento("clique_whatsapp", {origem: el.getAttribute("data-origem") || "site"});
+    });
+  });
+  document.querySelectorAll("[data-evento]").forEach(function(el){
+    el.addEventListener("click", function(){ evento("clique_" + el.getAttribute("data-evento")); });
+  });
+
+  /* --- header sólido ao rolar --- */
+  var cab = document.getElementById("topo");
+  var aoRolar = function(){ cab.classList.toggle("solido", window.scrollY > 24); };
+  aoRolar();
+  window.addEventListener("scroll", aoRolar, {passive:true});
+
+  /* --- revelar seções --- */
+  var alvos = document.querySelectorAll(".rev");
+  if ("IntersectionObserver" in window){
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e, i){
+        if (e.isIntersecting){
+          setTimeout(function(){ e.target.classList.add("visivel"); }, Math.min(i * 70, 280));
+          obs.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.08});
+    alvos.forEach(function(a){ obs.observe(a); });
+  } else {
+    alvos.forEach(function(a){ a.classList.add("visivel"); });
+  }
+
+  /* --- máscara de telefone --- */
+  var fone = document.getElementById("fone");
+  if (fone){
+    fone.addEventListener("input", function(){
+      var v = fone.value.replace(/\D/g, "").slice(0, 11);
+      if (v.length > 10)      v = v.replace(/(\d{2})(\d{1})(\d{4})(\d{0,4})/, "($1) $2 $3-$4");
+      else if (v.length > 6)  v = v.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+      else if (v.length > 2)  v = v.replace(/(\d{2})(\d{0,5})/, "($1) $2");
+      else if (v.length > 0)  v = v.replace(/(\d{0,2})/, "($1");
+      fone.value = v;
+    });
+  }
+
+  /* --- formulário -> WhatsApp --- */
+  var form = document.getElementById("form-orcamento");
+  if (form){
+    var marcar = function(campo, ok){
+      campo.closest(".campo").classList.toggle("invalido", !ok);
+      return ok;
+    };
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var nome = form.nome, tel = form.fone, amb = form.ambiente;
+      var digitos = tel.value.replace(/\D/g, "");
+      var ok = true;
+      ok = marcar(nome, nome.value.trim().length >= 2) && ok;
+      ok = marcar(tel, digitos.length >= 10) && ok;
+      ok = marcar(amb, amb.value !== "") && ok;
+      if (!ok){
+        var ruim = form.querySelector(".campo.invalido input, .campo.invalido select");
+        if (ruim) ruim.focus();
+        evento("orcamento_invalido");
+        return;
+      }
+
+      var linhas = [
+        "*Novo pedido de orçamento - site EXECUTA*",
+        "",
+        "*Nome:* " + nome.value.trim(),
+        "*WhatsApp:* " + tel.value.trim(),
+        "*Ambiente:* " + amb.value
+      ];
+      if (form.prazo.value)    linhas.push("*Início previsto:* " + form.prazo.value);
+      if (form.cidade.value.trim())   linhas.push("*Cidade/bairro:* " + form.cidade.value.trim());
+      if (form.detalhes.value.trim()) linhas.push("*Detalhes:* " + form.detalhes.value.trim());
+
+      evento("orcamento_enviado", {ambiente: amb.value, prazo: form.prazo.value || "nao_informado"});
+      document.getElementById("form-ok").classList.add("mostra");
+      window.open(linkZap(linhas.join("\n")), "_blank", "noopener");
+    });
+  }
+
+  /* --- lightbox da galeria --- */
+  var lb = document.getElementById("lightbox");
+  var lbImg = lb.querySelector("img");
+  var abrir = function(src, alt){
+    lbImg.src = src; lbImg.alt = alt || "";
+    lb.classList.add("aberto");
+    document.body.style.overflow = "hidden";
+    evento("abriu_foto");
+  };
+  var fechar = function(){
+    lb.classList.remove("aberto");
+    document.body.style.overflow = "";
+    lbImg.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+  };
+  document.querySelectorAll(".galeria__item img").forEach(function(img){
+    img.parentElement.addEventListener("click", function(){ abrir(img.currentSrc || img.src, img.alt); });
+  });
+  document.getElementById("lb-fechar").addEventListener("click", fechar);
+  lb.addEventListener("click", function(e){ if (e.target === lb) fechar(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && lb.classList.contains("aberto")) fechar(); });
+
+  /* --- ano no rodapé --- */
+  document.getElementById("ano").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
