@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WR Lopes Pneus</title>
-<meta name="description" content="WR Lopes Pneus: recapagem, vulcanização, compra e venda de pneus. Reduza o custo por quilômetro do seu caminhão pagando uma fração do preço do pneu novo. Orçamento na hora pelo WhatsApp.">
+<title>WR Lopes Pneus — Vilhena/RO</title>
+<meta name="description" content="WR Lopes Pneus em Vilhena - RO: recapagem, vulcanização, compra e venda de pneus. Av. Mal. Rondon, S-01, Centro. Seu pneu de volta à estrada por uma fração do preço do novo. Orçamento pelo WhatsApp.">
 <meta name="theme-color" content="#100E0D">
 <link rel="canonical" href="https://SEU-DOMINIO.com.br/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="WR Lopes Pneus — Recapagem, vulcanização e venda de pneus">
-<meta property="og:description" content="Seu pneu rodando de novo por uma fração do preço. Recapagem, vulcanização, compra e venda de pneus. Fale com a gente no WhatsApp.">
+<meta property="og:title" content="WR Lopes Pneus — Recapagem e vulcanização em Vilhena - RO">
+<meta property="og:description" content="Av. Mal. Rondon, S-01 — Centro, Vilhena - RO. Recapagem, vulcanização, compra e venda de pneus. Fale com a gente no WhatsApp.">
 <meta property="og:image" content="https://SEU-DOMINIO.com.br/assets/compartilhamento.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -510,6 +510,46 @@ section[id], .calc[id], form[id]{ scroll-margin-top:86px; }
 .info-list a:hover{ color:var(--amber); border-color:var(--amber); }
 .hours{ font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:.92rem; color:var(--text-2); }
 
+/* selo aberto / fechado agora */
+.status{
+  display:inline-flex; align-items:center; gap:9px;
+  border:1px solid var(--line); border-radius:100px;
+  padding:7px 15px 7px 12px; background:var(--rubber-800);
+  font-size:.86rem; color:var(--text-2);
+  margin-bottom:16px;
+}
+.status b{
+  display:inline; color:var(--text); font-weight:600;
+  font-family:var(--body); font-size:.86rem;
+  text-transform:none; letter-spacing:0; margin:0;
+}
+.status .luz{ width:8px; height:8px; border-radius:50%; background:var(--text-3); flex:none; }
+.status.aberto .luz{ background:var(--ok); box-shadow:0 0 0 4px rgba(95,169,123,.16); }
+.status.fechado .luz{ background:var(--ember); box-shadow:0 0 0 4px rgba(217,80,43,.14); }
+
+/* agenda da semana */
+.agenda{
+  display:grid; grid-template-columns:auto 1fr; gap:1px 18px;
+  font-family:var(--mono); font-size:.84rem;
+  font-variant-numeric:tabular-nums;
+}
+.agenda dt{ color:var(--text-3); padding:4px 0; }
+.agenda dd{ margin:0; color:var(--text-2); padding:4px 0; }
+.agenda .hoje dt, .agenda .hoje dd{ color:var(--text); }
+.agenda .hoje dt::after{ content:" ·"; color:var(--amber); }
+.agenda .off dd{ color:var(--text-3); }
+.agenda > div{ display:contents; }
+
+/* mapa */
+.mapa{
+  margin-top:26px; border:1px solid var(--line); border-radius:var(--r-lg);
+  overflow:hidden; background:var(--rubber-800);
+}
+.mapa iframe{
+  display:block; width:100%; height:300px; border:0;
+  filter:grayscale(.35) contrast(1.05) brightness(.82);
+}
+
 /* ---------- rodapé ---------- */
 footer.site{
   background:var(--rubber-850); border-top:1px solid var(--line-soft);
@@ -540,6 +580,8 @@ footer.site{
 .float-zap span{ display:none; }
 @media (min-width:560px){ .float-zap span{ display:inline; } }
 .float-zap:hover{ background:#FFB63C; }
+.float-zap{ transition:opacity .25s ease, transform .25s ease; }
+.float-zap.recolhido{ opacity:0; transform:translateY(12px); pointer-events:none; }
 
 .sr{
   position:absolute; width:1px; height:1px; overflow:hidden;
@@ -561,7 +603,7 @@ footer.site{
   <div class="wrap topbar-in">
     <a class="brand" href="#topo">
       <span class="logo-wr" role="img" aria-label="WR Lopes Pneus"></span>
-      <span class="brand-sub" data-cfg="cidade">Cidade / UF</span>
+      <span class="brand-sub" data-cfg="cidade">Vilhena / RO</span>
     </a>
     <nav class="nav" aria-label="Seções">
       <a href="#servicos">Serviços</a>
@@ -586,7 +628,7 @@ footer.site{
   <div class="wrap hero-grid">
 
     <div class="hero-copy">
-      <span class="tag">WR Lopes Pneus · Recapagem e vulcanização</span>
+      <span class="tag">Vilhena · RO — Av. Mal. Rondon, Centro</span>
       <h1>Cada pneu seu<span>vale mais uma vida.</span></h1>
       <p class="lede">
         Recapagem, vulcanização, compra e venda de pneus na WR Lopes Pneus.
@@ -892,6 +934,10 @@ footer.site{
         <div class="answer">Os dois. Quem tem um caminhão só recebe a mesma atenção de quem traz um lote inteiro. A diferença fica no prazo de programação e nas condições combinadas para volume maior.</div>
       </details>
       <details>
+        <summary>Onde vocês ficam e a que horas abrem?</summary>
+        <div class="answer">Estamos na Av. Mal. Rondon, S-01 — Centro, em Vilhena - RO. Abrimos de segunda a quinta das 07:30 às 11:30 e das 13:30 às 18:00 (segunda fechamos 17:30), e na sexta trabalhamos direto, das 07:30 às 17:30. Sábado e domingo não abrimos. O quadro com o horário do dia e o mapa estão logo ali embaixo, no fim da página.</div>
+      </details>
+      <details>
         <summary>Quais medidas vocês trabalham?</summary>
         <div class="answer">As medidas de carga mais rodadas — 295/80R22.5, 275/80R22.5, 1000R20, 900R20 e similares. Tem uma medida diferente? Manda no WhatsApp que a gente confirma na hora se atende.</div>
       </details>
@@ -977,13 +1023,14 @@ footer.site{
       <div class="sec-head" style="margin-bottom:8px">
         <span class="tag">A oficina</span>
         <h2>Fale com a WR</h2>
+        <p class="lede">Estamos no Centro de Vilhena, na Av. Mal. Rondon. Chegue sem marcar hora dentro do horário abaixo.</p>
       </div>
       <ul class="info-list">
         <li data-so-com-endereco>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
           <div>
             <b>Endereço</b>
-            <a data-maps href="#" target="_blank" rel="noopener"><span data-cfg="endereco">Rua Exemplo, 000 — Bairro, Cidade/UF</span></a>
+            <a data-maps href="#" target="_blank" rel="noopener"><span data-cfg="endereco">Av. Mal. Rondon, S-01 — Centro, Vilhena - RO, 76980-236</span></a>
           </div>
         </li>
         <li data-so-com-telefone>
@@ -1004,7 +1051,8 @@ footer.site{
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg>
           <div>
             <b>Horário</b>
-            <div class="hours" data-cfg="horario">Seg a Sex, 08h–18h · Sáb, 08h–12h</div>
+            <div class="status" id="status-agora" hidden><span class="luz" aria-hidden="true"></span><span id="status-texto"></span></div>
+            <dl class="agenda" id="agenda"></dl>
           </div>
         </li>
         <li>
@@ -1022,6 +1070,10 @@ footer.site{
         </a>
         <a class="btn btn-ghost" data-maps data-so-com-endereco href="#" target="_blank" rel="noopener">Ver rota no Maps</a>
       </div>
+
+      <div class="mapa" data-so-com-endereco>
+        <iframe id="mapa-oficina" title="Mapa com a localização da WR Lopes Pneus" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+      </div>
     </div>
 
   </div>
@@ -1033,7 +1085,7 @@ footer.site{
     <div class="foot-brand">
       <span class="logo-wr" role="img" aria-label="WR Lopes Pneus"></span>
       <p>
-        <span data-so-com-endereco><span data-cfg="endereco">Rua Exemplo, 000 — Cidade/UF</span><br></span>
+        <span data-so-com-endereco><span data-cfg="endereco">Av. Mal. Rondon, S-01 — Centro, Vilhena - RO, 76980-236</span><br></span>
         <span data-cfg="cnpj">CNPJ 00.000.000/0001-00</span>
       </p>
     </div>
@@ -1060,7 +1112,7 @@ footer.site{
    ============================================================================ */
 const NEGOCIO = {
   nome:      "WR Lopes Pneus",
-  cidade:    "Cidade / UF",                                  // ← PREENCHER: aparece ao lado da logo
+  cidade:    "Vilhena / RO",
 
   // WhatsApp -------------------------------------------------------------
   // Enquanto "whatsapp" estiver zerado, o site usa o link curto da bio do
@@ -1076,17 +1128,26 @@ const NEGOCIO = {
 
   // Endereço -------------------------------------------------------------
   // Deixe começando com "Rua Exemplo" e o bloco de endereço some sozinho.
-  endereco:  "Rua Exemplo, 000 — Bairro, Cidade/UF",   // ← PREENCHER
+  endereco:  "Av. Mal. Rondon, S-01 — Centro, Vilhena - RO, 76980-236",
   mapsUrl:   "https://maps.app.goo.gl/635p5LQNpsVNpovk8",
+  fuso:      "America/Porto_Velho",   // usado no selo "aberto agora"
 
   instagram: "@wr.lopespneus",
-  horario:   "Seg a Sex, 08h–18h · Sáb, 08h–12h",      // ← CONFERIR
-  area:      "Cidade e região — consulte o atendimento",
+  area:      "Vilhena e região",
   cnpj:      "CNPJ 00.000.000/0001-00",                // ← PREENCHER (ou apague a linha)
   site:      "https://SEU-DOMINIO.com.br",             // ← PREENCHER quando publicar
 
-  // horários no formato do Google (para os dados estruturados)
-  horarioSchema: ["Mo-Fr 08:00-18:00", "Sa 08:00-12:00"]
+  // Horário de funcionamento ---------------------------------------------
+  // Índice 0 = domingo. Cada faixa é ["abre", "fecha"]; lista vazia = fechado.
+  horarios: [
+    { dia: "Domingo",       curto: "Dom", faixas: [] },
+    { dia: "Segunda-feira", curto: "Seg", faixas: [["07:30","11:30"], ["13:30","17:30"]] },
+    { dia: "Terça-feira",   curto: "Ter", faixas: [["07:30","11:30"], ["13:30","18:00"]] },
+    { dia: "Quarta-feira",  curto: "Qua", faixas: [["07:30","11:30"], ["13:30","18:00"]] },
+    { dia: "Quinta-feira",  curto: "Qui", faixas: [["07:30","11:30"], ["13:30","18:00"]] },
+    { dia: "Sexta-feira",   curto: "Sex", faixas: [["07:30","17:30"]] },
+    { dia: "Sábado",        curto: "Sáb", faixas: [] }
+  ]
 };
 /* ==========================  fim da configuração  ========================== */
 
@@ -1141,6 +1202,102 @@ document.querySelectorAll("[data-zap]").forEach(function (el) {
   el.target = "_blank";
   el.rel = "noopener";
 });
+
+/* --- horário de funcionamento: agenda, selo "aberto agora" e mapa --- */
+(function () {
+  var agenda = document.getElementById("agenda");
+  if (!agenda || !NEGOCIO.horarios) return;
+
+  function paraMinutos(hhmm) {
+    var p = hhmm.split(":");
+    return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+  }
+  function texto(faixas) {
+    if (!faixas.length) return "Fechado";
+    return faixas.map(function (f) { return f[0] + "–" + f[1]; }).join("  ·  ");
+  }
+
+  /* que horas são NA OFICINA, não no celular de quem está vendo */
+  function agoraNaOficina() {
+    var f = new Intl.DateTimeFormat("en-US", {
+      timeZone: NEGOCIO.fuso || "America/Porto_Velho",
+      weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false
+    });
+    var p = {};
+    f.formatToParts(new Date()).forEach(function (parte) { p[parte.type] = parte.value; });
+    var semana = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return {
+      dia: semana[p.weekday],
+      min: (parseInt(p.hour, 10) % 24) * 60 + parseInt(p.minute, 10)
+    };
+  }
+
+  /* monta a agenda começando na segunda */
+  var agora = agoraNaOficina();
+  [1, 2, 3, 4, 5, 6, 0].forEach(function (i) {
+    var d = NEGOCIO.horarios[i];
+    var linha = document.createElement("div");
+    if (i === agora.dia) linha.className = "hoje";
+    else if (!d.faixas.length) linha.className = "off";
+    linha.innerHTML = "<dt>" + d.curto + "</dt><dd>" + texto(d.faixas) + "</dd>";
+    agenda.appendChild(linha);
+  });
+
+  /* selo: aberto agora / fechado, com a próxima abertura */
+  var selo = document.getElementById("status-agora");
+  var rotulo = document.getElementById("status-texto");
+
+  function proximaAbertura() {
+    for (var salto = 0; salto < 8; salto++) {
+      var i = (agora.dia + salto) % 7;
+      var d = NEGOCIO.horarios[i];
+      for (var k = 0; k < d.faixas.length; k++) {
+        var abre = paraMinutos(d.faixas[k][0]);
+        if (salto > 0 || abre > agora.min) {
+          return (salto === 0 ? "hoje" : salto === 1 ? "amanhã" : d.curto.toLowerCase()) + " às " + d.faixas[k][0];
+        }
+      }
+    }
+    return "";
+  }
+
+  var hoje = NEGOCIO.horarios[agora.dia];
+  var aberto = null;
+  hoje.faixas.forEach(function (f) {
+    if (agora.min >= paraMinutos(f[0]) && agora.min < paraMinutos(f[1])) aberto = f;
+  });
+
+  if (aberto) {
+    selo.className = "status aberto";
+    rotulo.innerHTML = "<b>Aberto agora</b> · fecha às " + aberto[1];
+  } else {
+    var prox = proximaAbertura();
+    selo.className = "status fechado";
+    rotulo.innerHTML = "<b>Fechado agora</b>" + (prox ? " · abre " + prox : "");
+  }
+  selo.hidden = false;
+})();
+
+/* --- mapa da oficina (só carrega se houver endereço configurado) --- */
+(function () {
+  var mapa = document.getElementById("mapa-oficina");
+  if (!mapa || !temEndereco()) return;
+
+  function carregar() {
+    mapa.src = "https://www.google.com/maps?q=" +
+               encodeURIComponent(NEGOCIO.endereco.replace(/—/g, "-")) +
+               "&z=16&output=embed";
+  }
+  /* só busca o mapa quando o visitante chega perto dele */
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function (entradas) {
+      if (entradas[0].isIntersecting) { carregar(); obs.disconnect(); }
+    }, { rootMargin: "300px" });
+    obs.observe(mapa);
+  } else {
+    carregar();
+  }
+})();
 
 /* --- calculadora de economia --- */
 (function () {
@@ -1246,9 +1403,19 @@ document.querySelectorAll("[data-zap]").forEach(function (el) {
   });
 })();
 
+/* --- recolhe o botão flutuante quando o bloco de contato está na tela --- */
+(function () {
+  var flutuante = document.querySelector(".float-zap");
+  var contato = document.getElementById("contato");
+  if (!flutuante || !contato || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (entradas) {
+    flutuante.classList.toggle("recolhido", entradas[0].isIntersecting);
+  }, { threshold: .12 }).observe(contato);
+})();
+
 /* --- título da aba e dados estruturados a partir da configuração --- */
 (function () {
-  document.title = NEGOCIO.nome + " — Recapagem, Vulcanização e Venda de Pneus";
+  document.title = NEGOCIO.nome + " — Recapagem e Pneus em " + (NEGOCIO.cidade || "").replace("/", "-");
 
   var dados = {
     "@context": "https://schema.org",
@@ -1259,8 +1426,18 @@ document.querySelectorAll("[data-zap]").forEach(function (el) {
     "image": NEGOCIO.site + "/assets/compartilhamento.jpg",
     "sameAs": ["https://instagram.com/" + (NEGOCIO.instagram || "").replace("@", "")],
     "hasMap": NEGOCIO.mapsUrl,
-    "openingHours": NEGOCIO.horarioSchema,
     "@id": NEGOCIO.site + "#negocio",
+    "openingHoursSpecification": (NEGOCIO.horarios || []).reduce(function (lista, d, i) {
+      var nomes = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      d.faixas.forEach(function (f) {
+        lista.push({
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/" + nomes[i],
+          "opens": f[0], "closes": f[1]
+        });
+      });
+      return lista;
+    }, []),
     "priceRange": "$$",
     "areaServed": NEGOCIO.area,
     "makesOffer": [
