@@ -27,10 +27,15 @@ número no bloco `CONFIG` (procure por `whatsapp:`):
 whatsapp: '5569000000000',   // 55 + DDD + número, só dígitos
 ```
 
-Esse é o único lugar onde o número aparece. Todos os botões da página
+Todos os botões da página
 (header, hero, cada serviço, cada barbeiro, rodapé e barra fixa do celular)
-são montados a partir dele, já com a mensagem preenchida — ex.: *"Olá! Quero
+passam a apontar para ele, já com a mensagem preenchida — ex.: *"Olá! Quero
 agendar o combo Corte + Barba (R$ 65)."*
+
+Os `href` do HTML trazem esse mesmo número escrito como cópia de segurança,
+para o caso de o navegador não executar JavaScript. Depois de trocar o CONFIG,
+use o "Localizar e substituir" do editor e troque também todo
+`5569000000000` que aparecer no arquivo.
 
 ### b) Endereço completo
 No mesmo bloco `CONFIG`, logo abaixo:
@@ -75,6 +80,8 @@ estilizado no lugar — nada quebra.
   com endereço, horários e catálogo de serviços.
 - **Acessibilidade**: contraste alto, foco visível, `skip link`, `aria-label`,
   e respeito a `prefers-reduced-motion`.
+- **Funciona sem JavaScript**: todo o conteúdo e todos os links de agendamento
+  aparecem mesmo se o script não rodar. A animação de entrada é só um extra.
 - **Rápida**: zero JS de terceiros, imagens com `lazy loading`, uma folha de estilo.
 
 ## 3. Medir os cliques (opcional)
