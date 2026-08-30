@@ -97,3 +97,21 @@ O site já dispara eventos automaticamente quando os scripts existem:
 - SEO local: title/description, Open Graph, sitemap, robots e dados estruturados
 - Acessibilidade: navegação por teclado, foco visível, `prefers-reduced-motion`,
   rótulos ARIA e link de pular para o conteúdo
+
+## Arquivo para enviar ao cliente
+
+```bash
+python3 tools/build-preview.py
+```
+
+Gera duas versões auto-contidas (CSS, JS e imagens embutidos no próprio HTML):
+
+- `preview/wk-site-preview.html` — **arquivo único para enviar ao cliente.**
+  Abre com dois toques no celular ou no computador, funciona sem internet
+  (só as fontes e o mapa precisam de conexão) e não depende de mais nenhum arquivo.
+- `preview/artifact.html` — mesma página sem as tags de documento, usada para
+  publicar o link de aprovação online.
+
+Nessas versões o formulário não redireciona para a página de obrigado (ela não
+viaja junto): ao enviar, a mensagem abre no WhatsApp e os campos são limpos.
+Rode o comando de novo sempre que alterar o site para atualizar os dois arquivos.
