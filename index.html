@@ -110,10 +110,10 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="brand" href="#topo" aria-label="WK Films — início">
-      <img src="assets/img/logo-wk.png" alt="" width="46" height="32" class="brand__mark">
+      <img src="assets/img/logo-wk.png" alt="" width="52" height="35" class="brand__mark">
       <span class="brand__txt">
-        <strong>WK</strong>
-        <small>Films · AgroMarketing</small>
+        <strong>Films</strong>
+        <small>Produtora · AgroMarketing</small>
       </span>
     </a>
 
@@ -188,7 +188,7 @@
 
     <aside class="hero__visual reveal">
       <figure class="shot">
-        <img src="assets/img/equipe-bastidores.jpg" alt="Equipe da WK Films em set de filmagem, com câmera em tripé e iluminação montada" width="1283" height="1177" loading="eager" decoding="async">
+        <img src="assets/img/equipe-bastidores.jpg" alt="Equipe da WK Films em set de filmagem, com câmera em tripé e iluminação montada" width="860" height="789" loading="eager" decoding="async">
         <figcaption>Bastidores WK · set de captação em Vilhena–RO</figcaption>
       </figure>
       <div class="shot__badge shot__badge--a">
@@ -432,9 +432,72 @@
       <p class="kicker">Portfólio</p>
       <h2>O trabalho fala antes da gente</h2>
       <p class="sec-head__sub">
-        Recortes de projetos produzidos pela WK. Toque em qualquer card para ver o material completo.
+        Filmes, bastidores e campanhas produzidos pela nossa equipe. Toque no play para assistir.
       </p>
     </header>
+
+    <!-- Produções reais: o vídeo só é baixado quando o visitante clica em reproduzir. -->
+    <div class="films">
+      <figure class="film film--wide reveal">
+        <div class="film__frame">
+          <video preload="none" playsinline poster="assets/img/poster-institucional.jpg"
+                 aria-label="Vídeo institucional da WK Films">
+            <source src="assets/video/wk-institucional.mp4" type="video/mp4">
+            Seu navegador não reproduz vídeo. <a href="assets/video/wk-institucional.mp4">Baixe o arquivo</a>.
+          </video>
+          <button class="film__play" type="button" aria-label="Reproduzir vídeo institucional da WK">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+          </button>
+        </div>
+        <figcaption>
+          <span class="film__cat">Institucional</span>
+          <h3>Por que a WK existe</h3>
+          <p>Direção, roteiro e captação em estúdio: o filme que apresenta nosso jeito de trabalhar.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="film film--tall reveal">
+        <div class="film__frame">
+          <video preload="none" playsinline poster="assets/img/poster-making-of.jpg"
+                 aria-label="Bastidores de gravação em estúdio">
+            <source src="assets/video/wk-making-of.mp4" type="video/mp4">
+            Seu navegador não reproduz vídeo. <a href="assets/video/wk-making-of.mp4">Baixe o arquivo</a>.
+          </video>
+          <button class="film__play" type="button" aria-label="Reproduzir bastidores de gravação">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+          </button>
+        </div>
+        <figcaption>
+          <span class="film__cat">Bastidores</span>
+          <h3>Um dia de set</h3>
+          <p>Luz, fundo, câmera e direção de apresentador — do vertical ao externo.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="film film--wide reveal">
+        <div class="film__frame">
+          <video preload="none" playsinline poster="assets/img/poster-agro.jpg"
+                 aria-label="Filme para o agronegócio produzido pela WK">
+            <source src="assets/video/wk-agro.mp4" type="video/mp4">
+            Seu navegador não reproduz vídeo. <a href="assets/video/wk-agro.mp4">Baixe o arquivo</a>.
+          </video>
+          <button class="film__play" type="button" aria-label="Reproduzir filme do agronegócio">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+          </button>
+        </div>
+        <figcaption>
+          <span class="film__cat">Agro</span>
+          <h3>Da lavoura à marca</h3>
+          <p>Filme de campo para o agronegócio: colheita, processo e a história de quem produz.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="films__note reveal">
+      <p><strong>Som ligado.</strong> Os vídeos só começam a carregar quando você toca no play, para o site abrir rápido no 4G.</p>
+    </div>
+
+    <h3 class="sub-head reveal">Outros formatos que produzimos</h3>
 
     <div class="filters reveal" role="tablist" aria-label="Filtrar portfólio">
       <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">Tudo</button>
@@ -484,9 +547,8 @@
 <section class="section" id="sobre">
   <div class="container about">
     <div class="about__media reveal">
-      <img src="assets/img/equipe-bastidores.jpg" alt="Equipe WK Films dirigindo uma gravação em estúdio" width="1283" height="1177" loading="lazy" decoding="async">
+      <img src="assets/img/equipe-wk.jpg" alt="Mosaico com quatro integrantes da equipe WK Films em set de gravação" width="820" height="1037" loading="lazy" decoding="async">
       <div class="about__stamp">
-        <img src="assets/img/logo-wk.png" alt="" width="54" height="37">
         <span>Estrutura própria<br>em Vilhena–RO</span>
       </div>
     </div>
@@ -804,8 +866,8 @@
   <div class="container footer__inner">
     <div class="footer__brand">
       <a class="brand" href="#topo" aria-label="WK Films — início">
-        <img src="assets/img/logo-wk.png" alt="" width="46" height="32" class="brand__mark">
-        <span class="brand__txt"><strong>WK</strong><small>Films · AgroMarketing</small></span>
+        <img src="assets/img/logo-wk.png" alt="" width="52" height="35" class="brand__mark">
+        <span class="brand__txt"><strong>Films</strong><small>Produtora · AgroMarketing</small></span>
       </a>
       <p>Produção audiovisual completa, marketing digital, assessoria e consultoria em marketing político. Transformamos presença em autoridade.</p>
       <div class="footer__social">
@@ -856,11 +918,6 @@
 </footer>
 
 <!-- ============ FLUTUANTES ============ -->
-<a class="wa-float" href="#" data-wa="Olá! Vim pelo site da WK e quero falar sobre o meu marketing." aria-label="Falar no WhatsApp" data-track="float-whatsapp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-6.9-6c-.5-.9-.8-1.8-.8-2.6 0-.8.4-1.5.9-1.9.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6.5.8 1 1.5 1.8 2.1.6.5 1.1.7 1.4.8.2.1.4.1.6-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.5Z"/></svg>
-  <span class="wa-float__tip">Fale com a WK</span>
-</a>
-
 <div class="mobile-cta" id="mobileCta">
   <div>
     <strong>Diagnóstico gratuito</strong>

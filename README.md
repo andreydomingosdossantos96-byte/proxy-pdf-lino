@@ -10,8 +10,9 @@ index.html            Página principal (todas as seções)
 obrigado.html         Página de agradecimento pós-envio do formulário
 assets/css/styles.css Estilo completo (tema escuro + verde da marca #05D702)
 assets/js/main.js     Comportamento: WhatsApp, menu, filtros, FAQ, formulário, horário
-assets/img/           Logo (recortado e com fundo transparente), foto de bastidores,
-                      favicon e capa de compartilhamento (Open Graph)
+assets/img/           Logo (recortado e com fundo transparente), fotos da equipe,
+                      pôsteres dos vídeos, favicon e capa de compartilhamento
+assets/video/         Vídeos do portfólio em MP4 (H.264), otimizados para web
 robots.txt / sitemap.xml / vercel.json
 api/proxy-pdf.js      Função serverless já existente no repositório (mantida)
 ```
@@ -31,6 +32,33 @@ Funciona igual em Netlify, GitHub Pages ou qualquer hospedagem estática.
 
 Depois de publicar, aponte o domínio e troque `https://wkfilms.com.br/` pela URL real
 em `index.html` (canonical + Open Graph), `robots.txt` e `sitemap.xml`.
+
+## Vídeos do portfólio
+
+Três produções reais ficam na seção Portfólio (`assets/video/`):
+
+| Arquivo | Conteúdo | Duração | Tamanho |
+| --- | --- | --- | --- |
+| `wk-institucional.mp4` | Filme institucional da WK | 1min30 | 4,3 MB |
+| `wk-agro.mp4` | Filme de campo para o agronegócio | 1min51 | 7,8 MB |
+| `wk-making-of.mp4` | Bastidores de set (vertical) | 21s | 1,7 MB |
+
+Eles usam `preload="none"`: **nada é baixado até o visitante tocar no play**, então
+a página abre leve mesmo no 4G. Ao clicar, o player ganha os controles nativos e
+os outros vídeos pausam automaticamente.
+
+Para trocar um vídeo, substitua o arquivo em `assets/video/` e gere um novo pôster:
+
+```bash
+ffmpeg -i assets/video/wk-agro.mp4 -ss 12 -frames:v 1 -vf "scale=640:-2" -q:v 5 assets/img/poster-agro.jpg
+```
+
+Para comprimir um vídeo novo no mesmo padrão (960px de largura, ~700 kbps):
+
+```bash
+ffmpeg -i original.mov -vf "scale=960:-2" -c:v libx264 -crf 30 -maxrate 700k \
+  -bufsize 1400k -preset slow -movflags +faststart -c:a aac -b:a 64k -ac 1 saida.mp4
+```
 
 ## O que já está configurado com dados reais
 
@@ -109,6 +137,9 @@ Gera duas versões auto-contidas (CSS, JS e imagens embutidos no próprio HTML):
 - `preview/wk-site-preview.html` — **arquivo único para enviar ao cliente.**
   Abre com dois toques no celular ou no computador, funciona sem internet
   (só as fontes e o mapa precisam de conexão) e não depende de mais nenhum arquivo.
+  Os vídeos **não** viajam dentro dele (ficariam 14 MB): no lugar aparecem as capas
+  com o aviso "vídeo completo no site publicado". Para o cliente assistir de fato,
+  publique o site ou envie os MP4 junto.
 - `preview/artifact.html` — mesma página sem as tags de documento, usada para
   publicar o link de aprovação online.
 

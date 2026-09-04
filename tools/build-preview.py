@@ -37,8 +37,27 @@ html = html.replace('<link rel="stylesheet" href="assets/css/styles.css">',
 html = html.replace('<script src="assets/js/main.js" defer></script>',
                     '<script>\n' + js + '\n</script>')
 
+# os vídeos não viajam no arquivo único: viram pôster com aviso.
+# (no site publicado o <video> continua intacto e toca normalmente)
+def poster_no_lugar_do_video(m):
+    poster = re.search(r'poster="([^"]+)"', m.group(0)).group(1)
+    return ('<img class="film__still" src="%s" alt="" loading="lazy">'
+            '<span class="film__aviso">Vídeo completo no site publicado</span>') % data_uri(poster)
+
+html = re.sub(r'(?s)<video .*?</video>\s*<button class="film__play".*?</button>',
+              poster_no_lugar_do_video, html)
+html = html.replace('<strong>Som ligado.</strong> Os vídeos só começam a carregar quando você toca no play, para o site abrir rápido no 4G.',
+                    '<strong>Prévia.</strong> Aqui aparecem só as capas dos vídeos — no site publicado eles tocam com som, e só carregam quando o visitante toca no play.')
+html = html.replace('</style>', """
+.film__still{width:100%;height:100%;object-fit:cover;display:block}
+.film__aviso{position:absolute;left:50%;bottom:1rem;transform:translateX(-50%);white-space:nowrap;
+  font-size:.72rem;letter-spacing:.04em;color:var(--verde);background:rgba(6,9,7,.82);backdrop-filter:blur(4px);
+  border:1px solid rgba(5,215,2,.4);border-radius:999px;padding:.35rem .85rem}
+</style>""")
+
 # imagens viram data URI
-for img in ['assets/img/logo-wk.png', 'assets/img/equipe-bastidores.jpg', 'assets/img/favicon.png']:
+for img in ['assets/img/logo-wk.png', 'assets/img/equipe-bastidores.jpg',
+            'assets/img/equipe-wk.jpg', 'assets/img/favicon.png']:
     html = html.replace('"' + img + '"', '"' + data_uri(img) + '"')
 
 os.makedirs(os.path.join(RAIZ, 'preview'), exist_ok=True)

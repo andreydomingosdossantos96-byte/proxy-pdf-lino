@@ -309,7 +309,28 @@
     });
   }
 
-  /* ---------- 11. Ano do rodapé ---------- */
+  /* ---------- 11. Vídeos: carrega só ao clicar no play ---------- */
+  $$('.film').forEach(function (film) {
+    var video = $('video', film);
+    var play  = $('.film__play', film);
+    if (!video || !play) return;
+
+    play.addEventListener('click', function () {
+      film.classList.add('is-playing');
+      video.setAttribute('controls', '');
+      video.load();                       // só agora o arquivo começa a baixar
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { video.setAttribute('controls', ''); });
+      track('video_play', { titulo: ($('h3', film) || {}).textContent });
+    });
+
+    // um vídeo tocando pausa os demais
+    video.addEventListener('play', function () {
+      $$('.film video').forEach(function (outro) { if (outro !== video) outro.pause(); });
+    });
+  });
+
+  /* ---------- 12. Ano do rodapé ---------- */
   var ano = $('#ano');
   if (ano) ano.textContent = new Date().getFullYear();
 
