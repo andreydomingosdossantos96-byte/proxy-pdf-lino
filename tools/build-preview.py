@@ -25,39 +25,39 @@ def data_uri(caminho):
     return 'data:%s;base64,%s' % (MIME[ext], b64)
 
 html = ler('index.html')
-css  = ler('assets/css/styles.css')
-js   = ler('assets/js/main.js')
+css  = ler('assets/css/wk.css')
+js   = ler('assets/js/wk.js')
 
 # sem obrigado.html ao lado, o formulário apenas limpa os campos
 js = js.replace("paginaObrigado: 'obrigado.html'", "paginaObrigado: ''")
 
 # CSS e JS embutidos
-html = html.replace('<link rel="stylesheet" href="assets/css/styles.css">',
+html = html.replace('<link rel="stylesheet" href="assets/css/wk.css">',
                     '<style>\n' + css + '\n</style>')
-html = html.replace('<script src="assets/js/main.js" defer></script>',
+html = html.replace('<script src="assets/js/wk.js" defer></script>',
                     '<script>\n' + js + '\n</script>')
 
 # os vídeos não viajam no arquivo único: viram pôster com aviso.
 # (no site publicado o <video> continua intacto e toca normalmente)
 def poster_no_lugar_do_video(m):
     poster = re.search(r'poster="([^"]+)"', m.group(0)).group(1)
-    return ('<img class="film__still" src="%s" alt="" loading="lazy">'
-            '<span class="film__aviso">Vídeo completo no site publicado</span>') % data_uri(poster)
+    return ('<img class="quadro__capa" src="%s" alt="" loading="lazy">'
+            '<span class="quadro__aviso">Vídeo completo no site publicado</span>') % data_uri(poster)
 
-html = re.sub(r'(?s)<video .*?</video>\s*<button class="film__play".*?</button>',
+html = re.sub(r'(?s)<video .*?</video>\s*<button class="quadro__bt".*?</button>',
               poster_no_lugar_do_video, html)
-html = html.replace('<strong>Som ligado.</strong> Os vídeos só começam a carregar quando você toca no play, para o site abrir rápido no 4G.',
-                    '<strong>Prévia.</strong> Aqui aparecem só as capas dos vídeos — no site publicado eles tocam com som, e só carregam quando o visitante toca no play.')
+html = html.replace('Toque no play — o vídeo só baixa nessa hora.',
+                    'Nesta prévia aparecem só as capas: no site publicado eles tocam com som.')
 html = html.replace('</style>', """
-.film__still{width:100%;height:100%;object-fit:cover;display:block}
-.film__aviso{position:absolute;left:50%;bottom:1rem;transform:translateX(-50%);white-space:nowrap;
-  font-size:.72rem;letter-spacing:.04em;color:var(--verde);background:rgba(6,9,7,.82);backdrop-filter:blur(4px);
-  border:1px solid rgba(5,215,2,.4);border-radius:999px;padding:.35rem .85rem}
+.quadro__capa{width:100%;height:100%;object-fit:cover;display:block}
+.quadro__aviso{position:absolute;left:0;bottom:0;background:var(--verde);color:var(--preto);
+  font-family:var(--f-tec);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem}
 </style>""")
 
 # imagens viram data URI
 for img in ['assets/img/logo-wk.png', 'assets/img/equipe-bastidores.jpg',
-            'assets/img/equipe-wk.jpg', 'assets/img/favicon.png']:
+            'assets/img/equipe-wk.jpg', 'assets/img/poster-making-of.jpg',
+            'assets/img/poster-agro.jpg', 'assets/img/favicon.png']:
     html = html.replace('"' + img + '"', '"' + data_uri(img) + '"')
 
 os.makedirs(os.path.join(RAIZ, 'preview'), exist_ok=True)
@@ -67,7 +67,7 @@ with open(os.path.join(RAIZ, 'preview/wk-site-preview.html'), 'w', encoding='utf
 # ---- versão para publicação como link (sem head/body, sem iframe externo) ----
 art = html
 art = re.sub(r'(?s)^.*?<title>.*?</title>', '<title>WK Films</title>', art)   # nome curto na galeria
-art = re.sub(r'(?s)</title>.*?<style>', '</title>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">\n<style>', art)
+art = re.sub(r'(?s)</title>.*?<style>', '</title>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap">\n<style>', art)
 art = re.sub(r'(?s)</style>\s*<script type="application/ld\+json">.*?</script>\s*</head>\s*<body>', '</style>', art)
 art = art.replace('</body>\n</html>', '').replace('</body>', '').replace('</html>', '')
 
