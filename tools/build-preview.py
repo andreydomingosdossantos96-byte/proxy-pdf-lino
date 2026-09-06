@@ -50,14 +50,15 @@ html = html.replace('Toque no play — o vídeo só baixa nessa hora.',
                     'Nesta prévia aparecem só as capas: no site publicado eles tocam com som.')
 html = html.replace('</style>', """
 .quadro__capa{width:100%;height:100%;object-fit:cover;display:block}
-.quadro__aviso{position:absolute;left:0;bottom:0;background:var(--verde);color:var(--preto);
-  font-family:var(--f-tec);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem}
+.quadro__aviso{position:absolute;left:0;bottom:0;background:var(--verde);color:var(--carvao);
+  font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .75rem}
 </style>""")
 
 # imagens viram data URI
 for img in ['assets/img/logo-wk.png', 'assets/img/equipe-bastidores.jpg',
             'assets/img/equipe-wk.jpg', 'assets/img/poster-making-of.jpg',
-            'assets/img/poster-agro.jpg', 'assets/img/favicon.png']:
+            'assets/img/poster-agro.jpg', 'assets/img/poster-institucional.jpg',
+            'assets/img/favicon.png']:
     html = html.replace('"' + img + '"', '"' + data_uri(img) + '"')
 
 os.makedirs(os.path.join(RAIZ, 'preview'), exist_ok=True)
@@ -67,7 +68,7 @@ with open(os.path.join(RAIZ, 'preview/wk-site-preview.html'), 'w', encoding='utf
 # ---- versão para publicação como link (sem head/body, sem iframe externo) ----
 art = html
 art = re.sub(r'(?s)^.*?<title>.*?</title>', '<title>WK Films</title>', art)   # nome curto na galeria
-art = re.sub(r'(?s)</title>.*?<style>', '</title>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap">\n<style>', art)
+art = re.sub(r'(?s)</title>.*?<style>', '</title>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Courier+Prime:wght@400;700&display=swap">\n<style>', art)
 art = re.sub(r'(?s)</style>\s*<script type="application/ld\+json">.*?</script>\s*</head>\s*<body>', '</style>', art)
 art = art.replace('</body>\n</html>', '').replace('</body>', '').replace('</html>', '')
 

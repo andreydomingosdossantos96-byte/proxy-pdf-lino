@@ -4,26 +4,39 @@ Site de conversão da WK — produtora audiovisual e agência de marketing em Vi
 HTML, CSS e JavaScript puros: sem build, sem framework, sem dependência externa
 além das fontes do Google.
 
-## Direção visual — "Press Kit"
+## Direção visual
 
-O site é montado como um material impresso de produtora:
+Referência de partida: o site da Alfa Diesel, indicado pelo cliente. O que foi
+trazido de lá — e adaptado à marca WK:
 
-- **Papel e tinta.** Fundo claro (`#F5F6F2`) com tinta quase preta (`#0F1310`).
-- **O verde da marca (`#05D702`) é marca-texto, não texto.** Esse verde tem luminância
-  alta demais para ser lido sobre papel, então ele só aparece como bloco preenchido
-  (com tinta preta em cima), régua ou fundo de botão. Sobre os blocos escuros ele
-  vira texto normalmente.
-- **Tipografia:** Archivo Black nos títulos de cartaz, Archivo no texto corrido e
-  Courier Prime — a fonte de roteiro — em legendas, numeração e etiquetas.
-- **Estrutura de roteiro.** Cada seção é uma cena numerada com slugline
-  (`01 · DIAGNÓSTICO`), os serviços viram um bloco de créditos que abre linha a
-  linha, o método é uma ordem de produção em tabela, a equipe é uma ficha técnica
-  e o formulário é uma folha de chamada.
+- **Herói com foto sangrando a tela**, em preto e branco, com véu escuro por cima:
+  o texto vive dentro da imagem.
+- **Tipografia condensada e pesada em caixa alta** (Archivo com o eixo de largura
+  em 72%), com peso de cartaz.
+- **Título em duas cores**: uma parte na cor do texto, a outra inteira no verde.
+- **Seções alternando escuro e claro**, cada uma abrindo com um traço + rótulo
+  pequeno na cor da marca.
+- **Listas numeradas** (01, 02, 03) com filete fino, ícone e seta quadrada.
+- **Geometria dura**, sem cantos arredondados, e a seta ↗ como assinatura.
+
+### A regra do verde
+
+`#05D702` tem luminância alta: sobre fundo escuro rende 9,4:1 de contraste
+(ótimo), sobre fundo claro rende 1,8:1 (ilegível). Por isso o sistema tem dois
+valores do mesmo tom:
+
+| Token | Valor | Onde |
+| --- | --- | --- |
+| `--verde` | `#05D702` | textos, rótulos e preenchimentos sobre fundo escuro |
+| `--verde-tinta` | `#0A7D00` | títulos e rótulos sobre as seções claras (4,7:1) |
+| `--verde-fundo` | `#04A802` | estado de hover dos botões verdes |
+
+Nunca use `--verde` como texto sobre `--osso`.
 
 ## Estrutura
 
 ```
-index.html            Página principal (abertura + 9 cenas)
+index.html            Página principal (herói + 9 seções)
 obrigado.html         Página de retorno do formulário
 assets/css/wk.css     Sistema visual completo
 assets/js/wk.js       WhatsApp, menu, vídeos, situação, formulário
@@ -93,7 +106,7 @@ redireciona para a página de obrigado.
 - WhatsApp e telefone: **(69) 98463-8776** (`5569984638776`)
 - Endereço: R. São Luiz, 350 — Quinto BEC, Vilhena–RO, 76988-070
 - Horários: seg–sex 08h–18h · sáb 08h–11h30 · dom fechado
-- A fita do topo mostra "Gravando / Fora do ar" em tempo real, no fuso de Rondônia
+- A fita do topo mostra a situação em tempo real, no fuso de Rondônia
 - Instagram: @wkfilms.ro · 10,8 mil seguidores · 352 publicações
 - Verde extraído do logo oficial: `#05D702`
 - Dados estruturados JSON-LD (`ProfessionalService`) para busca local

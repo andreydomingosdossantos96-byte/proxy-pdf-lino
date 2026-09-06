@@ -136,13 +136,13 @@
   }
 
   /* ---------- 6. um bloco aberto por vez (serviços e dúvidas) ---------- */
-  [['.servico', 'servico_abrir'], ['.duvida', 'duvida_abrir']].forEach(function (par) {
+  [['.linha', 'servico_abrir'], ['.duvida', 'duvida_abrir']].forEach(function (par) {
     var grupo = $$(par[0]);
     grupo.forEach(function (item) {
       item.addEventListener('toggle', function () {
         if (!item.open) return;
         grupo.forEach(function (outro) { if (outro !== item) outro.open = false; });
-        marcar(par[1], { titulo: ($('summary', item) || {}).textContent.trim() });
+        marcar(par[1], { titulo: ($('.linha__nome, summary', item) || {}).textContent.trim().split('\n')[0] });
       });
     });
   });
@@ -213,9 +213,7 @@
 
   /* ---------- 9. data na folha de chamada ---------- */
   var dataHoje = $('#dataHoje');
-  if (dataHoje) {
-    dataHoje.textContent = agoraVilhena().toLocaleDateString('pt-BR');
-  }
+  if (dataHoje) dataHoje.textContent = agoraVilhena().toLocaleDateString('pt-BR');
 
   /* ---------- 10. formulário → WhatsApp ---------- */
   var folha = $('#folha');

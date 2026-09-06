@@ -3,58 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Folha recebida — WK Films</title>
+<title>Recebemos seu contato — WK Films</title>
 <meta name="description" content="Contato enviado para a WK Films. Respondemos no mesmo dia útil.">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#0B0E0B">
+<meta name="theme-color" content="#121412">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Courier+Prime:wght@400;700&display=swap">
 <link rel="stylesheet" href="assets/css/wk.css">
 <style>
-  .recebido{min-height:100vh;display:grid;align-content:center;padding:3rem 0}
-  .recebido__marca{margin-bottom:2.6rem}
-  .recebido__carimbo{display:inline-block;background:var(--verde);color:var(--preto);font-family:var(--f-tec);
-    font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;padding:.35rem .8rem;margin-bottom:1.4rem}
-  .recebido h1{margin-bottom:1.2rem;max-width:16ch}
-  .recebido__intro{color:var(--tinta-2);max-width:52ch;font-size:1.05rem}
-  .passos{border-top:1.5px solid var(--linha-forte);margin:2.6rem 0}
-  .passos div{display:grid;grid-template-columns:minmax(0,3rem) minmax(0,11rem) minmax(0,1fr);gap:1rem;
-    padding:1.1rem 0;border-bottom:1px solid var(--linha);align-items:baseline}
-  .passos dt{font-family:var(--f-display);font-size:1rem;letter-spacing:-.02em}
-  .passos .n{font-family:var(--f-tec);font-size:.75rem;color:var(--tinta-2)}
-  .passos dd{margin:0;color:var(--tinta-2);font-size:.95rem}
-  .recebido__acoes{display:flex;flex-wrap:wrap;gap:.8rem}
-  @media(max-width:640px){.passos div{grid-template-columns:minmax(0,2.2rem) minmax(0,1fr);}
-    .passos dd{grid-column:2}}
+  .obg{min-height:100vh;display:grid;align-content:center;padding:3.5rem 0}
+  .obg .marca{margin-bottom:3rem}
+  .obg h1{margin-bottom:1.4rem;max-width:14ch}
+  .obg__intro{color:var(--claro-2);max-width:52ch;font-size:1.06rem;margin-bottom:2.6rem}
+  .obg__passos{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--fio-esc);margin-bottom:2.6rem}
+  .obg__passo{padding:1.6rem 1.4rem 1.6rem 0;border-right:1px solid var(--fio-esc);border-bottom:1px solid var(--fio-esc)}
+  .obg__passo:last-child{border-right:0}
+  .obg__passo span{display:block;font-size:.76rem;font-weight:700;letter-spacing:.14em;color:var(--verde);margin-bottom:.7rem}
+  .obg__passo h2{font-stretch:72%;font-variation-settings:'wdth' 72;font-weight:800;font-size:1.15rem;
+    text-transform:uppercase;margin-bottom:.5rem}
+  .obg__passo p{font-size:.89rem;color:var(--claro-2);margin:0}
+  .obg__acoes{display:flex;flex-wrap:wrap;gap:.9rem}
+  @media(max-width:760px){.obg__passos{grid-template-columns:1fr}.obg__passo{border-right:0}
+    .obg__acoes .bt{width:100%}}
 </style>
 </head>
 <body>
-<section class="recebido">
+<section class="obg">
   <div class="env">
-    <a class="marca recebido__marca" href="index.html" aria-label="WK Films — início">
-      <img class="marca__sinal" src="assets/img/logo-wk.png" alt="" width="54" height="37">
+    <a class="marca" href="index.html" aria-label="WK Films — início">
+      <img class="marca__sinal" src="assets/img/logo-wk.png" alt="" width="52" height="35">
       <span class="marca__txt"><b>Films</b><span>Produtora · AgroMarketing</span></span>
     </a>
 
-    <p class="recebido__carimbo">Folha recebida</p>
-    <h1 class="display d1">Agora é com a gente.</h1>
-    <p class="recebido__intro">
+    <p class="rotulo">Contato recebido</p>
+    <h1 class="cartaz c1">Agora é <span class="eco">com a gente.</span></h1>
+    <p class="obg__intro">
       Se a janela do WhatsApp não abriu sozinha, é só tocar no botão abaixo — sua mensagem
       já está montada, é só enviar.
     </p>
 
-    <dl class="passos">
-      <div><dt class="n">01</dt><dt>Confirmação</dt><dd>Respondemos no mesmo dia útil, dentro do horário comercial (seg a sex, 08h–18h).</dd></div>
-      <div><dt class="n">02</dt><dt>Diagnóstico</dt><dd>Conversa de 30 a 45 minutos, presencial em Vilhena ou por chamada. Sem custo.</dd></div>
-      <div><dt class="n">03</dt><dt>Proposta</dt><dd>Escopo, prazo e valor por escrito. Você decide com os números na mão.</dd></div>
-    </dl>
+    <div class="obg__passos">
+      <div class="obg__passo"><span>01</span><h2>Confirmação</h2><p>Respondemos no mesmo dia útil, dentro do horário comercial (seg a sex, 08h–18h).</p></div>
+      <div class="obg__passo"><span>02</span><h2>Diagnóstico</h2><p>Conversa de 30 a 45 minutos, presencial em Vilhena ou por chamada. Sem custo.</p></div>
+      <div class="obg__passo"><span>03</span><h2>Proposta</h2><p>Escopo, prazo e valor por escrito. Você decide com os números na mão.</p></div>
+    </div>
 
-    <div class="recebido__acoes">
-      <a class="bt bt--verde bt--g" href="#" data-zap="Olá! Acabei de enviar minha folha pelo site da WK.">Abrir o WhatsApp</a>
-      <a class="bt bt--g" href="index.html">Voltar ao site</a>
-      <a class="bt bt--g" href="https://www.instagram.com/wkfilms.ro/" target="_blank" rel="noopener">Ver o @wkfilms.ro</a>
+    <div class="obg__acoes">
+      <a class="bt bt--verde bt--g" href="#" data-zap="Olá! Acabei de enviar meu contato pelo site da WK.">
+        Abrir o WhatsApp<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="bt bt--linha bt--g" href="index.html">Voltar ao site<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="bt bt--linha bt--g" href="https://www.instagram.com/wkfilms.ro/" target="_blank" rel="noopener">
+        Ver o @wkfilms.ro<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
     </div>
   </div>
 </section>
