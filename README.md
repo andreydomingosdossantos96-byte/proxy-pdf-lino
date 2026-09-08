@@ -33,6 +33,10 @@ valores do mesmo tom:
 
 Nunca use `--verde` como texto sobre `--osso`.
 
+> Este repositório também abriga o site da **Domingos Tech** em `/domingos-tech/`,
+> construído no mesmo sistema visual. Instruções próprias em
+> [`domingos-tech/README.md`](domingos-tech/README.md).
+
 ## Estrutura
 
 ```
@@ -42,7 +46,7 @@ assets/css/wk.css     Sistema visual completo
 assets/js/wk.js       WhatsApp, menu, vídeos, situação, formulário
 assets/img/           Logo, fotos, pôsteres, favicon e capa de compartilhamento
 assets/video/         Vídeos do portfólio em MP4 (H.264)
-tools/build-preview.py  Gera as versões auto-contidas para enviar ao cliente
+tools/build-preview.py  Gera as versões auto-contidas (aceita 'wk' ou 'dt')
 preview/              Saída do script acima
 robots.txt · sitemap.xml · vercel.json
 api/proxy-pdf.js      Função serverless que já existia no repositório
@@ -89,7 +93,8 @@ Se o vídeo aparecer deitado, o conteúdo está girado dentro do contêiner: acr
 ## Arquivo para enviar ao cliente
 
 ```bash
-python3 tools/build-preview.py
+python3 tools/build-preview.py       # WK Films
+python3 tools/build-preview.py dt    # Domingos Tech
 ```
 
 - `preview/wk-site-preview.html` — **arquivo único**, com CSS, JS e imagens embutidos.

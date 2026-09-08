@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing recebido — Domingos Tech</title>
+<meta name="description" content="Briefing enviado para a Domingos Tech. Respondemos em até 24 horas úteis.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0C1420">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/dt.css">
+<style>
+  .obg{position:relative;min-height:100vh;display:grid;align-content:center;padding:3.5rem 0;overflow:hidden;isolation:isolate}
+  .obg__fundo{position:absolute;inset:0;z-index:-3;
+    background:radial-gradient(ellipse 60% 70% at 80% 40%,rgba(63,220,228,.14),transparent 62%),
+               linear-gradient(160deg,#0F1B2B,#0A111C 60%)}
+  .obg__sinal{position:absolute;z-index:-2;right:-8%;top:50%;transform:translateY(-50%);
+    width:min(46vw,480px);opacity:.14;filter:drop-shadow(0 0 60px rgba(63,220,228,.4))}
+  .obg .marca{margin-bottom:3rem}
+  .obg h1{margin-bottom:1.4rem;max-width:13ch}
+  .obg__intro{color:#AEBCC8;max-width:52ch;font-size:1.06rem;margin-bottom:2.6rem}
+  .obg__passos{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--fio-esc);margin-bottom:2.6rem}
+  .obg__passo{padding:1.6rem 1.4rem 1.6rem 0;border-right:1px solid var(--fio-esc);border-bottom:1px solid var(--fio-esc)}
+  .obg__passo:last-child{border-right:0}
+  .obg__passo span{display:block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;color:var(--cian);margin-bottom:.7rem}
+  .obg__passo h2{font-stretch:72%;font-variation-settings:'wdth' 72;font-weight:800;font-size:1.15rem;
+    text-transform:uppercase;margin-bottom:.5rem}
+  .obg__passo p{font-size:.89rem;color:var(--texto-cl);margin:0}
+  .obg__acoes{display:flex;flex-wrap:wrap;gap:.9rem}
+  @media(max-width:760px){.obg__passos{grid-template-columns:1fr}.obg__passo{border-right:0}
+    .obg__acoes .bt{width:100%}.obg__sinal{opacity:.08}}
+</style>
+</head>
+<body>
+<section class="obg">
+  <div class="obg__fundo" aria-hidden="true"></div>
+  <img class="obg__sinal" src="assets/img/logo-dt.png" alt="" aria-hidden="true">
+  <div class="env">
+    <a class="marca" href="index.html" aria-label="Domingos Tech — início">
+      <img class="marca__sinal" src="assets/img/logo-dt.png" alt="" width="26" height="38">
+      <span class="marca__txt"><b>Domingos Tech</b><span>Software sob medida</span></span>
+    </a>
+
+    <p class="rotulo">Briefing recebido</p>
+    <h1 class="cartaz c1">Agora é <span class="eco">com a gente.</span></h1>
+    <p class="obg__intro">
+      Se a janela do WhatsApp não abriu sozinha, é só tocar no botão abaixo — sua mensagem
+      já está montada, é só enviar.
+    </p>
+
+    <div class="obg__passos">
+      <div class="obg__passo"><span>01</span><h2>Leitura</h2><p>Lemos o briefing e voltamos com as perguntas que faltam para dimensionar o projeto.</p></div>
+      <div class="obg__passo"><span>02</span><h2>Descoberta</h2><p>Conversa de 30 a 45 minutos, por chamada, para fechar o escopo. Sem custo.</p></div>
+      <div class="obg__passo"><span>03</span><h2>Proposta</h2><p>Escopo, prazo e valor por escrito, em até 24 horas úteis depois da conversa.</p></div>
+    </div>
+
+    <div class="obg__acoes">
+      <a class="bt bt--cian bt--g" href="#" data-zap="Olá! Acabei de enviar meu briefing pelo site da Domingos Tech.">
+        Abrir o WhatsApp<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="bt bt--linha bt--g" href="index.html">Voltar ao site<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+<script src="assets/js/dt.js" defer></script>
+</body>
+</html>

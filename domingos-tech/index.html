@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Domingos Tech — Desenvolvimento de aplicativos sob medida</title>
+<meta name="description" content="Criação de aplicativos iOS, Android e sistemas web sob medida. Do escopo à publicação nas lojas, com código-fonte seu, prazo por escrito e suporte depois da entrega.">
+<meta name="theme-color" content="#0C1420">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://domingostech.com.br/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Domingos Tech">
+<meta property="og:title" content="Domingos Tech — Desenvolvimento de aplicativos sob medida">
+<meta property="og:description" content="Aplicativos que saem do papel e chegam na loja. iOS, Android e sistemas web, com código-fonte seu.">
+<meta property="og:url" content="https://domingostech.com.br/">
+<meta property="og:image" content="https://domingostech.com.br/assets/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Domingos Tech — Desenvolvimento de aplicativos sob medida">
+<meta name="twitter:description" content="Aplicativos que saem do papel e chegam na loja.">
+<meta name="twitter:image" content="https://domingostech.com.br/assets/img/og-cover.jpg">
+
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/dt.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://domingostech.com.br/#dt",
+  "name": "Domingos Tech",
+  "description": "Desenvolvimento de aplicativos móveis iOS e Android, sistemas web sob medida, MVPs, integrações e APIs.",
+  "image": "https://domingostech.com.br/assets/img/og-cover.jpg",
+  "logo": "https://domingostech.com.br/assets/img/logo-dt.png",
+  "url": "https://domingostech.com.br/",
+  "priceRange": "$$",
+  "areaServed": { "@type": "Country", "name": "Brasil" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Serviços Domingos Tech",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aplicativos iOS e Android" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas e painéis web" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MVP para validação de ideia" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integrações e APIs" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX e prototipagem" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção e evolução de software" } }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+<a class="pula" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ═══════ FITA ═══════ -->
+<div class="fita">
+  <div class="env fita__env">
+    <p class="fita__item fita__mob-nao">Desenvolvimento sob medida · atendimento em todo o Brasil</p>
+    <p class="fita__item"><span class="fita__luz" aria-hidden="true"></span><span>Orçamento em até 24h úteis</span></p>
+    <p class="fita__item fita__mob-nao"><a href="#" data-contato="tel">(00) 00000-0000</a></p>
+  </div>
+</div>
+
+<!-- ═══════ CABEÇALHO ═══════ -->
+<header class="cab" id="cab">
+  <div class="env cab__env">
+    <a class="marca" href="#heroi" aria-label="Domingos Tech — início">
+      <img class="marca__sinal" src="assets/img/logo-dt.png" alt="" width="26" height="38">
+      <span class="marca__txt"><b>Domingos Tech</b><span>Software sob medida</span></span>
+    </a>
+
+    <nav class="menu" id="menu" aria-label="Navegação principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#metodo">Como funciona</a>
+      <a href="#porque">Por que nós</a>
+      <a href="#stack">Tecnologias</a>
+      <a href="#formatos">Formatos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a class="bt bt--cian" href="#" data-zap="Olá! Vim pelo site da Domingos Tech e quero um orçamento.">
+        Orçamento
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </nav>
+
+    <button class="hamb" id="hamb" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ═══════ HERÓI ═══════ -->
+<section class="heroi" id="heroi">
+  <div class="heroi__fundo" aria-hidden="true"></div>
+  <div class="heroi__malha" aria-hidden="true"></div>
+  <img class="heroi__sinal" src="assets/img/logo-dt.png" alt="" width="520" height="763" aria-hidden="true" fetchpriority="high">
+
+  <div class="env heroi__env">
+    <p class="rotulo entra">Aplicativos · sistemas web · integrações</p>
+    <h1 class="cartaz c1 entra">Aplicativos que saem do papel <span class="eco">e chegam na loja.</span></h1>
+    <p class="heroi__sub entra">
+      Do escopo à publicação na App Store e no Google Play. Com preço fechado antes de começar,
+      código-fonte no seu nome e alguém do outro lado depois da entrega.
+    </p>
+    <div class="heroi__acoes entra">
+      <a class="bt bt--cian bt--g" href="#" data-zap="Olá! Vim pelo site da Domingos Tech e quero um orçamento do meu projeto." data-onde="heroi">
+        Solicitar orçamento
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="bt bt--linha bt--g" href="#metodo">
+        Ver como funciona
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="provas">
+  <ul class="env provas__env">
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 8-5 4 5 4M15 8l5 4-5 4"/></svg>
+      <div><b>Código é seu</b><span>repositório no seu nome</span></div>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M10.5 18.5h3"/></svg>
+      <div><b>iOS · Android · Web</b><span>uma base, três telas</span></div>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 16.5h4"/></svg>
+      <div><b>Escopo por escrito</b><span>preço e prazo fechados</span></div>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 1 1-6.2 2.6"/><path d="M12 7.5V12l3.2 2"/></svg>
+      <div><b>Suporte depois</b><span>a entrega não é o fim</span></div>
+    </li>
+  </ul>
+</div>
+
+<!-- ═══════ PROBLEMA ═══════ -->
+<section class="cena cena--clara" id="problema">
+  <div class="env">
+    <div class="cena__topo">
+      <div>
+        <p class="rotulo rotulo--tinta entra">O que costuma dar errado</p>
+        <h2 class="cartaz c2 entra">Quase todo projeto de app <span class="eco-tinta">morre no mesmo lugar.</span></h2>
+      </div>
+      <p class="texto texto--esc entra">Se você já tentou tirar um aplicativo do papel, provavelmente reconhece pelo menos dois destes:</p>
+    </div>
+
+    <ul class="checa">
+      <li class="entra">
+        <span class="checa__cx" aria-hidden="true">✕</span>
+        <div><h3>Pediu orçamento e ninguém respondeu</h3>
+        <p>Ou respondeu com um número solto, sem escopo, sem prazo e sem explicar o que está dentro.</p></div>
+      </li>
+      <li class="entra">
+        <span class="checa__cx" aria-hidden="true">✕</span>
+        <div><h3>O desenvolvedor sumiu no meio</h3>
+        <p>Metade do projeto pronto, metade do dinheiro gasto e ninguém consegue continuar de onde parou.</p></div>
+      </li>
+      <li class="entra">
+        <span class="checa__cx" aria-hidden="true">✕</span>
+        <div><h3>Você não tem o código</h3>
+        <p>O app está no ar, mas o repositório e as contas das lojas estão no nome de outra pessoa.</p></div>
+      </li>
+      <li class="entra">
+        <span class="checa__cx" aria-hidden="true">✕</span>
+        <div><h3>Toda mudança vira um novo orçamento</h3>
+        <p>Mexer num botão custa caro e demora semanas, porque ninguém documentou nada.</p></div>
+      </li>
+      <li class="entra">
+        <span class="checa__cx" aria-hidden="true">✕</span>
+        <div><h3>Ficou pronto e ninguém usa</h3>
+        <p>Construíram exatamente o que foi pedido — sem perguntar se era aquilo que o usuário precisava.</p></div>
+      </li>
+      <li class="entra">
+        <span class="checa__cx" aria-hidden="true">✕</span>
+        <div><h3>Trava na publicação</h3>
+        <p>A Apple recusa, o Google pede ajuste, e o projeto fica parado esperando alguém resolver.</p></div>
+      </li>
+    </ul>
+
+    <div class="remate entra">
+      <p>Nada disso é azar. É processo — e processo a gente tem.</p>
+      <a class="bt bt--linha-esc" href="#" data-zap="Olá! Me identifiquei com os problemas listados no site da Domingos Tech. Podemos conversar?" data-onde="problema">
+        Conversar sobre meu projeto
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SERVIÇOS ═══════ -->
+<section class="cena cena--escura" id="servicos">
+  <div class="env">
+    <div class="cena__topo">
+      <div>
+        <p class="rotulo entra">O que fazemos</p>
+        <h2 class="cartaz c2 entra">Do primeiro esboço <span class="eco">ao app publicado.</span></h2>
+      </div>
+      <p class="texto entra">Seis frentes que cobrem o ciclo inteiro. Toque em cada linha para abrir o escopo.</p>
+    </div>
+
+    <div class="linhas">
+      <details class="linha entra">
+        <summary class="linha__bt">
+          <span class="linha__n">01</span>
+          <span class="linha__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M10.5 18.5h3"/></svg></span>
+          <span class="linha__nome">Aplicativos iOS e Android
+            <small>App nativo ou multiplataforma, publicado nas duas lojas com a conta de desenvolvedor no seu nome.</small>
+          </span>
+          <span class="linha__seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </summary>
+        <div class="linha__corpo">
+          <ul class="linha__lista">
+            <li>Login, cadastro e perfis</li>
+            <li>Notificações push</li>
+            <li>Pagamentos e assinaturas</li>
+            <li>Modo offline e sincronização</li>
+            <li>Publicação na App Store e Play</li>
+            <li>Painel de administração junto</li>
+          </ul>
+          <p class="linha__pe"><a class="bt bt--linha" href="#" data-zap="Olá! Quero um orçamento de aplicativo iOS/Android com a Domingos Tech.">Pedir orçamento<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </div>
+      </details>
+
+      <details class="linha entra">
+        <summary class="linha__bt">
+          <span class="linha__n">02</span>
+          <span class="linha__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M8 21h8M12 18v3M6 8h5M6 11h8"/></svg></span>
+          <span class="linha__nome">Sistemas e painéis web
+            <small>Software interno que substitui planilha: cadastro, permissões, relatório e a operação toda em um lugar.</small>
+          </span>
+          <span class="linha__seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </summary>
+        <div class="linha__corpo">
+          <ul class="linha__lista">
+            <li>Painel administrativo</li>
+            <li>Controle de acesso por perfil</li>
+            <li>Relatórios e exportação</li>
+            <li>Emissão e envio de documentos</li>
+            <li>Dashboard de indicadores</li>
+            <li>Migração dos dados atuais</li>
+          </ul>
+          <p class="linha__pe"><a class="bt bt--linha" href="#" data-zap="Olá! Quero um sistema web sob medida com a Domingos Tech.">Pedir orçamento<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </div>
+      </details>
+
+      <details class="linha entra">
+        <summary class="linha__bt">
+          <span class="linha__n">03</span>
+          <span class="linha__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5a6 6 0 0 0-3.5 10.9V16h7v-2.6A6 6 0 0 0 12 2.5Z"/><path d="M9.5 19h5M10 21.5h4"/></svg></span>
+          <span class="linha__nome">MVP para validar a ideia
+            <small>A versão menor que já testa a hipótese com usuário real, antes de você gastar o orçamento inteiro.</small>
+          </span>
+          <span class="linha__seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </summary>
+        <div class="linha__corpo">
+          <ul class="linha__lista">
+            <li>Recorte do essencial</li>
+            <li>Protótipo navegável antes do código</li>
+            <li>Entrega em semanas, não meses</li>
+            <li>Métricas de uso desde o dia 1</li>
+            <li>Caminho pronto para escalar</li>
+            <li>Sem retrabalho na fase 2</li>
+          </ul>
+          <p class="linha__pe"><a class="bt bt--linha" href="#" data-zap="Olá! Tenho uma ideia e quero validar com um MVP pela Domingos Tech.">Falar sobre a ideia<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </div>
+      </details>
+
+      <details class="linha entra">
+        <summary class="linha__bt">
+          <span class="linha__n">04</span>
+          <span class="linha__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 14.5 5 10a3.5 3.5 0 0 1 5-5l4.5 4.5"/><path d="M14.5 9.5 19 14a3.5 3.5 0 0 1-5 5l-4.5-4.5"/></svg></span>
+          <span class="linha__nome">Integrações e APIs
+            <small>Fazer seus sistemas conversarem: ERP, meio de pagamento, WhatsApp, nota fiscal, logística.</small>
+          </span>
+          <span class="linha__seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </summary>
+        <div class="linha__corpo">
+          <ul class="linha__lista">
+            <li>Integração com ERP e CRM</li>
+            <li>Pix, cartão e boleto</li>
+            <li>API do WhatsApp</li>
+            <li>Emissão de nota fiscal</li>
+            <li>API própria documentada</li>
+            <li>Automação de rotinas</li>
+          </ul>
+          <p class="linha__pe"><a class="bt bt--linha" href="#" data-zap="Olá! Preciso integrar sistemas e quero falar com a Domingos Tech.">Falar sobre integração<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </div>
+      </details>
+
+      <details class="linha entra">
+        <summary class="linha__bt">
+          <span class="linha__n">05</span>
+          <span class="linha__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="17" rx="2"/><path d="M3 8.5h18M8 8.5v12"/></svg></span>
+          <span class="linha__nome">UI/UX e prototipagem
+            <small>Desenhar as telas e testar o caminho do usuário antes de escrever a primeira linha de código.</small>
+          </span>
+          <span class="linha__seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </summary>
+        <div class="linha__corpo">
+          <ul class="linha__lista">
+            <li>Fluxo de telas do começo ao fim</li>
+            <li>Protótipo clicável para aprovar</li>
+            <li>Design system do produto</li>
+            <li>Acessibilidade e contraste</li>
+            <li>Teste com usuário real</li>
+            <li>Entrega pronta para desenvolver</li>
+          </ul>
+          <p class="linha__pe"><a class="bt bt--linha" href="#" data-zap="Olá! Quero um protótipo/UX pela Domingos Tech.">Falar sobre o produto<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </div>
+      </details>
+
+      <details class="linha entra">
+        <summary class="linha__bt">
+          <span class="linha__n">06</span>
+          <span class="linha__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.5 12a7.4 7.4 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-2-1.2L14.6 3H9.4L9 5.6a7.5 7.5 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6a7.4 7.4 0 0 0 0 2.4l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 2 1.2l.4 2.6h5.2l.4-2.6a7.5 7.5 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6c.07-.4.1-.8.1-1.2Z"/></svg></span>
+          <span class="linha__nome">Manutenção e evolução
+            <small>Depois do lançamento: correção, atualização das lojas, novas funções e monitoramento do que quebra.</small>
+          </span>
+          <span class="linha__seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </summary>
+        <div class="linha__corpo">
+          <ul class="linha__lista">
+            <li>Correção de erros com prazo</li>
+            <li>Atualização de iOS e Android</li>
+            <li>Novas funções por sprint</li>
+            <li>Monitoramento e alertas</li>
+            <li>Backup e segurança</li>
+            <li>Assumimos projeto de terceiros</li>
+          </ul>
+          <p class="linha__pe"><a class="bt bt--linha" href="#" data-zap="Olá! Já tenho um app/sistema e preciso de manutenção. Podemos falar?">Falar sobre manutenção<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FAIXA ═══════ -->
+<section class="faixa" aria-label="Chamada para orçamento">
+  <img class="faixa__sinal" src="assets/img/logo-dt.png" alt="" width="520" height="763" aria-hidden="true" loading="lazy">
+  <div class="env faixa__env">
+    <h2 class="cartaz c2">Sua ideia merece <span class="eco">sair da cabeça.</span></h2>
+    <a class="faixa__link" href="#" data-zap="Olá! Quero solicitar um orçamento com a Domingos Tech." data-onde="faixa">
+      Solicitar orçamento
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════ MÉTODO ═══════ -->
+<section class="cena cena--escura-2" id="metodo">
+  <div class="env">
+    <div class="cena__topo">
+      <div>
+        <p class="rotulo entra">Como funciona</p>
+        <h2 class="cartaz c2 entra">Cinco etapas até o app <span class="eco">no ar.</span></h2>
+      </div>
+      <p class="texto entra">Você aprova cada etapa antes da seguinte, e sabe exatamente em que ponto o projeto está.</p>
+    </div>
+
+    <ol class="etapas">
+      <li class="etapa entra">
+        <span class="etapa__n">01</span>
+        <h3>Descoberta</h3>
+        <p>Conversa para entender o problema, quem usa e o que o app precisa resolver primeiro. Sem custo.</p>
+        <span class="etapa__entrega">Lista de funções priorizada</span>
+      </li>
+      <li class="etapa entra">
+        <span class="etapa__n">02</span>
+        <h3>Escopo e proposta</h3>
+        <p>Escrevemos o que entra, o que fica para depois, quanto custa e em quanto tempo. Você assina sabendo tudo.</p>
+        <span class="etapa__entrega">Escopo, prazo e valor fechados</span>
+      </li>
+      <li class="etapa entra">
+        <span class="etapa__n">03</span>
+        <h3>Design</h3>
+        <p>Telas desenhadas e protótipo clicável para você navegar antes de existir código.</p>
+        <span class="etapa__entrega">Protótipo aprovado</span>
+      </li>
+      <li class="etapa entra">
+        <span class="etapa__n">04</span>
+        <h3>Desenvolvimento</h3>
+        <p>Entregas parciais a cada duas semanas, em ambiente de teste, para você usar e opinar durante o caminho.</p>
+        <span class="etapa__entrega">Versão de teste a cada sprint</span>
+      </li>
+      <li class="etapa entra">
+        <span class="etapa__n">05</span>
+        <h3>Publicação</h3>
+        <p>Subimos nas lojas, entregamos código, acessos e documentação — e ficamos de olho nas primeiras semanas.</p>
+        <span class="etapa__entrega">App no ar e código na sua mão</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════ POR QUE ═══════ -->
+<section class="cena cena--clara" id="porque">
+  <div class="env">
+    <div class="cena__topo cena__topo--meio">
+      <p class="rotulo rotulo--tinta rotulo--meio entra">Por que a Domingos Tech</p>
+      <h2 class="cartaz c2 entra">Mais do que escrever código.<br><span class="eco-tinta">Um compromisso com a entrega.</span></h2>
+      <p class="texto texto--esc entra">Seis coisas que definimos antes de começar — e que ficam por escrito no contrato.</p>
+    </div>
+
+    <div class="cartoes">
+      <article class="cartao entra">
+        <div class="cartao__topo">
+          <span class="cartao__n">01</span>
+          <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 8-5 4 5 4M15 8l5 4-5 4"/></svg></span>
+        </div>
+        <h3>O código é seu</h3>
+        <p>Repositório, contas das lojas e servidores no seu nome, desde o primeiro dia.</p>
+        <span class="cartao__ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </article>
+
+      <article class="cartao entra">
+        <div class="cartao__topo">
+          <span class="cartao__n">02</span>
+          <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/></svg></span>
+        </div>
+        <h3>Preço fechado</h3>
+        <p>O valor é definido antes de começar. Mudança de escopo é conversada, não cobrada por surpresa.</p>
+        <span class="cartao__ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </article>
+
+      <article class="cartao entra">
+        <div class="cartao__topo">
+          <span class="cartao__n">03</span>
+          <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        </div>
+        <h3>Você acompanha</h3>
+        <p>Versão de teste a cada duas semanas. Nada de sumir por três meses e voltar com surpresa.</p>
+        <span class="cartao__ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </article>
+
+      <article class="cartao entra">
+        <div class="cartao__topo">
+          <span class="cartao__n">04</span>
+          <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.9 7.5 9 4.3-1.1 7.5-4.6 7.5-9V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        </div>
+        <h3>Testado antes de subir</h3>
+        <p>Cada entrega passa por teste de uso e de carga. O usuário não é o seu controle de qualidade.</p>
+        <span class="cartao__ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </article>
+
+      <article class="cartao entra">
+        <div class="cartao__topo">
+          <span class="cartao__n">05</span>
+          <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16.5V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
+        </div>
+        <h3>Publicação incluída</h3>
+        <p>Cuidamos das exigências da Apple e do Google — inclusive quando uma delas recusa a primeira versão.</p>
+        <span class="cartao__ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </article>
+
+      <article class="cartao entra">
+        <div class="cartao__topo">
+          <span class="cartao__n">06</span>
+          <span class="cartao__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H7l-3 3V5Z"/><path d="M8.5 9.5h7M8.5 12.5h4"/></svg></span>
+        </div>
+        <h3>Alguém atende depois</h3>
+        <p>Canal direto para falar com quem desenvolveu, não com um formulário de suporte genérico.</p>
+        <span class="cartao__ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TECNOLOGIAS ═══════ -->
+<!-- Ajuste esta lista para as tecnologias que você realmente usa. -->
+<section class="cena cena--escura" id="stack">
+  <div class="env">
+    <div class="cena__topo">
+      <div>
+        <p class="rotulo entra">Tecnologias</p>
+        <h2 class="cartaz c2 entra">Ferramenta escolhida <span class="eco">pelo problema.</span></h2>
+      </div>
+      <p class="texto entra">Nada de forçar a mesma stack em todo projeto. A escolha entra na proposta, explicada em português.</p>
+    </div>
+
+    <ul class="stack entra">
+      <li><b>React Native</b><span>App multiplataforma</span></li>
+      <li><b>Flutter</b><span>App multiplataforma</span></li>
+      <li><b>Swift</b><span>iOS nativo</span></li>
+      <li><b>Kotlin</b><span>Android nativo</span></li>
+      <li><b>React</b><span>Front-end web</span></li>
+      <li><b>Next.js</b><span>Web e SEO</span></li>
+      <li><b>Node.js</b><span>Back-end e API</span></li>
+      <li><b>PostgreSQL</b><span>Banco de dados</span></li>
+      <li><b>Firebase</b><span>Tempo real e push</span></li>
+      <li><b>Supabase</b><span>Banco e autenticação</span></li>
+      <li><b>AWS</b><span>Infraestrutura</span></li>
+      <li><b>Figma</b><span>Design e protótipo</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════ FORMATOS ═══════ -->
+<section class="cena cena--clara" id="formatos">
+  <div class="env">
+    <div class="cena__topo">
+      <div>
+        <p class="rotulo rotulo--tinta entra">Formatos de contratação</p>
+        <h2 class="cartaz c2 entra">Três jeitos de <span class="eco-tinta">começar com a gente.</span></h2>
+      </div>
+      <p class="texto texto--esc entra">Todos começam pela conversa de descoberta, que é gratuita e não obriga a nada.</p>
+    </div>
+
+    <div class="pacotes entra">
+      <article class="pacote">
+        <span class="pacote__marca">Para validar</span>
+        <h3>MVP</h3>
+        <p class="pacote__quem">Para quem tem uma ideia e precisa testar antes de investir tudo.</p>
+        <ul class="pacote__itens">
+          <li>Recorte do essencial</li>
+          <li>Protótipo clicável</li>
+          <li>App ou web publicado</li>
+          <li>Métricas de uso</li>
+          <li>Entrega em semanas</li>
+        </ul>
+        <p class="pacote__valor">Valor sob consulta</p>
+        <a class="bt bt--linha-esc bt--bloco" href="#" data-zap="Olá! Tenho interesse no formato MVP da Domingos Tech.">Quero validar<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+
+      <article class="pacote pacote--destaque">
+        <span class="pacote__marca">Mais procurado</span>
+        <h3>Projeto fechado</h3>
+        <p class="pacote__quem">Para quem já sabe o que quer e precisa de escopo, prazo e preço definidos.</p>
+        <ul class="pacote__itens">
+          <li>Escopo detalhado por escrito</li>
+          <li>Design e protótipo</li>
+          <li>App iOS e Android</li>
+          <li>Painel administrativo</li>
+          <li>Publicação nas lojas</li>
+          <li>3 meses de garantia</li>
+        </ul>
+        <p class="pacote__valor">Valor sob consulta</p>
+        <a class="bt bt--cian bt--bloco" href="#" data-zap="Olá! Tenho interesse em um projeto fechado com a Domingos Tech.">Pedir proposta<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+
+      <article class="pacote">
+        <span class="pacote__marca">Contínuo</span>
+        <h3>Time mensal</h3>
+        <p class="pacote__quem">Para produto que já está no ar e precisa evoluir todo mês.</p>
+        <ul class="pacote__itens">
+          <li>Horas dedicadas por mês</li>
+          <li>Novas funções por sprint</li>
+          <li>Correção com prazo</li>
+          <li>Monitoramento e backup</li>
+          <li>Reunião quinzenal</li>
+        </ul>
+        <p class="pacote__valor">Valor sob consulta</p>
+        <a class="bt bt--linha-esc bt--bloco" href="#" data-zap="Olá! Tenho interesse no time mensal da Domingos Tech.">Quero evoluir<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+    </div>
+
+    <p class="pacotes__nota">O valor depende do tamanho do escopo, das integrações necessárias e do prazo. Tudo vai por escrito na proposta, com o que está incluído e o que não está.</p>
+  </div>
+</section>
+
+<!-- ═══════ DÚVIDAS ═══════ -->
+<section class="cena cena--escura-2" id="duvidas">
+  <div class="env">
+    <div class="cena__topo">
+      <div>
+        <p class="rotulo entra">Dúvidas frequentes</p>
+        <h2 class="cartaz c2 entra">Antes da <span class="eco">primeira conversa.</span></h2>
+      </div>
+    </div>
+
+    <div class="duvidas">
+      <details class="duvida entra"><summary>Quanto custa desenvolver um aplicativo?</summary>
+        <div class="duvida__r"><p>Depende do que ele precisa fazer. Um app de catálogo e um marketplace com pagamento e entrega são projetos de portes completamente diferentes. Por isso o primeiro passo é a conversa de descoberta: entendemos o escopo e devolvemos uma proposta escrita com valor fechado. Sem essa conversa, qualquer número seria chute.</p></div></details>
+
+      <details class="duvida entra"><summary>Quanto tempo leva?</summary>
+        <div class="duvida__r"><p>Um MVP costuma ficar pronto em algumas semanas; um app completo com painel e integrações leva alguns meses. O prazo entra na proposta com as datas de cada entrega parcial — e você acompanha o andamento por versões de teste a cada duas semanas.</p></div></details>
+
+      <details class="duvida entra"><summary>O código-fonte fica comigo?</summary>
+        <div class="duvida__r"><p>Sim, sempre. Repositório, contas de desenvolvedor da Apple e do Google e servidores ficam no seu nome desde o começo — nós trabalhamos com acesso. Se um dia a parceria acabar, você leva o projeto inteiro e qualquer outro time consegue continuar.</p></div></details>
+
+      <details class="duvida entra"><summary>Vocês publicam nas lojas?</summary>
+        <div class="duvida__r"><p>Sim, a publicação está incluída. Cuidamos das exigências da App Store e do Google Play — política de privacidade, telas de apresentação, classificação etária, permissões — inclusive quando uma delas recusa a primeira submissão, o que é comum e faz parte do processo.</p></div></details>
+
+      <details class="duvida entra"><summary>Preciso ter o projeto pronto para conversar?</summary>
+        <div class="duvida__r"><p>Não. A maior parte dos clientes chega com a ideia na cabeça e alguns rascunhos. A conversa de descoberta serve exatamente para transformar isso em uma lista de funções priorizada. Se você já tem documento, protótipo ou um sistema antigo, melhor ainda — encurta o caminho.</p></div></details>
+
+      <details class="duvida entra"><summary>Como funciona o pagamento?</summary>
+        <div class="duvida__r"><p>Projetos fechados são divididos em parcelas ligadas às entregas: uma parte na assinatura e o restante conforme cada etapa é aprovada. Time mensal é uma mensalidade fixa. Tudo fica definido em contrato antes de começar, sem cobrança fora do combinado.</p></div></details>
+
+      <details class="duvida entra"><summary>E depois que o app está no ar?</summary>
+        <div class="duvida__r"><p>Todo projeto sai com garantia para correção de erros. Depois disso você pode seguir com um plano de manutenção e evolução, ou tocar sozinho com a sua equipe — o código e a documentação são seus. As duas opções são combinadas antes, não impostas depois.</p></div></details>
+
+      <details class="duvida entra"><summary>Vocês assumem um projeto que outra pessoa começou?</summary>
+        <div class="duvida__r"><p>Sim, com uma etapa a mais: uma análise do que já existe, para dizer com honestidade o que dá para aproveitar, o que precisa ser refeito e quanto custa cada caminho. Você recebe esse diagnóstico por escrito antes de decidir.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTATO ═══════ -->
+<section class="cena cena--escura" id="contato">
+  <div class="env contato">
+    <div>
+      <p class="rotulo entra">Fale com a gente</p>
+      <h2 class="cartaz c2 entra">Conte o que você precisa <span class="eco">construir.</span></h2>
+      <p class="texto entra">
+        Preencha ao lado e a conversa já começa organizada: recebemos seu contexto e
+        respondemos com o próximo passo. Leva menos de um minuto.
+      </p>
+
+      <dl class="dados entra">
+        <div><dt>WhatsApp</dt><dd><a href="#" data-zap="Olá! Vim pelo site da Domingos Tech e quero conversar sobre um projeto.">(00) 00000-0000</a></dd></div>
+        <div><dt>E-mail</dt><dd><a href="#" data-contato="email">contato@domingostech.com.br</a></dd></div>
+        <div><dt>Atendimento</dt><dd>Seg a sex, 09h–18h · online para todo o Brasil</dd></div>
+        <div><dt>Resposta</dt><dd>Orçamento em até 24 horas úteis</dd></div>
+      </dl>
+    </div>
+
+    <div class="folha entra">
+      <form id="folha" novalidate>
+        <div class="folha__topo">
+          <b>Briefing rápido</b>
+          <span id="dataHoje">—</span>
+        </div>
+
+        <div class="folha__duplo">
+          <div class="campo">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como podemos te chamar?" required>
+            <span class="erro" data-erro="nome"></span>
+          </div>
+          <div class="campo">
+            <label for="zap">WhatsApp *</label>
+            <input type="tel" id="zap" name="zap" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" required>
+            <span class="erro" data-erro="zap"></span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="empresa">Empresa (se houver)</label>
+          <input type="text" id="empresa" name="empresa" autocomplete="organization" placeholder="Nome da empresa ou do projeto">
+        </div>
+
+        <div class="folha__duplo">
+          <div class="campo">
+            <label for="tipo">Tipo de projeto *</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">Selecione…</option>
+              <option>Aplicativo iOS e Android</option>
+              <option>Sistema ou painel web</option>
+              <option>MVP para validar a ideia</option>
+              <option>Integração ou API</option>
+              <option>UI/UX e prototipagem</option>
+              <option>Manutenção de projeto existente</option>
+              <option>Ainda não sei — quero orientação</option>
+            </select>
+            <span class="erro" data-erro="tipo"></span>
+          </div>
+          <div class="campo">
+            <label for="prazo">Prazo desejado</label>
+            <select id="prazo" name="prazo">
+              <option value="">Sem prazo definido</option>
+              <option>O quanto antes</option>
+              <option>Nos próximos 3 meses</option>
+              <option>Nos próximos 6 meses</option>
+              <option>Só levantando informação</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="verba">Investimento previsto</label>
+          <select id="verba" name="verba">
+            <option value="">Prefiro conversar antes</option>
+            <option>Até R$ 10 mil</option>
+            <option>R$ 10 mil a R$ 30 mil</option>
+            <option>R$ 30 mil a R$ 80 mil</option>
+            <option>Acima de R$ 80 mil</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="recado">Descreva o projeto *</label>
+          <textarea id="recado" name="recado" rows="3" placeholder="Ex.: quero um app onde meus clientes acompanham o pedido e recebem notificação a cada etapa…" required></textarea>
+          <span class="erro" data-erro="recado"></span>
+        </div>
+
+        <div class="campo campo--isca" aria-hidden="true">
+          <label for="site2">Não preencha</label>
+          <input type="text" id="site2" name="site2" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="bt bt--cian bt--bloco bt--g" type="submit" data-onde="folha">
+          Enviar pelo WhatsApp
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+        <p class="folha__legal">Abrimos o WhatsApp com a mensagem pronta. Seus dados servem só para este atendimento.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══════ RODAPÉ ═══════ -->
+<footer class="pe">
+  <div class="env">
+    <div class="pe__grade">
+      <div class="pe__marca">
+        <a class="marca" href="#heroi" aria-label="Domingos Tech — início">
+          <img class="marca__sinal" src="assets/img/logo-dt.png" alt="" width="26" height="38">
+          <span class="marca__txt"><b>Domingos Tech</b><span>Software sob medida</span></span>
+        </a>
+        <p>Desenvolvimento de aplicativos móveis, sistemas web, integrações e APIs. Do escopo à publicação, com o código no seu nome.</p>
+      </div>
+
+      <nav class="pe__col" aria-label="Serviços">
+        <h3>Serviços</h3>
+        <a href="#servicos">Aplicativos iOS e Android</a>
+        <a href="#servicos">Sistemas web</a>
+        <a href="#servicos">MVP</a>
+        <a href="#servicos">Integrações e APIs</a>
+        <a href="#servicos">UI/UX</a>
+        <a href="#servicos">Manutenção</a>
+      </nav>
+
+      <nav class="pe__col" aria-label="A empresa">
+        <h3>A empresa</h3>
+        <a href="#metodo">Como funciona</a>
+        <a href="#porque">Por que nós</a>
+        <a href="#stack">Tecnologias</a>
+        <a href="#formatos">Formatos</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="pe__col">
+        <h3>Contato</h3>
+        <a href="#" data-zap="Olá! Vim pelo site da Domingos Tech.">(00) 00000-0000</a>
+        <a href="#" data-contato="email">contato@domingostech.com.br</a>
+        <p>Seg a sex: 09h–18h<br>Atendimento online<br>para todo o Brasil</p>
+      </div>
+    </div>
+
+    <div class="pe__fim">
+      <p>© <span id="ano">2026</span> Domingos Tech</p>
+      <p>Software sob medida</p>
+    </div>
+  </div>
+</footer>
+
+<div class="barra" id="barra">
+  <div><b>Orçamento sem compromisso</b><span>resposta em até 24h úteis</span></div>
+  <a class="bt bt--cian" href="#" data-zap="Olá! Vim pelo site da Domingos Tech e quero um orçamento." data-onde="barra">Chamar</a>
+</div>
+
+<button class="topo" id="topo" aria-label="Voltar ao topo">↑</button>
+
+<script src="assets/js/dt.js" defer></script>
+</body>
+</html>
