@@ -48,6 +48,33 @@ Mesmo sistema usado no site da WK Films, com a paleta da sua marca:
 - Listas numeradas com ícone e seta quadrada; geometria sem cantos arredondados
 - JetBrains Mono nos rótulos técnicos — fonte de editor de código, coerente com o ramo
 
+### Movimento
+
+Tudo abaixo é desligado por completo quando o visitante tem "reduzir movimento"
+ligado no sistema — a página fica estática e legível, sem nada invisível.
+
+| Efeito | Onde |
+| --- | --- |
+| Sequência de abertura | rótulo, título, texto e botões do herói entram escalonados |
+| Parallax | a arte do herói e a foto da faixa deslizam mais devagar que a rolagem |
+| Barra de progresso | filete ciano no topo, acompanha a leitura da página |
+| Título sob máscara | os títulos de seção sobem de trás de um recorte |
+| Entrada em cascata | linhas, cartões, etapas e células entram uma após a outra |
+| Filete que se desenha | a régua sob cada linha de serviço cresce da esquerda |
+| Terminal | `npm run build` é digitado quando a seção aparece |
+| Micro-interações | seta que gira, cartão que clareia, símbolo que brilha no hover |
+
+O parallax e os reveals usam `IntersectionObserver` e `requestAnimationFrame`,
+sem biblioteca externa.
+
+### Sobre a foto de código
+
+A imagem em `assets/img/codigo.jpg` tem texto que **não é código de verdade** —
+são palavras inventadas que só parecem código de longe. Por isso ela entra
+ampliada e desfocada, valendo como textura de fundo atrás do terminal, e nunca
+em tamanho legível. Se um dia você quiser um print real de um projeto seu, é só
+trocar o arquivo e reduzir o `blur` em `.stack__foto img`.
+
 ### A regra do ciano
 
 `#3FDCE4` rende 10,6:1 de contraste sobre o azul-noite e apenas 1,5:1 sobre
@@ -68,7 +95,7 @@ index.html            Página principal (herói + 8 seções)
 obrigado.html         Página de retorno do formulário
 assets/css/dt.css     Sistema visual completo
 assets/js/dt.js       Contato, menu, formulário, rolagem
-assets/img/           Logo recortado do arquivo original, favicon e capa social
+assets/img/           Logo recortado, arte do herói, fotos e capa social
 preview/              Saída do build (arquivo único para enviar)
 robots.txt · sitemap.xml
 ```

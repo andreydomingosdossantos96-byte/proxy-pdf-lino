@@ -57,6 +57,7 @@
 </head>
 <body>
 <a class="pula" href="#conteudo">Pular para o conteúdo</a>
+<div class="progresso" aria-hidden="true"><span id="progresso"></span></div>
 
 <!-- ═══════ FITA ═══════ -->
 <div class="fita">
@@ -99,17 +100,18 @@
 <!-- ═══════ HERÓI ═══════ -->
 <section class="heroi" id="heroi">
   <div class="heroi__fundo" aria-hidden="true"></div>
+  <img class="heroi__arte" src="assets/img/heroi-iso.jpg" alt="" width="1400" height="1400" aria-hidden="true" fetchpriority="high" data-parallax="0.12">
+  <div class="heroi__veu" aria-hidden="true"></div>
   <div class="heroi__malha" aria-hidden="true"></div>
-  <img class="heroi__sinal" src="assets/img/logo-dt.png" alt="" width="520" height="763" aria-hidden="true" fetchpriority="high">
 
   <div class="env heroi__env">
-    <p class="rotulo entra">Aplicativos · sistemas web · integrações</p>
-    <h1 class="cartaz c1 entra">Aplicativos que saem do papel <span class="eco">e chegam na loja.</span></h1>
-    <p class="heroi__sub entra">
+    <p class="rotulo surge" style="--atraso:.05s">Aplicativos · sistemas web · integrações</p>
+    <h1 class="cartaz c1 surge" style="--atraso:.15s">Aplicativos que saem do papel <span class="eco">e chegam na loja.</span></h1>
+    <p class="heroi__sub surge" style="--atraso:.3s">
       Do escopo à publicação na App Store e no Google Play. Com preço fechado antes de começar,
       código-fonte no seu nome e alguém do outro lado depois da entrega.
     </p>
-    <div class="heroi__acoes entra">
+    <div class="heroi__acoes surge" style="--atraso:.42s">
       <a class="bt bt--cian bt--g" href="#" data-zap="Olá! Vim pelo site da Domingos Tech e quero um orçamento do meu projeto." data-onde="heroi">
         Solicitar orçamento
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
@@ -149,7 +151,7 @@
     <div class="cena__topo">
       <div>
         <p class="rotulo rotulo--tinta entra">O que costuma dar errado</p>
-        <h2 class="cartaz c2 entra">Quase todo projeto de app <span class="eco-tinta">morre no mesmo lugar.</span></h2>
+        <h2 class="cartaz c2 mascara entra"><span>Quase todo projeto de app <span class="eco-tinta">morre no mesmo lugar.</span></span></h2>
       </div>
       <p class="texto texto--esc entra">Se você já tentou tirar um aplicativo do papel, provavelmente reconhece pelo menos dois destes:</p>
     </div>
@@ -203,7 +205,7 @@
     <div class="cena__topo">
       <div>
         <p class="rotulo entra">O que fazemos</p>
-        <h2 class="cartaz c2 entra">Do primeiro esboço <span class="eco">ao app publicado.</span></h2>
+        <h2 class="cartaz c2 mascara entra"><span>Do primeiro esboço <span class="eco">ao app publicado.</span></span></h2>
       </div>
       <p class="texto entra">Seis frentes que cobrem o ciclo inteiro. Toque em cada linha para abrir o escopo.</p>
     </div>
@@ -346,6 +348,7 @@
 
 <!-- ═══════ FAIXA ═══════ -->
 <section class="faixa" aria-label="Chamada para orçamento">
+  <img class="faixa__foto" src="assets/img/faixa-dev.jpg" alt="" width="1200" height="1568" aria-hidden="true" loading="lazy" data-parallax="0.08">
   <img class="faixa__sinal" src="assets/img/logo-dt.png" alt="" width="520" height="763" aria-hidden="true" loading="lazy">
   <div class="env faixa__env">
     <h2 class="cartaz c2">Sua ideia merece <span class="eco">sair da cabeça.</span></h2>
@@ -362,7 +365,7 @@
     <div class="cena__topo">
       <div>
         <p class="rotulo entra">Como funciona</p>
-        <h2 class="cartaz c2 entra">Cinco etapas até o app <span class="eco">no ar.</span></h2>
+        <h2 class="cartaz c2 mascara entra"><span>Cinco etapas até o app <span class="eco">no ar.</span></span></h2>
       </div>
       <p class="texto entra">Você aprova cada etapa antes da seguinte, e sabe exatamente em que ponto o projeto está.</p>
     </div>
@@ -407,7 +410,7 @@
   <div class="env">
     <div class="cena__topo cena__topo--meio">
       <p class="rotulo rotulo--tinta rotulo--meio entra">Por que a Domingos Tech</p>
-      <h2 class="cartaz c2 entra">Mais do que escrever código.<br><span class="eco-tinta">Um compromisso com a entrega.</span></h2>
+      <h2 class="cartaz c2 mascara entra"><span>Mais do que escrever código.<br><span class="eco-tinta">Um compromisso com a entrega.</span></span></h2>
       <p class="texto texto--esc entra">Seis coisas que definimos antes de começar — e que ficam por escrito no contrato.</p>
     </div>
 
@@ -482,10 +485,20 @@
     <div class="cena__topo">
       <div>
         <p class="rotulo entra">Tecnologias</p>
-        <h2 class="cartaz c2 entra">Ferramenta escolhida <span class="eco">pelo problema.</span></h2>
+        <h2 class="cartaz c2 mascara entra"><span>Ferramenta escolhida <span class="eco">pelo problema.</span></span></h2>
       </div>
       <p class="texto entra">Nada de forçar a mesma stack em todo projeto. A escolha entra na proposta, explicada em português.</p>
     </div>
+
+    <div class="stack__grade">
+      <figure class="stack__foto entra">
+        <img src="assets/img/codigo.jpg" alt="Editor de código com destaque de sintaxe" width="760" height="1351" loading="lazy" decoding="async">
+        <figcaption class="stack__etiqueta">src/app.tsx</figcaption>
+        <div class="terminal" aria-hidden="true">
+          <span class="terminal__linha" data-digita="npm run build"></span>
+          <span class="terminal__ok">✓ app publicado nas lojas</span>
+        </div>
+      </figure>
 
     <ul class="stack entra">
       <li><b>React Native</b><span>App multiplataforma</span></li>
@@ -500,7 +513,8 @@
       <li><b>Supabase</b><span>Banco e autenticação</span></li>
       <li><b>AWS</b><span>Infraestrutura</span></li>
       <li><b>Figma</b><span>Design e protótipo</span></li>
-    </ul>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -510,7 +524,7 @@
     <div class="cena__topo">
       <div>
         <p class="rotulo rotulo--tinta entra">Formatos de contratação</p>
-        <h2 class="cartaz c2 entra">Três jeitos de <span class="eco-tinta">começar com a gente.</span></h2>
+        <h2 class="cartaz c2 mascara entra"><span>Três jeitos de <span class="eco-tinta">começar com a gente.</span></span></h2>
       </div>
       <p class="texto texto--esc entra">Todos começam pela conversa de descoberta, que é gratuita e não obriga a nada.</p>
     </div>
@@ -573,7 +587,7 @@
     <div class="cena__topo">
       <div>
         <p class="rotulo entra">Dúvidas frequentes</p>
-        <h2 class="cartaz c2 entra">Antes da <span class="eco">primeira conversa.</span></h2>
+        <h2 class="cartaz c2 mascara entra"><span>Antes da <span class="eco">primeira conversa.</span></span></h2>
       </div>
     </div>
 
@@ -610,7 +624,7 @@
   <div class="env contato">
     <div>
       <p class="rotulo entra">Fale com a gente</p>
-      <h2 class="cartaz c2 entra">Conte o que você precisa <span class="eco">construir.</span></h2>
+      <h2 class="cartaz c2 mascara entra"><span>Conte o que você precisa <span class="eco">construir.</span></span></h2>
       <p class="texto entra">
         Preencha ao lado e a conversa já começa organizada: recebemos seu contexto e
         respondemos com o próximo passo. Leva menos de um minuto.

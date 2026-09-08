@@ -87,9 +87,12 @@
   }
 
   /* ---------- 3. rolagem ---------- */
+  var SEM_MOVIMENTO_ROLAGEM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cab   = $('#cab');
   var barra = $('#barra');
   var topo  = $('#topo');
+  var linha = $('#progresso');
+  var camadas = $$('[data-parallax]');
   var cenas = $$('main section[id]');
   var links = $$('.menu a[href^="#"]');
   var agendado = false;
@@ -99,6 +102,22 @@
     if (cab) cab.classList.toggle('fixo', y > 10);
     if (barra) barra.classList.toggle('visivel', y > 560);
     if (topo) topo.classList.toggle('visivel', y > 760);
+
+    if (linha) {
+      var total = d.documentElement.scrollHeight - window.innerHeight;
+      linha.style.width = (total > 0 ? (y / total) * 100 : 0) + '%';
+    }
+
+    // parallax: cada camada desliza uma fração da rolagem enquanto está na tela
+    if (!SEM_MOVIMENTO_ROLAGEM) {
+      camadas.forEach(function (img) {
+        var caixa = img.parentElement.getBoundingClientRect();
+        if (caixa.bottom < 0 || caixa.top > window.innerHeight) return;
+        var taxa = parseFloat(img.getAttribute('data-parallax')) || 0.1;
+        var meio = caixa.top + caixa.height / 2 - window.innerHeight / 2;
+        img.style.transform = 'translate3d(0,' + (-meio * taxa).toFixed(1) + 'px,0) scale(1.12)';
+      });
+    }
 
     var atual = '';
     cenas.forEach(function (s) { if (y >= s.offsetTop - 150) atual = s.id; });
@@ -112,20 +131,59 @@
 
   if (topo) topo.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-  /* ---------- 4. entrada em cena ---------- */
+  /* ---------- 4. movimento ---------- */
+  var SEM_MOVIMENTO = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 4.1 escalona o atraso dos itens de cada grupo, para entrarem em cascata */
+  [['.linha', 70], ['.cartao', 80], ['.etapa', 70], ['.checa li', 55],
+   ['.pacote', 90], ['.duvida', 45], ['.provas li', 70], ['.stack li', 35]
+  ].forEach(function (par) {
+    $$(par[0]).forEach(function (el, i) {
+      el.style.setProperty('--atraso', (Math.min(i, 8) * par[1] / 1000) + 's');
+    });
+  });
+
+  /* 4.2 revela ao entrar na tela */
   var entradas = $$('.entra');
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && !SEM_MOVIMENTO) {
     var obs = new IntersectionObserver(function (itens) {
-      itens.forEach(function (item, i) {
+      itens.forEach(function (item) {
         if (!item.isIntersecting) return;
-        var el = item.target;
-        setTimeout(function () { el.classList.add('dentro'); }, Math.min(i * 60, 240));
-        obs.unobserve(el);
+        item.target.classList.add('dentro');
+        obs.unobserve(item.target);
       });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     entradas.forEach(function (el) { obs.observe(el); });
   } else {
     entradas.forEach(function (el) { el.classList.add('dentro'); });
+  }
+
+  /* 4.3 filete que se desenha sob cada linha de serviço */
+  $$('.linha').forEach(function (el) { el.classList.add('fio-anim'); });
+
+  /* 4.4 terminal que digita sozinho quando aparece */
+  var terminal = $('.terminal');
+  var digitando = $('.terminal__linha');
+  if (terminal && digitando) {
+    var frase = digitando.getAttribute('data-digita') || '';
+    if (SEM_MOVIMENTO || !('IntersectionObserver' in window)) {
+      digitando.textContent = frase;
+      terminal.classList.add('pronto');
+    } else {
+      var obsTerm = new IntersectionObserver(function (itens) {
+        itens.forEach(function (item) {
+          if (!item.isIntersecting) return;
+          obsTerm.unobserve(item.target);
+          var i = 0;
+          (function escreve() {
+            digitando.textContent = frase.slice(0, ++i);
+            if (i < frase.length) setTimeout(escreve, 55);
+            else setTimeout(function () { terminal.classList.add('pronto'); }, 500);
+          })();
+        });
+      }, { threshold: 0.5 });
+      obsTerm.observe(terminal);
+    }
   }
 
   /* ---------- 5. um bloco aberto por vez ---------- */
