@@ -9,13 +9,13 @@
   'use strict';
 
   var CONFIG = {
-    whatsapp: '5500000000000',            // DDI + DDD + número, só dígitos. Ex.: '5569984638776'
-    telefone: '(00) 00000-0000',          // como aparece na tela
-    email: 'contato@domingostech.com.br',
+    whatsapp: '5569992484874',            // DDI + DDD + número, só dígitos
+    telefone: '(69) 99248-4874',          // como aparece na tela
+    email: '',                            // preencha para exibir o e-mail no site
     paginaObrigado: 'obrigado.html'       // '' para apenas limpar o formulário
   };
 
-  var SEM_NUMERO = /^5?500+0*$/.test(CONFIG.whatsapp) || CONFIG.whatsapp.indexOf('00000000') > -1;
+  var SEM_NUMERO = CONFIG.whatsapp.indexOf('00000000') > -1;
 
   var d = document;
   var $  = function (s, c) { return (c || d).querySelector(s); };
@@ -55,7 +55,17 @@
     el.textContent = CONFIG.telefone;
     el.setAttribute('href', 'tel:+' + CONFIG.whatsapp);
   });
+
+  // onde o número aparece como texto, dentro de um link de WhatsApp
+  $$('[data-numero]').forEach(function (el) { el.textContent = CONFIG.telefone; });
+
+  // o e-mail só aparece se estiver configurado
   $$('[data-contato="email"]').forEach(function (el) {
+    if (!CONFIG.email) {
+      var linha = el.closest('.dados div');     // na lista de contato some a linha inteira
+      (linha || el).remove();                   // no rodapé some só o link
+      return;
+    }
     el.textContent = CONFIG.email;
     el.setAttribute('href', 'mailto:' + CONFIG.email);
   });

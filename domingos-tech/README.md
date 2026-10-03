@@ -3,25 +3,27 @@
 Site de conversão da Domingos Tech — desenvolvimento de aplicativos e sistemas
 sob medida. HTML, CSS e JavaScript puros: sem build, sem framework.
 
-## ►► Antes de publicar: preencher o contato
+## Contato configurado
 
-Abra `assets/js/dt.js` e troque os valores de exemplo:
+`assets/js/dt.js` já está com o número real:
 
 ```js
 var CONFIG = {
-  whatsapp: '5500000000000',            // DDI + DDD + número, só dígitos
-  telefone: '(00) 00000-0000',          // como aparece na tela
-  email: 'contato@domingostech.com.br',
+  whatsapp: '5569992484874',   // (69) 99248-4874
+  telefone: '(69) 99248-4874',
+  email: '',                   // preencha para exibir o e-mail no site
   paginaObrigado: 'obrigado.html'
 };
 ```
 
-Enquanto o número for o de exemplo, os botões **avisam em vez de abrir uma
-conversa quebrada** — assim ninguém clica e cai no vazio. O telefone e o e-mail
-da fita, da seção de contato e do rodapé são preenchidos automaticamente a
-partir desse mesmo objeto.
+Todos os botões de WhatsApp, o telefone da fita, a lista de contato e o rodapé
+saem desse objeto — mudou aqui, mudou no site inteiro.
 
-Também precisam da sua revisão:
+**O e-mail está vazio de propósito.** Enquanto estiver assim, a linha de e-mail
+some sozinha da página, em vez de exibir um endereço que não existe. Basta
+preencher `email` para ela voltar.
+
+## Ainda precisa da sua revisão
 
 1. **Tecnologias** (`#stack`): a lista atual é a stack comum de projetos móveis.
    Deixe só o que você realmente usa — a seção vale como credibilidade, e vale
