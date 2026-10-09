@@ -49,65 +49,77 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // CTA fixo no celular: aparece depois do topo e some quando o formulário está na tela
+  // CTA fixo no celular: aparece depois do topo; some no construtor, no CTA final e com o teclado aberto
   var sticky = document.getElementById('sticky-cta');
   var hero = document.querySelector('.hero');
-  var formSection = document.getElementById('consultora');
-  if (sticky && hero && formSection && 'IntersectionObserver' in window) {
-    var heroVisible = true, formVisible = false;
+  var hideZones = [document.getElementById('consultora'), document.getElementById('final')].filter(Boolean);
+  if (sticky && hero && 'IntersectionObserver' in window) {
+    var heroVisible = true, zonesVisible = {}, typing = false;
     var update = function () {
-      var show = !heroVisible && !formVisible;
+      var inZone = Object.keys(zonesVisible).some(function (k) { return zonesVisible[k]; });
+      var show = !heroVisible && !inZone && !typing;
       sticky.classList.toggle('is-visible', show);
       sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
-      sticky.querySelector('a').tabIndex = show ? 0 : -1;
+      sticky.querySelectorAll('a').forEach(function (a) { a.tabIndex = show ? 0 : -1; });
     };
     new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); }).observe(hero);
-    new IntersectionObserver(function (e) { formVisible = e[0].isIntersecting; update(); }).observe(formSection);
+    hideZones.forEach(function (z) {
+      new IntersectionObserver(function (e) { zonesVisible[z.id] = e[0].isIntersecting; update(); }).observe(z);
+    });
+    document.addEventListener('focusin', function (e) { if (e.target.matches('input[type="text"]')) { typing = true; update(); } });
+    document.addEventListener('focusout', function (e) { if (e.target.matches('input[type="text"]')) { typing = false; update(); } });
   }
 
-  // Formulário → WhatsApp (preenchido em index.html; ver initForm abaixo)
-  var form = document.getElementById('lead-form');
-  if (form) initForm(form);
+  // Construtor "Monte seu pedido": monta a mensagem ao vivo e atualiza o link do botão
+  var builder = document.getElementById('builder');
+  if (builder) initBuilder(builder);
 
-  function initForm(form) {
-    var nome = form.querySelector('#f-nome');
-    var nomeErr = form.querySelector('#f-nome-err');
-    var radio = function (name) {
-      var el = form.querySelector('input[name="' + name + '"]:checked');
-      return el ? el.value : '';
-    };
-    var val = function (sel) { var el = form.querySelector(sel); return el ? el.value.trim() : ''; };
+  function initBuilder(form) {
+    var preview = document.getElementById('builder-preview');
+    var send = document.getElementById('builder-send');
+    var GERAL = send.getAttribute('data-msg');
+    var checked = function (name) { return form.querySelector('input[name="' + name + '"]:checked'); };
 
-    nome.addEventListener('input', function () {
-      if (nome.value.trim()) { nome.removeAttribute('aria-invalid'); nomeErr.hidden = true; }
-    });
-
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      var n = nome.value.trim();
-      if (!n) {
-        nome.setAttribute('aria-invalid', 'true');
-        nomeErr.hidden = false;
-        nome.focus();
-        return;
+    function compose() {
+      var secaoEl = checked('secao'), ocasiaoEl = checked('ocasiao'), paraEl = checked('para');
+      var tamanhoEl = checked('tamanho'), estiloEl = checked('estilo');
+      var detalhes = form.querySelector('#f-detalhes').value.trim();
+      var partes = [];
+      if (secaoEl || ocasiaoEl) {
+        partes.push('Queria opções' + (secaoEl ? ' de ' + secaoEl.getAttribute('data-text') : '') +
+          (ocasiaoEl ? ' para ' + ocasiaoEl.value : '') + '.');
       }
-      var secao = radio('secao');            // 'feminino' | 'masculino' | ''
-      var linhas = ['Olá! Vim pelo site da Stampa e quero ajuda de uma consultora.', '', 'Nome: ' + n];
-      var procura = val('#f-procura');
-      var para = radio('para');
-      var tamanho = val('#f-tamanho');
-      if (secao) linhas.push('Seção: ' + (secao === 'feminino' ? 'Feminino' : 'Masculino'));
-      if (procura) linhas.push('Procuro: ' + procura);
-      if (para) linhas.push('É para: ' + para);
-      if (tamanho) linhas.push('Tamanho: ' + tamanho);
+      if (paraEl) partes.push(paraEl.value);
+      if (tamanhoEl && tamanhoEl.value) partes.push('Tamanho: ' + tamanhoEl.value + '.');
+      if (estiloEl) partes.push('Estilo: ' + estiloEl.value + '.');
+      if (detalhes) partes.push('Detalhes: ' + detalhes.replace(/[.!?]*$/, '') + '.');
+      if (!partes.length) return { msg: GERAL, secao: '' };
+      return {
+        msg: 'Oi, Stampa! Vim pelo site. ' + partes.join(' ') + ' Pode me mandar algumas sugestões?',
+        secao: secaoEl ? secaoEl.value : ''
+      };
+    }
 
-      track('generate_lead', { secao: secao, procura: procura, para: para });
-      var url = waUrl(linhas.join('\n'), secao);
-      // 'noopener' faria window.open devolver null mesmo abrindo; por isso zera o opener na mão.
-      var win = window.open(url, '_blank');
-      if (win) win.opener = null;
-      else window.location.href = url;
+    function refresh() {
+      var r = compose();
+      preview.textContent = r.msg;
+      send.href = waUrl(r.msg, r.secao);
+      send.setAttribute('data-secao', r.secao);
+    }
+
+    form.addEventListener('change', refresh);
+    form.addEventListener('input', refresh);
+    form.addEventListener('reset', function () { setTimeout(refresh, 0); });
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    send.addEventListener('click', function () {
+      var r = compose();
+      track('generate_lead', {
+        secao: r.secao,
+        ocasiao: (checked('ocasiao') || {}).value || '',
+        para: (checked('para') || {}).value || ''
+      });
     });
+    refresh();
   }
 
   // Mapa só carrega quando a pessoa pede (deixa a página mais leve)
