@@ -5,6 +5,8 @@ Site de uma página da escola de música **Projeto Ágape** (Vilhena-RO). O obje
 HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem estática (Vercel, Netlify, GitHub Pages).
 
 > A pasta `api/` é o proxy de PDF que já existia neste repositório e não foi alterada.
+>
+> A pasta `stampa/` tem outro site, independente deste: o da loja **Stampa Vilhena** (veja `stampa/README.md`). Na prévia da Vercel ele fica em `/stampa/`.
 
 ## Estrutura
 
