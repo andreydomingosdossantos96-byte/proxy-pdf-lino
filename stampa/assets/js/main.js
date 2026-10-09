@@ -2,6 +2,8 @@
 (function () {
   'use strict';
 
+  document.documentElement.classList.remove('no-js');
+
   // ===== CONFIGURAÇÃO =====
   // WhatsApp: DDI + DDD + número, só dígitos.
   // TROCAR: confirmar o número de WhatsApp da loja. O fixo (69) 3321-2158 está aqui só como palpite.
@@ -26,7 +28,12 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(Object.assign({ event: event }, data));
     if (typeof window.gtag === 'function') window.gtag('event', event, data);
-    if (typeof window.fbq === 'function') window.fbq('track', event === 'generate_lead' ? 'Lead' : 'Contact', data);
+    if (typeof window.fbq === 'function') {
+      // Meta: só WhatsApp conta como Contact e só o construtor como Lead; o resto vai como evento próprio
+      if (event === 'generate_lead') window.fbq('track', 'Lead', data);
+      else if (event === 'whatsapp_click') window.fbq('track', 'Contact', data);
+      else window.fbq('trackCustom', event, data);
+    }
   }
 
   // Links de WhatsApp com mensagem pronta (data-msg) e seção opcional (data-secao)
@@ -34,13 +41,16 @@
     a.href = waUrl(a.getAttribute('data-msg'), a.getAttribute('data-secao'));
     a.target = '_blank';
     a.rel = 'noopener';
+    if (a.id === 'builder-send') return; // o construtor registra o próprio evento
     a.addEventListener('click', function () {
       track('whatsapp_click', { source: a.getAttribute('data-source') || 'desconhecido' });
     });
   });
 
   document.querySelectorAll('[data-track]').forEach(function (a) {
-    a.addEventListener('click', function () { track(a.getAttribute('data-track'), {}); });
+    a.addEventListener('click', function () {
+      track(a.getAttribute('data-track'), { source: a.getAttribute('data-source') || '' });
+    });
   });
 
   // Cabeçalho com sombra ao rolar
@@ -49,11 +59,14 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // CTA fixo no celular: aparece depois do topo; some no construtor, no CTA final e com o teclado aberto
+  // CTA fixo (barra no celular, botão redondo no desktop): aparece quando o CTA do topo sai da tela;
+  // some no construtor, no CTA final e com o teclado aberto
   var sticky = document.getElementById('sticky-cta');
-  var hero = document.querySelector('.hero');
+  var floatBtn = document.querySelector('.wa-float');
+  var hero = document.querySelector('.hero .cta-stack');
   var hideZones = [document.getElementById('consultora'), document.getElementById('final')].filter(Boolean);
   if (sticky && hero && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('has-io');
     var heroVisible = true, zonesVisible = {}, typing = false;
     var update = function () {
       var inZone = Object.keys(zonesVisible).some(function (k) { return zonesVisible[k]; });
@@ -61,8 +74,10 @@
       sticky.classList.toggle('is-visible', show);
       sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
       sticky.querySelectorAll('a').forEach(function (a) { a.tabIndex = show ? 0 : -1; });
+      if (floatBtn) floatBtn.classList.toggle('is-visible', show);
     };
-    new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); },
+      { rootMargin: '-70px 0px 0px 0px' }).observe(hero);
     hideZones.forEach(function (z) {
       new IntersectionObserver(function (e) { zonesVisible[z.id] = e[0].isIntersecting; update(); }).observe(z);
     });
@@ -76,6 +91,7 @@
 
   function initBuilder(form) {
     var preview = document.getElementById('builder-preview');
+    var status = document.getElementById('builder-status');
     var send = document.getElementById('builder-send');
     var GERAL = send.getAttribute('data-msg');
     var checked = function (name) { return form.querySelector('input[name="' + name + '"]:checked'); };
@@ -92,7 +108,8 @@
       if (paraEl) partes.push(paraEl.value);
       if (tamanhoEl && tamanhoEl.value) partes.push('Tamanho: ' + tamanhoEl.value + '.');
       if (estiloEl) partes.push('Estilo: ' + estiloEl.value + '.');
-      if (detalhes) partes.push('Detalhes: ' + detalhes.replace(/[.!?]*$/, '') + '.');
+      var d = detalhes.replace(/[\s.!?…]+$/, '');
+      if (d) partes.push('Detalhes: ' + d + '.');
       if (!partes.length) return { msg: GERAL, secao: '' };
       return {
         msg: 'Oi, Stampa! Vim pelo site. ' + partes.join(' ') + ' Pode me mandar algumas sugestões?',
@@ -107,13 +124,19 @@
       send.setAttribute('data-secao', r.secao);
     }
 
-    form.addEventListener('change', refresh);
     form.addEventListener('input', refresh);
+    // Leitor de tela: avisa uma vez por escolha (não a cada tecla digitada)
+    form.addEventListener('change', function () {
+      refresh();
+      if (status) status.textContent = 'Mensagem atualizada: ' + preview.textContent;
+    });
     form.addEventListener('reset', function () { setTimeout(refresh, 0); });
     form.addEventListener('submit', function (e) { e.preventDefault(); });
     send.addEventListener('click', function () {
       var r = compose();
+      if (r.msg === GERAL) { track('whatsapp_click', { source: 'construtor' }); return; }
       track('generate_lead', {
+        source: 'construtor',
         secao: r.secao,
         ocasiao: (checked('ocasiao') || {}).value || '',
         para: (checked('para') || {}).value || ''

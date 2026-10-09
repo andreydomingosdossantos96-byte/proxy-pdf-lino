@@ -6,7 +6,7 @@
   --sand: #efe6dc;
   --ink: #161312;
   --ink-2: #4b4440;
-  --ink-3: #7a716b;
+  --ink-3: #6b625c;
   --line: #e4d9cd;
 
   --red: #fc0000;         /* vermelho do logo (só em marca/acentos grandes) */
@@ -48,6 +48,8 @@ em { font-style: italic; }
 .skip-link { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 10px; text-decoration: none; }
 .skip-link:focus { top: 12px; }
 :focus-visible { outline: 3px solid var(--red-cta); outline-offset: 3px; border-radius: 6px; }
+/* Em fundo vermelho o anel de foco precisa ser branco para aparecer */
+.final-cta :focus-visible, .occasion--red :focus-visible, .dept--red :focus-visible, .insta-tile:focus-visible, .wa-float:focus-visible { outline-color: #fff; }
 
 /* ---------- Botões ---------- */
 .btn {
@@ -67,16 +69,19 @@ em { font-style: italic; }
 .btn-outline-light { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .45); }
 .btn-outline-light:hover { border-color: #fff; }
 .btn-sm { padding: 10px 16px; font-size: .92rem; }
+@media (max-width: 767px) { .btn-sm { min-height: 48px; } }
 .btn-lg { padding: 18px 28px; font-size: 1.06rem; }
 .btn-block { width: 100%; }
 
-.text-link { display: inline-flex; align-items: center; gap: .4em; font-weight: 700; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+.text-link { position: relative; display: inline-flex; align-items: center; gap: .4em; font-weight: 700; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+.text-link::after { content: ""; position: absolute; inset: -12px -4px; }
 .text-link .ic { transition: transform .2s ease; }
 .text-link:hover .ic { transform: translateX(3px); }
 
 .kicker { display: inline-flex; align-items: center; gap: 10px; font-size: .76rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--red-cta); margin-bottom: 14px; }
 .kicker::before { content: ""; width: 22px; height: 1.5px; background: currentColor; }
 .kicker--light { color: #fff; }
+.section--sand .kicker { color: var(--red-cta-hover); }
 
 .stars { color: var(--gold); letter-spacing: 2px; }
 
@@ -173,17 +178,22 @@ em { font-style: italic; }
 }
 .sticky-cta.is-visible { transform: translateY(0); }
 .wa-float {
-  position: fixed; right: 22px; bottom: 22px; z-index: 60; display: none; align-items: center; gap: 10px;
-  padding: 14px 20px 14px 16px; border-radius: 999px; background: var(--red-cta); color: #fff; text-decoration: none; font-weight: 700;
-  box-shadow: 0 16px 34px -12px rgba(22, 19, 18, .55); transition: transform .2s ease, opacity .2s ease;
+  position: fixed; right: 22px; bottom: 22px; z-index: 60; display: none; align-items: center; justify-content: center;
+  width: 62px; height: 62px; border-radius: 50%; background: var(--red-cta); color: #fff;
+  box-shadow: 0 16px 34px -12px rgba(22, 19, 18, .55); transition: transform .2s ease, opacity .2s ease, visibility .2s;
 }
-.wa-float .ic { width: 24px; height: 24px; }
-.wa-float:hover { transform: translateY(-2px); }
+.wa-float .ic { width: 30px; height: 30px; }
+.wa-float:hover { transform: translateY(-2px); background: var(--red-cta-hover); }
+/* Com JS: o botão só aparece depois do CTA do topo e some no construtor e no CTA final */
+.has-io .wa-float:not(.is-visible) { opacity: 0; visibility: hidden; transform: translateY(12px); }
 @media (min-width: 768px) {
   .sticky-cta { display: none; }
   .wa-float { display: inline-flex; }
 }
 @media (max-width: 767px) { .site-footer { padding-bottom: 100px; } }
+
+/* Sem JS o construtor não funciona; fica só o botão com a mensagem geral */
+.no-js .builder, .no-js .preview-label, .no-js .preview-bubble { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
