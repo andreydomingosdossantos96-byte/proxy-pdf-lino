@@ -19,6 +19,17 @@
     '2026-10-12': [8, 18]
   };
 
+  // Feriados sem horário confirmado: o site não diz "aberto/fechado", pede para confirmar no WhatsApp.
+  // Quando a loja informar o horário, mova a data para HORARIO_ESPECIAL.
+  var FERIADOS = {
+    '2026-11-02': 'Finados', '2026-11-15': 'Proclamação da República', '2026-11-20': 'Consciência Negra',
+    '2026-11-23': 'Aniversário de Vilhena', // confirmar se é feriado municipal
+    '2026-12-25': 'Natal', '2027-01-01': 'Ano Novo', '2027-01-04': 'Criação de Rondônia',
+    '2027-02-08': 'Carnaval', '2027-02-09': 'Carnaval', '2027-03-26': 'Sexta-feira Santa',
+    '2027-04-21': 'Tiradentes', '2027-05-01': 'Dia do Trabalho', '2027-05-27': 'Corpus Christi',
+    '2027-06-18': 'Dia do Evangélico (RO)', '2027-09-07': 'Independência', '2027-10-12': 'Nossa Senhora Aparecida'
+  };
+
   var DIAS = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
 
   // ===== Utilidades =====
@@ -49,25 +60,42 @@
     var d = new Date(Date.UTC(t.y, t.m - 1, t.d + n));
     return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(), dow: d.getUTCDay(), min: 0 };
   }
+  var tem = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); };
   function horarioDo(t) {
     var k = chave(t);
-    return Object.prototype.hasOwnProperty.call(HORARIO_ESPECIAL, k) ? HORARIO_ESPECIAL[k] : HORARIO[t.dow];
+    return tem(HORARIO_ESPECIAL, k) ? HORARIO_ESPECIAL[k] : HORARIO[t.dow];
   }
+  // Feriado sem horário confirmado pela loja
+  function feriadoIncerto(t) { var k = chave(t); return tem(FERIADOS, k) && !tem(HORARIO_ESPECIAL, k); }
   function hh(h) { return h + 'h'; }
 
+  // estado: 'aberto' | 'fechando' | 'fechado' | 'feriado'
   function statusLoja() {
     var t = agoraVilhena();
+    if (feriadoIncerto(t)) {
+      return { estado: 'feriado', texto: 'Feriado · horário pode mudar', curto: 'Feriado · confirme' };
+    }
     var hoje = horarioDo(t);
     if (hoje && t.min >= hoje[0] * 60 && t.min < hoje[1] * 60) {
       var falta = hoje[1] * 60 - t.min;
-      return { aberto: true, texto: falta <= 60 ? 'Aberto agora · fecha em ' + falta + ' min' : 'Aberto agora · fecha às ' + hh(hoje[1]) };
+      if (falta <= 60) return { estado: 'fechando', fecha: hh(hoje[1]), texto: 'Fecha em ' + falta + ' min · ainda dá tempo!', curto: 'Fecha em ' + falta + ' min' };
+      return { estado: 'aberto', fecha: hh(hoje[1]), texto: 'Aberto agora · fecha às ' + hh(hoje[1]), curto: 'Aberto · fecha ' + hh(hoje[1]) };
     }
-    if (hoje && t.min < hoje[0] * 60) return { aberto: false, texto: 'Fechado agora · abre hoje às ' + hh(hoje[0]) };
+    if (hoje && t.min < hoje[0] * 60) {
+      return { estado: 'fechado', abre: 'hoje às ' + hh(hoje[0]), texto: 'Fechado agora · abre hoje às ' + hh(hoje[0]), curto: 'Fechado · abre ' + hh(hoje[0]) };
+    }
+    var amanha = somaDias(t, 1);
+    if (feriadoIncerto(amanha)) {
+      return { estado: 'fechado', abre: null, texto: 'Fechado agora · amanhã é feriado: confirme o horário', curto: 'Fechado · amanhã é feriado' };
+    }
     for (var i = 1; i <= 7; i++) {
       var dia = somaDias(t, i), h = horarioDo(dia);
-      if (h) return { aberto: false, texto: 'Fechado agora · abre ' + (i === 1 ? 'amanhã' : DIAS[dia.dow]) + ' às ' + hh(h[0]) };
+      if (h) {
+        var quando = (i === 1 ? 'amanhã' : DIAS[dia.dow]) + ' às ' + hh(h[0]);
+        return { estado: 'fechado', abre: quando, texto: 'Fechado agora · abre ' + quando, curto: 'Fechado · abre ' + hh(h[0]) };
+      }
     }
-    return { aberto: false, texto: 'Fechado agora' };
+    return { estado: 'fechado', abre: null, texto: 'Fechado agora', curto: 'Fechado' };
   }
 
   // ===== Links de WhatsApp com mensagem pronta =====
@@ -88,37 +116,52 @@
   // ===== Aberto agora / horário de hoje =====
   function pintaStatus() {
     var s = statusLoja();
+    var aberto = s.estado === 'aberto' || s.estado === 'fechando';
     document.querySelectorAll('[data-open-status]').forEach(function (el) {
       el.hidden = false;
-      el.classList.toggle('is-open', s.aberto);
-      el.classList.toggle('is-closed', !s.aberto);
+      el.classList.toggle('is-open', aberto);
+      el.classList.toggle('is-closed', s.estado === 'fechado');
+      el.classList.toggle('is-holiday', s.estado === 'feriado');
       var txt = el.querySelector('.status-text');
-      if (txt) txt.textContent = s.texto;
+      if (txt) txt.textContent = el.hasAttribute('data-curto') ? s.curto : s.texto;
+    });
+    // Textos que mudam com o status (microcopy do hero e CTA final)
+    document.querySelectorAll('[data-status-copy]').forEach(function (el) {
+      var tpl = el.getAttribute('data-' + s.estado);
+      if (s.estado === 'fechado' && !s.abre) tpl = el.getAttribute('data-feriado') || tpl;
+      if (!tpl) return;
+      el.textContent = tpl.replace('{fecha}', s.fecha || '').replace('{abre}', s.abre || '');
     });
     var t = agoraVilhena();
     document.querySelectorAll('[data-dow]').forEach(function (row) {
-      row.classList.toggle('is-today', Number(row.getAttribute('data-dow')) === t.dow);
+      row.classList.toggle('is-today', row.getAttribute('data-dow').split(',').map(Number).indexOf(t.dow) !== -1);
     });
-    // Linha "hoje" mostra o horário especial quando houver
-    var hojeEl = document.getElementById('horario-hoje');
-    if (hojeEl) {
-      var h = horarioDo(t);
-      hojeEl.textContent = h ? 'Hoje: ' + hh(h[0]) + ' às ' + hh(h[1]) : 'Hoje: fechado';
-      hojeEl.hidden = false;
-    }
+    // Ingressos do fim de semana especial: marca HOJE e apaga os dias que já passaram
+    var k = chave(t);
+    document.querySelectorAll('[data-date]').forEach(function (el) {
+      var d = el.getAttribute('data-date');
+      el.classList.toggle('is-today', d === k);
+      el.classList.toggle('is-past', d < k);
+    });
   }
   pintaStatus();
   setInterval(pintaStatus, 60 * 1000);
 
-  // ===== Faixas de campanha com data de validade =====
-  // Cada faixa tem data-inicio e data-fim (AAAA-MM-DD, inclusive). Fora do período ela continua escondida.
-  (function () {
-    var hoje = chave(agoraVilhena());
+  // ===== Blocos de campanha com data de validade =====
+  // data-inicio / data-fim no formato AAAA-MM-DD ou AAAA-MM-DDTHH:MM (hora de Vilhena).
+  // Começam escondidos no HTML: fora do período (ou sem JS) não aparecem.
+  function campanhas() {
+    var t = agoraVilhena();
+    var agora = chave(t) + 'T' + pad(Math.floor(t.min / 60)) + ':' + pad(t.min % 60);
     document.querySelectorAll('[data-campanha]').forEach(function (el) {
-      var ini = el.getAttribute('data-inicio'), fim = el.getAttribute('data-fim');
-      if ((!ini || hoje >= ini) && (!fim || hoje <= fim)) el.hidden = false;
+      var ini = el.getAttribute('data-inicio') || '', fim = el.getAttribute('data-fim') || '';
+      if (ini && ini.length === 10) ini += 'T00:00';
+      if (fim && fim.length === 10) fim += 'T23:59';
+      el.hidden = !((!ini || agora >= ini) && (!fim || agora < fim));
     });
-  })();
+  }
+  campanhas();
+  setInterval(campanhas, 60 * 1000);
 
   // ===== Cabeçalho com sombra ao rolar =====
   var header = document.querySelector('.site-header');
@@ -147,32 +190,37 @@
     if (finalCta) new IntersectionObserver(function (e) { finalVisible = e[0].isIntersecting; update(); }).observe(finalCta);
   }
 
-  // ===== "Procurando algo?" — monta a pergunta do produto =====
+  // ===== "O que você está procurando?" — monta a pergunta do produto =====
+  // Sem JS o formulário envia direto para wa.me com o texto digitado (campo name="text").
   var busca = document.getElementById('busca-form');
   if (busca) {
+    busca.action = 'https://wa.me/' + WHATSAPP;
     var campo = busca.querySelector('#busca-produto');
-    var enviar = document.getElementById('busca-enviar');
-    var BASE = enviar.getAttribute('data-msg');
-    var montar = function () {
-      var p = campo.value.trim().replace(/[\s.!?…]+$/, '');
-      return p ? 'Oi, Múltiplos! Vim pelo site. Vocês têm ' + p + '? Qual o preço?' : BASE;
-    };
-    var refresh = function () { enviar.href = waUrl(montar()); };
-    campo.addEventListener('input', refresh);
-    busca.querySelectorAll('[data-sugestao]').forEach(function (b) {
-      b.addEventListener('click', function () { campo.value = b.getAttribute('data-sugestao'); refresh(); campo.focus(); });
-    });
+    var BASE = busca.getAttribute('data-msg');
     busca.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      track('whatsapp_click', { source: 'busca', produto: campo.value.trim() });
-      var url = waUrl(montar());
+      var p = campo.value.trim().replace(/[\s.!?…]+$/, '');
+      var msg = p ? 'Oi, Múltiplos! Vim pelo site. Vocês têm ' + p + '? Se tiver, qual o preço?' : BASE;
+      track('whatsapp_click', { source: 'busca', preenchido: p ? 'sim' : 'nao' });
+      var url = waUrl(msg);
       var win = window.open(url, '_blank');
       if (win) win.opener = null;
       else window.location.href = url;
     });
-    // O clique no link já registra 'whatsapp_click' pelo laço acima; aqui só atualiza o href
-    refresh();
   }
+
+  // ===== Copiar endereço =====
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.hidden = !(navigator.clipboard && window.isSecureContext);
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function () {
+        var label = b.querySelector('.copy-label'), old = label.textContent;
+        label.textContent = 'Endereço copiado!';
+        setTimeout(function () { label.textContent = old; }, 2500);
+        track('copiar_endereco', {});
+      });
+    });
+  });
 
   // ===== Mapa só carrega quando a pessoa pede =====
   var mapBtn = document.getElementById('map-load');

@@ -16,6 +16,8 @@
   --ink-3: #5f6578;
   --line: #ece4c8;
   --green: #12823d;        /* status "aberto agora" */
+  --wa: #128c4a;           /* botão do WhatsApp (verde-escuro, AA com branco) */
+  --wa-700: #0d6f3a;
 
   --radius: 18px;
   --radius-lg: 26px;
@@ -60,8 +62,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   transition: transform .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 .btn:active { transform: translateY(1px) scale(.99); }
-.btn-cta { background: var(--red); color: #fff; box-shadow: 0 12px 24px -12px rgba(196, 18, 47, .8); }
-.btn-cta:hover { background: var(--red-700); transform: translateY(-1px); }
+.btn-cta { background: var(--wa); color: #fff; box-shadow: 0 12px 24px -12px rgba(18, 140, 74, .8); }
+.btn-cta:hover { background: var(--wa-700); transform: translateY(-1px); }
 .btn-blue { background: var(--blue); color: #fff; }
 .btn-blue:hover { background: var(--blue-900); }
 .btn-ghost { background: var(--surface); color: var(--ink); border-color: rgba(24, 32, 58, .2); }
@@ -74,7 +76,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn-lg { padding: 18px 28px; font-size: 1.1rem; }
 .btn-block { width: 100%; }
 @media (max-width: 767px) { .btn-sm { min-height: 48px; } }
-@media (max-width: 359px) { .btn-lg { padding-inline: 16px; font-size: 1rem; } }
+@media (max-width: 480px) { .btn-lg { padding-inline: 14px; font-size: 1rem; gap: .45em; } }
+@media (min-width: 375px) and (max-width: 480px) { .btn-lg { white-space: nowrap; } }
 
 .text-link { position: relative; display: inline-flex; align-items: center; gap: .4em; font-weight: 800; color: var(--blue); text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
 .text-link::after { content: ""; position: absolute; inset: -12px -4px; }
@@ -90,6 +93,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .open-status.is-open { border-color: rgba(18, 130, 61, .35); }
 .open-status.is-open .dot { background: var(--green); box-shadow: 0 0 0 0 rgba(18, 130, 61, .5); animation: ping 2s ease-out infinite; }
 .open-status.is-closed .dot { background: var(--red); }
+.open-status.is-holiday .dot { background: var(--yellow-600); }
 @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(18, 130, 61, .45); } 80%, 100% { box-shadow: 0 0 0 9px rgba(18, 130, 61, 0); } }
 
 /* ---------- Faixa de campanha ---------- */
@@ -175,11 +179,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 359px) { .sticky-route .route-txt { display: none; } }
 .wa-float {
   position: fixed; right: 22px; bottom: 22px; z-index: 60; display: none; align-items: center; justify-content: center;
-  width: 64px; height: 64px; border-radius: 50%; background: var(--red); color: #fff;
+  width: 64px; height: 64px; border-radius: 50%; background: var(--wa); color: #fff;
   box-shadow: 0 16px 34px -12px rgba(24, 32, 58, .55); transition: transform .2s ease, opacity .2s ease, visibility .2s;
 }
 .wa-float .ic { width: 32px; height: 32px; }
-.wa-float:hover { transform: translateY(-2px); background: var(--red-700); }
+.wa-float:hover { transform: translateY(-2px); background: var(--wa-700); }
 .has-io .wa-float:not(.is-visible) { opacity: 0; visibility: hidden; transform: translateY(12px); }
 @media (min-width: 768px) {
   .sticky-cta { display: none; }
