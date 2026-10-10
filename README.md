@@ -7,6 +7,8 @@ HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem
 > A pasta `api/` é o proxy de PDF que já existia neste repositório e não foi alterada.
 >
 > A pasta `stampa/` tem outro site, independente deste: o da loja **Stampa Vilhena** (veja `stampa/README.md`). Na prévia da Vercel ele fica em `/stampa/`.
+>
+> A pasta `multiplos/` tem o site do **Multiplos Atacado** (veja `multiplos/README.md`), em `/multiplos/` na prévia.
 
 ## Estrutura
 
