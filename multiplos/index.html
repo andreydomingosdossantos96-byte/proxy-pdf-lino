@@ -82,14 +82,15 @@
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Faixa do Dia das Crianças: aparece só até 12/10/2026 às 18h (hora de Vilhena) -->
-<div class="campaign" data-campanha data-fim="2026-10-12T18:00" hidden>
-  <p class="campaign-inner"><span><strong>Dia das Crianças:</strong> loja aberta sáb 10, dom 11 e seg 12/10, das 8h às 18h</span> <a href="#dia-das-criancas">Ver detalhes →</a></p>
+<div class="campaign on-dark" data-campanha data-fim="2026-10-12T18:00" hidden>
+  <a class="campaign-inner" href="#dia-das-criancas"><span><strong>Dia das Crianças:</strong> aberto sáb, dom e seg (12/10), das 8h às 18h <span aria-hidden="true">→</span></span></a>
 </div>
+<script>/* mostra a faixa já na primeira pintura (o main.js esconde depois do prazo) */if(Date.now()<Date.parse('2026-10-12T18:00:00-04:00'))document.currentScript.previousElementSibling.hidden=false;</script>
 
 <header class="site-header" id="topo">
   <div class="container header-inner">
     <a class="brand" href="#topo" aria-label="Multiplos Atacado — início">
-      <img src="assets/img/logo-multiplos.png" alt="" width="50" height="50">
+      <img src="assets/img/logo-multiplos-240.webp" alt="" width="50" height="50">
       <span class="brand-text"><strong>Múltiplos</strong><small>Atacado</small></span>
     </a>
     <nav class="main-nav" aria-label="Navegação principal">
@@ -111,9 +112,9 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> Av. Marechal Rondon, 4500 · Centro · Vilhena-RO</p>
+        <p class="eyebrow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> <span>Av. Marechal Rondon, 4500 · Centro · <span class="nw">Vilhena-RO</span></span></p>
         <h1 id="hero-title">Tem no Múltiplos? <span class="h1-red">Pergunta no Whats!</span></h1>
-        <p class="lead">Brinquedos, utilidades pra casa e cozinha e um montão de achadinhos. Escreve o que você procura ou manda uma foto, que a equipe te responde se tem e quanto está. Aí é só vir buscar.</p>
+        <p class="lead">Brinquedos, utilidades pra casa e cozinha e um montão de achadinhos.<span class="lead-more"> Escreve o que você procura ou manda uma foto, que a equipe te responde se tem e quanto está. Aí é só vir buscar.</span></p>
 
         <div class="hero-actions">
           <form class="ask-card" id="busca-form" action="https://wa.me/556933221007" method="get" target="_blank" data-msg="Oi, Múltiplos! Vim pelo site. Queria saber se vocês têm um produto. Vou mandar o nome ou a foto:">
@@ -124,9 +125,10 @@
             </button>
             <p class="microcopy" data-status-copy
                data-aberto="Abre o seu WhatsApp com a mensagem pronta. É só enviar."
-               data-fechando="A loja fecha às {fecha}. Pergunta agora e ainda dá tempo de vir!"
+               data-fechando="Hoje a loja fecha às {fecha}. Pergunta no Whats antes de sair."
                data-fechado="Loja fechada agora · abre {abre}. Pode deixar sua mensagem."
-               data-feriado="Feriado: o horário pode mudar. Pode deixar sua mensagem.">Abre o seu WhatsApp com a mensagem pronta. É só enviar.</p>
+               data-feriado="Feriado: o horário pode mudar. Pode deixar sua mensagem."
+               data-vespera="Loja fechada agora. Amanhã é feriado: confirme o horário no Whats.">Abre o seu WhatsApp com a mensagem pronta. É só enviar.</p>
           </form>
 
           <ul class="quick-chips" aria-label="Perguntar por categoria">
@@ -139,9 +141,9 @@
 
         <p class="hero-link">Prefere vir direto? <a class="text-link" href="#visita">Ver rota e horário <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
         <ul class="proof-line">
-          <li><span class="stars" aria-hidden="true">★</span> <strong>4,4 no Google</strong> · mais de 600 avaliações</li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg> <strong>+65 mil</strong> seguidores no Insta</li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> Aberto <strong>todos os dias</strong>, até domingo de manhã</li>
+          <li><span class="stars" aria-hidden="true">★</span> <span><strong>4,4 no Google</strong> · mais de 600 avaliações</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg> <span><strong>+65 mil</strong> seguidores no Insta</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> <span>Aberto <strong>todos os dias</strong>, até domingo de manhã</span></li>
         </ul>
       </div>
 
@@ -151,13 +153,13 @@
           <span class="open-status" data-open-status hidden><span class="dot" aria-hidden="true"></span><span class="status-text">Horário de hoje</span></span>
         </div>
         <img class="hero-sub" src="assets/img/brinquedo-carrossel.webp" width="426" height="496" alt="Brinquedo de carrossel colorido" loading="lazy">
-        <img class="hero-sub" src="assets/img/prateleira-vidros.webp" width="1200" height="893" alt="Prateleiras com vidros, travessas e potes" loading="lazy">
+        <img class="hero-sub" src="assets/img/prateleira-vidros-600.webp" width="600" height="447" alt="Prateleiras com vidros, travessas e potes" loading="lazy">
       </figure>
     </div>
   </section>
 
   <!-- DIA DAS CRIANÇAS (temporário: só até 12/10/2026 às 18h) -->
-  <section class="section kids" id="dia-das-criancas" aria-labelledby="kids-title" data-campanha data-fim="2026-10-12T18:00" hidden>
+  <section class="section kids on-dark" id="dia-das-criancas" aria-labelledby="kids-title" data-campanha data-fim="2026-10-12T18:00" hidden>
     <div class="container kids-grid">
       <div class="kids-copy">
         <p class="kids-badge">Só até segunda, 12/10</p>
@@ -200,7 +202,7 @@
           </div>
         </article>
         <article class="cat">
-          <img src="assets/img/prateleira-vidros.webp" width="1200" height="893" alt="Prateleiras com suqueiras, travessas, potes e copos de vidro" loading="lazy">
+          <img src="assets/img/prateleira-vidros-600.webp" width="600" height="447" alt="Prateleiras com suqueiras, travessas, potes e copos de vidro" loading="lazy">
           <div class="cat-body">
             <h3><svg class="ic" aria-hidden="true"><use href="#i-kitchen"/></svg> Casa e cozinha</h3>
             <p>Vidros, travessas, potes herméticos, jarras, suqueiras, garrafas térmicas, chaleiras, balanças e porta-temperos.</p>
@@ -208,14 +210,14 @@
           </div>
         </article>
         <article class="cat">
-          <img src="assets/img/processador-alimentos.webp" width="640" height="837" alt="Processador manual de alimentos verde-água na mão de uma cliente" loading="lazy">
+          <img src="assets/img/processador-alimentos.webp" width="640" height="837" alt="Mão segurando um processador manual de alimentos verde-água na loja" loading="lazy">
           <div class="cat-body">
             <h3><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg> Achadinhos</h3>
             <p>Aquelas coisinhas úteis (e bonitas) que a gente vive mostrando nos stories.</p>
             <a class="btn btn-cta btn-sm js-wa" data-source="cat-achadinhos" data-msg="Oi, Múltiplos! Vim pelo site. Quero ver os achadinhos! O que tem de novidade aí na loja?" href="https://wa.me/556933221007?text=Oi%2C%20M%C3%BAltiplos%21%20Vim%20pelo%20site.%20Quero%20ver%20os%20achadinhos%21%20O%20que%20tem%20de%20novidade%20a%C3%AD%20na%20loja%3F"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar se tem</a>
           </div>
         </article>
-        <article class="cat cat--photo">
+        <article class="cat cat--photo on-red">
           <div class="cat-art" aria-hidden="true"><svg class="ic"><use href="#i-camera"/></svg></div>
           <div class="cat-body">
             <h3>Não sabe o nome?</h3>
@@ -296,7 +298,7 @@ Quantidade:&#32;
         <img class="loja-side" src="assets/img/equipe-molejo.webp" width="423" height="464" alt="Duas atendentes do Múltiplos de polo amarela dentro da loja" loading="lazy">
       </div>
       <div class="loja-copy">
-        <p class="kicker">Quem conhece, volta</p>
+        <p class="kicker">A loja</p>
         <h2 class="section-title" id="loja-title">Loja de verdade, gente de verdade</h2>
         <p class="section-sub">A fachada amarela grandona da Av. Marechal Rondon, a equipe de polo amarela e muita animação. Como a turma diz nos vídeos: aqui todo mundo tem um molejo!</p>
         <ul class="badges">
@@ -328,6 +330,7 @@ Quantidade:&#32;
         <table class="hours">
           <caption class="sr-only">Horário de funcionamento</caption>
           <tbody>
+            <tr id="hours-hoje" class="is-today hours-special" hidden><th scope="row">Hoje</th><td></td></tr>
             <tr data-dow="1,2,3,4,5"><th scope="row">Segunda a sexta</th><td>8h às 19h</td></tr>
             <tr data-dow="6"><th scope="row">Sábado</th><td>8h às 18h</td></tr>
             <tr data-dow="0"><th scope="row">Domingo</th><td>8h às 13h</td></tr>
@@ -336,7 +339,7 @@ Quantidade:&#32;
         <p class="special-hours" data-campanha data-fim="2026-10-12T18:00" hidden><strong>Final de semana das crianças:</strong> sábado 10, domingo 11 e segunda 12/10, das 8h às 18h.</p>
         <div class="sunday">
           <svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>
-          <p><strong>Domingo é dia de Múltiplos.</strong> Lembrou no domingo do presente de aniversário ou do pote pro almoço de família? Das 8h às 13h a gente tá aqui.</p>
+          <p><strong>Domingo é dia de Múltiplos.</strong> Lembrou no domingo do presente de aniversário ou do pote pro almoço de família? Das 8h às 13h a gente tá aqui.<span data-campanha data-inicio="2026-10-11" data-fim="2026-10-11T18:00" hidden> <strong>Neste domingo, 11/10, vai até as 18h!</strong></span></p>
         </div>
         <p class="fine">Em feriados o horário pode mudar. Na dúvida, <a class="js-wa" data-source="visita-horario" data-msg="Oi, Múltiplos! Vim pelo site. Queria confirmar o horário de vocês hoje. Estão abertos?" href="https://wa.me/556933221007?text=Oi%2C%20M%C3%BAltiplos%21%20Vim%20pelo%20site.%20Queria%20confirmar%20o%20hor%C3%A1rio%20de%20voc%C3%AAs%20hoje.%20Est%C3%A3o%20abertos%3F">confirme o horário no WhatsApp</a> antes de sair.</p>
       </div>
@@ -349,8 +352,8 @@ Quantidade:&#32;
         <div class="route-buttons">
           <a class="btn btn-blue route-main" href="https://www.google.com/maps/dir/?api=1&amp;destination=Multiplos+Atacado,+Av.+Marechal+Rondon,+4500+-+Centro,+Vilhena+-+RO,+76980-002" target="_blank" rel="noopener" data-track="rota_click" data-source="visita-maps"><svg class="ic" aria-hidden="true"><use href="#i-nav"/></svg> Traçar rota no Google Maps</a>
           <a class="btn btn-ghost" href="https://waze.com/ul?q=Av.%20Marechal%20Rondon%2C%204500%2C%20Vilhena%20RO&amp;navigate=yes" target="_blank" rel="noopener" data-track="rota_click" data-source="visita-waze"><svg class="ic" aria-hidden="true"><use href="#i-nav"/></svg> Abrir no Waze</a>
-          <button class="btn btn-ghost" type="button" data-copy="Av. Marechal Rondon, 4500 - Centro, Vilhena - RO, 76980-002" hidden><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> <span class="copy-label">Copiar endereço</span></button>
           <a class="btn btn-ghost" href="tel:+556933221007" data-track="ligar" data-source="visita"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg> (69) 3322-1007</a>
+          <button class="btn btn-ghost" type="button" data-copy="Av. Marechal Rondon, 4500 - Centro, Vilhena - RO, 76980-002" hidden><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> <span class="copy-label">Copiar endereço</span></button>
         </div>
         <p class="visit-tip">Antes de sair, pergunta se tem e vem sem perder viagem.</p>
         <a class="btn btn-cta btn-block js-wa" data-source="visita" data-msg="Oi, Múltiplos! Vim pelo site. Tô pensando em passar aí na loja. Antes, queria saber se vocês têm:" href="https://wa.me/556933221007?text=Oi%2C%20M%C3%BAltiplos%21%20Vim%20pelo%20site.%20T%C3%B4%20pensando%20em%20passar%20a%C3%AD%20na%20loja.%20Antes%2C%20queria%20saber%20se%20voc%C3%AAs%20t%C3%AAm%3A"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar se tem no WhatsApp</a>
@@ -419,13 +422,14 @@ Quantidade:&#32;
   <!-- CTA FINAL -->
   <section class="final-cta" id="final" aria-labelledby="final-title">
     <div class="container center">
-      <img class="final-logo" src="assets/img/logo-multiplos.png" width="120" height="120" alt="" loading="lazy">
+      <img class="final-logo" src="assets/img/logo-multiplos-240.webp" width="120" height="120" alt="" loading="lazy">
       <h2 class="section-title" id="final-title">Ficou na dúvida se tem? Pergunta!</h2>
       <p class="section-sub" data-status-copy
          data-aberto="A loja tá aberta agora até as {fecha}. Pergunta no Whats e já vem na certa."
          data-fechando="Corre! Hoje a loja fecha às {fecha}. Pergunta no Whats antes de sair."
          data-fechado="A loja tá fechada agora e abre {abre}. Pode deixar sua pergunta no Whats."
-         data-feriado="Hoje é feriado e o horário pode mudar. Confirma no Whats antes de sair.">É só mandar mensagem. Se tiver, você já vem na certa.</p>
+         data-feriado="Hoje é feriado e o horário pode mudar. Confirma no Whats antes de sair."
+         data-vespera="A loja tá fechada agora e amanhã é feriado. Confirma o horário no Whats antes de sair.">É só mandar mensagem. Se tiver, você já vem na certa.</p>
       <div class="final-actions">
         <a class="btn btn-cta btn-lg js-wa" data-source="final" data-msg="Oi, Múltiplos! Vim pelo site. Queria saber se vocês têm um produto. Vou mandar o nome ou a foto:" href="https://wa.me/556933221007?text=Oi%2C%20M%C3%BAltiplos%21%20Vim%20pelo%20site.%20Queria%20saber%20se%20voc%C3%AAs%20t%C3%AAm%20um%20produto.%20Vou%20mandar%20o%20nome%20ou%20a%20foto%3A"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar se tem no WhatsApp</a>
         <a class="btn btn-ghost btn-lg" href="https://www.google.com/maps/dir/?api=1&amp;destination=Multiplos+Atacado,+Av.+Marechal+Rondon,+4500+-+Centro,+Vilhena+-+RO,+76980-002" target="_blank" rel="noopener" data-track="rota_click" data-source="final"><svg class="ic" aria-hidden="true"><use href="#i-nav"/></svg> Ver rota até a loja</a>
@@ -435,25 +439,25 @@ Quantidade:&#32;
 
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer on-dark">
   <div class="container footer-grid">
     <div class="footer-col">
       <div class="footer-brand">
-        <img src="assets/img/logo-multiplos.png" alt="Logo do Multiplos Atacado" width="72" height="72" loading="lazy">
+        <img src="assets/img/logo-multiplos-240.webp" alt="Logo do Multiplos Atacado" width="72" height="72" loading="lazy">
         <p><strong>Multiplos Atacado</strong><br>Esperamos por você!</p>
       </div>
       <div class="footer-social">
         <a class="social js-wa" data-source="footer" data-msg="Oi, Múltiplos! Vim pelo site. Queria saber se vocês têm um produto. Vou mandar o nome ou a foto:" href="https://wa.me/556933221007?text=Oi%2C%20M%C3%BAltiplos%21%20Vim%20pelo%20site.%20Queria%20saber%20se%20voc%C3%AAs%20t%C3%AAm%20um%20produto.%20Vou%20mandar%20o%20nome%20ou%20a%20foto%3A" aria-label="WhatsApp"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
-        <a class="social" href="https://www.instagram.com/multiplos_atacado/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg></a>
-        <a class="social" href="https://www.google.com/maps/search/?api=1&amp;query=Multiplos+Atacado+Vilhena" target="_blank" rel="noopener" aria-label="Google Maps"><svg class="ic" aria-hidden="true"><use href="#i-google"/></svg></a>
+        <a class="social" href="https://www.instagram.com/multiplos_atacado/" target="_blank" rel="noopener" aria-label="Instagram" data-track="instagram_click" data-source="footer-social"><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+        <a class="social" href="https://www.google.com/maps/search/?api=1&amp;query=Multiplos+Atacado+Vilhena" target="_blank" rel="noopener" aria-label="Google Maps" data-track="google_reviews" data-source="footer-social"><svg class="ic" aria-hidden="true"><use href="#i-google"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
       <h3>Endereço</h3>
       <ul>
         <li>Av. Marechal Rondon, 4500 – Centro<br>Vilhena – RO, 76980-002</li>
-        <li><a href="tel:+556933221007">(69) 3322-1007</a></li>
-        <li><a href="https://www.instagram.com/multiplos_atacado/" target="_blank" rel="noopener">Instagram @multiplos_atacado</a></li>
+        <li><a href="tel:+556933221007" data-track="ligar" data-source="footer">(69) 3322-1007</a></li>
+        <li><a href="https://www.instagram.com/multiplos_atacado/" target="_blank" rel="noopener" data-track="instagram_click" data-source="footer">Instagram @multiplos_atacado</a></li>
       </ul>
     </div>
     <div class="footer-col">

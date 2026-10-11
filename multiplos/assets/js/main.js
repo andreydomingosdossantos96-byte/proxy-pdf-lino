@@ -19,16 +19,17 @@
     '2026-10-12': [8, 18]
   };
 
-  // Feriados sem horário confirmado: o site não diz "aberto/fechado", pede para confirmar no WhatsApp.
-  // Quando a loja informar o horário, mova a data para HORARIO_ESPECIAL.
-  var FERIADOS = {
-    '2026-11-02': 'Finados', '2026-11-15': 'Proclamação da República', '2026-11-20': 'Consciência Negra',
-    '2026-11-23': 'Aniversário de Vilhena', // confirmar se é feriado municipal
-    '2026-12-25': 'Natal', '2027-01-01': 'Ano Novo', '2027-01-04': 'Criação de Rondônia',
-    '2027-02-08': 'Carnaval', '2027-02-09': 'Carnaval', '2027-03-26': 'Sexta-feira Santa',
-    '2027-04-21': 'Tiradentes', '2027-05-01': 'Dia do Trabalho', '2027-05-27': 'Corpus Christi',
-    '2027-06-18': 'Dia do Evangélico (RO)', '2027-09-07': 'Independência', '2027-10-12': 'Nossa Senhora Aparecida'
+  // Feriados sem horário confirmado: nesses dias o site não diz "aberto/fechado", pede para confirmar no WhatsApp.
+  // Valem para todos os anos. Quando a loja informar o horário de uma data, ponha a data em HORARIO_ESPECIAL.
+  var FERIADOS_FIXOS = {
+    '01-01': 'Ano Novo', '01-04': 'Criação de Rondônia', '04-21': 'Tiradentes', '05-01': 'Dia do Trabalho',
+    '06-18': 'Dia do Evangélico (RO)', '09-07': 'Independência', '10-12': 'Nossa Senhora Aparecida',
+    '11-02': 'Finados', '11-15': 'Proclamação da República', '11-20': 'Consciência Negra',
+    '11-23': 'Aniversário de Vilhena', // confirmar se é feriado municipal
+    '12-25': 'Natal'
   };
+  // Dias em relação à Páscoa: Carnaval (segunda e terça), Sexta-feira Santa, Corpus Christi
+  var FERIADOS_MOVEIS = { '-48': 'Carnaval', '-47': 'Carnaval', '-2': 'Sexta-feira Santa', '60': 'Corpus Christi' };
 
   var DIAS = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
 
@@ -65,8 +66,21 @@
     var k = chave(t);
     return tem(HORARIO_ESPECIAL, k) ? HORARIO_ESPECIAL[k] : HORARIO[t.dow];
   }
+  // Domingo de Páscoa (algoritmo de Meeus/Jones/Butcher), em ms UTC
+  function pascoa(y) {
+    var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4,
+      f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30,
+      i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+      n = h + l - 7 * m + 114;
+    return Date.UTC(y, Math.floor(n / 31) - 1, (n % 31) + 1);
+  }
+  function ehFeriado(t) {
+    if (tem(FERIADOS_FIXOS, pad(t.m) + '-' + pad(t.d))) return true;
+    var dif = Math.round((Date.UTC(t.y, t.m - 1, t.d) - pascoa(t.y)) / 864e5);
+    return tem(FERIADOS_MOVEIS, String(dif));
+  }
   // Feriado sem horário confirmado pela loja
-  function feriadoIncerto(t) { var k = chave(t); return tem(FERIADOS, k) && !tem(HORARIO_ESPECIAL, k); }
+  function feriadoIncerto(t) { return !tem(HORARIO_ESPECIAL, chave(t)) && ehFeriado(t); }
   function hh(h) { return h + 'h'; }
 
   // estado: 'aberto' | 'fechando' | 'fechado' | 'feriado'
@@ -78,7 +92,7 @@
     var hoje = horarioDo(t);
     if (hoje && t.min >= hoje[0] * 60 && t.min < hoje[1] * 60) {
       var falta = hoje[1] * 60 - t.min;
-      if (falta <= 60) return { estado: 'fechando', fecha: hh(hoje[1]), texto: 'Fecha em ' + falta + ' min · ainda dá tempo!', curto: 'Fecha em ' + falta + ' min' };
+      if (falta <= 60) return { estado: 'fechando', fecha: hh(hoje[1]), texto: 'Aberto · fecha em ' + falta + ' min', curto: 'Fecha em ' + falta + ' min' };
       return { estado: 'aberto', fecha: hh(hoje[1]), texto: 'Aberto agora · fecha às ' + hh(hoje[1]), curto: 'Aberto · fecha ' + hh(hoje[1]) };
     }
     if (hoje && t.min < hoje[0] * 60) {
@@ -86,7 +100,7 @@
     }
     var amanha = somaDias(t, 1);
     if (feriadoIncerto(amanha)) {
-      return { estado: 'fechado', abre: null, texto: 'Fechado agora · amanhã é feriado: confirme o horário', curto: 'Fechado · amanhã é feriado' };
+      return { estado: 'fechado', vespera: true, abre: null, texto: 'Fechado agora · amanhã é feriado: confirme o horário', curto: 'Fechado · amanhã é feriado' };
     }
     for (var i = 1; i <= 7; i++) {
       var dia = somaDias(t, i), h = horarioDo(dia);
@@ -95,7 +109,7 @@
         return { estado: 'fechado', abre: quando, texto: 'Fechado agora · abre ' + quando, curto: 'Fechado · abre ' + hh(h[0]) };
       }
     }
-    return { estado: 'fechado', abre: null, texto: 'Fechado agora', curto: 'Fechado' };
+    return { estado: 'fechado', abre: 'em breve', texto: 'Fechado agora', curto: 'Fechado' };
   }
 
   // ===== Links de WhatsApp com mensagem pronta =====
@@ -128,16 +142,27 @@
     // Textos que mudam com o status (microcopy do hero e CTA final)
     document.querySelectorAll('[data-status-copy]').forEach(function (el) {
       var tpl = el.getAttribute('data-' + s.estado);
-      if (s.estado === 'fechado' && !s.abre) tpl = el.getAttribute('data-feriado') || tpl;
+      if (s.vespera) tpl = el.getAttribute('data-vespera') || tpl;
       if (!tpl) return;
       el.textContent = tpl.replace('{fecha}', s.fecha || '').replace('{abre}', s.abre || '');
     });
-    var t = agoraVilhena();
+    // Tabela de horários: em dia normal destaca a linha de hoje; em dia especial ou feriado
+    // mostra uma linha "Hoje" com o horário certo, para não contradizer o status acima.
+    var t = agoraVilhena(), k = chave(t);
+    var especial = tem(HORARIO_ESPECIAL, k), incerto = feriadoIncerto(t);
     document.querySelectorAll('[data-dow]').forEach(function (row) {
-      row.classList.toggle('is-today', row.getAttribute('data-dow').split(',').map(Number).indexOf(t.dow) !== -1);
+      row.classList.toggle('is-today', !especial && !incerto && row.getAttribute('data-dow').split(',').map(Number).indexOf(t.dow) !== -1);
     });
+    var linhaHoje = document.getElementById('hours-hoje');
+    if (linhaHoje) {
+      linhaHoje.hidden = !(especial || incerto);
+      if (especial || incerto) {
+        var he = HORARIO_ESPECIAL[k];
+        linhaHoje.querySelector('th').textContent = incerto ? 'Hoje (feriado)' : 'Hoje (horário especial)';
+        linhaHoje.querySelector('td').textContent = incerto ? 'confirme no Whats' : (he ? hh(he[0]) + ' às ' + hh(he[1]) : 'Fechado');
+      }
+    }
     // Ingressos do fim de semana especial: marca HOJE e apaga os dias que já passaram
-    var k = chave(t);
     document.querySelectorAll('[data-date]').forEach(function (el) {
       var d = el.getAttribute('data-date');
       el.classList.toggle('is-today', d === k);
@@ -199,7 +224,10 @@
     var BASE = busca.getAttribute('data-msg');
     busca.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      var p = campo.value.trim().replace(/[\s.!?…]+$/, '');
+      // Tira o "tem…?" que a pessoa já digita (o H1 pergunta "Tem no Múltiplos?") para não duplicar a pergunta
+      var p = campo.value.trim().replace(/[\s.!?…]+$/, '')
+        .replace(/^(oi[\s,!.]*)?((voc[eê]s|vcs|vc)\s+)?(tem\s+a[ií]|t[eê]m)\s+/i, '').replace(/^[¿?\s]+/, '');
+      if (p && !/^[A-ZÀ-Ý]{2}/.test(p)) p = p.charAt(0).toLowerCase() + p.slice(1);
       var msg = p ? 'Oi, Múltiplos! Vim pelo site. Vocês têm ' + p + '? Se tiver, qual o preço?' : BASE;
       track('whatsapp_click', { source: 'busca', preenchido: p ? 'sim' : 'nao' });
       var url = waUrl(msg);
@@ -218,7 +246,7 @@
         label.textContent = 'Endereço copiado!';
         setTimeout(function () { label.textContent = old; }, 2500);
         track('copiar_endereco', {});
-      });
+      }).catch(function () {});
     });
   });
 
