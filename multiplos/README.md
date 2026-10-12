@@ -8,9 +8,9 @@ HTML/CSS/JS puro, sem build e sem dependências. A pasta é autocontida: pode ir
 
 ```
 index.html               página (textos, seções, SEO, schema Store com horários)
-assets/css/base.css      cores, tipografia, botões, cabeçalho, rodapé, CTA fixo
-assets/css/sections.css  estilos de cada seção
-assets/js/main.js        WhatsApp, horários/feriados, "aberto agora", campanhas com data, busca, mapa, eventos
+assets/css/site.css      todo o visual (cores, tipografia, seções, animações)
+assets/illus/            ilustrações dos objetos (geradas com IA no Figma, fundo transparente)
+assets/js/main.js        WhatsApp, horários/feriados, "aberto agora", busca, caixa-surpresa, animações, eventos
 assets/img/              logo, favicons, imagem de compartilhamento e fotos
 ```
 
@@ -29,19 +29,18 @@ npx serve .
 | **Horário normal** | `HORARIO` em `main.js` (0 = domingo … 6 = sábado) e a tabela/rodapé/schema em `index.html` |
 | **Horário especial** (feriado, balanço, Natal, Black Friday) | `HORARIO_ESPECIAL` em `main.js`: `'AAAA-MM-DD': [abre, fecha]` ou `null` para fechado |
 | **Feriados sem horário definido** | `FERIADOS` em `main.js`. Nesses dias o site não diz "aberto/fechado"; pede para confirmar no WhatsApp |
-| **Faixas/seções de campanha** | elementos com `data-campanha data-fim="AAAA-MM-DDTHH:MM"` em `index.html`. Somem sozinhos depois do prazo |
 | Mensagem pronta de cada botão | atributo `data-msg` de cada link `.js-wa` |
-| Cores e fontes | variáveis no topo de `assets/css/base.css` |
+| Cores e fontes | variáveis no topo de `assets/css/site.css` |
 
 > O indicador "Aberto agora" só segue a agenda escrita no código. Se a loja fechar de surpresa ou mudar de horário, alguém precisa atualizar `HORARIO_ESPECIAL`. Senão, o site diz "aberto" com a porta fechada.
 
 ## Pendências antes de publicar
 
 1. **WhatsApp**: o número `(69) 3322-1007` aparece com o ícone do WhatsApp no cartaz oficial da loja, mas confirme e teste `wa.me/556933221007`.
-2. **Horário do Dia das Crianças**: o site segue o cartaz (sáb, dom e seg 12/10 das 8h às 18h). O Google mostra domingo 8h–13h e segunda 8h–19h. Atualize o Google também. A faixa e a seção somem sozinhas em 12/10/2026 às 18h.
+2. **Ilustrações**: foram geradas com a IA do Figma. Se as versões em `assets/illus/` estiverem pequenas/borradas, baixe as originais em alta e rode o recorte de novo (fundo branco → transparente).
 3. **Feriados**: confirme a lista em `FERIADOS` (inclusive se 23/11, aniversário de Vilhena, é feriado municipal) e informe o horário de fim de ano.
 4. **Atacado/revenda**: o site só convida a perguntar sobre compras em quantidade. Se houver condição real (pedido mínimo, preço por quantidade), ela vira argumento na página.
-5. **Vitrine**: os 8 produtos vieram de stories de maio/2026 e out/2025, sem preço. Troque por produtos atuais quando puder.
+5. **Caixa-surpresa**: os achadinhos mostrados são ilustrações de produtos que já apareceram nos stories, sem preço. Troque a lista em `main.js` quando quiser.
 6. **Direito de imagem**: autorização por escrito das atendentes que aparecem nas fotos.
 7. **Fotos**: as fotos da fachada e da prateleira vêm do Google Maps; confirme que são da loja. Fotos originais em boa resolução deixam o site bem melhor.
 8. **Preços**: o site não publica preço de propósito (Código de Defesa do Consumidor, art. 30: preço anunciado obriga a loja). Se quiser publicar, alguém precisa manter atualizado.

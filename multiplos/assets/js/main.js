@@ -1,8 +1,6 @@
-/* Múltiplos Atacado — interações do site (sem dependências) */
+/* Múltiplos Atacado — interações (sem bibliotecas) */
 (function () {
   'use strict';
-
-  document.documentElement.classList.remove('no-js');
 
   // ===== CONFIGURAÇÃO =====
   // WhatsApp: DDI + DDD + número, só dígitos.
@@ -12,11 +10,9 @@
   // Horário normal (0 = domingo … 6 = sábado), em horas cheias [abre, fecha]. Fonte: Google e bio do Instagram.
   var HORARIO = { 0: [8, 13], 1: [8, 19], 2: [8, 19], 3: [8, 19], 4: [8, 19], 5: [8, 19], 6: [8, 18] };
 
-  // Datas com horário diferente (AAAA-MM-DD). null = fechado. Fonte: cartaz "Final de semana das crianças".
+  // Datas com horário diferente (AAAA-MM-DD): [abre, fecha] ou null = fechado.
   var HORARIO_ESPECIAL = {
-    '2026-10-10': [8, 18],
-    '2026-10-11': [8, 18],
-    '2026-10-12': [8, 18]
+    // '2026-12-24': [8, 16],
   };
 
   // Feriados sem horário confirmado: nesses dias o site não diz "aberto/fechado", pede para confirmar no WhatsApp.
@@ -112,156 +108,153 @@
     return { estado: 'fechado', abre: 'em breve', texto: 'Fechado agora', curto: 'Fechado' };
   }
 
-  // ===== Links de WhatsApp com mensagem pronta =====
+
+  // ===== WhatsApp: no máximo 4 pontos (cabeçalho, busca do topo, revenda, final) =====
   document.querySelectorAll('.js-wa').forEach(function (a) {
     a.href = waUrl(a.getAttribute('data-msg'));
     a.target = '_blank';
     a.rel = 'noopener';
-    a.addEventListener('click', function () {
-      track('whatsapp_click', { source: a.getAttribute('data-source') || 'desconhecido' });
-    });
+    a.addEventListener('click', function () { track('whatsapp_click', { source: a.getAttribute('data-cta') || '' }); });
   });
   document.querySelectorAll('[data-track]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      track(a.getAttribute('data-track'), { source: a.getAttribute('data-source') || '' });
-    });
+    a.addEventListener('click', function () { track(a.getAttribute('data-track'), {}); });
   });
 
-  // ===== Aberto agora / horário de hoje =====
+  // Busca do topo: monta "Vocês têm X?" (sem JS o formulário envia o texto direto para o wa.me)
+  var ask = document.getElementById('ask');
+  if (ask) {
+    ask.action = 'https://wa.me/' + WHATSAPP;
+    var campo = ask.querySelector('input');
+    ask.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var p = campo.value.trim().replace(/[\s.!?…]+$/, '')
+        .replace(/^(oi[\s,!.]*)?((voc[eê]s|vcs|vc)\s+)?(tem\s+a[ií]|t[eê]m)\s+/i, '').replace(/^[¿?\s]+/, '');
+      if (p && !/^[A-ZÀ-Ý]{2}/.test(p)) p = p.charAt(0).toLowerCase() + p.slice(1);
+      var msg = p ? 'Oi, Múltiplos! Vi o site. Vocês têm ' + p + '? Se tiver, qual o preço?' : ask.getAttribute('data-msg');
+      track('whatsapp_click', { source: 'hero', preenchido: p ? 'sim' : 'nao' });
+      burst(ask.querySelector('button'));
+      var url = waUrl(msg), win = window.open(url, '_blank');
+      if (win) win.opener = null; else window.location.href = url;
+    });
+  }
+
+  // ===== Status "aberto agora" + tabela de horários =====
   function pintaStatus() {
-    var s = statusLoja();
-    var aberto = s.estado === 'aberto' || s.estado === 'fechando';
+    var s = statusLoja(), aberto = s.estado === 'aberto' || s.estado === 'fechando';
     document.querySelectorAll('[data-open-status]').forEach(function (el) {
       el.hidden = false;
       el.classList.toggle('is-open', aberto);
       el.classList.toggle('is-closed', s.estado === 'fechado');
       el.classList.toggle('is-holiday', s.estado === 'feriado');
-      var txt = el.querySelector('.status-text');
-      if (txt) txt.textContent = el.hasAttribute('data-curto') ? s.curto : s.texto;
+      el.querySelector('.status-text').textContent = el.hasAttribute('data-curto') ? s.curto : s.texto;
     });
-    // Textos que mudam com o status (microcopy do hero e CTA final)
-    document.querySelectorAll('[data-status-copy]').forEach(function (el) {
-      var tpl = el.getAttribute('data-' + s.estado);
-      if (s.vespera) tpl = el.getAttribute('data-vespera') || tpl;
-      if (!tpl) return;
-      el.textContent = tpl.replace('{fecha}', s.fecha || '').replace('{abre}', s.abre || '');
-    });
-    // Tabela de horários: em dia normal destaca a linha de hoje; em dia especial ou feriado
-    // mostra uma linha "Hoje" com o horário certo, para não contradizer o status acima.
-    var t = agoraVilhena(), k = chave(t);
-    var especial = tem(HORARIO_ESPECIAL, k), incerto = feriadoIncerto(t);
+    var t = agoraVilhena(), k = chave(t), especial = tem(HORARIO_ESPECIAL, k), incerto = feriadoIncerto(t);
     document.querySelectorAll('[data-dow]').forEach(function (row) {
       row.classList.toggle('is-today', !especial && !incerto && row.getAttribute('data-dow').split(',').map(Number).indexOf(t.dow) !== -1);
     });
-    var linhaHoje = document.getElementById('hours-hoje');
-    if (linhaHoje) {
-      linhaHoje.hidden = !(especial || incerto);
+    var linha = document.getElementById('hours-hoje');
+    if (linha) {
+      linha.hidden = !(especial || incerto);
       if (especial || incerto) {
         var he = HORARIO_ESPECIAL[k];
-        linhaHoje.querySelector('th').textContent = incerto ? 'Hoje (feriado)' : 'Hoje (horário especial)';
-        linhaHoje.querySelector('td').textContent = incerto ? 'confirme no Whats' : (he ? hh(he[0]) + ' às ' + hh(he[1]) : 'Fechado');
+        linha.querySelector('th').textContent = incerto ? 'Hoje (feriado)' : 'Hoje (horário especial)';
+        linha.querySelector('td').textContent = incerto ? 'confirme antes' : (he ? hh(he[0]) + ' às ' + hh(he[1]) : 'Fechado');
       }
     }
-    // Ingressos do fim de semana especial: marca HOJE e apaga os dias que já passaram
-    document.querySelectorAll('[data-date]').forEach(function (el) {
-      var d = el.getAttribute('data-date');
-      el.classList.toggle('is-today', d === k);
-      el.classList.toggle('is-past', d < k);
-    });
+    var curto = document.getElementById('hoje-curto');
+    if (curto) {
+      var h = horarioDo(t);
+      curto.textContent = incerto ? 'Hoje é feriado: confirme o horário' : (h ? 'Hoje: ' + hh(h[0]) + ' às ' + hh(h[1]) : 'Hoje: fechado');
+    }
   }
   pintaStatus();
   setInterval(pintaStatus, 60 * 1000);
 
-  // ===== Blocos de campanha com data de validade =====
-  // data-inicio / data-fim no formato AAAA-MM-DD ou AAAA-MM-DDTHH:MM (hora de Vilhena).
-  // Começam escondidos no HTML: fora do período (ou sem JS) não aparecem.
-  function campanhas() {
-    var t = agoraVilhena();
-    var agora = chave(t) + 'T' + pad(Math.floor(t.min / 60)) + ':' + pad(t.min % 60);
-    document.querySelectorAll('[data-campanha]').forEach(function (el) {
-      var ini = el.getAttribute('data-inicio') || '', fim = el.getAttribute('data-fim') || '';
-      if (ini && ini.length === 10) ini += 'T00:00';
-      if (fim && fim.length === 10) fim += 'T23:59';
-      el.hidden = !((!ini || agora >= ini) && (!fim || agora < fim));
+  var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ===== Botão-brinquedo: estrelinhas ao clicar (só decorativo) =====
+  function burst(el) {
+    if (reduz || !el || !el.animate) return;
+    var r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    for (var i = 0; i < 6; i++) {
+      var s = document.createElement('span'), ang = (i / 6) * Math.PI * 2, d = 46 + (i % 2) * 18;
+      s.className = 'spark'; s.style.left = cx + 'px'; s.style.top = cy + 'px';
+      document.body.appendChild(s);
+      s.animate([{ transform: 'translate(-50%,-50%) scale(.4)', opacity: 1 },
+                 { transform: 'translate(calc(-50% + ' + Math.cos(ang) * d + 'px), calc(-50% + ' + Math.sin(ang) * d + 'px)) scale(1) rotate(90deg)', opacity: 0 }],
+                { duration: 600, easing: 'cubic-bezier(.2,.8,.2,1)' }).onfinish = (function (n) { return function () { n.remove(); }; })(s);
+    }
+  }
+  document.querySelectorAll('a.toy').forEach(function (a) { a.addEventListener('click', function () { burst(a); }); });
+
+  // ===== Cabeçalho some ao descer e volta ao subir =====
+  var header = document.querySelector('.header'), lastY = window.scrollY, ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.scrollY;
+      var esconder = y > lastY && y > 160 && !header.contains(document.activeElement);
+      header.classList.toggle('is-hidden', esconder && !reduz);
+      lastY = y; ticking = false;
     });
+  }, { passive: true });
+
+  // ===== Um IntersectionObserver para tudo que entra na tela =====
+  function conta(el) {
+    var alvo = parseFloat(el.getAttribute('data-count')), casas = Number(el.getAttribute('data-decimals') || 0);
+    var fmt = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+    if (reduz) return;
+    var t0 = null;
+    function passo(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / 900), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt.format(alvo * e);
+      if (p < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
   }
-  campanhas();
-  setInterval(campanhas, 60 * 1000);
-
-  // ===== Cabeçalho com sombra ao rolar =====
-  var header = document.querySelector('.site-header');
-  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // ===== CTA fixo (barra no celular, botão redondo no desktop) =====
-  // Aparece quando o CTA do topo sai da tela; some no CTA final
-  var sticky = document.getElementById('sticky-cta');
-  var floatBtn = document.querySelector('.wa-float');
-  var heroCta = document.querySelector('.hero .hero-actions');
-  var finalCta = document.getElementById('final');
-  if (sticky && heroCta && 'IntersectionObserver' in window) {
-    document.documentElement.classList.add('has-io');
-    var heroVisible = true, finalVisible = false;
-    var update = function () {
-      var show = !heroVisible && !finalVisible;
-      sticky.classList.toggle('is-visible', show);
-      sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
-      sticky.querySelectorAll('a').forEach(function (a) { a.tabIndex = show ? 0 : -1; });
-      if (floatBtn) floatBtn.classList.toggle('is-visible', show);
-    };
-    new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); },
-      { rootMargin: '-70px 0px 0px 0px' }).observe(heroCta);
-    if (finalCta) new IntersectionObserver(function (e) { finalVisible = e[0].isIntersecting; update(); }).observe(finalCta);
-  }
-
-  // ===== "O que você está procurando?" — monta a pergunta do produto =====
-  // Sem JS o formulário envia direto para wa.me com o texto digitado (campo name="text").
-  var busca = document.getElementById('busca-form');
-  if (busca) {
-    busca.action = 'https://wa.me/' + WHATSAPP;
-    var campo = busca.querySelector('#busca-produto');
-    var BASE = busca.getAttribute('data-msg');
-    busca.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      // Tira o "tem…?" que a pessoa já digita (o H1 pergunta "Tem no Múltiplos?") para não duplicar a pergunta
-      var p = campo.value.trim().replace(/[\s.!?…]+$/, '')
-        .replace(/^(oi[\s,!.]*)?((voc[eê]s|vcs|vc)\s+)?(tem\s+a[ií]|t[eê]m)\s+/i, '').replace(/^[¿?\s]+/, '');
-      if (p && !/^[A-ZÀ-Ý]{2}/.test(p)) p = p.charAt(0).toLowerCase() + p.slice(1);
-      var msg = p ? 'Oi, Múltiplos! Vim pelo site. Vocês têm ' + p + '? Se tiver, qual o preço?' : BASE;
-      track('whatsapp_click', { source: 'busca', preenchido: p ? 'sim' : 'nao' });
-      var url = waUrl(msg);
-      var win = window.open(url, '_blank');
-      if (win) win.opener = null;
-      else window.location.href = url;
-    });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var el = e.target;
+        if (el.matches('.hero, .marquee, .world')) { el.classList.toggle('is-paused', !e.isIntersecting); return; }
+        if (!e.isIntersecting) return;
+        el.classList.add('is-in');
+        if (el.matches('.stats')) el.querySelectorAll('[data-count]').forEach(conta);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.reveal, .arch, .map, .stats, .jumble, .hero, .marquee, .world').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal, .arch, .map, .jumble').forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  // ===== Copiar endereço =====
-  document.querySelectorAll('[data-copy]').forEach(function (b) {
-    b.hidden = !(navigator.clipboard && window.isSecureContext);
-    b.addEventListener('click', function () {
-      navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function () {
-        var label = b.querySelector('.copy-label'), old = label.textContent;
-        label.textContent = 'Endereço copiado!';
-        setTimeout(function () { label.textContent = old; }, 2500);
-        track('copiar_endereco', {});
-      }).catch(function () {});
+  // ===== Rodapé: toque num objeto e ele pula =====
+  document.querySelectorAll('.jumble img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      if (reduz || !img.animate) return;
+      var r = getComputedStyle(img).getPropertyValue('--r').trim() || '0deg';
+      img.animate([{ transform: 'translateY(0) rotate(' + r + ')' }, { transform: 'translateY(-26px) rotate(calc(' + r + ' + 10deg))' }, { transform: 'translateY(0) rotate(' + r + ')' }],
+        { duration: 420, easing: 'cubic-bezier(.34,1.56,.64,1)' });
     });
   });
 
-  // ===== Mapa só carrega quando a pessoa pede =====
-  var mapBtn = document.getElementById('map-load');
-  if (mapBtn) {
-    mapBtn.addEventListener('click', function () {
-      var iframe = document.createElement('iframe');
-      iframe.src = mapBtn.getAttribute('data-src');
-      iframe.title = 'Mapa: Multiplos Atacado, Av. Marechal Rondon, 4500, Centro, Vilhena-RO';
-      iframe.loading = 'lazy';
-      iframe.referrerPolicy = 'no-referrer-when-downgrade';
-      iframe.allowFullscreen = true;
-      mapBtn.replaceWith(iframe);
-      track('map_open', {});
+  // ===== Caixa-surpresa dos achadinhos (sem preço, só para mostrar a variedade) =====
+  var caixa = document.getElementById('surprise');
+  if (caixa) {
+    var achados = caixa.querySelectorAll('[data-find]'), n = -1, live = document.getElementById('surprise-live');
+    var fechada = caixa.querySelector('.surprise-box:not(.surprise-box--open)'), aberta = caixa.querySelector('.surprise-box--open');
+    var tag = caixa.querySelector('.surprise-tag');
+    caixa.addEventListener('click', function () {
+      if (n >= 0) achados[n].hidden = true;
+      n = (n + 1) % achados.length;
+      caixa.classList.add('is-open');
+      fechada.hidden = true; aberta.hidden = false;
+      var item = achados[n];
+      item.hidden = false;
+      live.textContent = 'Achado: ' + item.getAttribute('data-find');
+      if (tag) tag.textContent = 'De novo!';
+      track('caixa_surpresa', { item: item.getAttribute('data-find') });
     });
   }
 
