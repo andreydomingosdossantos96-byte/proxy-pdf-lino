@@ -12,6 +12,7 @@
 
   // Datas com horário diferente (AAAA-MM-DD): [abre, fecha] ou null = fechado.
   var HORARIO_ESPECIAL = {
+    '2026-10-12': [8, 18], // Dia das Crianças (cartaz da loja)
     // '2026-12-24': [8, 16],
   };
 
