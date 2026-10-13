@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="7 7 406 406">
+<defs>
+<pattern id="ball-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.6" fill="#0E1B3D" opacity=".22"/></pattern>
+<clipPath id="ball-sh"><path clip-rule="evenodd" d="M20,210a190,190 0 1 0 380,0a190,190 0 1 0 -380,0ZM-22,168a194,194 0 1 0 388,0a194,194 0 1 0 -388,0Z"/></clipPath>
+<path id="ball-g0" d="M160.6,126.4A190 48.5 -94.2 0 0 223.9,399.5A190 190 0 0 0 369.3,313.5A190 48.5 -147 0 0 160.6,126.4Z"/>
+<path id="ball-g1" d="M160.6,126.4A190 48.5 -147 0 1 369.3,313.5A190 190 0 0 0 373.6,113.3A190 97.1 149.4 0 0 160.6,126.4Z"/>
+<path id="ball-g2" d="M160.6,126.4A190 97.1 149.4 0 1 373.6,113.3A190 190 0 0 0 196.1,20.5A190 48.5 85.8 0 0 160.6,126.4Z"/>
+<path id="ball-g3" d="M160.6,126.4A190 48.5 85.8 0 1 196.1,20.5A190 190 0 0 0 50.7,106.5A190 48.5 33 0 1 160.6,126.4Z"/>
+<path id="ball-g4" d="M160.6,126.4A190 48.5 33 0 0 50.7,106.5A190 190 0 0 0 46.4,306.7A190 97.1 -30.6 0 1 160.6,126.4Z"/>
+<path id="ball-g5" d="M160.6,126.4A190 97.1 -30.6 0 0 46.4,306.7A190 190 0 0 0 223.9,399.5A190 48.5 -94.2 0 1 160.6,126.4Z"/>
+</defs>
+<g stroke="#0E1B3D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<g stroke="none">
+<use href="#ball-g0" fill="#C4122F"/>
+<use href="#ball-g1" fill="#FFF8E6"/>
+<use href="#ball-g2" fill="#FFCC00"/>
+<use href="#ball-g3" fill="#FFF8E6"/>
+<use href="#ball-g4" fill="#0B4EA2"/>
+<use href="#ball-g5" fill="#FFF8E6"/>
+<g clip-path="url(#ball-sh)">
+<use href="#ball-g0" fill="#8E0D22"/>
+<use href="#ball-g1" fill="#F0E3C2"/>
+<use href="#ball-g2" fill="#E0A800"/>
+<use href="#ball-g3" fill="#F0E3C2"/>
+<use href="#ball-g4" fill="#083A7A"/>
+<use href="#ball-g5" fill="#F0E3C2"/>
+<circle cx="210" cy="210" r="190" fill="url(#ball-dots)"/>
+</g>
+</g>
+<path d="M160.6,126.4A190 48.5 -94.2 0 0 223.9,399.5M160.6,126.4A190 48.5 -147 0 1 369.3,313.5M160.6,126.4A190 97.1 149.4 0 1 373.6,113.3M160.6,126.4A190 48.5 85.8 0 1 196.1,20.5M160.6,126.4A190 48.5 33 0 0 50.7,106.5M160.6,126.4A190 97.1 -30.6 0 0 46.4,306.7" fill="none" stroke-width="4"/>
+<ellipse cx="161.6" cy="128.1" rx="32.4" ry="37.7" transform="rotate(-120.6 161.6 128.1)" fill="#FFF8E6" stroke-width="4"/>
+<path d="M45.7,175.1A168,168 0 0 1 69.1,118.5" fill="none" stroke="#FFF8E6" stroke-width="10"/>
+<circle cx="40" cy="199" r="5.5" fill="#FFF8E6" stroke="none"/>
+<circle cx="210" cy="210" r="190" fill="none"/>
+<path d="M352,34Q354,46 366,48Q354,50 352,62Q350,50 338,48Q350,46 352,34Z" fill="#FFF8E6" stroke-width="3"/>
+</g>
+</svg>

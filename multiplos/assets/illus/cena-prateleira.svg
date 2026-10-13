@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+<defs>
+<pattern id="prat-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.6" fill="#0E1B3D" opacity=".22"/></pattern>
+<clipPath id="prat-dc"><path d="M-40,-92Q-50,-86 -50,-72V-10A50,10 0 0 0 50,-10V-72Q50,-86 40,-92Z"/></clipPath>
+<clipPath id="prat-pc"><path d="M-30,-88L-36,-10A36,8 0 0 0 36,-10L30,-88Z"/></clipPath>
+<clipPath id="prat-kc"><path d="M-34,-92C-44,-74 -54,-46 -52,-22A52,10 0 0 0 52,-22C54,-46 44,-74 34,-92A34,7 0 0 0 -34,-92Z"/></clipPath>
+<clipPath id="prat-bc"><path d="M-60,-40L-40,-5Q-38,0 -32,0H32Q38,0 40,-5L60,-40A60,9 0 0 1 -60,-40Z"/></clipPath>
+<clipPath id="prat-jc"><path d="M-32,-70V-8A32,8 0 0 0 32,-8V-70Z"/></clipPath>
+<g id="prat-board">
+<path d="M18,20H582V32H18Z" fill="#F0E3C2" stroke="none"/>
+<rect x="10" y="-16" width="580" height="16" fill="#FFCC00"/>
+<path d="M30,-8H110M300,-9H360" stroke="#E0A800" stroke-width="3"/>
+<rect x="10" width="580" height="20" fill="#FFCC00"/>
+<path d="M13,12H587V18H13Z" fill="#E0A800" stroke="none"/>
+<path d="M13,12H587V18H13Z" fill="url(#prat-dots)" stroke="none"/>
+<path d="M40,6H130M260,7H330M440,6H520" stroke="#E0A800" stroke-width="3"/>
+<rect x="10" width="580" height="20" fill="none"/>
+</g>
+<g id="prat-tower">
+<path d="M-26,-96L-22,-7A22,6 0 0 0 22,-7L26,-96Z" fill="#DCE3EA" fill-opacity=".7"/>
+<path d="M12,-96L14,-2.4A22,6 0 0 0 22,-7L26,-96Z" fill="#B4C0CC" stroke="none"/>
+<rect x="-18" y="-88" width="6" height="76" rx="3" fill="#FFF8E6" stroke="none"/>
+<path d="M-25,-74A25,6 0 0 0 25,-74M-24,-52A24,6 0 0 0 24,-52M-23,-30A23,6 0 0 0 23,-30" fill="none" stroke-width="4"/>
+<path d="M-26,-96L-22,-7A22,6 0 0 0 22,-7L26,-96" fill="none"/>
+<ellipse cy="-96" rx="26" ry="6" fill="#DCE3EA"/>
+<ellipse cy="-96" rx="18" ry="3" fill="#B4C0CC" stroke-width="4"/>
+</g>
+<g id="prat-cup">
+<path d="M-17,-42L-14,-5A14,4 0 0 0 14,-5L17,-42Z" fill="#DCE3EA" fill-opacity=".7"/>
+<path d="M6,-42L6,-1.4A14,4 0 0 0 14,-5L17,-42Z" fill="#B4C0CC" stroke="none"/>
+<path d="M-10,-36L-8,-12" stroke="#FFF8E6" stroke-width="5"/>
+<path d="M-17,-42L-14,-5A14,4 0 0 0 14,-5L17,-42" fill="none" stroke-width="6"/>
+<ellipse cy="-42" rx="17" ry="4.5" fill="#DCE3EA" stroke-width="5"/>
+</g>
+<g id="prat-dish">
+<path d="M-76,-22H76L70,-3Q69,0 65,0H-65Q-69,0 -70,-3Z" fill="#DCE3EA" fill-opacity=".7"/>
+<path d="M54,-22L52,0H65Q69,0 70,-3L76,-22Z" fill="#B4C0CC" stroke="none"/>
+<path d="M-62,-11H-30" stroke="#FFF8E6" stroke-width="5"/>
+<path d="M-76,-22H76L70,-3Q69,0 65,0H-65Q-69,0 -70,-3Z" fill="none"/>
+<path d="M-79,-22V-27Q-79,-32 -74,-32H74Q79,-32 79,-27V-22Z" fill="#0B4EA2"/>
+<path d="M58,-32H74Q79,-32 79,-27V-22H58Z" fill="#083A7A" stroke="none"/>
+<path d="M-79,-22V-27Q-79,-32 -74,-32H74Q79,-32 79,-27V-22Z" fill="none"/>
+</g>
+<g id="prat-bowl">
+<path d="M-60,-40L-40,-5Q-38,0 -32,0H32Q38,0 40,-5L60,-40A60,9 0 0 1 -60,-40Z" fill="#2AA6DC"/>
+<g clip-path="url(#prat-bc)" stroke="none"><path d="M48,-50L17,4H64V-50Z" fill="#1C7FAE"/><path d="M48,-50L17,4H64V-50Z" fill="url(#prat-dots)"/></g>
+<path d="M-46,-31L-35,-11" stroke="#FFF8E6" stroke-width="5"/>
+<path d="M-60,-40L-40,-5Q-38,0 -32,0H32Q38,0 40,-5L60,-40A60,9 0 0 1 -60,-40Z" fill="none"/>
+</g>
+<path id="prat-jarglass" d="M-32,-70V-8A32,8 0 0 0 32,-8V-70Z" fill="#DCE3EA" fill-opacity=".7" stroke="none"/>
+<g id="prat-jarfront">
+<g clip-path="url(#prat-jc)" stroke="none">
+<path d="M18,-80V4H40V-80Z" fill="#B4C0CC" fill-opacity=".55"/>
+<path d="M18,-80V4H40V-80Z" fill="url(#prat-dots)"/>
+<path d="M-25,-64h7v54h-7z" fill="#FFF8E6" fill-opacity=".85"/>
+</g>
+<path d="M-32,-70V-8A32,8 0 0 0 32,-8V-70" fill="none"/>
+</g>
+<g id="prat-lid">
+<path d="M-35,-70A35,7 0 0 0 35,-70V-82A35,7 0 0 0 -35,-82Z"/>
+<path d="M20,-64.3A35,7 0 0 0 35,-70V-82H20Z" fill="url(#prat-dots)" stroke="none"/>
+<ellipse cy="-82" rx="35" ry="7"/>
+<path d="M-43,-80h9v16h-9zM34,-80h9v16h-9z" stroke-width="4"/>
+</g>
+</defs>
+<rect width="600" height="450" fill="#FFF8E6"/>
+<g stroke="#0E1B3D" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+<use href="#prat-board" y="140"/>
+<use href="#prat-board" y="280"/>
+<use href="#prat-board" y="420"/>
+<path d="M70,144h30v12h-30zM340,144h30v12h-30zM200,284h30v12h-30zM470,284h30v12h-30zM130,424h30v12h-30zM400,424h30v12h-30z" fill="#FFF8E6" stroke-width="4"/>
+<path d="M70,144h9v12h-9zM340,144h9v12h-9zM200,284h9v12h-9zM470,284h9v12h-9zM130,424h9v12h-9zM400,424h9v12h-9z" fill="#C4122F" stroke-width="4"/>
+
+<g transform="translate(96 134)">
+<path d="M-40,-92Q-50,-86 -50,-72V-10A50,10 0 0 0 50,-10V-72Q50,-86 40,-92Z" fill="#DCE3EA" fill-opacity=".6"/>
+<g clip-path="url(#prat-dc)">
+<path d="M34,-100V4H56V-100Z" fill="#B4C0CC" fill-opacity=".8" stroke="none"/>
+<path d="M-47,-54V-10A47,9 0 0 0 47,-10V-54Z" fill="#FFCC00" stroke-width="5"/>
+<path d="M30,-54C36,-38 38,-20 36,4H56V-54Z" fill="#E0A800" stroke="none"/>
+<path d="M30,-54C36,-38 38,-20 36,4H56V-54Z" fill="url(#prat-dots)" stroke="none"/>
+<circle cx="-14" cy="-28" r="13" fill="#FFF8E6" stroke-width="4"/>
+<circle cx="-14" cy="-28" r="8" fill="#FFCC00" stroke="none"/>
+<circle cx="16" cy="-17" r="10" fill="#FFF8E6" stroke-width="4"/>
+<circle cx="16" cy="-17" r="6" fill="#FFCC00" stroke="none"/>
+<path d="M-42,-84h9v74h-9zM-28,-84h4v74h-4z" fill="#FFF8E6" fill-opacity=".85" stroke="none"/>
+<ellipse cy="-54" rx="47" ry="8" fill="#FFCC00" stroke-width="5"/>
+<path d="M-26,-51Q-10,-47 6,-48" fill="none" stroke="#FFF8E6" stroke-width="4"/>
+</g>
+<path d="M-40,-92Q-50,-86 -50,-72V-10A50,10 0 0 0 50,-10V-72Q50,-86 40,-92Z" fill="none"/>
+<path d="M-42,-92A42,8 0 0 0 42,-92V-104A42,8 0 0 0 -42,-104Z" fill="#C4122F"/>
+<path d="M26,-85.7A42,8 0 0 0 42,-92V-104H26Z" fill="#8E0D22" stroke="none"/>
+<path d="M-42,-104V-92A42,8 0 0 0 42,-92V-104" fill="none"/>
+<ellipse cy="-104" rx="42" ry="8" fill="#C4122F"/>
+<path d="M-10,-104V-112A10,3.5 0 0 1 10,-112V-104" fill="#C4122F" stroke-width="5"/>
+<ellipse cy="-112" rx="10" ry="3.5" fill="#C4122F" stroke-width="5"/>
+<rect x="-66" y="-36" width="20" height="16" rx="6" fill="#DCE3EA" stroke-width="5"/>
+<path d="M-62,-20V-8H-54V-20" fill="#B4C0CC" stroke-width="5"/>
+<path d="M22,-86Q22,-74 34,-74Q22,-74 22,-62Q22,-74 10,-74Q22,-74 22,-86Z" fill="#FFF8E6" stroke-width="4"/>
+</g>
+
+<g transform="translate(222 134)">
+<path d="M28,-80Q58,-80 58,-52Q58,-28 33,-24" fill="none" stroke-width="15"/>
+<path d="M28,-80Q58,-80 58,-52Q58,-28 33,-24" fill="none" stroke="#DCE3EA" stroke-width="7"/>
+<path d="M-26,-94L-46,-100L-32,-80Z" fill="#DCE3EA"/>
+<path d="M-30,-88L-36,-10A36,8 0 0 0 36,-10L30,-88Z" fill="#DCE3EA" fill-opacity=".7"/>
+<g clip-path="url(#prat-pc)">
+<path d="M18,-96L26,4H44V-96Z" fill="#B4C0CC" fill-opacity=".8" stroke="none"/>
+<path d="M-40,-52H40V4H-40Z" fill="#2AA6DC" stroke-width="5"/>
+<path d="M18,-52C26,-36 28,-16 26,4H44V-52Z" fill="#1C7FAE" stroke="none"/>
+<path d="M18,-52C26,-36 28,-16 26,4H44V-52Z" fill="url(#prat-dots)" stroke="none"/>
+<path d="M-24,-80L-28,-16H-21L-17,-80Z" fill="#FFF8E6" fill-opacity=".85" stroke="none"/>
+<ellipse cy="-52" rx="33" ry="6" fill="#2AA6DC" stroke-width="5"/>
+</g>
+<path d="M-30,-88L-36,-10A36,8 0 0 0 36,-10L30,-88" fill="none"/>
+<ellipse cy="-88" rx="30" ry="6" fill="#DCE3EA"/>
+<ellipse cy="-88" rx="23" ry="3.5" fill="#B4C0CC" stroke-width="4"/>
+</g>
+
+<g transform="translate(366 134)">
+<path d="M-40,-92Q-50,-86 -50,-72V-10A50,10 0 0 0 50,-10V-72Q50,-86 40,-92Z" fill="#DCE3EA" fill-opacity=".6"/>
+<g clip-path="url(#prat-dc)">
+<path d="M34,-100V4H56V-100Z" fill="#B4C0CC" fill-opacity=".8" stroke="none"/>
+<path d="M-47,-54V-10A47,9 0 0 0 47,-10V-54Z" fill="#C4122F" stroke-width="5"/>
+<path d="M30,-54C36,-38 38,-20 36,4H56V-54Z" fill="#8E0D22" stroke="none"/>
+<path d="M30,-54C36,-38 38,-20 36,4H56V-54Z" fill="url(#prat-dots)" stroke="none"/>
+<path d="M-42,-84h9v74h-9zM-28,-84h4v74h-4z" fill="#FFF8E6" fill-opacity=".85" stroke="none"/>
+<ellipse cy="-54" rx="47" ry="8" fill="#C4122F" stroke-width="5"/>
+<path d="M-30,-56L-14,-62L2,-56L-14,-50Z" fill="#FFF8E6" stroke-width="4"/>
+<path d="M-30,-56V-47L-14,-41V-50Z" fill="#DCE3EA" stroke-width="4"/>
+<path d="M-14,-50V-41L2,-47V-56Z" fill="#B4C0CC" stroke-width="4"/>
+<path d="M10,-53L24,-58L38,-53L24,-48Z" fill="#FFF8E6" stroke-width="4"/>
+<path d="M10,-53V-45L24,-40V-48Z" fill="#DCE3EA" stroke-width="4"/>
+<path d="M24,-48V-40L38,-45V-53Z" fill="#B4C0CC" stroke-width="4"/>
+<circle cx="-16" cy="-22" r="4" fill="#FFF8E6" stroke-width="3"/>
+<circle cx="8" cy="-28" r="5" fill="#FFF8E6" stroke-width="3"/>
+<circle cx="18" cy="-12" r="3.5" fill="#FFF8E6" stroke-width="3"/>
+</g>
+<path d="M-40,-92Q-50,-86 -50,-72V-10A50,10 0 0 0 50,-10V-72Q50,-86 40,-92Z" fill="none"/>
+<path d="M-42,-92A42,8 0 0 0 42,-92V-104A42,8 0 0 0 -42,-104Z" fill="#0B4EA2"/>
+<path d="M26,-85.7A42,8 0 0 0 42,-92V-104H26Z" fill="#083A7A" stroke="none"/>
+<path d="M-42,-104V-92A42,8 0 0 0 42,-92V-104" fill="none"/>
+<ellipse cy="-104" rx="42" ry="8" fill="#0B4EA2"/>
+<path d="M-10,-104V-112A10,3.5 0 0 1 10,-112V-104" fill="#2AA6DC" stroke-width="5"/>
+<ellipse cy="-112" rx="10" ry="3.5" fill="#2AA6DC" stroke-width="5"/>
+<rect x="-66" y="-36" width="20" height="16" rx="6" fill="#DCE3EA" stroke-width="5"/>
+<path d="M-62,-20V-8H-54V-20" fill="#B4C0CC" stroke-width="5"/>
+</g>
+
+<use href="#prat-tower" x="468" y="134"/>
+<use href="#prat-tower" x="530" y="134"/>
+
+<g transform="translate(94 274)">
+<path d="M-56,-18V-10A56,10 0 0 0 56,-10V-18Z" fill="#0E1B3D"/>
+<ellipse cy="-18" rx="56" ry="10" fill="#083A7A"/>
+<path d="M28,-96H54Q72,-96 72,-78V-48Q72,-30 56,-26L48,-24L46,-36L52,-38Q60,-40 60,-48V-76Q60,-84 52,-84H28Z" fill="#083A7A"/>
+<path d="M-34,-88C-44,-90 -54,-94 -60,-102Q-66,-106 -66,-98C-62,-86 -54,-74 -46,-66Z" fill="#DCE3EA"/>
+<path d="M-34,-92C-44,-74 -54,-46 -52,-22A52,10 0 0 0 52,-22C54,-46 44,-74 34,-92A34,7 0 0 0 -34,-92Z" fill="#DCE3EA"/>
+<g clip-path="url(#prat-kc)" stroke="none">
+<path d="M24,-100C34,-74 40,-46 38,0H60V-100Z" fill="#B4C0CC"/>
+<path d="M24,-100C34,-74 40,-46 38,0H60V-100Z" fill="url(#prat-dots)"/>
+<path d="M-24,-92C-32,-72 -40,-46 -40,-14H-32C-32,-46 -24,-72 -16,-92Z" fill="#FFF8E6"/>
+<path d="M-56,-38A56,10 0 0 0 56,-38V0H-56Z" fill="#083A7A"/>
+<path d="M36,-30.3A56,10 0 0 0 56,-38V0H36Z" fill="#0E1B3D"/>
+<path d="M-56,-38A56,10 0 0 0 56,-38" fill="none" stroke="#0E1B3D" stroke-width="5"/>
+</g>
+<path d="M-34,-92C-44,-74 -54,-46 -52,-22A52,10 0 0 0 52,-22C54,-46 44,-74 34,-92A34,7 0 0 0 -34,-92Z" fill="none"/>
+<ellipse cy="-92" rx="34" ry="7" fill="#DCE3EA"/>
+<ellipse cy="-92" rx="26" ry="4.5" fill="#B4C0CC" stroke-width="4"/>
+<path d="M-9,-93V-101A9,3 0 0 1 9,-101V-93A9,3 0 0 1 -9,-93Z" fill="#083A7A" stroke-width="5"/>
+<ellipse cy="-101" rx="9" ry="3" fill="#0B4EA2" stroke-width="4"/>
+<path d="M-12,-74Q-12,-62 0,-62Q-12,-62 -12,-50Q-12,-62 -24,-62Q-12,-62 -12,-74Z" fill="#FFF8E6" stroke-width="4"/>
+</g>
+
+<g transform="translate(244 274)">
+<ellipse cy="-68" rx="60" ry="9" fill="#1C7FAE"/>
+<use href="#prat-bowl" y="-28"/>
+<use href="#prat-bowl" y="-14"/>
+<use href="#prat-bowl"/>
+</g>
+
+<g transform="translate(360 274)">
+<use href="#prat-jarglass"/>
+<g clip-path="url(#prat-jc)">
+<path d="M-36,-46H36V4H-36Z" fill="#FFCC00" stroke-width="5"/>
+<path d="M-20,-34h9M2,-38h9M-8,-24h9M12,-22h9M-22,-13h9M4,-12h9" fill="none" stroke="#FFF8E6" stroke-width="4"/>
+</g>
+<use href="#prat-jarfront"/>
+<use href="#prat-lid" fill="#C4122F"/>
+</g>
+
+<g transform="translate(448 274)">
+<use href="#prat-jarglass"/>
+<g clip-path="url(#prat-jc)" stroke-width="4">
+<circle cx="-18" cy="-12" r="9" fill="#C4122F"/>
+<circle cx="2" cy="-10" r="9" fill="#FFCC00"/>
+<circle cx="22" cy="-14" r="9" fill="#2AA6DC"/>
+<circle cx="-10" cy="-30" r="9" fill="#2AA6DC"/>
+<circle cx="11" cy="-30" r="9" fill="#C4122F"/>
+<circle cx="-22" cy="-46" r="8" fill="#FFCC00"/>
+<circle cx="0" cy="-48" r="9" fill="#FFF8E6"/>
+<circle cx="21" cy="-45" r="8" fill="#FFCC00"/>
+</g>
+<use href="#prat-jarfront"/>
+<use href="#prat-lid" fill="#FFCC00"/>
+</g>
+
+<use href="#prat-cup" x="518" y="274"/>
+<use href="#prat-cup" x="554" y="274"/>
+<use href="#prat-cup" x="536" y="231"/>
+
+<use href="#prat-dish" x="104" y="414"/>
+<use href="#prat-dish" x="104" y="382"/>
+<use href="#prat-dish" x="104" y="350"/>
+
+<g transform="translate(244 414)">
+<path d="M28,-80Q58,-80 58,-52Q58,-28 33,-24" fill="none" stroke-width="15"/>
+<path d="M28,-80Q58,-80 58,-52Q58,-28 33,-24" fill="none" stroke="#DCE3EA" stroke-width="7"/>
+<path d="M-26,-94L-46,-100L-32,-80Z" fill="#DCE3EA"/>
+<path d="M-30,-88L-36,-10A36,8 0 0 0 36,-10L30,-88Z" fill="#DCE3EA" fill-opacity=".7"/>
+<g clip-path="url(#prat-pc)">
+<path d="M18,-96L26,4H44V-96Z" fill="#B4C0CC" fill-opacity=".8" stroke="none"/>
+<path d="M-40,-60H40V4H-40Z" fill="#FFCC00" stroke-width="5"/>
+<path d="M18,-60C26,-40 28,-18 26,4H44V-60Z" fill="#E0A800" stroke="none"/>
+<path d="M18,-60C26,-40 28,-18 26,4H44V-60Z" fill="url(#prat-dots)" stroke="none"/>
+<path d="M-24,-80L-28,-16H-21L-17,-80Z" fill="#FFF8E6" fill-opacity=".85" stroke="none"/>
+<ellipse cy="-60" rx="32.5" ry="6" fill="#FFCC00" stroke-width="5"/>
+</g>
+<path d="M-30,-88L-36,-10A36,8 0 0 0 36,-10L30,-88" fill="none"/>
+<ellipse cy="-88" rx="30" ry="6" fill="#DCE3EA"/>
+<ellipse cy="-88" rx="23" ry="3.5" fill="#B4C0CC" stroke-width="4"/>
+</g>
+
+<g transform="translate(362 414)">
+<use href="#prat-jarglass"/>
+<use href="#prat-jarfront"/>
+<use href="#prat-lid" fill="#0B4EA2"/>
+<path d="M12,-58Q12,-47 23,-47Q12,-47 12,-36Q12,-47 1,-47Q12,-47 12,-58Z" fill="#FFF8E6" stroke-width="4"/>
+</g>
+
+<use href="#prat-tower" x="446" y="414"/>
+<use href="#prat-cup" x="510" y="414"/>
+<use href="#prat-cup" x="548" y="414"/>
+
+<rect x="-10" y="-10" width="28" height="470" fill="#0B4EA2"/>
+<path d="M4,14V440" stroke-width="4" stroke-dasharray="7 14" stroke-linecap="butt"/>
+<rect x="582" y="-10" width="28" height="470" fill="#083A7A"/>
+<rect x="582" y="-10" width="28" height="470" fill="url(#prat-dots)" stroke="none"/>
+<path d="M596,14V440" stroke-width="4" stroke-dasharray="7 14" stroke-linecap="butt"/>
+</g>
+</svg>

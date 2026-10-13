@@ -9,7 +9,7 @@ HTML/CSS/JS puro, sem build e sem dependências. A pasta é autocontida: pode ir
 ```
 index.html               página (textos, seções, SEO, schema Store com horários)
 assets/css/site.css      todo o visual (cores, tipografia, seções, animações)
-assets/illus/            ilustrações dos objetos (geradas com IA no Figma, fundo transparente)
+assets/illus/            ilustrações em vetor (SVG): objetos usados como <img>; cena-*.svg são as cenas da fachada, prateleira e equipe, que vão embutidas no index.html
 assets/js/main.js        WhatsApp, horários/feriados, "aberto agora", busca, caixa-surpresa, animações, eventos
 assets/img/              logo, favicons, imagem de compartilhamento e fotos
 ```
@@ -37,14 +37,12 @@ npx serve .
 ## Pendências antes de publicar
 
 1. **WhatsApp**: o número `(69) 3322-1007` aparece com o ícone do WhatsApp no cartaz oficial da loja, mas confirme e teste `wa.me/556933221007`.
-2. **Ilustrações**: foram geradas com a IA do Figma. Se as versões em `assets/illus/` estiverem pequenas/borradas, baixe as originais em alta e rode o recorte de novo (fundo branco → transparente).
+2. **Ilustrações**: todas são desenhos vetoriais (SVG), nítidos em qualquer tela. O site não usa mais fotos da loja; a fachada, a prateleira e a equipe também são ilustrações. Para trocar uma cena, edite `assets/illus/cena-*.svg` e cole o conteúdo no lugar correspondente do `index.html`.
 3. **Feriados**: confirme a lista em `FERIADOS` (inclusive se 23/11, aniversário de Vilhena, é feriado municipal) e informe o horário de fim de ano.
 4. **Atacado/revenda**: o site só convida a perguntar sobre compras em quantidade. Se houver condição real (pedido mínimo, preço por quantidade), ela vira argumento na página.
 5. **Caixa-surpresa**: os achadinhos mostrados são ilustrações de produtos que já apareceram nos stories, sem preço. Troque a lista em `main.js` quando quiser.
-6. **Direito de imagem**: autorização por escrito das atendentes que aparecem nas fotos.
-7. **Fotos**: as fotos da fachada e da prateleira vêm do Google Maps; confirme que são da loja. Fotos originais em boa resolução deixam o site bem melhor.
-8. **Preços**: o site não publica preço de propósito (Código de Defesa do Consumidor, art. 30: preço anunciado obriga a loja). Se quiser publicar, alguém precisa manter atualizado.
-9. **Domínio**: ao publicar, troque `canonical`, `og:image` e o schema para URLs absolutas e atualize o link da bio e o botão "Site" do Google.
+6. **Preços**: o site não publica preço de propósito (Código de Defesa do Consumidor, art. 30: preço anunciado obriga a loja). Se quiser publicar, alguém precisa manter atualizado.
+7. **Domínio**: ao publicar, troque `canonical`, `og:image` e o schema para URLs absolutas e atualize o link da bio e o botão "Site" do Google.
 
 ## Medição
 
