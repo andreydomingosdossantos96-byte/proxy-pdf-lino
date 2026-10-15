@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 42 456 406" role="img" aria-label="Bolsa de couro caramelo com alça de mão e alça transversal">
+<defs>
+<clipPath id="bolsa-corpo"><path d="M124 150H356Q368 150 369 162L386 360Q388 386 362 386H118Q92 386 94 360L111 162Q112 150 124 150Z"/></clipPath>
+<clipPath id="bolsa-aba"><path d="M124 150H356Q368 150 369 162L377 254Q378 266 366 272C320 294 160 294 114 272Q102 266 103 254L111 162Q112 150 124 150Z"/></clipPath>
+</defs>
+<g fill="none">
+<path stroke="#8F5F35" stroke-width="13" transform="translate(1.1 1.5)" d="M78 228C59 263 28 300 31 350C34 400 130 428 240 428C350 428 446 400 449 350C452 300 421 263 402 228"/>
+<path stroke="#D6A273" stroke-width="13" transform="translate(-.8 -1)" d="M78 228C59 263 28 300 31 350C34 400 130 428 240 428C350 428 446 400 449 350C452 300 421 263 402 228"/>
+<path stroke="#B9814F" stroke-width="13" d="M78 228C59 263 28 300 31 350C34 400 130 428 240 428C350 428 446 400 449 350C452 300 421 263 402 228"/>
+<path stroke="#8F5F35" stroke-width="9.4" stroke-dasharray="4 3" d="M78 228C59 263 28 300 31 350C34 400 130 428 240 428C350 428 446 400 449 350C452 300 421 263 402 228"/>
+<path stroke="#B9814F" stroke-width="7" d="M78 228C59 263 28 300 31 350C34 400 130 428 240 428C350 428 446 400 449 350C452 300 421 263 402 228"/>
+</g>
+<ellipse cx="138" cy="386" rx="9" ry="6" fill="#9D7B33"/>
+<ellipse cx="342" cy="386" rx="9" ry="6" fill="#9D7B33"/>
+<path fill="#B9814F" d="M178 160V118A62 64 0 0 1 302 118V160H282V118A42 46 0 0 0 198 118V160Z"/>
+<path fill="#8F5F35" d="M198 160V118A42 46 0 0 1 282 118V160H277V118A37 41 0 0 0 203 118V160Z"/>
+<path fill="#D6A273" d="M178 154V118A62 64 0 0 1 240 54A58 64 0 0 0 182.5 118V154Z"/>
+<path fill="none" stroke="#8F5F35" stroke-width="1.5" stroke-dasharray="4 3" d="M185 156V118A55 57 0 0 1 295 118V156M194 156V118A46 50 0 0 1 286 118V156"/>
+<g fill="none" stroke="#C9A24E" stroke-width="3.4">
+<path d="M111 161A11 11 0 0 0 111 183"/>
+<path d="M369 161A11 11 0 0 1 369 183"/>
+</g>
+<path fill="#B9814F" d="M124 150H356Q368 150 369 162L386 360Q388 386 362 386H118Q92 386 94 360L111 162Q112 150 124 150Z"/>
+<g clip-path="url(#bolsa-corpo)">
+<path fill="#D6A273" d="M80 150H124L110 386H80Z"/>
+<path fill="#8F5F35" d="M400 150H356L370 386H400Z"/>
+<path fill="#8F5F35" d="M80 368C180 374 300 374 400 368V400H80Z"/>
+<path fill="#8F5F35" d="M124 156H356Q368 156 369 168L377 260Q378 272 366 278C320 300 160 300 114 278Q102 272 103 260L111 168Z"/>
+</g>
+<path fill="none" stroke="#8F5F35" stroke-width="1.5" stroke-dasharray="4 3" d="M121 288L116.5 356Q116 362 122 362H358Q364 362 363.5 356L359 288"/>
+<path fill="#B9814F" d="M124 150H356Q368 150 369 162L377 254Q378 266 366 272C320 294 160 294 114 272Q102 266 103 254L111 162Q112 150 124 150Z"/>
+<g clip-path="url(#bolsa-aba)">
+<path fill="#D6A273" d="M80 150H124L110 386H80Z"/>
+<path fill="#8F5F35" d="M400 150H356L370 386H400Z"/>
+<path fill="#D6A273" d="M90 150H390V160C300 164 180 164 90 160Z"/>
+</g>
+
+<path fill="none" stroke="#8F5F35" stroke-width="1.5" stroke-dasharray="4 3" d="M128 168L123 252Q123 260 131 264C172 286 308 286 349 264Q357 260 357 252L352 168"/>
+<rect x="228" y="282" width="24" height="16" rx="3" fill="#9D7B33"/>
+<rect x="210" y="256" width="60" height="32" rx="16" fill="#C9A24E"/>
+<rect x="220" y="263" width="40" height="18" rx="9" fill="#8F5F35"/>
+<path fill="#E9CF8A" d="M213 266A14 14 0 0 1 226 257H240V259H226A12 12 0 0 0 215 267Z"/>
+<ellipse cx="240" cy="272" rx="5.5" ry="13" fill="#C9A24E"/>
+<path fill="#E9CF8A" d="M238 261Q236 272 238 283Q234.5 272 238 261Z"/>
+<circle cx="215" cy="272" r="2" fill="#9D7B33"/>
+<circle cx="265" cy="272" r="2" fill="#9D7B33"/>
+<g transform="rotate(28 103 180)">
+<circle cx="103" cy="184" r="4" fill="none" stroke="#C9A24E" stroke-width="2.4"/>
+<path fill="#C9A24E" d="M103 187C108 187 109 191 108 195L107.5 207H98.5L98 195C97 191 98 187 103 187Z"/>
+<path fill="#E9CF8A" d="M100 194H102V205H100Z"/>
+<rect x="96" y="205" width="14" height="5" rx="1.5" fill="#9D7B33"/>
+<path fill="#B9814F" d="M96.5 208H109.5V237H96.5Z"/>
+<path fill="#8F5F35" d="M96.5 208H109.5V213H96.5Z"/>
+<circle cx="103" cy="222" r="2.4" fill="#C9A24E"/>
+</g>
+<g transform="rotate(-28 377 180)">
+<circle cx="377" cy="184" r="4" fill="none" stroke="#C9A24E" stroke-width="2.4"/>
+<path fill="#C9A24E" d="M377 187C382 187 383 191 382 195L381.5 207H372.5L372 195C371 191 372 187 377 187Z"/>
+<path fill="#E9CF8A" d="M374 194H376V205H374Z"/>
+<rect x="370" y="205" width="14" height="5" rx="1.5" fill="#9D7B33"/>
+<path fill="#B9814F" d="M370.5 208H383.5V237H370.5Z"/>
+<path fill="#8F5F35" d="M370.5 208H383.5V213H370.5Z"/>
+<circle cx="377" cy="222" r="2.4" fill="#C9A24E"/>
+</g>
+<path fill="#8F5F35" d="M174 150H206V176Q190 182 174 176Z"/>
+<path fill="#8F5F35" d="M274 150H306V176Q290 182 274 176Z"/>
+<path fill="#B9814F" d="M174 150H206V172Q190 178 174 172Z"/>
+<path fill="#B9814F" d="M274 150H306V172Q290 178 274 172Z"/>
+<path fill="#D6A273" d="M174 150H206V160Q190 162 174 160Z"/>
+<path fill="#D6A273" d="M274 150H306V160Q290 162 274 160Z"/>
+<circle cx="190" cy="165" r="3" fill="#C9A24E"/>
+<circle cx="290" cy="165" r="3" fill="#C9A24E"/>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="42 56 326 394">
+<defs>
+<pattern id="thermos-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.6" fill="#0E1B3D" opacity=".22"/></pattern>
+<clipPath id="thermos-clip"><path d="M104 150C92 230 74 320 82 420A108 24 0 0 0 298 420C306 320 288 230 276 150A86 20 0 0 0 104 150Z"/></clipPath>
+<clipPath id="thermos-hclip"><path d="M268 178Q330 168 350 200Q366 232 356 300Q346 360 296 376L290 346Q322 336 328 296Q334 246 324 222Q312 202 272 208Z"/></clipPath>
+</defs>
+<g stroke="#0E1B3D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M268 178Q330 168 350 200Q366 232 356 300Q346 360 296 376L290 346Q322 336 328 296Q334 246 324 222Q312 202 272 208Z" fill="#FFCC00"/>
+<g clip-path="url(#thermos-hclip)" stroke="none">
+<path d="M330 186L336 206Q352 240 344 300Q338 350 294 364L290 400H380V186Z" fill="#E0A800"/>
+<path d="M330 186L336 206Q352 240 344 300Q338 350 294 364L290 400H380V186Z" fill="url(#thermos-dots)"/>
+</g>
+<path d="M268 178Q330 168 350 200Q366 232 356 300Q346 360 296 376L290 346Q322 336 328 296Q334 246 324 222Q312 202 272 208Z" fill="none"/>
+<path d="M288 184Q314 180 330 190" stroke="#FFF8E6" stroke-width="5" fill="none"/>
+<path d="M104 150C92 230 74 320 82 420A108 24 0 0 0 298 420C306 320 288 230 276 150A86 20 0 0 0 104 150Z" fill="#FFF8E6"/>
+<g clip-path="url(#thermos-clip)" fill="none">
+<path d="M246 150C262 230 280 320 270 460H320V150Z" fill="#F0E3C2" stroke="none"/>
+<path d="M246 150C262 230 280 320 270 460H320V150Z" fill="url(#thermos-dots)" stroke="none"/>
+<path d="M122 190Q107 299 109 408M153 196Q145 305 147 414M190 198Q190 307 190 416M227 196Q235 305 233 414M258 190Q273 299 271 408" stroke-width="3"/>
+<path d="M60 176H102A88 22 0 0 0 278 176H320M60 392H81A109 24 0 0 0 299 392H320" stroke-width="4"/>
+<path d="M100 192Q91 296 90 386" stroke="#FFF8E6" stroke-width="8"/>
+<path d="M111 196Q102 296 101 388" stroke="#FFF8E6" stroke-width="5"/>
+</g>
+<path d="M104 150C92 230 74 320 82 420A108 24 0 0 0 298 420C306 320 288 230 276 150A86 20 0 0 0 104 150Z" fill="none"/>
+<path d="M104 130Q84 116 64 112Q51 110 55 124Q74 146 104 160Z" fill="#FFCC00"/>
+<path d="M55 124Q74 146 104 160L106 146Q80 138 55 124Z" fill="#E0A800" stroke="none"/>
+<path d="M55 124Q74 146 104 160L106 146Q80 138 55 124Z" fill="url(#thermos-dots)" stroke="none"/>
+<path d="M104 130Q84 116 64 112Q51 110 55 124Q74 146 104 160" fill="none"/>
+<path d="M63 120Q86 124 104 138" stroke-width="3" fill="none"/>
+<path d="M100 126V150A90 20 0 0 0 280 150V126Z" fill="#FFCC00"/>
+<path d="M244 166A90 20 0 0 0 280 150V126H244Z" fill="#E0A800" stroke="none"/>
+<path d="M244 166A90 20 0 0 0 280 150V126H244Z" fill="url(#thermos-dots)" stroke="none"/>
+<path d="M100 126V150A90 20 0 0 0 280 150V126" fill="none"/>
+<path d="M100 126C104 96 144 82 190 82C236 82 276 96 280 126A90 20 0 0 1 100 126Z" fill="#FFCC00"/>
+<path d="M244 88C266 98 278 110 280 126A90 20 0 0 1 254 140C258 120 254 102 244 88Z" fill="#E0A800" stroke="none"/>
+<path d="M244 88C266 98 278 110 280 126A90 20 0 0 1 254 140C258 120 254 102 244 88Z" fill="url(#thermos-dots)" stroke="none"/>
+<path d="M100 126C104 96 144 82 190 82C236 82 276 96 280 126A90 20 0 0 1 100 126Z" fill="none"/>
+<path d="M150 97Q168 91 190 90M114 154Q132 160 152 162" stroke="#FFF8E6" stroke-width="4" fill="none"/>
+<path d="M174 84V70A16 5.5 0 0 1 206 70V84A16 5.5 0 0 1 174 84Z" fill="#C4122F"/>
+<ellipse cx="190" cy="70" rx="16" ry="5.5" fill="#C4122F" stroke-width="4"/>
+<path d="M132 102Q134 111 143 113Q134 115 132 124Q130 115 121 113Q130 111 132 102Z" fill="#FFF8E6" stroke-width="3"/>
+</g>
+</svg>
