@@ -9,6 +9,8 @@ HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem
 > A pasta `stampa/` tem outro site, independente deste: o da loja **Stampa Vilhena** (veja `stampa/README.md`). Na prévia da Vercel ele fica em `/stampa/`.
 >
 > A pasta `multiplos/` tem o site do **Multiplos Atacado** (veja `multiplos/README.md`), em `/multiplos/` na prévia.
+>
+> A pasta `zerograu/` tem o site da **Zero Grau Frios & Cortes** (veja `zerograu/README.md`), em `/zerograu/` na prévia.
 
 ## Estrutura
 
