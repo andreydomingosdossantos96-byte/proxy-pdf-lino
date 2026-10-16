@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Presentinho · Anúncio Reels</title>
+<style>
+  /* Stage 1080x1920 (9:16). Key text stays between y≈270 and y≈1250 (Reels/ads safe zone). */
+  @font-face { font-family: "Bricolage"; font-weight: 700; src: url(fonts/bricolage-grotesque-latin-700-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Bricolage"; font-weight: 800; src: url(fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 400; src: url(fonts/figtree-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 600; src: url(fonts/figtree-latin-600-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 700; src: url(fonts/figtree-latin-700-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 800; src: url(fonts/figtree-latin-800-normal.woff2) format("woff2"); }
+  :root { --lilas: #F1ECFF; --ameixa: #22123A; --tang: #FF5B2E; --mant: #FFE07A; --menta: #12A67A; --suave: #6A5C80; --linha: #DDD3F5; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Figtree", sans-serif; color: var(--ameixa); }
+  .scene { position: absolute; inset: 0; visibility: hidden; }
+  .abs { position: absolute; }
+  .center { left: 0; right: 0; text-align: center; }
+  .disp { font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -0.045em; line-height: .92; }
+
+  /* S1 hook */
+  #s1 { background: var(--tang); }
+  #s1 .l1 { top: 330px; font-size: 64px; font-weight: 700; color: #fff; }
+  #s1 .l2 { top: 430px; font-size: 168px; color: var(--ameixa); padding: 0 60px; }
+  .stamp { border: 10px solid #fff; color: #fff; font-family: "Bricolage"; font-weight: 800; font-size: 78px; letter-spacing: .02em; padding: 6px 30px 10px; border-radius: 18px; }
+
+  /* S2 */
+  #s2 { background: var(--ameixa); color: var(--lilas); }
+  #s2 .a { top: 470px; font-size: 96px; font-weight: 700; }
+  #s2 .pix { top: 720px; font-size: 380px; color: var(--tang); }
+
+  /* S3 phone demo */
+  #s3 { background: var(--lilas); }
+  .cap { top: 280px; font-size: 70px; padding: 0 70px; }
+  .cap em { font-style: normal; color: var(--tang); }
+  .phone { left: 300px; top: 470px; width: 480px; height: 980px; border: 14px solid var(--ameixa); border-radius: 64px; background: var(--lilas); overflow: hidden; box-shadow: 0 40px 80px rgba(34,18,58,.25); transform-origin: 50% 0; }
+  .ph-in { position: absolute; inset: 0; padding: 26px 22px; display: grid; gap: 16px; align-content: start; }
+  .ph-top { display: flex; justify-content: space-between; align-items: center; font-size: 17px; color: var(--suave); font-weight: 600; }
+  .brand { display: flex; align-items: center; gap: 4px; font-family: "Bricolage"; font-weight: 800; letter-spacing: -0.045em; font-size: 26px; color: var(--ameixa); }
+  .brand svg { width: 36px; height: 36px; }
+  .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tang); }
+  .ph-h { font-size: 66px; }
+  .rcv { background: #fff; border: 1px solid var(--linha); border-radius: 18px; padding: 12px 14px; font-size: 16px; line-height: 1.35; }
+  .tags { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tag { position: relative; background: var(--mant); border-radius: 8px 22px 22px 8px; padding: 18px 12px 14px 34px; display: grid; gap: 6px; min-height: 150px; align-content: start; }
+  .tag::before { content: ""; position: absolute; left: 12px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--lilas); }
+  .tag b { font-weight: 600; font-size: 18px; line-height: 1.2; }
+  .tag i { font-style: normal; font-family: "Bricolage"; font-weight: 800; font-size: 30px; letter-spacing: -0.03em; }
+  .tag small { font-size: 13px; font-weight: 700; opacity: .7; }
+  .veil { position: absolute; inset: 0; background: rgba(34,18,58,.6); }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 760px; background: #fff; border-radius: 34px 34px 0 0; padding: 16px 24px; display: grid; gap: 14px; align-content: start; }
+  .grab { width: 54px; height: 6px; border-radius: 3px; background: var(--linha); justify-self: center; }
+  .sh-t { font-size: 40px; }
+  .sh-s { color: var(--tang); font-weight: 700; font-size: 20px; margin-top: -4px; }
+  .qr { justify-self: center; width: 250px; height: 250px; border: 1px solid var(--linha); border-radius: 22px; padding: 12px; background: #fff; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .code { font-family: ui-monospace, monospace; font-size: 13px; background: var(--lilas); border-radius: 14px; padding: 10px 12px; word-break: break-all; line-height: 1.4; color: var(--ameixa); }
+  .btn { background: var(--tang); color: #fff; font-weight: 700; font-size: 22px; border-radius: 999px; padding: 18px; text-align: center; }
+  .notif { position: absolute; left: 14px; right: 14px; top: 16px; background: var(--ameixa); color: #fff; border-radius: 26px; padding: 16px 18px; display: flex; gap: 14px; align-items: center; box-shadow: 0 16px 30px rgba(0,0,0,.3); }
+  .notif svg { width: 46px; height: 46px; flex: none; }
+  .notif strong { display: block; font-size: 21px; }
+  .notif span { font-size: 16px; opacity: .8; }
+  .finger { width: 92px; height: 92px; border-radius: 50%; background: rgba(255,255,255,.55); border: 5px solid rgba(34,18,58,.55); }
+  .ripple { width: 92px; height: 92px; border-radius: 50%; border: 6px solid var(--tang); }
+  .money { font-family: "Bricolage"; font-weight: 800; font-size: 92px; letter-spacing: -0.04em; color: #fff; background: var(--menta); padding: 14px 34px 20px; border-radius: 28px; box-shadow: 0 20px 40px rgba(18,166,122,.35); white-space: nowrap; }
+
+  /* S4 fees */
+  #s4 { background: var(--tang); color: #fff; }
+  #s4 .q { top: 330px; font-size: 64px; font-weight: 700; padding: 0 80px; line-height: 1.15; }
+  #s4 .old { top: 560px; font-size: 250px; color: var(--ameixa); }
+  #s4 .strike { top: 690px; left: 160px; height: 22px; background: #fff; border-radius: 11px; transform-origin: 0 50%; }
+  #s4 .zero { top: 860px; font-size: 300px; color: #fff; }
+  #s4 .aqui { top: 1170px; font-size: 56px; font-weight: 700; color: var(--ameixa); }
+
+  /* S5 steps */
+  #s5 { background: var(--lilas); }
+  #s5 .t { top: 300px; font-size: 64px; font-weight: 700; color: var(--suave); }
+  .row { left: 110px; display: flex; align-items: center; gap: 36px; }
+  .num { width: 140px; height: 140px; border-radius: 50%; background: var(--mant); display: grid; place-items: center; font-family: "Bricolage"; font-weight: 800; font-size: 80px; flex: none; }
+  .row .disp { font-size: 100px; }
+
+  /* S6 end card */
+  #s6 { background: var(--ameixa); color: var(--lilas); }
+  #s6 .logo { left: 410px; top: 330px; width: 260px; height: 260px; transform-origin: 35% 50%; }
+  #s6 .wm { top: 640px; font-size: 150px; }
+  #s6 .tl { top: 820px; font-size: 56px; font-weight: 600; opacity: .9; }
+  #s6 .cta { left: 190px; top: 940px; width: 700px; background: var(--tang); color: #fff; font-weight: 800; font-size: 60px; border-radius: 999px; padding: 34px 0; text-align: center; }
+  #s6 .fine { top: 1120px; font-size: 38px; font-weight: 600; color: var(--mant); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- S1 -->
+  <div class="scene" id="s1">
+    <p class="abs center l1" id="s1l1">Seu casamento vai ter</p>
+    <p class="abs center disp l2" id="s1l2">3 jogos de panela.</p>
+    <div class="abs stamp" id="st1">REPETIDO</div>
+    <div class="abs stamp" id="st2">REPETIDO</div>
+    <div class="abs stamp" id="st3">REPETIDO</div>
+  </div>
+  <!-- S2 -->
+  <div class="scene" id="s2">
+    <p class="abs center disp a"><span id="s2a">E se cada presente</span><br><span id="s2b">virasse</span></p>
+    <p class="abs center disp pix" id="s2pix">Pix?</p>
+  </div>
+  <!-- S3 -->
+  <div class="scene" id="s3">
+    <p class="abs center disp cap" id="cap1">O convidado escolhe o presente</p>
+    <p class="abs center disp cap" id="cap2">e paga pelo <em>QR Code</em></p>
+    <p class="abs center disp cap" id="cap3">O dinheiro cai <em>na hora</em> na sua conta</p>
+    <div class="abs phone" id="phone">
+      <div class="ph-in">
+        <div class="ph-top"><span class="brand"><svg viewBox="0 0 64 64" id="mk1"></svg>presentinho</span><span>Lista de presentes</span></div>
+        <span class="eyebrow">Casamento · 12 de dezembro</span>
+        <h1 class="disp ph-h">Ana &amp; Pedro</h1>
+        <p class="rcv">O Pix vai direto para a conta de <strong>Ana Souza</strong>. Sem taxa.</p>
+        <div class="tags">
+          <div class="tag"><b>Jantar na lua de mel</b><i>R$ 180</i><small>Presentear com Pix →</small></div>
+          <div class="tag" id="tagB"><b>Passeio de barco em Paraty</b><i>R$ 250</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Jogo de panelas</b><i>R$ 320</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Cafeteira para as manhãs</b><i>R$ 150</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Uma noite no hotel</b><i>R$ 400</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Vaso para a varanda</b><i>R$ 90</i><small>Presentear com Pix →</small></div>
+        </div>
+      </div>
+      <div class="veil" id="veil"></div>
+      <div class="sheet" id="sheet">
+        <div class="grab"></div>
+        <h2 class="disp sh-t">Passeio de barco em Paraty</h2>
+        <p class="sh-s">R$ 250,00 para Ana Souza</p>
+        <div class="qr" id="qr"></div>
+        <div class="code" id="code"></div>
+        <div class="btn">Copiar código Pix</div>
+      </div>
+      <div class="notif" id="notif">
+        <svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="14" fill="#12A67A"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><strong>Pix recebido · R$ 250,00</strong><span>Marcos Lima: “Boa viagem, casal!”</span></div>
+      </div>
+    </div>
+    <div class="abs ripple" id="ripple"></div>
+    <div class="abs finger" id="finger"></div>
+    <p class="abs money" id="money">+R$ 250</p>
+  </div>
+  <!-- S4 -->
+  <div class="scene" id="s4">
+    <p class="abs center q" id="s4q">Taxa de 3% numa lista<br>de R$ 10 mil?</p>
+    <p class="abs center disp old" id="s4old">R$ 300</p>
+    <div class="abs strike" id="s4strike" style="width:760px"></div>
+    <p class="abs center disp zero" id="s4zero">R$ 0</p>
+    <p class="abs center aqui" id="s4aqui">no presentinho. O presente vai inteiro.</p>
+  </div>
+  <!-- S5 -->
+  <div class="scene" id="s5">
+    <p class="abs center t" id="s5t">Em 3 passos</p>
+    <div class="abs row" id="r1" style="top:470px"><span class="num">1</span><span class="disp">Monte a lista</span></div>
+    <div class="abs row" id="r2" style="top:690px"><span class="num">2</span><span class="disp">Mande o link</span></div>
+    <div class="abs row" id="r3" style="top:910px"><span class="num">3</span><span class="disp">Receba no Pix</span></div>
+  </div>
+  <!-- S6 -->
+  <div class="scene" id="s6">
+    <svg class="abs logo" id="logo" viewBox="0 0 64 64"></svg>
+    <p class="abs center disp wm" id="wm">presentinho</p>
+    <p class="abs center tl" id="tl">Lista de presentes em Pix</p>
+    <div class="abs cta" id="cta">Crie a sua grátis</div>
+    <p class="abs center fine" id="fine">Sem taxa · Sem cadastro · Qualquer banco</p>
+  </div>
+</div>
+<script src="../qrcode.js"></script>
+<script>
+const MARK = (holeFill, string) => `<g transform="rotate(-12 32 32)"><path d="M10 32 L24 16 H52 a4 4 0 0 1 4 4 V44 a4 4 0 0 1 -4 4 H24 Z" fill="#FF5B2E" stroke="#FF5B2E" stroke-width="4" stroke-linejoin="round"/><circle cx="23" cy="32" r="4.5" fill="${holeFill}"/></g><path d="M23 34 C 14 33, 7 27, 7 16" fill="none" stroke="${string}" stroke-width="3" stroke-linecap="round"/><path d="M55 1 l1.8 4.2 4.2 1.8 -4.2 1.8 -1.8 4.2 -1.8 -4.2 -4.2 -1.8 4.2 -1.8z" fill="#FFE07A"/>`;
+document.getElementById("mk1").innerHTML = MARK("#F1ECFF", "#22123A");
+document.getElementById("logo").innerHTML = MARK("#22123A", "#F1ECFF");
+
+// real Pix payload for the demo QR
+const PIX = "00020126430014br.gov.bcb.pix0121ana.exemplo@email.com5204000053039865406250.005802BR5909Ana Souza6009Sao Paulo62070503***63049434";
+(function () {
+  const q = qrcode(0, "M"); q.addData(PIX); q.make(); const n = q.getModuleCount(); let d = "";
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += `M${c} ${r}h1v1h-1z`;
+  document.getElementById("qr").innerHTML = `<svg viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges"><path d="${d}" fill="#111"/></svg>`;
+  document.getElementById("code").textContent = PIX;
+})();
+
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, a, b) => cl((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);
+const eb = x => { const c1 = 2.2, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+function set(el, { x = 0, y = 0, s = 1, r = 0, o = 1 } = {}) {
+  el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
+  el.style.opacity = o;
+}
+// pop in: rise + fade
+function rise(el, t, a, d = 0.3, dist = 50) { const k = eo(P(t, a, a + d)); set(el, { y: (1 - k) * dist, o: k }); }
+// slam: big -> 1
+function slam(el, t, a, d = 0.22, from = 2.2, r = 0) { const k = P(t, a, a + d); set(el, { s: lerp(from, 1, eo(k)), r, o: k > 0 ? Math.min(1, k * 3) : 0 }); }
+function shake(t, hits) { let dx = 0, dy = 0; for (const h of hits) { const k = P(t, h, h + 0.18); if (k > 0 && k < 1) { const a = (1 - k) * 14; dx += Math.sin(k * 40) * a; dy += Math.cos(k * 33) * a; } } return [dx, dy]; }
+
+const SCENES = [["s1", 0, 2.4], ["s2", 2.4, 4.2], ["s3", 4.2, 10.8], ["s4", 10.8, 13.9], ["s5", 13.9, 16.4], ["s6", 16.4, 99]];
+window.DURATION = 19.5;
+
+function render(t) {
+  for (const [id, a, b] of SCENES) $(id).style.visibility = t >= a && t < b ? "visible" : "hidden";
+
+  // ---- S1 hook ----
+  rise($("s1l1"), t, 0.0, 0.25, 40);
+  { const k = eb(P(t, 0.15, 0.5)); set($("s1l2"), { s: lerp(1.25, 1, k), o: P(t, 0.15, 0.3) }); }
+  const stamps = [["st1", 0.9, 150, 900, -9], ["st2", 1.25, 520, 1010, 6], ["st3", 1.6, 250, 1130, -4]];
+  for (const [id, a, x, y, r] of stamps) { const e = $(id); e.style.left = x + "px"; e.style.top = y + "px"; slam(e, t, a, 0.18, 2.6, r); }
+  { const [dx, dy] = shake(t, [1.08, 1.43, 1.78]); $("s1").style.transform = `translate(${dx}px, ${dy}px)`; }
+
+  // ---- S2 ----
+  rise($("s2a"), t, 2.4, 0.25, 40); $("s2a").style.display = "inline-block";
+  rise($("s2b"), t, 2.65, 0.25, 40); $("s2b").style.display = "inline-block";
+  { const k = P(t, 2.95, 3.35); set($("s2pix"), { s: lerp(0.2, 1, eb(k)), r: lerp(-14, -4, eo(k)), o: k > 0 ? 1 : 0 }); }
+
+  // ---- S3 phone ----
+  { const k = eo(P(t, 4.2, 4.75)); set($("phone"), { y: (1 - k) * 700, r: (1 - k) * -6 }); }
+  const capShow = (id, a, b) => { const kin = eo(P(t, a, a + 0.3)), kout = P(t, b - 0.2, b); set($(id), { y: (1 - kin) * 40 - kout * 40, o: kin * (1 - kout) }); };
+  capShow("cap1", 4.35, 6.55); capShow("cap2", 6.55, 8.55); capShow("cap3", 8.55, 10.9);
+  // finger moves to tag B (phone at left 300, top 470 + border 14). tagB center ≈ x 300+14+22+216+108, y 470+14+ (~ 560)
+  const rb = $("tagB").getBoundingClientRect(); const fx0 = 860, fy0 = 1500, fx1 = rb.left + rb.width / 2, fy1 = rb.top + rb.height / 2;
+  { const k = eo(P(t, 5.0, 5.75)); const press = P(t, 5.85, 5.95) - P(t, 5.95, 6.1);
+    const vis = P(t, 4.9, 5.05) * (1 - P(t, 6.3, 6.5));
+    $("finger").style.left = lerp(fx0, fx1, k) - 46 + "px"; $("finger").style.top = lerp(fy0, fy1, k) - 46 + "px";
+    set($("finger"), { s: 1 - press * 0.18, o: vis });
+    const rk = P(t, 5.95, 6.4); $("ripple").style.left = fx1 - 46 + "px"; $("ripple").style.top = fy1 - 46 + "px";
+    set($("ripple"), { s: lerp(0.6, 2.4, eo(rk)), o: rk > 0 && rk < 1 ? 1 - rk : 0 });
+    set($("tagB"), { s: 1 - press * 0.05 }); }
+  { const k = eo(P(t, 6.1, 6.55)); set($("sheet"), { y: (1 - k) * 800 }); $("veil").style.opacity = k; }
+  { const k = P(t, 8.3, 8.65); const out = 0; set($("notif"), { y: lerp(-180, 0, eb(k)), o: k > 0 ? 1 : 0 });
+    const bump = P(t, 8.5, 8.7) - P(t, 8.7, 8.95); const pk = eo(P(t, 4.2, 4.75));
+    $("phone").style.transform = `translate(0px, ${(1 - pk) * 700}px) rotate(${(1 - pk) * -6}deg) scale(${1.12 + bump * 0.035})`; }
+  { const k = P(t, 8.75, 9.25); const e = $("money"); e.style.left = "600px"; e.style.top = "1330px";
+    set(e, { y: -eo(k) * 120 - P(t, 9.3, 10.6) * 40, s: lerp(0.4, 1, eb(k)), r: -6, o: k > 0 ? 1 - P(t, 10.3, 10.75) : 0 }); }
+
+  // ---- S4 fees ----
+  rise($("s4q"), t, 10.8, 0.3, 40);
+  { const k = P(t, 11.15, 11.9); const v = Math.round(eo(k) * 300); $("s4old").textContent = "R$ " + v;
+    const fade = P(t, 12.4, 12.6); set($("s4old"), { o: k > 0 ? 1 - fade * 0.55 : 0, s: 1 - fade * 0.2 }); }
+  { const k = eo(P(t, 12.05, 12.35)); const fade = P(t, 12.4, 12.6); $("s4strike").style.transform = `scaleX(${k}) rotate(-4deg) scale(${1 - fade * 0.2})`; $("s4strike").style.opacity = 1 - fade * 0.55; }
+  slam($("s4zero"), t, 12.55, 0.22, 2.4, -3);
+  { const [dx, dy] = shake(t, [12.77]); $("s4").style.transform = `translate(${dx}px, ${dy}px)`; }
+  rise($("s4aqui"), t, 12.95, 0.3, 30);
+
+  // ---- S5 steps ----
+  rise($("s5t"), t, 13.9, 0.25, 30);
+  [["r1", 14.15], ["r2", 14.75], ["r3", 15.35]].forEach(([id, a]) => { const k = P(t, a, a + 0.3); set($(id), { x: (1 - eo(k)) * -120, s: lerp(0.85, 1, eb(k)), o: k > 0 ? Math.min(1, k * 2) : 0 }); });
+
+  // ---- S6 end ----
+  { const k = P(t, 16.4, 16.95); set($("logo"), { s: lerp(0.2, 1, eb(k)), r: lerp(-40, 0, eo(k)) + Math.sin(Math.max(0, t - 16.9) * 3) * 4 * (t > 16.9 ? 1 : 0), o: k > 0 ? 1 : 0 }); }
+  rise($("wm"), t, 16.7, 0.35, 40);
+  rise($("tl"), t, 16.95, 0.3, 30);
+  { const k = P(t, 17.3, 17.6); const pulse = t > 18 ? 1 + Math.sin((t - 18) * 6) * 0.025 : 1; set($("cta"), { s: lerp(0.5, 1, eb(k)) * pulse, o: k > 0 ? 1 : 0 }); }
+  rise($("fine"), t, 17.65, 0.3, 20);
+}
+window.render = render;
+render(0);
+</script>
+</body>
+</html>
