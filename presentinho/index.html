@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Lista de presentes em Pix para casamento, chá de bebê e aniversário. O dinheiro cai direto na sua conta, sem taxa.">
+<meta property="og:title" content="Lista de presentes em Pix">
+<meta property="og:description" content="Escolha um presente e pague pelo Pix. Direto para a conta de quem organizou, sem taxa.">
+<meta property="og:type" content="website">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Presentinho Pix</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: editor on the left, live phone preview of the guest page on the right; stacks on phones.
+     Items are drawn as gift tags (punched hole, price on the tag). */
+  :root {
+    --bg: #fbf6f7;
+    --surface: #ffffff;
+    --ink: #2a1d2b;
+    --muted: #776673;
+    --line: #eadde3;
+    --accent: #c92f63;
+    --accent-ink: #ffffff;
+    --accent-soft: #fbe3ec;
+    --ok: #237a66;
+    --ok-soft: #dff2ec;
+    --warn: #9a5b00;
+    --warn-soft: #fdf0d9;
+    --tag: #fff3f6;
+    --qr-bg: #ffffff;
+    --qr-fg: #111111;
+    --shadow: 0 1px 2px rgba(42, 29, 43, .06), 0 8px 24px rgba(42, 29, 43, .07);
+    --f-display: "Caprasimo", "Georgia", serif;
+    --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --r: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #181219; --surface: #231a24; --ink: #f4e9ef; --muted: #b5a3af; --line: #3a2c3a;
+      --accent: #f2709a; --accent-ink: #2a0e18; --accent-soft: #43202e; --ok: #5cc3a8; --ok-soft: #173a31;
+      --warn: #f0b75a; --warn-soft: #3b2c12; --tag: #2c2030;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #181219; --surface: #231a24; --ink: #f4e9ef; --muted: #b5a3af; --line: #3a2c3a;
+    --accent: #f2709a; --accent-ink: #2a0e18; --accent-soft: #43202e; --ok: #5cc3a8; --ok-soft: #173a31;
+    --warn: #f0b75a; --warn-soft: #3b2c12; --tag: #2c2030;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0 48px;
+  }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--accent); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- top bar ---------- */
+  .topbar { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
+  .brand { font-family: var(--f-display); font-size: 1.45rem; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .brand svg { width: 26px; height: 26px; }
+  .topbar small { color: var(--muted); font-size: .85rem; }
+
+  /* ---------- creator ---------- */
+  .hero { max-width: 1180px; margin: 0 auto; padding-block: 12px 28px; display: grid; gap: 10px; }
+  .hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; max-width: 18ch; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { color: var(--muted); max-width: 60ch; font-size: 1.05rem; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .pill { font-size: .82rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); }
+
+  .workspace { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 32px; align-items: start; }
+  @media (max-width: 920px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 18px; min-width: 0; }
+  .panel + .panel { margin-top: 18px; }
+  .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .panel h2 { font-size: 1.05rem; font-weight: 700; }
+  .step { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .example-chip { font-size: .75rem; font-weight: 700; color: var(--warn); background: var(--warn-soft); padding: 3px 9px; border-radius: 999px; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 560px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+  .field { display: grid; gap: 6px; min-width: 0; }
+  .field label { font-size: .85rem; font-weight: 600; }
+  .field .hint { font-size: .8rem; color: var(--muted); }
+  .field .err { font-size: .8rem; color: var(--accent); font-weight: 600; }
+  input[type=text], input[type=date], input[type=tel], select, textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0;
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  .items { display: grid; gap: 10px; }
+  .item-row { display: grid; grid-template-columns: minmax(0, 1fr) 130px 40px; gap: 8px; align-items: center; }
+  .item-row input.money { text-align: right; font-variant-numeric: tabular-nums; }
+  .icon-btn { width: 40px; height: 42px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); display: grid; place-items: center; }
+  .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .row-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; }
+  .check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 11px 20px; font-weight: 700; border: 1px solid transparent; cursor: pointer; text-decoration: none; font-size: .95rem; }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { filter: brightness(1.06); }
+  .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-ok { background: var(--ok); color: var(--surface); }
+  .btn-block { width: 100%; }
+  .btn-small { padding: 7px 14px; font-size: .85rem; }
+
+  .total { font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .total strong { color: var(--ink); }
+
+  .share { display: grid; gap: 12px; background: var(--ok-soft); border-radius: 12px; padding: 16px; }
+  .share p { font-size: .92rem; }
+  .copy-line { display: flex; gap: 8px; min-width: 0; }
+  .copy-line input { flex: 1; font-family: var(--f-mono); font-size: .8rem; background: var(--surface); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .form-error { color: var(--accent); font-weight: 600; font-size: .9rem; }
+
+  .preview-col { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 10px; min-width: 0; }
+  @media (max-width: 920px) { .preview-col { position: static; } }
+  .preview-label { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; }
+  .phone { border: 10px solid var(--ink); border-radius: 34px; background: var(--bg); height: min(760px, calc(100vh - 80px)); overflow-y: auto; box-shadow: var(--shadow); }
+  @media (max-width: 920px) { .phone { height: auto; max-height: 720px; } }
+  .phone .guest { padding: 22px 16px 26px; }
+
+  /* ---------- guest page ---------- */
+  .guest { max-width: 720px; margin: 0 auto; display: grid; gap: 22px; }
+  .guest-head { display: grid; gap: 10px; text-align: left; }
+  .eyebrow { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+  .guest-head h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 7vw, 3rem); line-height: 1.05; overflow-wrap: anywhere; }
+  .phone .guest-head h1 { font-size: 2.1rem; }
+  .guest-head .msg { color: var(--muted); white-space: pre-line; overflow-wrap: anywhere; }
+  .receiver { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .receiver svg { flex: none; width: 20px; height: 20px; color: var(--ok); margin-top: 1px; }
+
+  .tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+  .phone .tags { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .tag {
+    position: relative; text-align: left; cursor: pointer; background: var(--tag); border: 1px solid var(--line);
+    border-radius: 6px 18px 18px 6px; padding: 16px 14px 14px 30px; display: grid; gap: 10px; min-width: 0;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .tag::before { /* punched hole of a gift tag */
+    content: ""; position: absolute; left: 10px; top: 18px; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--line);
+  }
+  .tag:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .tag-name { font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+  .tag-price { font-family: var(--f-display); font-size: 1.35rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .phone .tag { padding-left: 26px; }
+  .phone .tag-price { font-size: 1.1rem; }
+  .tag-cta { font-size: .8rem; font-weight: 700; color: var(--muted); }
+  .tag.free { border-style: dashed; }
+  .empty { color: var(--muted); font-size: .92rem; padding: 18px; border: 1px dashed var(--line); border-radius: 12px; text-align: center; }
+  .guest-foot { text-align: center; font-size: .85rem; color: var(--muted); display: grid; gap: 6px; padding-top: 8px; }
+  .guest-foot a { font-weight: 700; }
+
+  /* ---------- pay sheet ---------- */
+  .scrim { position: fixed; inset: 0; background: rgba(20, 10, 20, .55); z-index: 50; display: grid; place-items: end center; padding: 0; }
+  @media (min-width: 640px) { .scrim { place-items: center; padding: 24px; } }
+  .sheet {
+    background: var(--surface); width: 100%; max-width: 460px; max-height: 92vh; overflow-y: auto; border-radius: 22px 22px 0 0;
+    padding: 22px max(20px, env(safe-area-inset-right, 0px)) calc(22px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+    display: grid; gap: 16px; box-shadow: var(--shadow);
+  }
+  @media (min-width: 640px) { .sheet { border-radius: 22px; } }
+  .sheet-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .sheet-head h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.5rem; line-height: 1.15; overflow-wrap: anywhere; }
+  .sheet-amount { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+  .qr { background: var(--qr-bg); border-radius: 14px; padding: 14px; width: min(260px, 100%); margin: 0 auto; border: 1px solid var(--line); }
+  .qr svg { display: block; width: 100%; height: auto; }
+  .code { font-family: var(--f-mono); font-size: .72rem; line-height: 1.45; word-break: break-all; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; max-height: 96px; overflow-y: auto; user-select: all; }
+  .steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: .9rem; }
+  .steps strong { color: var(--ink); }
+  .alert { font-size: .85rem; background: var(--warn-soft); color: var(--ink); border-radius: 10px; padding: 10px 12px; }
+  .alert strong { color: var(--warn); }
+  .divider { height: 1px; background: var(--line); }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: .9rem; z-index: 60; }
+
+  @media (prefers-reduced-motion: reduce) { .tag { transition: none; } .tag:hover { transform: none; } }
+</style>
+
+<header class="topbar">
+  <a class="brand" href="./" id="brandLink">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="12" width="24" height="16" rx="3" fill="var(--accent)"/><rect x="2" y="8" width="28" height="6" rx="2" fill="var(--accent)" opacity=".75"/><rect x="14.5" y="8" width="3" height="20" fill="var(--bg)"/><path d="M16 8c-3-6-9-5-8-1s8 1 8 1zm0 0c3-6 9-5 8-1s-8 1-8 1z" fill="none" stroke="var(--accent)" stroke-width="2"/></svg>
+    Presentinho
+  </a>
+  <small id="topNote">Lista de presentes em Pix, sem taxa</small>
+</header>
+
+<main id="app"></main>
+<div id="sheetRoot"></div>
+
+<script src="qrcode.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ================= Pix (BR Code estático) ================= */
+  function crc16(str) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+      crc ^= str.charCodeAt(i) << 8;
+      for (let b = 0; b < 8; b++) crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) & 0xFFFF : (crc << 1) & 0xFFFF;
+    }
+    return crc.toString(16).toUpperCase().padStart(4, "0");
+  }
+  function tlv(id, value) { return id + String(value.length).padStart(2, "0") + value; }
+  function ascii(s) {
+    return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9 ]/g, "").replace(/\s+/g, " ").trim();
+  }
+  function pixPayload(key, name, city, amount) {
+    const mai = tlv("00", "br.gov.bcb.pix") + tlv("01", key);
+    let p = tlv("00", "01") + tlv("26", mai) + tlv("52", "0000") + tlv("53", "986");
+    if (amount > 0) p += tlv("54", amount.toFixed(2));
+    p += tlv("58", "BR") + tlv("59", ascii(name).slice(0, 25) || "RECEBEDOR") + tlv("60", ascii(city).slice(0, 15) || "BRASIL");
+    p += tlv("62", tlv("05", "***")) + "6304";
+    return p + crc16(p);
+  }
+  function normalizeKey(type, raw) {
+    const v = String(raw || "").trim();
+    const digits = v.replace(/\D/g, "");
+    if (type === "cpf") {
+      if (digits.length === 11 || digits.length === 14) return { key: digits };
+      return { error: "CPF tem 11 números e CNPJ tem 14." };
+    }
+    if (type === "phone") {
+      let d = digits;
+      if ((d.length === 12 || d.length === 13) && d.startsWith("55")) d = d.slice(2);
+      if (d.length === 10 || d.length === 11) return { key: "+55" + d };
+      return { error: "Use DDD + número, por exemplo (11) 98765-4321." };
+    }
+    if (type === "email") {
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) && v.length <= 77) return { key: v.toLowerCase() };
+      return { error: "Esse e-mail não parece válido." };
+    }
+    if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)) return { key: v.toLowerCase() };
+    return { error: "A chave aleatória tem 36 caracteres, com hífens." };
+  }
+
+  /* ================= Dinheiro ================= */
+  const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  function parseMoney(s) {
+    let t = String(s || "").replace(/[R$\s]/g, "");
+    if (t.includes(",")) t = t.replace(/\./g, "").replace(",", ".");
+    const n = Number(t);
+    return Number.isFinite(n) && n > 0 ? Math.round(n * 100) / 100 : 0;
+  }
+  function moneyInput(n) { return n ? n.toFixed(2).replace(".", ",") : ""; }
+
+  /* ================= Estado <-> link ================= */
+  function encodeState(s) {
+    const bytes = new TextEncoder().encode(JSON.stringify(s));
+    let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b));
+    return "v1." + btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function decodeState(hash) {
+    try {
+      const h = hash.replace(/^#/, "");
+      if (!h.startsWith("v1.")) return null;
+      let b = h.slice(3).replace(/-/g, "+").replace(/_/g, "/");
+      while (b.length % 4) b += "=";
+      const bin = atob(b);
+      const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+      const s = JSON.parse(new TextDecoder().decode(bytes));
+      return s && s.r && Array.isArray(s.i) ? s : null;
+    } catch (e) { return null; }
+  }
+
+  const TYPES = {
+    casamento: "Casamento", bebe: "Chá de bebê", aniversario: "Aniversário",
+    casa: "Chá de casa nova", formatura: "Formatura", outro: "Celebração"
+  };
+
+  const EXAMPLE = {
+    ex: true, t: "casamento", n: "Ana & Pedro", d: "2026-12-12",
+    m: "Nossa casa já tem quase tudo. Se quiser nos presentear, escolha um mimo abaixo. O Pix cai direto na nossa conta. Obrigado por fazer parte desse dia!",
+    r: { nm: "Ana Souza", ci: "Sao Paulo", kt: "email", k: "ana.exemplo@email.com" },
+    w: "", f: true,
+    i: [
+      { n: "Jantar na lua de mel", v: 180 },
+      { n: "Passeio de barco em Paraty", v: 250 },
+      { n: "Jogo de panelas", v: 320 },
+      { n: "Cafeteira para as manhãs", v: 150 },
+      { n: "Uma noite no hotel", v: 400 },
+      { n: "Vaso de plantas para a varanda", v: 90 }
+    ]
+  };
+
+  /* ================= Helpers de DOM ================= */
+  function el(tag, attrs, ...kids) {
+    const n = document.createElement(tag);
+    if (attrs) for (const [k, v] of Object.entries(attrs)) {
+      if (v == null || v === false) continue;
+      if (k === "class") n.className = v;
+      else if (k === "text") n.textContent = v;
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? "" : v);
+    }
+    for (const k of kids.flat()) if (k != null && k !== false) n.append(k.nodeType ? k : document.createTextNode(k));
+    return n;
+  }
+  const svgNS = "http://www.w3.org/2000/svg";
+  function svgIcon(path) {
+    const s = document.createElementNS(svgNS, "svg");
+    s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("aria-hidden", "true");
+    s.innerHTML = path; return s;
+  }
+  const ICON_SHIELD = '<path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+  const ICON_X = '<path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
+
+  function toast(msg) {
+    const t = el("div", { class: "toast", role: "status", text: msg });
+    document.body.append(t); setTimeout(() => t.remove(), 2200);
+  }
+  function copyText(text, fallbackEl) {
+    const ok = () => toast("Copiado!");
+    try {
+      navigator.clipboard.writeText(text).then(ok, () => selectFallback(fallbackEl));
+    } catch (e) { selectFallback(fallbackEl); }
+  }
+  function selectFallback(node) {
+    if (!node) return;
+    if (node.select) { node.focus(); node.select(); }
+    else { const r = document.createRange(); r.selectNodeContents(node); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    toast("Selecionado. Agora é só copiar.");
+  }
+  function qrSvg(text) {
+    const qr = qrcode(0, "M"); qr.addData(text); qr.make();
+    const n = qr.getModuleCount(), m = 2, size = n + m * 2;
+    let d = "";
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) d += "M" + (c + m) + " " + (r + m) + "h1v1h-1z";
+    const s = document.createElementNS(svgNS, "svg");
+    s.setAttribute("viewBox", "0 0 " + size + " " + size); s.setAttribute("shape-rendering", "crispEdges");
+    s.setAttribute("role", "img"); s.setAttribute("aria-label", "QR Code Pix");
+    s.innerHTML = '<rect width="' + size + '" height="' + size + '" fill="var(--qr-bg)"/><path d="' + d + '" fill="var(--qr-fg)"/>';
+    return s;
+  }
+  function formatDate(iso) {
+    if (!iso) return "";
+    const [y, mo, d] = iso.split("-").map(Number);
+    if (!y || !mo || !d) return "";
+    return new Date(y, mo - 1, d).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+  }
+  function siteBase() { return location.href.split("#")[0]; }
+
+  /* ================= Página do convidado ================= */
+  function renderGuest(state, opts) {
+    const keyInfo = normalizeKey(state.r.kt, state.r.k);
+    const items = state.i.filter(it => it.n && it.v > 0);
+    const eyebrow = [TYPES[state.t] || TYPES.outro, formatDate(state.d)].filter(Boolean).join(" · ");
+
+    const tags = items.map(it => el("button", {
+      class: "tag", type: "button", onclick: () => openSheet(state, it)
+    },
+      el("span", { class: "tag-name", text: it.n }),
+      el("span", { class: "tag-price", text: brl.format(it.v) }),
+      el("span", { class: "tag-cta", text: "Presentear com Pix →" })
+    ));
+    if (state.f) tags.push(el("button", { class: "tag free", type: "button", onclick: () => openSheet(state, null) },
+      el("span", { class: "tag-name", text: "Contribuição livre" }),
+      el("span", { class: "tag-price", text: "Você escolhe" }),
+      el("span", { class: "tag-cta", text: "Presentear com Pix →" })
+    ));
+
+    return el("div", { class: "guest" },
+      el("div", { class: "guest-head" },
+        el("span", { class: "eyebrow", text: eyebrow }),
+        el("h1", { text: state.n || "Nossa lista de presentes" }),
+        state.m ? el("p", { class: "msg", text: state.m }) : null
+      ),
+      el("div", { class: "receiver" }, svgIcon(ICON_SHIELD),
+        el("span", null, "O Pix vai direto para a conta de ", el("strong", { text: state.r.nm || "quem organizou" }), ". Sem intermediários e sem taxa.")
+      ),
+      keyInfo.error && opts.preview ? el("p", { class: "alert" }, el("strong", { text: "Atenção: " }), "a chave Pix ainda está inválida. Corrija no formulário.") : null,
+      tags.length ? el("div", { class: "tags" }, tags) : el("p", { class: "empty", text: "Adicione presentes para eles aparecerem aqui." }),
+      el("footer", { class: "guest-foot" },
+        el("span", { text: "Lista feita no Presentinho" }),
+        el("a", { href: siteBase(), text: "Crie a sua lista grátis" })
+      )
+    );
+  }
+
+  /* ================= Folha de pagamento ================= */
+  function openSheet(state, item) {
+    const root = document.getElementById("sheetRoot");
+    const keyInfo = normalizeKey(state.r.kt, state.r.k);
+    const close = () => { root.replaceChildren(); document.removeEventListener("keydown", onKey); };
+    const onKey = e => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", onKey);
+
+    const body = el("div", { class: "sheet", role: "dialog", "aria-modal": "true", "aria-label": "Pagar com Pix" });
+    const scrim = el("div", { class: "scrim", onclick: e => { if (e.target === scrim) close(); } }, body);
+    root.replaceChildren(scrim);
+
+    const head = el("div", { class: "sheet-head" },
+      el("div", null,
+        el("h2", { text: item ? item.n : "Contribuição livre" }),
+        item ? el("p", { class: "sheet-amount", text: brl.format(item.v) }) : null
+      ),
+      el("button", { class: "icon-btn", type: "button", "aria-label": "Fechar", onclick: close }, svgIcon(ICON_X))
+    );
+    body.append(head);
+
+    if (keyInfo.error) {
+      body.append(el("p", { class: "alert" }, el("strong", { text: "Chave Pix inválida. " }), "Quem criou a lista precisa corrigir a chave."));
+      return;
+    }
+
+    const payArea = el("div", { style: "display:grid;gap:16px" });
+    const showPay = amount => {
+      const code = pixPayload(keyInfo.key, state.r.nm, state.r.ci, amount);
+      const codeBox = el("div", { class: "code", text: code });
+      payArea.replaceChildren(
+        el("div", { class: "qr" }, qrSvg(code)),
+        el("div", { style: "display:grid;gap:8px" },
+          el("span", { class: "step", text: "Pix copia e cola" }),
+          codeBox,
+          el("button", { class: "btn btn-primary btn-block", type: "button", onclick: () => copyText(code, codeBox) }, "Copiar código Pix")
+        ),
+        el("ol", { class: "steps" },
+          el("li", null, "Abra o app do seu banco e entre em ", el("strong", { text: "Pix" }), "."),
+          el("li", null, "Escolha ", el("strong", { text: "Ler QR Code" }), " ou ", el("strong", { text: "Pix Copia e Cola" }), "."),
+          el("li", null, "Confira se o recebedor é ", el("strong", { text: state.r.nm || "quem organizou" }), " e confirme.")
+        ),
+        el("p", { class: "alert" }, el("strong", { text: "Segurança: " }), "se o nome no app do banco for diferente, não pague e avise quem te enviou o link.")
+      );
+      if (state.w) payArea.append(thanksBlock(state, item, amount));
+    };
+
+    if (item) showPay(item.v);
+    else {
+      const inp = el("input", { type: "text", id: "freeAmount", inputmode: "decimal", placeholder: "Ex.: 100,00", class: "money" });
+      const err = el("span", { class: "err", hidden: true, text: "Digite um valor maior que zero." });
+      body.append(el("div", { class: "field" },
+        el("label", { for: "freeAmount", text: "Quanto você quer dar?" }),
+        el("div", { class: "copy-line" }, inp,
+          el("button", { class: "btn btn-primary", type: "button", onclick: () => {
+            const v = parseMoney(inp.value); err.hidden = v > 0; if (v > 0) showPay(v);
+          } }, "Gerar Pix")),
+        err
+      ));
+      setTimeout(() => inp.focus(), 50);
+    }
+    body.append(payArea);
+  }
+
+  function thanksBlock(state, item, amount) {
+    const ta = el("textarea", { id: "guestNote", placeholder: "Deixe um recado carinhoso (opcional)", rows: "2" });
+    const link = el("a", { class: "btn btn-ok btn-block", target: "_blank", rel: "noopener" }, "Já paguei, avisar no WhatsApp");
+    const phone = "55" + String(state.w).replace(/\D/g, "").replace(/^55(?=\d{10,11}$)/, "");
+    const update = () => {
+      const what = item ? "\"" + item.n + "\"" : "uma contribuição";
+      let msg = "Oi! Acabei de te dar " + what + " (" + brl.format(amount) + ") pela sua lista no Presentinho.";
+      if (ta.value.trim()) msg += "\n\n" + ta.value.trim();
+      link.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+    };
+    ta.addEventListener("input", update); update();
+    return el("div", { style: "display:grid;gap:10px" }, el("div", { class: "divider" }),
+      el("span", { class: "step", text: "Depois de pagar" }), ta, link);
+  }
+
+  /* ================= Editor ================= */
+  function loadDraft() {
+    try { const s = JSON.parse(localStorage.getItem("presentinho-draft") || "null"); if (s && s.r && Array.isArray(s.i)) return s; } catch (e) {}
+    return JSON.parse(JSON.stringify(EXAMPLE));
+  }
+  function saveDraft(s) { try { localStorage.setItem("presentinho-draft", JSON.stringify(s)); } catch (e) {} }
+
+  function renderCreator() {
+    let state = loadDraft();
+    const app = document.getElementById("app");
+    const preview = el("div", { class: "phone", "aria-label": "Prévia da página do convidado" });
+    const formErr = el("p", { class: "form-error", hidden: true });
+    const shareBox = el("div", { class: "share", hidden: true });
+    const exampleChip = el("span", { class: "example-chip", text: "Exemplo: troque pelos seus dados", hidden: !state.ex });
+    const totalEl = el("p", { class: "total" });
+
+    const refresh = () => {
+      preview.replaceChildren(renderGuest(state, { preview: true }));
+      const sum = state.i.reduce((a, it) => a + (it.v || 0), 0);
+      totalEl.replaceChildren("Total da lista: ", el("strong", { text: brl.format(sum) }), " em " + state.i.filter(i => i.v > 0).length + " presentes");
+      saveDraft(state);
+      shareBox.hidden = true;
+    };
+    const touch = () => { if (state.ex) { state.ex = false; exampleChip.hidden = true; } refresh(); };
+
+    const bind = (id, get, set, tag = "input", extra = {}) => {
+      const n = el(tag, Object.assign({ id, type: tag === "input" ? "text" : null }, extra));
+      n.value = get() || "";
+      n.addEventListener("input", () => { set(n.value); touch(); });
+      return n;
+    };
+    const field = (id, label, control, hint, errEl) => el("div", { class: "field" },
+      el("label", { for: id, text: label }), control, hint ? el("span", { class: "hint", text: hint }) : null, errEl || null);
+
+    // Evento
+    const typeSel = el("select", { id: "evType" }, Object.entries(TYPES).map(([k, v]) => el("option", { value: k, text: v })));
+    typeSel.value = state.t; typeSel.addEventListener("change", () => { state.t = typeSel.value; touch(); });
+    const dateIn = bind("evDate", () => state.d, v => state.d = v, "input");
+    dateIn.type = "date";
+
+    const eventPanel = el("section", { class: "panel" },
+      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 1" }), el("h2", { text: "O evento" })), exampleChip),
+      el("div", { class: "grid2" },
+        field("evType", "Tipo de evento", typeSel),
+        field("evDate", "Data (opcional)", dateIn)
+      ),
+      field("evName", "Nome que aparece no topo", bind("evName", () => state.n, v => state.n = v, "input", { maxlength: "60", placeholder: "Ex.: Ana & Pedro" })),
+      field("evMsg", "Mensagem para os convidados", bind("evMsg", () => state.m, v => state.m = v, "textarea", { maxlength: "400", rows: "3" }))
+    );
+
+    // Recebedor
+    const keyErr = el("span", { class: "err", hidden: true });
+    const keyType = el("select", { id: "keyType" },
+      el("option", { value: "cpf", text: "CPF ou CNPJ" }), el("option", { value: "phone", text: "Celular" }),
+      el("option", { value: "email", text: "E-mail" }), el("option", { value: "evp", text: "Chave aleatória" }));
+    keyType.value = state.r.kt;
+    const keyIn = bind("pixKey", () => state.r.k, v => state.r.k = v, "input", { autocomplete: "off", spellcheck: "false" });
+    const checkKey = () => { const r = normalizeKey(state.r.kt, state.r.k); keyErr.hidden = !r.error || !state.r.k; keyErr.textContent = r.error || ""; };
+    keyType.addEventListener("change", () => { state.r.kt = keyType.value; checkKey(); touch(); });
+    keyIn.addEventListener("input", checkKey);
+
+    const payPanel = el("section", { class: "panel" },
+      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 2" }), el("h2", { text: "Para onde vai o dinheiro" }))),
+      el("div", { class: "grid2" },
+        field("keyType", "Tipo de chave Pix", keyType),
+        field("pixKey", "Chave Pix", keyIn, null, keyErr)
+      ),
+      el("div", { class: "grid2" },
+        field("rcName", "Nome do titular da conta", bind("rcName", () => state.r.nm, v => state.r.nm = v, "input", { maxlength: "40" }), "Igual aparece no banco. Os convidados vão conferir."),
+        field("rcCity", "Cidade", bind("rcCity", () => state.r.ci, v => state.r.ci = v, "input", { maxlength: "30" }))
+      ),
+      field("hostWa", "Seu WhatsApp (opcional)", bind("hostWa", () => state.w, v => state.w = v, "input", { type: "tel", inputmode: "tel", placeholder: "(11) 98765-4321" }), "Os convidados podem te avisar que pagaram e mandar um recado.")
+    );
+
+    // Presentes
+    const itemsBox = el("div", { class: "items" });
+    const drawItems = () => {
+      itemsBox.replaceChildren(...state.i.map((it, idx) => {
+        const name = el("input", { type: "text", id: "itName" + idx, placeholder: "Nome do presente", maxlength: "60", "aria-label": "Nome do presente " + (idx + 1) });
+        name.value = it.n || "";
+        name.addEventListener("input", () => { it.n = name.value; touch(); });
+        const val = el("input", { type: "text", id: "itVal" + idx, class: "money", inputmode: "decimal", placeholder: "R$ 0,00", "aria-label": "Valor do presente " + (idx + 1) });
+        val.value = moneyInput(it.v);
+        val.addEventListener("input", () => { it.v = parseMoney(val.value); touch(); });
+        const rm = el("button", { class: "icon-btn", type: "button", "aria-label": "Remover presente " + (idx + 1), onclick: () => { state.i.splice(idx, 1); drawItems(); touch(); } }, svgIcon(ICON_X));
+        return el("div", { class: "item-row" }, name, val, rm);
+      }));
+    };
+    drawItems();
+    const freeChk = el("input", { type: "checkbox", id: "freeChk" });
+    freeChk.checked = !!state.f;
+    freeChk.addEventListener("change", () => { state.f = freeChk.checked; touch(); });
+
+    const giftsPanel = el("section", { class: "panel" },
+      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 3" }), el("h2", { text: "Os presentes" })), totalEl),
+      itemsBox,
+      el("div", { class: "row-actions" },
+        el("button", { class: "btn btn-ghost btn-small", type: "button", onclick: () => {
+          if (state.i.length >= 40) return;
+          state.i.push({ n: "", v: 0 }); drawItems(); touch();
+          const last = document.getElementById("itName" + (state.i.length - 1)); if (last) last.focus();
+        } }, "+ Adicionar presente"),
+        el("button", { class: "btn btn-ghost btn-small", type: "button", onclick: () => {
+          state = { ex: false, t: state.t, n: "", d: "", m: "", r: { nm: "", ci: "", kt: "cpf", k: "" }, w: "", f: true, i: [{ n: "", v: 0 }] };
+          saveDraft(state); app.replaceChildren(); renderCreator();
+        } }, "Começar do zero")
+      ),
+      el("label", { class: "check", for: "freeChk" }, freeChk, el("span", null, "Mostrar ", el("strong", { text: "Contribuição livre" }), ", onde o convidado escolhe o valor"))
+    );
+
+    // Gerar link
+    const generate = () => {
+      const k = normalizeKey(state.r.kt, state.r.k);
+      const problems = [];
+      if (k.error) problems.push("a chave Pix");
+      if (!ascii(state.r.nm)) problems.push("o nome do titular");
+      if (!ascii(state.r.ci)) problems.push("a cidade");
+      if (!state.i.some(i => i.n && i.v > 0) && !state.f) problems.push("pelo menos um presente com valor");
+      if (problems.length) { formErr.hidden = false; formErr.textContent = "Falta preencher " + problems.join(", ") + "."; return; }
+      formErr.hidden = true;
+      const clean = { t: state.t, n: state.n.trim(), d: state.d, m: state.m.trim(), r: state.r, w: state.w.replace(/\D/g, ""), f: state.f,
+        i: state.i.filter(i => i.n && i.v > 0).map(i => ({ n: i.n.trim(), v: i.v })) };
+      const url = siteBase() + "#" + encodeState(clean);
+      const urlIn = el("input", { type: "text", id: "shareUrl", readonly: true, value: url, "aria-label": "Link da sua lista" });
+      const invite = "Oi! Criei a lista de presentes " + (TYPES[state.t] ? "do nosso " + TYPES[state.t].toLowerCase() : "") + ". Dá pra presentear direto pelo Pix: " + url;
+      shareBox.replaceChildren(
+        el("p", null, el("strong", { text: "Sua lista está pronta. " }), "Mande o link nos grupos e para os convidados."),
+        el("div", { class: "copy-line" }, urlIn, el("button", { class: "btn btn-primary btn-small", type: "button", onclick: () => copyText(url, urlIn) }, "Copiar")),
+        el("div", { class: "btn-row" },
+          el("a", { class: "btn btn-ok btn-small", href: "https://wa.me/?text=" + encodeURIComponent(invite), target: "_blank", rel: "noopener" }, "Enviar no WhatsApp"),
+          el("a", { class: "btn btn-ghost btn-small", href: url, target: "_blank", rel: "noopener" }, "Abrir como convidado")
+        ),
+        el("p", { class: "hint", text: "Guarde esse link. Os dados da lista ficam dentro dele; para mudar algo, edite aqui e gere um link novo." })
+      );
+      shareBox.hidden = false;
+      shareBox.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
+    };
+
+    const finishPanel = el("section", { class: "panel" },
+      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 4" }), el("h2", { text: "Compartilhar" }))),
+      el("button", { class: "btn btn-primary btn-block", type: "button", onclick: generate }, "Gerar link da lista"),
+      formErr, shareBox
+    );
+
+    app.replaceChildren(
+      el("section", { class: "hero" },
+        el("h1", null, "Presente em ", el("em", { text: "Pix" }), ", direto na sua conta."),
+        el("p", { text: "Monte a lista do casamento, chá de bebê ou aniversário em 2 minutos. O convidado escolhe o presente, paga pelo QR Code e o dinheiro cai na hora para você. Sem taxa e sem cadastro." }),
+        el("div", { class: "pills" }, ["Sem taxa por presente", "Sem cadastro", "QR Code e copia e cola", "Recado pelo WhatsApp"].map(t => el("span", { class: "pill", text: t })))
+      ),
+      el("div", { class: "workspace" },
+        el("div", { style: "min-width:0" }, eventPanel, payPanel, giftsPanel, finishPanel),
+        el("aside", { class: "preview-col" },
+          el("div", { class: "preview-label" }, el("span", { text: "Como o convidado vê" }), el("span", { text: "toque num presente" })),
+          preview
+        )
+      )
+    );
+    checkKey();
+    refresh();
+  }
+
+  /* ================= Início ================= */
+  function boot() {
+    const s = decodeState(location.hash);
+    const app = document.getElementById("app");
+    if (s) {
+      document.getElementById("topNote").textContent = "Lista de presentes";
+      document.title = (s.n ? s.n + " · " : "") + "Lista de presentes";
+      app.replaceChildren(renderGuest(s, { preview: false }));
+    } else if (location.hash.length > 1 && location.hash.startsWith("#v1.")) {
+      app.replaceChildren(el("div", { class: "guest" },
+        el("p", { class: "alert" }, el("strong", { text: "Link incompleto. " }), "Peça para quem te enviou mandar o link de novo, inteiro."),
+        el("a", { class: "btn btn-ghost", href: siteBase(), text: "Criar minha lista" })));
+    } else {
+      renderCreator();
+    }
+  }
+  window.addEventListener("hashchange", () => { document.getElementById("sheetRoot").replaceChildren(); boot(); });
+  window.__presentinho = { pixPayload, crc16, normalizeKey, parseMoney, encodeState, decodeState };
+  boot();
+})();
+</script>
+</body>
+</html>
