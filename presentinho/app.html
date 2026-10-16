@@ -2,197 +2,259 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-  /* Layout: editor on the left, live phone preview of the guest page on the right; stacks on phones.
-     Items are drawn as gift tags (punched hole, price on the tag). */
+  /* Layout: festive landing (hero with swinging gift tags, occasions band, steps, editor with live phone
+     preview, fees, FAQ). Gift tags are the brand symbol. Tokens mirror the Figma file "Presentinho". */
   :root {
-    --bg: #fbf6f7;
-    --surface: #ffffff;
-    --ink: #2a1d2b;
-    --muted: #776673;
-    --line: #eadde3;
-    --accent: #c92f63;
-    --accent-ink: #ffffff;
-    --accent-soft: #fbe3ec;
-    --ok: #237a66;
-    --ok-soft: #dff2ec;
-    --warn: #9a5b00;
-    --warn-soft: #fdf0d9;
-    --tag: #fff3f6;
+    --fundo: #f1ecff;
+    --superficie: #ffffff;
+    --tinta: #22123a;
+    --tinta-suave: #6a5c80;
+    --linha: #ddd3f5;
+    --tangerina: #ff5b2e;
+    --sobre-tangerina: #ffffff;
+    --manteiga: #ffe07a;
+    --sobre-manteiga: #22123a;
+    --menta: #12a67a;
+    --sobre-menta: #ffffff;
+    --faixa: #22123a;
+    --sobre-faixa: #f1ecff;
+    --veu: rgba(34, 18, 58, .62);
     --qr-bg: #ffffff;
     --qr-fg: #111111;
-    --shadow: 0 1px 2px rgba(42, 29, 43, .06), 0 8px 24px rgba(42, 29, 43, .07);
-    --f-display: "Caprasimo", "Georgia", serif;
+    --sombra: 0 2px 4px rgba(34, 18, 58, .06), 0 18px 40px rgba(34, 18, 58, .12);
+    --f-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
     --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
     --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-    --r: 14px;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #181219; --surface: #231a24; --ink: #f4e9ef; --muted: #b5a3af; --line: #3a2c3a;
-      --accent: #f2709a; --accent-ink: #2a0e18; --accent-soft: #43202e; --ok: #5cc3a8; --ok-soft: #173a31;
-      --warn: #f0b75a; --warn-soft: #3b2c12; --tag: #2c2030;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+      --fundo: #150b24; --superficie: #22163a; --tinta: #f3eeff; --tinta-suave: #b7a9cc; --linha: #3a2c55;
+      --tangerina: #ff7a52; --sobre-tangerina: #1a0b05; --manteiga: #f5cf5a; --sobre-manteiga: #22123a;
+      --menta: #3fd3a0; --sobre-menta: #06261b; --faixa: #2c1d4a; --sobre-faixa: #f3eeff; --veu: rgba(5, 2, 12, .7);
+      --sombra: 0 2px 4px rgba(0,0,0,.4), 0 18px 40px rgba(0,0,0,.45);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #181219; --surface: #231a24; --ink: #f4e9ef; --muted: #b5a3af; --line: #3a2c3a;
-    --accent: #f2709a; --accent-ink: #2a0e18; --accent-soft: #43202e; --ok: #5cc3a8; --ok-soft: #173a31;
-    --warn: #f0b75a; --warn-soft: #3b2c12; --tag: #2c2030;
-    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    --fundo: #150b24; --superficie: #22163a; --tinta: #f3eeff; --tinta-suave: #b7a9cc; --linha: #3a2c55;
+    --tangerina: #ff7a52; --sobre-tangerina: #1a0b05; --manteiga: #f5cf5a; --sobre-manteiga: #22123a;
+    --menta: #3fd3a0; --sobre-menta: #06261b; --faixa: #2c1d4a; --sobre-faixa: #f3eeff; --veu: rgba(5, 2, 12, .7);
+    --sombra: 0 2px 4px rgba(0,0,0,.4), 0 18px 40px rgba(0,0,0,.45);
     color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 0 48px;
-  }
-  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--fundo); color: var(--tinta); font-family: var(--f-body); font-size: 17px; line-height: 1.55; overflow-x: hidden; }
+  h1, h2, h3 { font-family: var(--f-display); font-weight: 800; letter-spacing: -0.035em; line-height: .95; text-wrap: balance; margin: 0; }
   p { margin: 0; }
-  a { color: var(--accent); }
+  a { color: var(--tangerina); }
   button, input, select, textarea { font: inherit; color: inherit; }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  :focus-visible { outline: 3px solid var(--tangerina); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tangerina); }
 
-  /* ---------- top bar ---------- */
-  .topbar { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
-  .brand { font-family: var(--f-display); font-size: 1.45rem; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-  .brand svg { width: 26px; height: 26px; }
-  .topbar small { color: var(--muted); font-size: .85rem; }
+  /* ---------- logo ---------- */
+  .brand { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--tinta); font-family: var(--f-display); font-weight: 800; letter-spacing: -0.045em; font-size: 1.6rem; line-height: 1; }
+  .brand svg { width: 40px; height: 40px; flex: none; }
+  .brand.small { font-size: 1.2rem; }
+  .brand.small svg { width: 30px; height: 30px; }
 
-  /* ---------- creator ---------- */
-  .hero { max-width: 1180px; margin: 0 auto; padding-block: 12px 28px; display: grid; gap: 10px; }
-  .hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; max-width: 18ch; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero p { color: var(--muted); max-width: 60ch; font-size: 1.05rem; }
-  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-  .pill { font-size: .82rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); }
+  /* ---------- buttons ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 15px 26px; font-weight: 700; font-size: 1rem; line-height: 1.2; border: 2px solid transparent; cursor: pointer; text-decoration: none; transition: transform .15s ease, filter .15s ease; text-align: center; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--tangerina); color: var(--sobre-tangerina); }
+  .btn-primary:hover { filter: brightness(1.06); }
+  .btn-outline { background: transparent; border-color: var(--tinta); color: var(--tinta); }
+  .btn-ok { background: var(--menta); color: var(--sobre-menta); }
+  .btn-quiet { background: transparent; border-color: var(--linha); color: var(--tinta); padding: 9px 16px; font-size: .9rem; }
+  .btn-quiet:hover { border-color: var(--tangerina); color: var(--tangerina); }
+  .btn-block { width: 100%; }
 
-  .workspace { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 32px; align-items: start; }
-  @media (max-width: 920px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+  /* ---------- nav ---------- */
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  .nav-links a:not(.btn) { color: var(--tinta); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  .nav-links a:not(.btn):hover { color: var(--tangerina); }
+  .nav .btn { padding: 11px 20px; font-size: .92rem; white-space: nowrap; }
+  @media (max-width: 420px) { .nav .btn { padding: 10px 14px; font-size: .85rem; } .brand { font-size: 1.35rem; } .brand svg { width: 34px; height: 34px; } }
+  @media (max-width: 820px) { .nav-links a:not(.btn) { display: none; } }
 
-  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 18px; min-width: 0; }
-  .panel + .panel { margin-top: 18px; }
-  .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-  .panel h2 { font-size: 1.05rem; font-weight: 700; }
-  .step { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  .example-chip { font-size: .75rem; font-weight: 700; color: var(--warn); background: var(--warn-soft); padding: 3px 9px; border-radius: 999px; }
+  /* ---------- hero ---------- */
+  .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 32px; align-items: center; padding-block: 40px 96px; }
+  @media (max-width: 900px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 16px 64px; } }
+  .hero-text { display: grid; gap: 26px; justify-items: start; min-width: 0; }
+  .seal { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: var(--superficie); border: 1px solid var(--linha); font-weight: 700; font-size: .88rem; }
+  .seal i { width: 8px; height: 8px; border-radius: 50%; background: var(--menta); }
+  .hero h1 { font-size: clamp(3.2rem, 8.6vw, 7.2rem); }
+  .hero h1 em { font-style: normal; color: var(--tangerina); }
+  .hero-lead { font-size: clamp(1.08rem, 1.8vw, 1.32rem); color: var(--tinta-suave); max-width: 34em; line-height: 1.5; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .fineprint { font-size: .88rem; font-weight: 600; color: var(--tinta-suave); }
 
-  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .pile { position: relative; height: 520px; min-width: 0; }
+  @media (max-width: 900px) { .pile { height: 420px; max-width: 460px; width: 100%; justify-self: center; } }
+  .pile .sun { position: absolute; inset: 8% 4% 6% 8%; border-radius: 50%; background: var(--manteiga); opacity: .55; }
+  .sticker { position: absolute; width: min(250px, 58%); transform-origin: 22px 30px; animation: swing 5s ease-in-out infinite; }
+  .sticker:nth-child(2) { left: 38%; top: 2%; --r: 7deg; animation-delay: -1.2s; }
+  .sticker:nth-child(3) { left: 0; top: 27%; --r: -10deg; animation-delay: -2.4s; }
+  .sticker:nth-child(4) { left: 40%; top: 50%; --r: 5deg; animation-delay: -3.6s; }
+  @keyframes swing { 0%, 100% { transform: rotate(var(--r, 0deg)); } 50% { transform: rotate(calc(var(--r, 0deg) + 4deg)); } }
+  .toast-card { position: absolute; left: 2%; bottom: 0; z-index: 2; display: flex; gap: 12px; align-items: center; background: var(--faixa); color: var(--sobre-faixa); border-radius: 18px; padding: 14px 18px 14px 14px; transform: rotate(-3deg); box-shadow: var(--sombra); max-width: 92%; }
+  .toast-card svg { width: 30px; height: 30px; flex: none; }
+  .toast-card strong { display: block; font-size: .95rem; }
+  .toast-card span { font-size: .82rem; opacity: .75; }
+
+  /* ---------- gift tag ---------- */
+  .tag { position: relative; display: grid; gap: 8px; text-align: left; background: var(--manteiga); color: var(--sobre-manteiga); border: 0; border-radius: 8px 22px 22px 8px; padding: 20px 18px 18px 42px; min-width: 0; box-shadow: var(--sombra); }
+  .tag::before { content: ""; position: absolute; left: 15px; top: 24px; width: 13px; height: 13px; border-radius: 50%; background: var(--fundo); box-shadow: inset 0 1px 2px rgba(0,0,0,.18); }
+  .tag-name { font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+  .tag-price { font-family: var(--f-display); font-weight: 800; font-size: 1.75rem; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .tag-cta { font-size: .8rem; font-weight: 700; opacity: .7; }
+  .tag.white { background: var(--superficie); color: var(--tinta); }
+  .tag.orange { background: var(--tangerina); color: var(--sobre-tangerina); }
+  .tag.free { background: transparent; color: var(--tinta); border: 2px dashed var(--tinta-suave); box-shadow: none; }
+  .tag.free .tag-price { font-size: 1.25rem; }
+  button.tag { cursor: pointer; font: inherit; transition: transform .18s ease; transform-origin: 22px 30px; }
+  button.tag:hover { transform: rotate(-2.5deg) translateY(-2px); }
+
+  /* ---------- band ---------- */
+  .band { background: var(--faixa); color: var(--sobre-faixa); overflow: hidden; padding-block: 24px; }
+  .band-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+  .band-track span { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); letter-spacing: -0.03em; white-space: nowrap; display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; }
+  .band-track svg { width: 22px; height: 22px; flex: none; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ---------- sections ---------- */
+  .section { padding-block: 112px; display: grid; gap: 44px; }
+  @media (max-width: 700px) { .section { padding-block: 72px; gap: 32px; } }
+  .section-head { display: grid; gap: 14px; max-width: 760px; }
+  .section h2 { font-size: clamp(2.4rem, 5.4vw, 4.2rem); }
+  .section-head p { color: var(--tinta-suave); font-size: 1.12rem; max-width: 38em; }
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+  @media (max-width: 860px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+  .steps li { background: var(--superficie); border: 1px solid var(--linha); border-radius: 28px; padding: 30px; display: grid; gap: 12px; align-content: start; }
+  .num { width: 54px; height: 54px; border-radius: 50%; background: var(--manteiga); color: var(--sobre-manteiga); display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; }
+  .steps h3 { font-size: 1.85rem; letter-spacing: -0.03em; }
+  .steps p { color: var(--tinta-suave); }
+
+  /* ---------- editor ---------- */
+  .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 32px; align-items: start; }
+  @media (max-width: 960px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+  .panels { display: grid; gap: 16px; min-width: 0; }
+  .panel { background: var(--superficie); border: 1px solid var(--linha); border-radius: 24px; padding: 24px; display: grid; gap: 18px; min-width: 0; }
+  .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .panel-head h3 { font-size: 1.45rem; letter-spacing: -0.025em; display: flex; align-items: center; gap: 10px; }
+  .panel-head h3 .num { width: 34px; height: 34px; font-size: 1.05rem; }
+  .chip-ex { font-size: .76rem; font-weight: 700; background: var(--manteiga); color: var(--sobre-manteiga); padding: 4px 10px; border-radius: 999px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
   @media (max-width: 560px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
   .field { display: grid; gap: 6px; min-width: 0; }
-  .field label { font-size: .85rem; font-weight: 600; }
-  .field .hint { font-size: .8rem; color: var(--muted); }
-  .field .err { font-size: .8rem; color: var(--accent); font-weight: 600; }
-  input[type=text], input[type=date], input[type=tel], select, textarea {
-    width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0;
-  }
-  textarea { resize: vertical; min-height: 70px; }
-  input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
-
+  .field label { font-size: .88rem; font-weight: 700; }
+  .hint { font-size: .8rem; color: var(--tinta-suave); }
+  .err { font-size: .82rem; color: var(--tangerina); font-weight: 700; }
+  input[type=text], input[type=date], input[type=tel], select, textarea { width: 100%; min-width: 0; background: var(--fundo); border: 1.5px solid transparent; border-radius: 14px; padding: 12px 14px; }
+  textarea { resize: vertical; min-height: 84px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--tangerina); background: var(--superficie); }
   .items { display: grid; gap: 10px; }
-  .item-row { display: grid; grid-template-columns: minmax(0, 1fr) 130px 40px; gap: 8px; align-items: center; }
-  .item-row input.money { text-align: right; font-variant-numeric: tabular-nums; }
-  .icon-btn { width: 40px; height: 42px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); display: grid; place-items: center; }
-  .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
-  .row-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
-  .check { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; }
-  .check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent); }
-
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 11px 20px; font-weight: 700; border: 1px solid transparent; cursor: pointer; text-decoration: none; font-size: .95rem; }
-  .btn-primary { background: var(--accent); color: var(--accent-ink); }
-  .btn-primary:hover { filter: brightness(1.06); }
-  .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-ok { background: var(--ok); color: var(--surface); }
-  .btn-block { width: 100%; }
-  .btn-small { padding: 7px 14px; font-size: .85rem; }
-
-  .total { font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .total strong { color: var(--ink); }
-
-  .share { display: grid; gap: 12px; background: var(--ok-soft); border-radius: 12px; padding: 16px; }
-  .share p { font-size: .92rem; }
+  .item-row { display: grid; grid-template-columns: minmax(0, 1fr) 128px 44px; gap: 8px; align-items: center; }
+  .money { text-align: right; font-variant-numeric: tabular-nums; }
+  .icon-btn { width: 44px; height: 46px; border-radius: 14px; border: 1.5px solid var(--linha); background: transparent; color: var(--tinta-suave); cursor: pointer; display: grid; place-items: center; }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .icon-btn:hover { color: var(--tangerina); border-color: var(--tangerina); }
+  .row-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; cursor: pointer; }
+  .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--tangerina); }
+  .total { font-size: .9rem; color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+  .total strong { color: var(--tinta); }
+  .form-error { color: var(--tangerina); font-weight: 700; }
+  .share { display: grid; gap: 12px; background: var(--fundo); border: 2px solid var(--menta); border-radius: 18px; padding: 18px; }
   .copy-line { display: flex; gap: 8px; min-width: 0; }
-  .copy-line input { flex: 1; font-family: var(--f-mono); font-size: .8rem; background: var(--surface); }
+  .copy-line input { flex: 1; font-family: var(--f-mono); font-size: .8rem; }
   .btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
-  .form-error { color: var(--accent); font-weight: 600; font-size: .9rem; }
+  .btn-row .btn { padding: 11px 18px; font-size: .92rem; }
 
-  .preview-col { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 10px; min-width: 0; }
-  @media (max-width: 920px) { .preview-col { position: static; } }
-  .preview-label { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; }
-  .phone { border: 10px solid var(--ink); border-radius: 34px; background: var(--bg); height: min(760px, calc(100vh - 80px)); overflow-y: auto; box-shadow: var(--shadow); }
-  @media (max-width: 920px) { .phone { height: auto; max-height: 720px; } }
-  .phone .guest { padding: 22px 16px 26px; }
+  .preview-col { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); display: grid; gap: 10px; min-width: 0; }
+  @media (max-width: 960px) { .preview-col { position: static; } }
+  .preview-label { display: flex; justify-content: space-between; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-suave); }
+  .phone { border: 10px solid var(--faixa); border-radius: 40px; background: var(--fundo); height: min(780px, calc(100vh - 90px)); overflow-y: auto; box-shadow: var(--sombra); }
+  @media (max-width: 960px) { .phone { height: auto; max-height: 760px; } }
+  .phone .guest { padding: 18px 14px 28px; }
+
+  /* ---------- fees / faq / final ---------- */
+  .fees { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+  @media (max-width: 860px) { .fees { grid-template-columns: minmax(0, 1fr); } }
+  .fee-card { background: var(--tangerina); color: var(--sobre-tangerina); border-radius: 32px; padding: 44px; display: grid; gap: 22px; align-content: start; }
+  .fee-vs { display: flex; flex-wrap: wrap; gap: 20px 44px; align-items: end; }
+  .fee-vs div { display: grid; gap: 4px; }
+  .fee-vs b { font-family: var(--f-display); font-weight: 800; font-size: clamp(3.4rem, 7vw, 5.6rem); letter-spacing: -0.05em; line-height: .9; font-variant-numeric: tabular-nums; }
+  .fee-vs .old { opacity: .55; }
+  .fee-vs .old b { text-decoration: line-through; text-decoration-thickness: 5px; }
+  .fee-vs span { font-weight: 600; }
+  .safe-card { background: var(--superficie); border: 1px solid var(--linha); border-radius: 32px; padding: 44px; display: grid; gap: 16px; align-content: start; }
+  .safe-card h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+  .safe-card p { color: var(--tinta-suave); }
+  .faq { display: grid; gap: 12px; max-width: 860px; }
+  .faq details { background: var(--superficie); border: 1px solid var(--linha); border-radius: 20px; padding: 0 24px; }
+  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding-block: 20px; font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 1.6rem; color: var(--tangerina); line-height: 1; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details p { color: var(--tinta-suave); padding-bottom: 22px; max-width: 60ch; }
+  .final { background: var(--faixa); color: var(--sobre-faixa); text-align: center; }
+  .final .wrap { padding-block: 104px; display: grid; gap: 28px; justify-items: center; }
+  .final h2 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); max-width: 14ch; }
+  .footer { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; color: var(--tinta-suave); font-size: .9rem; }
 
   /* ---------- guest page ---------- */
-  .guest { max-width: 720px; margin: 0 auto; display: grid; gap: 22px; }
-  .guest-head { display: grid; gap: 10px; text-align: left; }
-  .eyebrow { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
-  .guest-head h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 7vw, 3rem); line-height: 1.05; overflow-wrap: anywhere; }
-  .phone .guest-head h1 { font-size: 2.1rem; }
-  .guest-head .msg { color: var(--muted); white-space: pre-line; overflow-wrap: anywhere; }
-  .receiver { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
-  .receiver svg { flex: none; width: 20px; height: 20px; color: var(--ok); margin-top: 1px; }
-
-  .tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+  .guest { max-width: 760px; margin: 0 auto; display: grid; gap: 22px; }
+  .guest-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .85rem; color: var(--tinta-suave); font-weight: 600; }
+  .guest-head { display: grid; gap: 12px; padding-top: 8px; }
+  .guest-head h1 { font-size: clamp(3rem, 12vw, 5.4rem); overflow-wrap: anywhere; }
+  .phone .guest-head h1 { font-size: 3.2rem; }
+  .guest-head .msg { color: var(--tinta-suave); white-space: pre-line; overflow-wrap: anywhere; font-size: 1.05rem; }
+  .receiver { display: flex; gap: 12px; align-items: flex-start; background: var(--superficie); border: 1px solid var(--linha); border-radius: 18px; padding: 14px 16px; font-size: .92rem; }
+  .receiver svg { width: 22px; height: 22px; flex: none; color: var(--menta); }
+  .tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  @media (max-width: 480px) { .guest .tag { padding: 18px 12px 14px 32px; } .guest .tag::before { left: 11px; top: 21px; width: 11px; height: 11px; } .guest .tag-price { font-size: 1.3rem; } .guest .tag.free .tag-price { font-size: 1rem; } }
   .phone .tags { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .tag {
-    position: relative; text-align: left; cursor: pointer; background: var(--tag); border: 1px solid var(--line);
-    border-radius: 6px 18px 18px 6px; padding: 16px 14px 14px 30px; display: grid; gap: 10px; min-width: 0;
-    transition: transform .15s ease, border-color .15s ease;
-  }
-  .tag::before { /* punched hole of a gift tag */
-    content: ""; position: absolute; left: 10px; top: 18px; width: 10px; height: 10px; border-radius: 50%;
-    background: var(--bg); border: 1px solid var(--line);
-  }
-  .tag:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .tag-name { font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
-  .tag-price { font-family: var(--f-display); font-size: 1.35rem; color: var(--accent); font-variant-numeric: tabular-nums; }
-  .phone .tag { padding-left: 26px; }
-  .phone .tag-price { font-size: 1.1rem; }
-  .tag-cta { font-size: .8rem; font-weight: 700; color: var(--muted); }
-  .tag.free { border-style: dashed; }
-  .empty { color: var(--muted); font-size: .92rem; padding: 18px; border: 1px dashed var(--line); border-radius: 12px; text-align: center; }
-  .guest-foot { text-align: center; font-size: .85rem; color: var(--muted); display: grid; gap: 6px; padding-top: 8px; }
+  .phone .tag { padding: 18px 12px 14px 32px; box-shadow: none; }
+  .phone .tag::before { left: 11px; top: 21px; width: 11px; height: 11px; }
+  .phone .tag-price { font-size: 1.3rem; }
+  .phone .tag.free .tag-price { font-size: 1rem; }
+  .empty { color: var(--tinta-suave); text-align: center; padding: 20px; border: 2px dashed var(--linha); border-radius: 18px; }
+  .guest-foot { display: grid; gap: 4px; justify-items: center; font-size: .88rem; color: var(--tinta-suave); padding-top: 10px; }
   .guest-foot a { font-weight: 700; }
+  .alert { background: var(--manteiga); color: var(--sobre-manteiga); border-radius: 14px; padding: 12px 14px; font-size: .88rem; font-weight: 600; }
 
   /* ---------- pay sheet ---------- */
-  .scrim { position: fixed; inset: 0; background: rgba(20, 10, 20, .55); z-index: 50; display: grid; place-items: end center; padding: 0; }
+  .scrim { position: fixed; inset: 0; z-index: 50; background: var(--veu); display: grid; place-items: end center; }
   @media (min-width: 640px) { .scrim { place-items: center; padding: 24px; } }
-  .sheet {
-    background: var(--surface); width: 100%; max-width: 460px; max-height: 92vh; overflow-y: auto; border-radius: 22px 22px 0 0;
-    padding: 22px max(20px, env(safe-area-inset-right, 0px)) calc(22px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
-    display: grid; gap: 16px; box-shadow: var(--shadow);
-  }
-  @media (min-width: 640px) { .sheet { border-radius: 22px; } }
-  .sheet-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
-  .sheet-head h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.5rem; line-height: 1.15; overflow-wrap: anywhere; }
-  .sheet-amount { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--accent); font-size: 1.1rem; }
-  .qr { background: var(--qr-bg); border-radius: 14px; padding: 14px; width: min(260px, 100%); margin: 0 auto; border: 1px solid var(--line); }
+  .sheet { width: 100%; max-width: 460px; max-height: 94vh; overflow-y: auto; background: var(--superficie); border-radius: 28px 28px 0 0; display: grid; gap: 16px;
+    padding: 14px max(20px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px)); box-shadow: var(--sombra); animation: rise .28s ease-out; }
+  @media (min-width: 640px) { .sheet { border-radius: 28px; padding-top: 22px; } .grab { display: none; } }
+  @keyframes rise { from { transform: translateY(24px); opacity: .4; } }
+  .grab { width: 44px; height: 5px; border-radius: 3px; background: var(--linha); justify-self: center; }
+  .sheet-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .sheet-head h2 { font-size: 1.85rem; letter-spacing: -0.035em; line-height: 1.02; overflow-wrap: anywhere; }
+  .sheet-sub { color: var(--tangerina); font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .qr { background: var(--qr-bg); border: 1px solid var(--linha); border-radius: 22px; padding: 14px; width: min(240px, 100%); justify-self: center; }
   .qr svg { display: block; width: 100%; height: auto; }
-  .code { font-family: var(--f-mono); font-size: .72rem; line-height: 1.45; word-break: break-all; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; max-height: 96px; overflow-y: auto; user-select: all; }
-  .steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: .9rem; }
-  .steps strong { color: var(--ink); }
-  .alert { font-size: .85rem; background: var(--warn-soft); color: var(--ink); border-radius: 10px; padding: 10px 12px; }
-  .alert strong { color: var(--warn); }
-  .divider { height: 1px; background: var(--line); }
-  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: .9rem; z-index: 60; }
+  .label { font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-suave); }
+  .code { font-family: var(--f-mono); font-size: .74rem; line-height: 1.5; word-break: break-all; background: var(--fundo); border-radius: 14px; padding: 12px 14px; max-height: 100px; overflow-y: auto; user-select: all; }
+  .steps-mini { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: .92rem; }
+  .divider { height: 1px; background: var(--linha); }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--faixa); color: var(--sobre-faixa); padding: 11px 20px; border-radius: 999px; font-weight: 700; font-size: .92rem; z-index: 60; box-shadow: var(--sombra); }
 
-  @media (prefers-reduced-motion: reduce) { .tag { transition: none; } .tag:hover { transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .sticker, .band-track, .sheet { animation: none; }
+    .btn, button.tag { transition: none; }
+  }
 </style>
-
-<header class="topbar">
-  <a class="brand" href="./" id="brandLink">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="12" width="24" height="16" rx="3" fill="var(--accent)"/><rect x="2" y="8" width="28" height="6" rx="2" fill="var(--accent)" opacity=".75"/><rect x="14.5" y="8" width="3" height="20" fill="var(--bg)"/><path d="M16 8c-3-6-9-5-8-1s8 1 8 1zm0 0c3-6 9-5 8-1s-8 1-8 1z" fill="none" stroke="var(--accent)" stroke-width="2"/></svg>
-    Presentinho
-  </a>
-  <small id="topNote">Lista de presentes em Pix, sem taxa</small>
-</header>
 
 <main id="app"></main>
 <div id="sheetRoot"></div>
@@ -266,34 +328,26 @@
       if (!h.startsWith("v1.")) return null;
       let b = h.slice(3).replace(/-/g, "+").replace(/_/g, "/");
       while (b.length % 4) b += "=";
-      const bin = atob(b);
-      const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+      const bytes = Uint8Array.from(atob(b), c => c.charCodeAt(0));
       const s = JSON.parse(new TextDecoder().decode(bytes));
       return s && s.r && Array.isArray(s.i) ? s : null;
     } catch (e) { return null; }
   }
 
-  const TYPES = {
-    casamento: "Casamento", bebe: "Chá de bebê", aniversario: "Aniversário",
-    casa: "Chá de casa nova", formatura: "Formatura", outro: "Celebração"
-  };
-
+  const TYPES = { casamento: "Casamento", bebe: "Chá de bebê", aniversario: "Aniversário", casa: "Chá de casa nova", formatura: "Formatura", outro: "Celebração" };
   const EXAMPLE = {
     ex: true, t: "casamento", n: "Ana & Pedro", d: "2026-12-12",
-    m: "Nossa casa já tem quase tudo. Se quiser nos presentear, escolha um mimo abaixo. O Pix cai direto na nossa conta. Obrigado por fazer parte desse dia!",
+    m: "Nossa casa já tem quase tudo. Se quiser nos presentear, escolha um mimo abaixo. O Pix cai direto na nossa conta.",
     r: { nm: "Ana Souza", ci: "Sao Paulo", kt: "email", k: "ana.exemplo@email.com" },
     w: "", f: true,
     i: [
-      { n: "Jantar na lua de mel", v: 180 },
-      { n: "Passeio de barco em Paraty", v: 250 },
-      { n: "Jogo de panelas", v: 320 },
-      { n: "Cafeteira para as manhãs", v: 150 },
-      { n: "Uma noite no hotel", v: 400 },
-      { n: "Vaso de plantas para a varanda", v: 90 }
+      { n: "Jantar na lua de mel", v: 180 }, { n: "Passeio de barco em Paraty", v: 250 },
+      { n: "Jogo de panelas", v: 320 }, { n: "Cafeteira para as manhãs", v: 150 },
+      { n: "Uma noite no hotel", v: 400 }, { n: "Vaso para a varanda", v: 90 }
     ]
   };
 
-  /* ================= Helpers de DOM ================= */
+  /* ================= DOM helpers ================= */
   function el(tag, attrs, ...kids) {
     const n = document.createElement(tag);
     if (attrs) for (const [k, v] of Object.entries(attrs)) {
@@ -307,23 +361,21 @@
     return n;
   }
   const svgNS = "http://www.w3.org/2000/svg";
-  function svgIcon(path) {
+  function svg(markup, viewBox) {
     const s = document.createElementNS(svgNS, "svg");
-    s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("aria-hidden", "true");
-    s.innerHTML = path; return s;
+    s.setAttribute("viewBox", viewBox || "0 0 24 24"); s.setAttribute("aria-hidden", "true");
+    s.innerHTML = markup; return s;
   }
+  const MARK = '<g transform="rotate(-12 32 32)"><path d="M10 32 L24 16 H52 a4 4 0 0 1 4 4 V44 a4 4 0 0 1 -4 4 H24 Z" fill="var(--tangerina)" stroke="var(--tangerina)" stroke-width="4" stroke-linejoin="round"/><circle cx="23" cy="32" r="4.5" fill="var(--fundo)"/></g><path d="M23 34 C 14 33, 7 27, 7 16" fill="none" stroke="var(--tinta)" stroke-width="3" stroke-linecap="round"/><path d="M55 1 l1.8 4.2 4.2 1.8 -4.2 1.8 -1.8 4.2 -1.8 -4.2 -4.2 -1.8 4.2 -1.8z" fill="var(--manteiga)"/>';
+  const brand = (small) => el("a", { class: "brand" + (small ? " small" : ""), href: siteBase(), "aria-label": "presentinho, página inicial" }, svg(MARK, "0 0 64 64"), "presentinho");
   const ICON_SHIELD = '<path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
   const ICON_X = '<path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
+  const STAR = '<path d="M11 0l2.6 8.4L22 11l-8.4 2.6L11 22l-2.6-8.4L0 11l8.4-2.6z" fill="var(--manteiga)"/>';
 
-  function toast(msg) {
-    const t = el("div", { class: "toast", role: "status", text: msg });
-    document.body.append(t); setTimeout(() => t.remove(), 2200);
-  }
+  function toast(msg) { const t = el("div", { class: "toast", role: "status", text: msg }); document.body.append(t); setTimeout(() => t.remove(), 2200); }
   function copyText(text, fallbackEl) {
-    const ok = () => toast("Copiado!");
-    try {
-      navigator.clipboard.writeText(text).then(ok, () => selectFallback(fallbackEl));
-    } catch (e) { selectFallback(fallbackEl); }
+    try { navigator.clipboard.writeText(text).then(() => toast("Copiado!"), () => selectFallback(fallbackEl)); }
+    catch (e) { selectFallback(fallbackEl); }
   }
   function selectFallback(node) {
     if (!node) return;
@@ -349,69 +401,51 @@
     return new Date(y, mo - 1, d).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
   }
   function siteBase() { return location.href.split("#")[0]; }
+  const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ================= Página do convidado ================= */
+  /* ================= Guest page ================= */
+  function giftTag(it, onclick, extra) {
+    return el("button", { class: "tag" + (extra ? " " + extra : ""), type: "button", onclick },
+      el("span", { class: "tag-name", text: it.n }),
+      el("span", { class: "tag-price", text: it.v ? brl.format(it.v) : "Você escolhe" }),
+      el("span", { class: "tag-cta", text: "Presentear com Pix →" }));
+  }
   function renderGuest(state, opts) {
     const keyInfo = normalizeKey(state.r.kt, state.r.k);
     const items = state.i.filter(it => it.n && it.v > 0);
     const eyebrow = [TYPES[state.t] || TYPES.outro, formatDate(state.d)].filter(Boolean).join(" · ");
-
-    const tags = items.map(it => el("button", {
-      class: "tag", type: "button", onclick: () => openSheet(state, it)
-    },
-      el("span", { class: "tag-name", text: it.n }),
-      el("span", { class: "tag-price", text: brl.format(it.v) }),
-      el("span", { class: "tag-cta", text: "Presentear com Pix →" })
-    ));
-    if (state.f) tags.push(el("button", { class: "tag free", type: "button", onclick: () => openSheet(state, null) },
-      el("span", { class: "tag-name", text: "Contribuição livre" }),
-      el("span", { class: "tag-price", text: "Você escolhe" }),
-      el("span", { class: "tag-cta", text: "Presentear com Pix →" })
-    ));
-
+    const tags = items.map(it => giftTag(it, () => openSheet(state, it)));
+    if (state.f) tags.push(giftTag({ n: "Contribuição livre", v: 0 }, () => openSheet(state, null), "free"));
     return el("div", { class: "guest" },
+      el("div", { class: "guest-top" }, brand(true), el("span", { text: "Lista de presentes" })),
       el("div", { class: "guest-head" },
         el("span", { class: "eyebrow", text: eyebrow }),
         el("h1", { text: state.n || "Nossa lista de presentes" }),
-        state.m ? el("p", { class: "msg", text: state.m }) : null
-      ),
-      el("div", { class: "receiver" }, svgIcon(ICON_SHIELD),
-        el("span", null, "O Pix vai direto para a conta de ", el("strong", { text: state.r.nm || "quem organizou" }), ". Sem intermediários e sem taxa.")
-      ),
-      keyInfo.error && opts.preview ? el("p", { class: "alert" }, el("strong", { text: "Atenção: " }), "a chave Pix ainda está inválida. Corrija no formulário.") : null,
+        state.m ? el("p", { class: "msg", text: state.m }) : null),
+      el("div", { class: "receiver" }, svg(ICON_SHIELD),
+        el("span", null, "O Pix vai direto para a conta de ", el("strong", { text: state.r.nm || "quem organizou" }), ". Sem intermediários e sem taxa.")),
+      keyInfo.error && opts.preview ? el("p", { class: "alert", text: "A chave Pix ainda está inválida. Corrija no passo 2." }) : null,
       tags.length ? el("div", { class: "tags" }, tags) : el("p", { class: "empty", text: "Adicione presentes para eles aparecerem aqui." }),
-      el("footer", { class: "guest-foot" },
-        el("span", { text: "Lista feita no Presentinho" }),
-        el("a", { href: siteBase(), text: "Crie a sua lista grátis" })
-      )
-    );
+      el("footer", { class: "guest-foot" }, el("span", { text: "Lista feita no presentinho" }), el("a", { href: siteBase(), text: "Crie a sua lista grátis →" })));
   }
 
-  /* ================= Folha de pagamento ================= */
+  /* ================= Pay sheet ================= */
   function openSheet(state, item) {
     const root = document.getElementById("sheetRoot");
     const keyInfo = normalizeKey(state.r.kt, state.r.k);
-    const close = () => { root.replaceChildren(); document.removeEventListener("keydown", onKey); };
+    const opener = document.activeElement;
+    const close = () => { root.replaceChildren(); document.removeEventListener("keydown", onKey); if (opener && opener.focus) opener.focus(); };
     const onKey = e => { if (e.key === "Escape") close(); };
     document.addEventListener("keydown", onKey);
-
     const body = el("div", { class: "sheet", role: "dialog", "aria-modal": "true", "aria-label": "Pagar com Pix" });
     const scrim = el("div", { class: "scrim", onclick: e => { if (e.target === scrim) close(); } }, body);
     root.replaceChildren(scrim);
-
-    const head = el("div", { class: "sheet-head" },
-      el("div", null,
-        el("h2", { text: item ? item.n : "Contribuição livre" }),
-        item ? el("p", { class: "sheet-amount", text: brl.format(item.v) }) : null
-      ),
-      el("button", { class: "icon-btn", type: "button", "aria-label": "Fechar", onclick: close }, svgIcon(ICON_X))
-    );
-    body.append(head);
-
-    if (keyInfo.error) {
-      body.append(el("p", { class: "alert" }, el("strong", { text: "Chave Pix inválida. " }), "Quem criou a lista precisa corrigir a chave."));
-      return;
-    }
+    const closeBtn = el("button", { class: "icon-btn", type: "button", "aria-label": "Fechar", onclick: close }, svg(ICON_X));
+    body.append(el("div", { class: "grab" }), el("div", { class: "sheet-head" },
+      el("div", null, el("h2", { text: item ? item.n : "Contribuição livre" }),
+        el("p", { class: "sheet-sub", text: item ? brl.format(item.v) + " para " + (state.r.nm || "quem organizou") : "Para " + (state.r.nm || "quem organizou") })),
+      closeBtn));
+    if (keyInfo.error) { body.append(el("p", { class: "alert", text: "Chave Pix inválida. Quem criou a lista precisa corrigir." })); closeBtn.focus(); return; }
 
     const payArea = el("div", { style: "display:grid;gap:16px" });
     const showPay = amount => {
@@ -419,51 +453,38 @@
       const codeBox = el("div", { class: "code", text: code });
       payArea.replaceChildren(
         el("div", { class: "qr" }, qrSvg(code)),
-        el("div", { style: "display:grid;gap:8px" },
-          el("span", { class: "step", text: "Pix copia e cola" }),
-          codeBox,
-          el("button", { class: "btn btn-primary btn-block", type: "button", onclick: () => copyText(code, codeBox) }, "Copiar código Pix")
-        ),
-        el("ol", { class: "steps" },
-          el("li", null, "Abra o app do seu banco e entre em ", el("strong", { text: "Pix" }), "."),
-          el("li", null, "Escolha ", el("strong", { text: "Ler QR Code" }), " ou ", el("strong", { text: "Pix Copia e Cola" }), "."),
-          el("li", null, "Confira se o recebedor é ", el("strong", { text: state.r.nm || "quem organizou" }), " e confirme.")
-        ),
-        el("p", { class: "alert" }, el("strong", { text: "Segurança: " }), "se o nome no app do banco for diferente, não pague e avise quem te enviou o link.")
-      );
+        el("div", { style: "display:grid;gap:8px" }, el("span", { class: "label", text: "Pix copia e cola" }), codeBox,
+          el("button", { class: "btn btn-primary btn-block", type: "button", onclick: () => copyText(code, codeBox) }, "Copiar código Pix")),
+        el("ol", { class: "steps-mini" },
+          el("li", null, "Abra o app do banco e entre em ", el("strong", { text: "Pix" }), "."),
+          el("li", null, "Escolha ", el("strong", { text: "Ler QR Code" }), " ou ", el("strong", { text: "Copia e Cola" }), "."),
+          el("li", null, "Confira o nome e confirme.")),
+        el("p", { class: "alert" }, "Confira se o app do banco mostra ", el("strong", { text: state.r.nm || "o nome de quem organizou" }), " antes de confirmar. Nome diferente? Não pague."));
       if (state.w) payArea.append(thanksBlock(state, item, amount));
     };
-
-    if (item) showPay(item.v);
+    if (item) { showPay(item.v); closeBtn.focus(); }
     else {
       const inp = el("input", { type: "text", id: "freeAmount", inputmode: "decimal", placeholder: "Ex.: 100,00", class: "money" });
       const err = el("span", { class: "err", hidden: true, text: "Digite um valor maior que zero." });
-      body.append(el("div", { class: "field" },
-        el("label", { for: "freeAmount", text: "Quanto você quer dar?" }),
-        el("div", { class: "copy-line" }, inp,
-          el("button", { class: "btn btn-primary", type: "button", onclick: () => {
-            const v = parseMoney(inp.value); err.hidden = v > 0; if (v > 0) showPay(v);
-          } }, "Gerar Pix")),
-        err
-      ));
+      const go = () => { const v = parseMoney(inp.value); err.hidden = v > 0; if (v > 0) showPay(v); };
+      inp.addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+      body.append(el("div", { class: "field" }, el("label", { for: "freeAmount", text: "Quanto você quer dar?" }),
+        el("div", { class: "copy-line" }, inp, el("button", { class: "btn btn-primary", type: "button", onclick: go }, "Gerar Pix")), err));
       setTimeout(() => inp.focus(), 50);
     }
     body.append(payArea);
   }
-
   function thanksBlock(state, item, amount) {
-    const ta = el("textarea", { id: "guestNote", placeholder: "Deixe um recado carinhoso (opcional)", rows: "2" });
+    const ta = el("textarea", { id: "guestNote", placeholder: "Deixe um recado carinhoso (opcional)", rows: "2", "aria-label": "Recado" });
     const link = el("a", { class: "btn btn-ok btn-block", target: "_blank", rel: "noopener" }, "Já paguei, avisar no WhatsApp");
     const phone = "55" + String(state.w).replace(/\D/g, "").replace(/^55(?=\d{10,11}$)/, "");
     const update = () => {
-      const what = item ? "\"" + item.n + "\"" : "uma contribuição";
-      let msg = "Oi! Acabei de te dar " + what + " (" + brl.format(amount) + ") pela sua lista no Presentinho.";
+      let msg = "Oi! Acabei de te dar " + (item ? "\"" + item.n + "\"" : "uma contribuição") + " (" + brl.format(amount) + ") pela sua lista no presentinho.";
       if (ta.value.trim()) msg += "\n\n" + ta.value.trim();
       link.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
     };
     ta.addEventListener("input", update); update();
-    return el("div", { style: "display:grid;gap:10px" }, el("div", { class: "divider" }),
-      el("span", { class: "step", text: "Depois de pagar" }), ta, link);
+    return el("div", { style: "display:grid;gap:10px" }, el("div", { class: "divider" }), el("span", { class: "label", text: "Depois de pagar" }), ta, link);
   }
 
   /* ================= Editor ================= */
@@ -473,24 +494,22 @@
   }
   function saveDraft(s) { try { localStorage.setItem("presentinho-draft", JSON.stringify(s)); } catch (e) {} }
 
-  function renderCreator() {
+  function buildEditor() {
     let state = loadDraft();
-    const app = document.getElementById("app");
+    const host = el("div", { class: "workspace" });
     const preview = el("div", { class: "phone", "aria-label": "Prévia da página do convidado" });
     const formErr = el("p", { class: "form-error", hidden: true });
     const shareBox = el("div", { class: "share", hidden: true });
-    const exampleChip = el("span", { class: "example-chip", text: "Exemplo: troque pelos seus dados", hidden: !state.ex });
+    const exampleChip = el("span", { class: "chip-ex", text: "Exemplo: troque pelos seus dados", hidden: !state.ex });
     const totalEl = el("p", { class: "total" });
 
     const refresh = () => {
       preview.replaceChildren(renderGuest(state, { preview: true }));
       const sum = state.i.reduce((a, it) => a + (it.v || 0), 0);
-      totalEl.replaceChildren("Total da lista: ", el("strong", { text: brl.format(sum) }), " em " + state.i.filter(i => i.v > 0).length + " presentes");
-      saveDraft(state);
-      shareBox.hidden = true;
+      totalEl.replaceChildren("Total: ", el("strong", { text: brl.format(sum) }), " em " + state.i.filter(i => i.v > 0).length + " presentes");
+      saveDraft(state); shareBox.hidden = true;
     };
     const touch = () => { if (state.ex) { state.ex = false; exampleChip.hidden = true; } refresh(); };
-
     const bind = (id, get, set, tag = "input", extra = {}) => {
       const n = el(tag, Object.assign({ id, type: tag === "input" ? "text" : null }, extra));
       n.value = get() || "";
@@ -499,24 +518,16 @@
     };
     const field = (id, label, control, hint, errEl) => el("div", { class: "field" },
       el("label", { for: id, text: label }), control, hint ? el("span", { class: "hint", text: hint }) : null, errEl || null);
+    const head = (n, title, extra) => el("div", { class: "panel-head" }, el("h3", null, el("span", { class: "num", text: n }), title), extra || null);
 
-    // Evento
     const typeSel = el("select", { id: "evType" }, Object.entries(TYPES).map(([k, v]) => el("option", { value: k, text: v })));
     typeSel.value = state.t; typeSel.addEventListener("change", () => { state.t = typeSel.value; touch(); });
-    const dateIn = bind("evDate", () => state.d, v => state.d = v, "input");
-    dateIn.type = "date";
+    const dateIn = bind("evDate", () => state.d, v => state.d = v, "input", { type: "date" });
+    const eventPanel = el("section", { class: "panel" }, head("1", "O evento", exampleChip),
+      el("div", { class: "grid2" }, field("evType", "Tipo de evento", typeSel), field("evDate", "Data (opcional)", dateIn)),
+      field("evName", "Nome no topo da página", bind("evName", () => state.n, v => state.n = v, "input", { maxlength: "60", placeholder: "Ex.: Ana & Pedro" })),
+      field("evMsg", "Mensagem para os convidados", bind("evMsg", () => state.m, v => state.m = v, "textarea", { maxlength: "400", rows: "3" })));
 
-    const eventPanel = el("section", { class: "panel" },
-      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 1" }), el("h2", { text: "O evento" })), exampleChip),
-      el("div", { class: "grid2" },
-        field("evType", "Tipo de evento", typeSel),
-        field("evDate", "Data (opcional)", dateIn)
-      ),
-      field("evName", "Nome que aparece no topo", bind("evName", () => state.n, v => state.n = v, "input", { maxlength: "60", placeholder: "Ex.: Ana & Pedro" })),
-      field("evMsg", "Mensagem para os convidados", bind("evMsg", () => state.m, v => state.m = v, "textarea", { maxlength: "400", rows: "3" }))
-    );
-
-    // Recebedor
     const keyErr = el("span", { class: "err", hidden: true });
     const keyType = el("select", { id: "keyType" },
       el("option", { value: "cpf", text: "CPF ou CNPJ" }), el("option", { value: "phone", text: "Celular" }),
@@ -526,57 +537,40 @@
     const checkKey = () => { const r = normalizeKey(state.r.kt, state.r.k); keyErr.hidden = !r.error || !state.r.k; keyErr.textContent = r.error || ""; };
     keyType.addEventListener("change", () => { state.r.kt = keyType.value; checkKey(); touch(); });
     keyIn.addEventListener("input", checkKey);
-
-    const payPanel = el("section", { class: "panel" },
-      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 2" }), el("h2", { text: "Para onde vai o dinheiro" }))),
+    const payPanel = el("section", { class: "panel" }, head("2", "Para onde vai o dinheiro"),
+      el("div", { class: "grid2" }, field("keyType", "Tipo de chave Pix", keyType), field("pixKey", "Chave Pix", keyIn, null, keyErr)),
       el("div", { class: "grid2" },
-        field("keyType", "Tipo de chave Pix", keyType),
-        field("pixKey", "Chave Pix", keyIn, null, keyErr)
-      ),
-      el("div", { class: "grid2" },
-        field("rcName", "Nome do titular da conta", bind("rcName", () => state.r.nm, v => state.r.nm = v, "input", { maxlength: "40" }), "Igual aparece no banco. Os convidados vão conferir."),
-        field("rcCity", "Cidade", bind("rcCity", () => state.r.ci, v => state.r.ci = v, "input", { maxlength: "30" }))
-      ),
-      field("hostWa", "Seu WhatsApp (opcional)", bind("hostWa", () => state.w, v => state.w = v, "input", { type: "tel", inputmode: "tel", placeholder: "(11) 98765-4321" }), "Os convidados podem te avisar que pagaram e mandar um recado.")
-    );
+        field("rcName", "Nome do titular da conta", bind("rcName", () => state.r.nm, v => state.r.nm = v, "input", { maxlength: "40" }), "Como aparece no banco. O convidado vai conferir."),
+        field("rcCity", "Cidade", bind("rcCity", () => state.r.ci, v => state.r.ci = v, "input", { maxlength: "30" }))),
+      field("hostWa", "Seu WhatsApp (opcional)", bind("hostWa", () => state.w, v => state.w = v, "input", { type: "tel", inputmode: "tel", placeholder: "(11) 98765-4321" }), "Para o convidado avisar que pagou e mandar um recado."));
 
-    // Presentes
     const itemsBox = el("div", { class: "items" });
     const drawItems = () => {
       itemsBox.replaceChildren(...state.i.map((it, idx) => {
         const name = el("input", { type: "text", id: "itName" + idx, placeholder: "Nome do presente", maxlength: "60", "aria-label": "Nome do presente " + (idx + 1) });
-        name.value = it.n || "";
-        name.addEventListener("input", () => { it.n = name.value; touch(); });
+        name.value = it.n || ""; name.addEventListener("input", () => { it.n = name.value; touch(); });
         const val = el("input", { type: "text", id: "itVal" + idx, class: "money", inputmode: "decimal", placeholder: "R$ 0,00", "aria-label": "Valor do presente " + (idx + 1) });
-        val.value = moneyInput(it.v);
-        val.addEventListener("input", () => { it.v = parseMoney(val.value); touch(); });
-        const rm = el("button", { class: "icon-btn", type: "button", "aria-label": "Remover presente " + (idx + 1), onclick: () => { state.i.splice(idx, 1); drawItems(); touch(); } }, svgIcon(ICON_X));
+        val.value = moneyInput(it.v); val.addEventListener("input", () => { it.v = parseMoney(val.value); touch(); });
+        const rm = el("button", { class: "icon-btn", type: "button", "aria-label": "Remover presente " + (idx + 1), onclick: () => { state.i.splice(idx, 1); drawItems(); touch(); } }, svg(ICON_X));
         return el("div", { class: "item-row" }, name, val, rm);
       }));
     };
     drawItems();
     const freeChk = el("input", { type: "checkbox", id: "freeChk" });
-    freeChk.checked = !!state.f;
-    freeChk.addEventListener("change", () => { state.f = freeChk.checked; touch(); });
-
-    const giftsPanel = el("section", { class: "panel" },
-      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 3" }), el("h2", { text: "Os presentes" })), totalEl),
-      itemsBox,
+    freeChk.checked = !!state.f; freeChk.addEventListener("change", () => { state.f = freeChk.checked; touch(); });
+    const giftsPanel = el("section", { class: "panel" }, head("3", "Os presentes", totalEl), itemsBox,
       el("div", { class: "row-actions" },
-        el("button", { class: "btn btn-ghost btn-small", type: "button", onclick: () => {
+        el("button", { class: "btn btn-quiet", type: "button", onclick: () => {
           if (state.i.length >= 40) return;
           state.i.push({ n: "", v: 0 }); drawItems(); touch();
           const last = document.getElementById("itName" + (state.i.length - 1)); if (last) last.focus();
         } }, "+ Adicionar presente"),
-        el("button", { class: "btn btn-ghost btn-small", type: "button", onclick: () => {
+        el("button", { class: "btn btn-quiet", type: "button", onclick: () => {
           state = { ex: false, t: state.t, n: "", d: "", m: "", r: { nm: "", ci: "", kt: "cpf", k: "" }, w: "", f: true, i: [{ n: "", v: 0 }] };
-          saveDraft(state); app.replaceChildren(); renderCreator();
-        } }, "Começar do zero")
-      ),
-      el("label", { class: "check", for: "freeChk" }, freeChk, el("span", null, "Mostrar ", el("strong", { text: "Contribuição livre" }), ", onde o convidado escolhe o valor"))
-    );
+          saveDraft(state); host.replaceWith(buildEditor());
+        } }, "Começar do zero")),
+      el("label", { class: "check", for: "freeChk" }, freeChk, el("span", null, "Mostrar ", el("strong", { text: "Contribuição livre" }), ", onde o convidado escolhe o valor")));
 
-    // Gerar link
     const generate = () => {
       const k = normalizeKey(state.r.kt, state.r.k);
       const problems = [];
@@ -590,62 +584,123 @@
         i: state.i.filter(i => i.n && i.v > 0).map(i => ({ n: i.n.trim(), v: i.v })) };
       const url = siteBase() + "#" + encodeState(clean);
       const urlIn = el("input", { type: "text", id: "shareUrl", readonly: true, value: url, "aria-label": "Link da sua lista" });
-      const invite = "Oi! Criei a lista de presentes " + (TYPES[state.t] ? "do nosso " + TYPES[state.t].toLowerCase() : "") + ". Dá pra presentear direto pelo Pix: " + url;
+      const invite = "Oi! Criei nossa lista de presentes" + (TYPES[state.t] ? " (" + TYPES[state.t].toLowerCase() + ")" : "") + ". Dá pra presentear direto pelo Pix: " + url;
       shareBox.replaceChildren(
-        el("p", null, el("strong", { text: "Sua lista está pronta. " }), "Mande o link nos grupos e para os convidados."),
-        el("div", { class: "copy-line" }, urlIn, el("button", { class: "btn btn-primary btn-small", type: "button", onclick: () => copyText(url, urlIn) }, "Copiar")),
+        el("p", null, el("strong", { text: "Sua lista está pronta. " }), "Mande o link no grupo e para os convidados."),
+        el("div", { class: "copy-line" }, urlIn, el("button", { class: "btn btn-primary", type: "button", style: "padding:10px 18px", onclick: () => copyText(url, urlIn) }, "Copiar")),
         el("div", { class: "btn-row" },
-          el("a", { class: "btn btn-ok btn-small", href: "https://wa.me/?text=" + encodeURIComponent(invite), target: "_blank", rel: "noopener" }, "Enviar no WhatsApp"),
-          el("a", { class: "btn btn-ghost btn-small", href: url, target: "_blank", rel: "noopener" }, "Abrir como convidado")
-        ),
-        el("p", { class: "hint", text: "Guarde esse link. Os dados da lista ficam dentro dele; para mudar algo, edite aqui e gere um link novo." })
-      );
+          el("a", { class: "btn btn-ok", href: "https://wa.me/?text=" + encodeURIComponent(invite), target: "_blank", rel: "noopener" }, "Enviar no WhatsApp"),
+          el("a", { class: "btn btn-outline", href: url, target: "_blank", rel: "noopener" }, "Abrir como convidado")),
+        el("p", { class: "hint", text: "Guarde esse link. Os dados da lista ficam dentro dele; para mudar algo, edite aqui e gere um link novo." }));
       shareBox.hidden = false;
-      shareBox.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
+      shareBox.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "nearest" });
     };
+    const finishPanel = el("section", { class: "panel" }, head("4", "Compartilhar"),
+      el("button", { class: "btn btn-primary btn-block", type: "button", onclick: generate }, "Gerar link da lista"), formErr, shareBox);
 
-    const finishPanel = el("section", { class: "panel" },
-      el("div", { class: "panel-head" }, el("div", null, el("span", { class: "step", text: "Passo 4" }), el("h2", { text: "Compartilhar" }))),
-      el("button", { class: "btn btn-primary btn-block", type: "button", onclick: generate }, "Gerar link da lista"),
-      formErr, shareBox
-    );
-
-    app.replaceChildren(
-      el("section", { class: "hero" },
-        el("h1", null, "Presente em ", el("em", { text: "Pix" }), ", direto na sua conta."),
-        el("p", { text: "Monte a lista do casamento, chá de bebê ou aniversário em 2 minutos. O convidado escolhe o presente, paga pelo QR Code e o dinheiro cai na hora para você. Sem taxa e sem cadastro." }),
-        el("div", { class: "pills" }, ["Sem taxa por presente", "Sem cadastro", "QR Code e copia e cola", "Recado pelo WhatsApp"].map(t => el("span", { class: "pill", text: t })))
-      ),
-      el("div", { class: "workspace" },
-        el("div", { style: "min-width:0" }, eventPanel, payPanel, giftsPanel, finishPanel),
-        el("aside", { class: "preview-col" },
-          el("div", { class: "preview-label" }, el("span", { text: "Como o convidado vê" }), el("span", { text: "toque num presente" })),
-          preview
-        )
-      )
-    );
-    checkKey();
-    refresh();
+    host.append(
+      el("div", { class: "panels" }, eventPanel, payPanel, giftsPanel, finishPanel),
+      el("aside", { class: "preview-col" }, el("div", { class: "preview-label" }, el("span", { text: "Como o convidado vê" }), el("span", { text: "toque num presente" })), preview));
+    checkKey(); refresh();
+    return host;
   }
 
-  /* ================= Início ================= */
+  /* ================= Landing ================= */
+  function renderLanding() {
+    const demoTag = (n, v, cls) => el("div", { class: "tag sticker " + (cls || "") , "aria-hidden": "true" },
+      el("span", { class: "tag-name", text: n }), el("span", { class: "tag-price", text: brl.format(v) }), el("span", { class: "tag-cta", text: "Presentear com Pix →" }));
+    const occasions = ["Casamento", "Chá de bebê", "Chá de casa nova", "Aniversário", "Formatura", "Vaquinha do escritório"];
+    const bandItems = () => occasions.map(o => el("span", null, o, svg(STAR, "0 0 22 22")));
+    const faq = [
+      ["É seguro?", "O presentinho nunca recebe nem guarda o dinheiro. O Pix sai da conta do convidado direto para a sua, e o app do banco mostra o seu nome antes de cada pagamento."],
+      ["Vocês cobram alguma taxa?", "Criar a lista e receber os presentes é grátis. Não existe taxa sobre o valor dos presentes."],
+      ["Como eu sei quem me deu presente?", "O dinheiro aparece no extrato do seu banco com o nome de quem pagou. Se você informar seu WhatsApp, o convidado também pode te avisar e mandar um recado."],
+      ["Preciso de CNPJ ou cadastro?", "Não. Funciona com qualquer chave Pix: CPF, celular, e-mail ou chave aleatória. Não pedimos cadastro."],
+      ["Posso mudar a lista depois?", "Pode. Edite os presentes e gere um link novo. O link antigo continua mostrando a versão antiga, então mande o novo para os convidados."]
+    ];
+    const app = document.getElementById("app");
+    app.replaceChildren(
+      el("div", { class: "wrap" },
+        el("header", { class: "nav" }, brand(false),
+          el("nav", { class: "nav-links", "aria-label": "Principal" },
+            el("a", { href: "#como", text: "Como funciona" }), el("a", { href: "#taxas", text: "Taxas" }), el("a", { href: "#duvidas", text: "Dúvidas" }),
+            el("a", { class: "btn btn-primary", href: "#criar", text: "Criar minha lista" }))),
+        el("section", { class: "hero" },
+          el("div", { class: "hero-text" },
+            el("span", { class: "seal" }, el("i"), "0% de taxa por presente"),
+            el("h1", null, "Presente bom é presente em ", el("em", { text: "Pix" }), "."),
+            el("p", { class: "hero-lead", text: "Monte a lista do casamento, chá de bebê ou aniversário em 2 minutos. O convidado escolhe, paga pelo QR Code e o dinheiro cai na hora na sua conta." }),
+            el("div", { class: "cta-row" },
+              el("a", { class: "btn btn-primary", href: "#criar", text: "Criar lista grátis" }),
+              el("a", { class: "btn btn-outline", href: exampleUrl(), target: "_blank", rel: "noopener", text: "Ver uma lista de exemplo" })),
+            el("p", { class: "fineprint", text: "Sem cadastro · Sem app · Funciona com qualquer banco" })),
+          el("div", { class: "pile", "aria-hidden": "true" },
+            el("div", { class: "sun" }),
+            demoTag("Passeio de barco em Paraty", 250, "white"),
+            demoTag("Jantar na lua de mel", 180, ""),
+            demoTag("Carrinho do bebê", 400, "orange"),
+            el("div", { class: "toast-card" },
+              svg('<circle cx="14" cy="14" r="14" fill="var(--menta)"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="var(--sobre-menta)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>', "0 0 28 28"),
+              el("div", null, el("strong", { text: "Pix recebido · R$ 180,00" }), el("span", { text: "Tia Marta: “Aproveitem o jantar!”" }))))))
+      ,
+      el("div", { class: "band", "aria-label": "Ocasiões: " + occasions.join(", ") }, el("div", { class: "band-track", "aria-hidden": "true" }, bandItems(), bandItems())),
+      el("div", { class: "wrap" },
+        el("section", { class: "section", id: "como" },
+          el("div", { class: "section-head" }, el("span", { class: "eyebrow", text: "Como funciona" }), el("h2", { text: "Três passos. Nenhum boleto." })),
+          el("ol", { class: "steps" },
+            el("li", null, el("span", { class: "num", text: "1" }), el("h3", { text: "Monte a lista" }), el("p", { text: "Nome do evento, sua chave Pix e os presentes com valor. Leva 2 minutos." })),
+            el("li", null, el("span", { class: "num", text: "2" }), el("h3", { text: "Mande o link" }), el("p", { text: "Cole no grupo da família, no convite ou no status. Abre em qualquer celular." })),
+            el("li", null, el("span", { class: "num", text: "3" }), el("h3", { text: "Receba na hora" }), el("p", { text: "O convidado paga pelo app do banco e o dinheiro cai direto na sua conta." })))),
+        el("section", { class: "section", id: "criar" },
+          el("div", { class: "section-head" }, el("span", { class: "eyebrow", text: "Crie agora" }), el("h2", { text: "Monte sua lista." }),
+            el("p", { text: "Já deixamos um exemplo preenchido. Troque pelos seus dados e veja ao lado como o convidado vai ver." })),
+          buildEditor()),
+        el("section", { class: "section", id: "taxas" },
+          el("div", { class: "section-head" }, el("span", { class: "eyebrow", text: "Taxas" }), el("h2", { text: "O presente é seu. Inteiro." })),
+          el("div", { class: "fees" },
+            el("div", { class: "fee-card" },
+              el("p", { style: "font-weight:700", text: "Num casamento que arrecada R$ 10.000" }),
+              el("div", { class: "fee-vs" },
+                el("div", { class: "old" }, el("b", { text: "R$ 300" }), el("span", { text: "numa taxa de 3%" })),
+                el("div", null, el("b", { text: "R$ 0" }), el("span", { text: "no presentinho" })))),
+            el("div", { class: "safe-card" },
+              el("h3", { text: "A gente nunca toca no seu dinheiro." }),
+              el("p", { text: "O Pix sai da conta do convidado direto para a sua. O app do banco mostra o seu nome antes de cada pagamento, então ninguém paga a pessoa errada." })))),
+        el("section", { class: "section", id: "duvidas" },
+          el("div", { class: "section-head" }, el("span", { class: "eyebrow", text: "Dúvidas" }), el("h2", { text: "Perguntas de quem vai casar." })),
+          el("div", { class: "faq" }, faq.map(([q, a]) => el("details", null, el("summary", { text: q }), el("p", { text: a })))))),
+      el("section", { class: "final" }, el("div", { class: "wrap" },
+        el("h2", { text: "Sua festa merece uma lista à altura." }),
+        el("a", { class: "btn btn-primary", href: "#criar", text: "Criar lista grátis" }))),
+      el("footer", { class: "wrap footer" }, brand(true), el("span", { text: "Feito no Brasil, para o Pix." })));
+  }
+  function exampleUrl() {
+    const s = JSON.parse(JSON.stringify(EXAMPLE)); delete s.ex;
+    return siteBase() + "#" + encodeState(s);
+  }
+
+  /* ================= Boot ================= */
+  let mode = null;
   function boot() {
     const s = decodeState(location.hash);
     const app = document.getElementById("app");
     if (s) {
-      document.getElementById("topNote").textContent = "Lista de presentes";
+      mode = "guest";
       document.title = (s.n ? s.n + " · " : "") + "Lista de presentes";
-      app.replaceChildren(renderGuest(s, { preview: false }));
-    } else if (location.hash.length > 1 && location.hash.startsWith("#v1.")) {
-      app.replaceChildren(el("div", { class: "guest" },
-        el("p", { class: "alert" }, el("strong", { text: "Link incompleto. " }), "Peça para quem te enviou mandar o link de novo, inteiro."),
-        el("a", { class: "btn btn-ghost", href: siteBase(), text: "Criar minha lista" })));
-    } else {
-      renderCreator();
+      app.replaceChildren(el("div", { class: "wrap", style: "padding-block:20px 48px" }, renderGuest(s, { preview: false })));
+    } else if (location.hash.startsWith("#v1.")) {
+      mode = "guest";
+      app.replaceChildren(el("div", { class: "wrap", style: "padding-block:40px" }, el("div", { class: "guest" },
+        el("p", { class: "alert", text: "Link incompleto. Peça para quem te enviou mandar o link de novo, inteiro." }),
+        el("a", { class: "btn btn-outline", href: siteBase(), text: "Criar minha lista" }))));
+    } else if (mode !== "landing") {
+      mode = "landing";
+      renderLanding();
     }
   }
-  window.addEventListener("hashchange", () => { document.getElementById("sheetRoot").replaceChildren(); boot(); });
-  window.__presentinho = { pixPayload, crc16, normalizeKey, parseMoney, encodeState, decodeState };
+  window.addEventListener("hashchange", () => {
+    if (location.hash.startsWith("#v1.") || mode === "guest") { document.getElementById("sheetRoot").replaceChildren(); boot(); }
+  });
   boot();
 })();
 </script>
