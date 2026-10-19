@@ -7,8 +7,8 @@
 <meta property="og:title" content="Lista de presentes em Pix · presentinho">
 <meta property="og:description" content="Escolha um presente e pague pelo Pix. Direto para a conta de quem organizou, sem taxa.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://proxy-pdf-lino.vercel.app/">
-<meta property="og:image" content="https://proxy-pdf-lino.vercel.app/og.png">
+<meta property="og:url" content="https://presentinhopix.vercel.app/">
+<meta property="og:image" content="https://presentinhopix.vercel.app/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
@@ -128,6 +128,19 @@
   .toast-card svg { width: 30px; height: 30px; flex: none; }
   .toast-card strong { display: block; font-size: .95rem; }
   .toast-card span { font-size: .82rem; opacity: .75; }
+  /* Celular: as etiquetas viram uma pilha em coluna, sem sobreposição */
+  @media (max-width: 900px) {
+    .pile { height: auto; display: grid; gap: 30px; padding-block: 20px 8px; }
+    .pile .sun { inset: auto; left: 8%; top: 50%; width: 84%; aspect-ratio: 1; transform: translateY(-50%); }
+    .pile > .sticker, .pile > .toast-card { position: relative; left: auto; top: auto; bottom: auto; width: 74%; max-width: 300px; }
+    .pile > .sticker:nth-child(2), .pile > .sticker:nth-child(4) { justify-self: end; }
+    .pile > .sticker:nth-child(3), .pile > .toast-card { justify-self: start; }
+    .pile > .toast-card { width: auto; max-width: 100%; }
+    .pile > .sticker { transform-origin: 50% 0; }
+    .pile > .sticker:nth-child(2) { --r: 3deg; }
+    .pile > .sticker:nth-child(3) { --r: -4deg; }
+    .pile > .sticker:nth-child(4) { --r: 2deg; }
+  }
 
   /* ---------- gift tag ---------- */
   .tag { position: relative; display: grid; gap: 8px; text-align: left; background: var(--manteiga); color: var(--sobre-manteiga); border: 0; border-radius: 8px 22px 22px 8px; padding: 20px 18px 18px 42px; min-width: 0; box-shadow: var(--sombra); }
