@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Presentinho · Anúncio narrado</title>
+<style>
+  /* 1080x1920. Scenes are timed from narration (window.T). Key text kept between y≈270 and y≈1250. */
+  @font-face { font-family: "Bricolage"; font-weight: 700; src: url(fonts/bricolage-grotesque-latin-700-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Bricolage"; font-weight: 800; src: url(fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 400; src: url(fonts/figtree-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 600; src: url(fonts/figtree-latin-600-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 700; src: url(fonts/figtree-latin-700-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 800; src: url(fonts/figtree-latin-800-normal.woff2) format("woff2"); }
+  :root { --lilas: #F1ECFF; --ameixa: #22123A; --tang: #FF5B2E; --mant: #FFE07A; --menta: #12A67A; --suave: #6A5C80; --linha: #DDD3F5; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Figtree", sans-serif; color: var(--ameixa); }
+  .scene { position: absolute; inset: 0; visibility: hidden; overflow: hidden; }
+  .cam { position: absolute; inset: 0; transform-origin: 50% 40%; }
+  .abs { position: absolute; }
+  .center { left: 0; right: 0; text-align: center; }
+  .disp { font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -0.045em; line-height: .92; }
+  .hl { padding: 0 70px; }
+  em { font-style: normal; color: var(--tang); }
+  canvas#fx { position: absolute; inset: 0; z-index: 100; pointer-events: none; }
+
+  .stamp { border: 10px solid #fff; color: #fff; font-family: "Bricolage"; font-weight: 800; font-size: 78px; letter-spacing: .02em; padding: 6px 30px 10px; border-radius: 18px; }
+
+  /* gift boxes */
+  .box { width: 380px; height: 250px; border-radius: 20px; background: var(--tang); }
+  .box::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 44px; margin-left: -22px; background: var(--mant); }
+  .box::after { content: ""; position: absolute; left: -12px; right: -12px; top: -10px; height: 66px; border-radius: 16px; background: var(--tang); filter: brightness(1.08); box-shadow: inset 0 0 0 0 transparent; }
+  .box .lid-rib { position: absolute; left: 50%; top: -10px; width: 44px; height: 66px; margin-left: -22px; background: var(--mant); z-index: 2; }
+  .box .lbl { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%) rotate(-3deg); background: #fff; color: var(--ameixa); font-weight: 800; font-size: 34px; padding: 8px 18px 8px 34px; border-radius: 6px 16px 16px 6px; white-space: nowrap; z-index: 3; }
+  .box .lbl::before { content: ""; position: absolute; left: 11px; top: 50%; margin-top: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--ameixa); }
+  .box.b2 { background: #fff; } .box.b2::after { background: #fff; filter: brightness(.96); }
+  .box.b2 .lbl { background: var(--mant); }
+
+  /* phone */
+  .phone { left: 300px; top: 450px; width: 480px; height: 980px; border: 14px solid var(--ameixa); border-radius: 64px; background: var(--lilas); overflow: hidden; box-shadow: 0 40px 80px rgba(34,18,58,.28); transform-origin: 50% 0; }
+  .ph-in { position: absolute; inset: 0; padding: 26px 22px; display: grid; gap: 16px; align-content: start; }
+  .ph-top { display: flex; justify-content: space-between; align-items: center; font-size: 17px; color: var(--suave); font-weight: 600; }
+  .brand { display: flex; align-items: center; gap: 4px; font-family: "Bricolage"; font-weight: 800; letter-spacing: -0.045em; font-size: 26px; color: var(--ameixa); }
+  .brand svg { width: 36px; height: 36px; }
+  .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tang); }
+  .ph-h { font-size: 64px; }
+  .rcv { background: #fff; border: 1px solid var(--linha); border-radius: 18px; padding: 12px 14px; font-size: 16px; line-height: 1.35; }
+  .tags { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tag { position: relative; background: var(--mant); border-radius: 8px 22px 22px 8px; padding: 18px 12px 14px 34px; display: grid; gap: 6px; min-height: 150px; align-content: start; }
+  .tag::before { content: ""; position: absolute; left: 12px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--lilas); }
+  .tag b { font-weight: 600; font-size: 18px; line-height: 1.2; }
+  .tag i { font-style: normal; font-family: "Bricolage"; font-weight: 800; font-size: 30px; letter-spacing: -0.03em; }
+  .tag small { font-size: 13px; font-weight: 700; opacity: .7; }
+  .veil { position: absolute; inset: 0; background: rgba(34,18,58,.6); opacity: 0; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 760px; background: #fff; border-radius: 34px 34px 0 0; padding: 16px 24px; display: grid; gap: 14px; align-content: start; transform: translateY(800px); }
+  .grab { width: 54px; height: 6px; border-radius: 3px; background: var(--linha); justify-self: center; }
+  .sh-t { font-size: 40px; }
+  .sh-s { color: var(--tang); font-weight: 700; font-size: 20px; margin-top: -4px; }
+  .qr { justify-self: center; width: 250px; height: 250px; border: 1px solid var(--linha); border-radius: 22px; padding: 12px; background: #fff; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .code { font-family: ui-monospace, monospace; font-size: 13px; background: var(--lilas); border-radius: 14px; padding: 10px 12px; word-break: break-all; line-height: 1.4; }
+  .btn { background: var(--tang); color: #fff; font-weight: 700; font-size: 22px; border-radius: 999px; padding: 18px; text-align: center; }
+  .notif { position: absolute; left: 14px; right: 14px; top: 16px; background: var(--ameixa); color: #fff; border-radius: 26px; padding: 16px 18px; display: flex; gap: 14px; align-items: center; box-shadow: 0 16px 30px rgba(0,0,0,.3); z-index: 5; }
+  .notif svg { width: 46px; height: 46px; flex: none; }
+  .notif strong { display: block; font-size: 21px; }
+  .notif span { font-size: 16px; opacity: .8; }
+  .finger { width: 92px; height: 92px; border-radius: 50%; background: rgba(255,255,255,.55); border: 5px solid rgba(34,18,58,.55); z-index: 6; }
+  .ripple { width: 92px; height: 92px; border-radius: 50%; border: 6px solid var(--tang); z-index: 6; }
+  .sticker { font-family: "Bricolage"; font-weight: 800; font-size: 92px; letter-spacing: -0.04em; color: #fff; background: var(--menta); padding: 14px 34px 20px; border-radius: 28px; box-shadow: 0 20px 40px rgba(18,166,122,.35); white-space: nowrap; z-index: 7; }
+
+  /* editor inside phone */
+  .ed-h { font-size: 44px; }
+  .fld { display: grid; gap: 6px; }
+  .fld label { font-size: 15px; font-weight: 700; color: var(--suave); }
+  .inp { background: #fff; border: 2px solid var(--linha); border-radius: 16px; padding: 14px 16px; font-size: 22px; font-weight: 600; min-height: 58px; }
+  .inp.on { border-color: var(--tang); }
+  .caret { display: inline-block; width: 3px; height: 26px; background: var(--tang); vertical-align: -4px; margin-left: 2px; }
+  .gift-row { display: flex; justify-content: space-between; align-items: center; background: var(--mant); border-radius: 8px 18px 18px 8px; padding: 14px 18px 14px 30px; font-size: 20px; font-weight: 600; position: relative; }
+  .gift-row::before { content: ""; position: absolute; left: 11px; top: 50%; margin-top: -6px; width: 11px; height: 11px; border-radius: 50%; background: var(--lilas); }
+  .gift-row b { font-family: "Bricolage"; font-weight: 800; font-size: 26px; }
+
+  /* chat inside phone */
+  .chat { position: absolute; inset: 0; background: #EFE7DE; display: flex; flex-direction: column; }
+  .chat-head { background: var(--ameixa); color: #fff; padding: 26px 20px 18px; display: flex; gap: 14px; align-items: center; }
+  .av { width: 54px; height: 54px; border-radius: 50%; background: var(--mant); color: var(--ameixa); display: grid; place-items: center; font-weight: 800; font-size: 24px; }
+  .chat-head b { font-size: 22px; display: block; } .chat-head span { font-size: 15px; opacity: .75; }
+  .msgs { padding: 22px 16px; display: grid; gap: 16px; align-content: start; }
+  .bub { max-width: 86%; background: #fff; border-radius: 20px; padding: 12px 16px; font-size: 25px; line-height: 1.3; box-shadow: 0 1px 1px rgba(0,0,0,.08); }
+  .bub small { display: block; font-size: 18px; font-weight: 700; color: var(--tang); margin-bottom: 2px; }
+  .bub.me { justify-self: end; background: #DCF3E6; }
+  .linkcard { background: #fff; border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
+  .linkcard .th { height: 190px; background: var(--lilas); display: grid; place-items: center; }
+  .linkcard .th svg { width: 130px; height: 130px; }
+  .linkcard .tx { padding: 12px 14px; font-size: 19px; color: var(--suave); } .linkcard .tx b { display: block; font-size: 23px; color: var(--ameixa); }
+
+  .cap { top: 270px; font-size: 72px; }
+  .num { width: 140px; height: 140px; border-radius: 50%; background: var(--mant); display: grid; place-items: center; font-family: "Bricolage"; font-weight: 800; font-size: 80px; }
+  .cta { left: 190px; width: 700px; background: var(--tang); color: #fff; font-weight: 800; font-size: 60px; border-radius: 999px; padding: 34px 0; text-align: center; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- A: hook -->
+  <section class="scene" id="A" style="background:var(--tang)"><div class="cam">
+    <p class="abs center" id="a1" style="top:330px;font-size:64px;font-weight:700;color:#fff">Seu casamento vai ter</p>
+    <p class="abs center disp hl" id="a2" style="top:430px;font-size:168px">3 jogos de panela.</p>
+    <div class="abs stamp" id="st1">REPETIDO</div><div class="abs stamp" id="st2">REPETIDO</div><div class="abs stamp" id="st3">REPETIDO</div>
+  </div></section>
+
+  <!-- B: boxes -->
+  <section class="scene" id="B" style="background:var(--ameixa)"><div class="cam">
+    <p class="abs center disp hl" id="b1" style="top:300px;font-size:104px;color:var(--lilas)">Dois liquidificadores.</p>
+    <p class="abs center disp hl" id="b2" style="top:300px;font-size:96px;color:var(--lilas)">E aquele faqueiro que <em>ninguém pediu.</em></p>
+    <div class="abs box" id="bx1" style="left:90px;top:960px"><span class="lid-rib"></span><span class="lbl">Liquidificador</span></div>
+    <div class="abs box b2" id="bx2" style="left:610px;top:960px;width:380px"><span class="lid-rib"></span><span class="lbl">Liquidificador</span></div>
+    <div class="abs box" id="bx3" style="left:350px;top:690px"><span class="lid-rib"></span><span class="lbl">Faqueiro</span></div>
+    <p class="abs disp" id="bq" style="left:760px;top:600px;font-size:200px;color:var(--mant)">?</p>
+  </div></section>
+
+  <!-- C: what if -->
+  <section class="scene" id="C" style="background:var(--lilas)"><div class="cam">
+    <p class="abs center disp hl" id="c1" style="top:420px;font-size:104px">Agora imagina se cada presente virasse</p>
+    <p class="abs center disp" id="c2" style="top:760px;font-size:400px;color:var(--tang)">Pix.</p>
+  </div></section>
+
+  <!-- D: editor -->
+  <section class="scene" id="D" style="background:var(--lilas)"><div class="cam">
+    <p class="abs center disp hl cap" id="d1">Monte sua lista em <em>2 minutos</em></p>
+    <p class="abs center disp hl cap" id="d2">Chave Pix, presentes e <em>valores</em></p>
+    <div class="abs phone" id="dphone"><div class="ph-in">
+      <div class="ph-top"><span class="brand"><svg viewBox="0 0 64 64" class="mk"></svg>presentinho</span><span>Nova lista</span></div>
+      <h2 class="disp ed-h">Monte sua lista</h2>
+      <div class="fld"><label>Nome do evento</label><div class="inp" id="in1"></div></div>
+      <div class="fld"><label>Sua chave Pix</label><div class="inp" id="in2"></div></div>
+      <div class="fld"><label>Presentes</label>
+        <div style="display:grid;gap:10px">
+          <div class="gift-row" id="g1"><span>Jantar na lua de mel</span><b>R$ 180</b></div>
+          <div class="gift-row" id="g2"><span>Passeio de barco</span><b>R$ 250</b></div>
+          <div class="gift-row" id="g3"><span>Jogo de panelas</span><b>R$ 320</b></div>
+        </div></div>
+      <div class="btn" id="dbtn">Gerar link da lista</div>
+    </div></div>
+  </div></section>
+
+  <!-- E: chat -->
+  <section class="scene" id="E" style="background:var(--mant)"><div class="cam">
+    <p class="abs center disp hl cap" id="e1">Mande o link no <em style="color:var(--ameixa);text-decoration:underline;text-decoration-color:var(--tang);text-decoration-thickness:10px">grupo da família</em></p>
+    <div class="abs phone" id="ephone"><div class="chat">
+      <div class="chat-head"><span class="av">F</span><div><b>Família Souza</b><span>Tia Marta, Marcos, Vó Lurdes e mais 18</span></div></div>
+      <div class="msgs">
+        <div class="bub me" id="m1"><div class="linkcard"><div class="th"><svg viewBox="0 0 64 64" class="mk"></svg></div><div class="tx"><b>Lista de presentes · Ana &amp; Pedro</b>presentinho</div></div>Gente, nossa lista de presentes!</div>
+        <div class="bub" id="m2"><small>Tia Marta</small>Que ideia ótima! Muito mais fácil</div>
+        <div class="bub" id="m3"><small>Marcos</small>Já escolhi o meu!</div>
+        <div class="bub" id="m4"><small>Vó Lurdes</small>Até eu consegui!</div>
+      </div>
+    </div></div>
+  </div></section>
+
+  <!-- F: guest pays -->
+  <section class="scene" id="F" style="background:var(--lilas)"><div class="cam">
+    <p class="abs center disp hl cap" id="f1">O convidado escolhe e paga pelo <em>QR Code</em></p>
+    <p class="abs center disp hl cap" id="f2">O dinheiro cai <em>na hora</em> na sua conta</p>
+    <div class="abs phone" id="fphone">
+      <div class="ph-in">
+        <div class="ph-top"><span class="brand"><svg viewBox="0 0 64 64" class="mk"></svg>presentinho</span><span>Lista de presentes</span></div>
+        <span class="eyebrow">Casamento · 12 de dezembro</span>
+        <h1 class="disp ph-h">Ana &amp; Pedro</h1>
+        <p class="rcv">O Pix vai direto para a conta de <strong>Ana Souza</strong>. Sem taxa.</p>
+        <div class="tags">
+          <div class="tag"><b>Jantar na lua de mel</b><i>R$ 180</i><small>Presentear com Pix →</small></div>
+          <div class="tag" id="tagB"><b>Passeio de barco em Paraty</b><i>R$ 250</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Jogo de panelas</b><i>R$ 320</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Cafeteira para as manhãs</b><i>R$ 150</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Uma noite no hotel</b><i>R$ 400</i><small>Presentear com Pix →</small></div>
+          <div class="tag"><b>Vaso para a varanda</b><i>R$ 90</i><small>Presentear com Pix →</small></div>
+        </div>
+      </div>
+      <div class="veil" id="veil"></div>
+      <div class="sheet" id="sheet">
+        <div class="grab"></div>
+        <h2 class="disp sh-t">Passeio de barco em Paraty</h2>
+        <p class="sh-s">R$ 250,00 para Ana Souza</p>
+        <div class="qr" id="qr"></div>
+        <div class="code" id="code"></div>
+        <div class="btn">Copiar código Pix</div>
+      </div>
+      <div class="notif" id="notif">
+        <svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="14" fill="#12A67A"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><strong>Pix recebido · R$ 250,00</strong><span>Marcos Lima: “Boa viagem, casal!”</span></div>
+      </div>
+    </div>
+    <div class="abs ripple" id="ripple"></div>
+    <div class="abs finger" id="finger"></div>
+    <p class="abs sticker" id="money" style="left:600px;top:1330px">+R$ 250</p>
+  </div></section>
+
+  <!-- G: fees -->
+  <section class="scene" id="G" style="background:var(--tang);color:#fff"><div class="cam">
+    <p class="abs center disp" id="g_1" style="top:290px;font-size:96px;color:var(--ameixa)">Sem intermediário.</p>
+    <p class="abs center disp" id="g_2" style="top:400px;font-size:150px;color:#fff">Sem taxa.</p>
+    <p class="abs center" id="g_3" style="top:330px;font-size:60px;font-weight:700;line-height:1.15">Em outros sites: 3% de taxa<br>numa lista de R$ 10 mil</p>
+    <p class="abs center disp" id="g_old" style="top:560px;font-size:250px;color:var(--ameixa)">R$ 300</p>
+    <div class="abs" id="g_strike" style="top:690px;left:160px;width:760px;height:22px;background:#fff;border-radius:11px;transform-origin:0 50%"></div>
+    <p class="abs center" id="g_aq" style="top:880px;font-size:60px;font-weight:800;color:var(--ameixa)">Aqui?</p>
+    <p class="abs center disp" id="g_zero" style="top:950px;font-size:300px;color:#fff">R$ 0</p>
+  </div></section>
+
+  <!-- H: occasions -->
+  <section class="scene" id="H" style="background:var(--ameixa)"><div class="cam">
+    <p class="abs center" id="h0" style="top:330px;font-size:60px;font-weight:700;color:var(--lilas)">Serve pra</p>
+    <p class="abs center disp" id="h1" style="top:640px;font-size:170px">Casamento</p>
+    <p class="abs center disp" id="h2" style="top:640px;font-size:170px">Chá de bebê</p>
+    <p class="abs center disp" id="h3" style="top:640px;font-size:170px">Aniversário</p>
+    <p class="abs center disp" id="h4" style="top:640px;font-size:170px">Formatura</p>
+  </div></section>
+
+  <!-- I: end card -->
+  <section class="scene" id="I" style="background:var(--ameixa);color:var(--lilas)"><div class="cam">
+    <svg class="abs" id="logo" viewBox="0 0 64 64" style="left:410px;top:300px;width:260px;height:260px;transform-origin:35% 50%"></svg>
+    <p class="abs center disp" id="i1" style="top:600px;font-size:150px">presentinho</p>
+    <p class="abs center disp" id="i2" style="top:785px;font-size:60px">Presente bom é presente em <em>Pix.</em></p>
+    <div class="abs cta" id="i3" style="top:960px">Crie a sua grátis</div>
+    <p class="abs center" id="i4" style="top:1135px;font-size:42px;font-weight:700;color:var(--mant)">Link na bio ↓</p>
+  </div></section>
+
+  <canvas id="fx" width="1080" height="1920"></canvas>
+</div>
+<script src="../qrcode.js"></script>
+<script>
+const MARK = (hole, string) => `<g transform="rotate(-12 32 32)"><path d="M10 32 L24 16 H52 a4 4 0 0 1 4 4 V44 a4 4 0 0 1 -4 4 H24 Z" fill="#FF5B2E" stroke="#FF5B2E" stroke-width="4" stroke-linejoin="round"/><circle cx="23" cy="32" r="4.5" fill="${hole}"/></g><path d="M23 34 C 14 33, 7 27, 7 16" fill="none" stroke="${string}" stroke-width="3" stroke-linecap="round"/><path d="M55 1 l1.8 4.2 4.2 1.8 -4.2 1.8 -1.8 4.2 -1.8 -4.2 -4.2 -1.8 4.2 -1.8z" fill="#FFE07A"/>`;
+document.querySelectorAll(".mk").forEach(s => s.innerHTML = MARK("#F1ECFF", "#22123A"));
+document.getElementById("logo").innerHTML = MARK("#22123A", "#F1ECFF");
+const PIX = "00020126430014br.gov.bcb.pix0121ana.exemplo@email.com5204000053039865406250.005802BR5909Ana Souza6009Sao Paulo62070503***63049434";
+(function () { const q = qrcode(0, "M"); q.addData(PIX); q.make(); const n = q.getModuleCount(); let d = "";
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += `M${c} ${r}h1v1h-1z`;
+  document.getElementById("qr").innerHTML = `<svg viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges"><path d="${d}" fill="#111"/></svg>`;
+  document.getElementById("code").textContent = PIX; })();
+
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, a, b) => cl((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);
+const eb = x => { const c1 = 2.2, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const bounce = x => { const n = 7.5625, d = 2.75; if (x < 1 / d) return n * x * x; if (x < 2 / d) return n * (x -= 1.5 / d) * x + .75; if (x < 2.5 / d) return n * (x -= 2.25 / d) * x + .9375; return n * (x -= 2.625 / d) * x + .984375; };
+const lerp = (a, b, x) => a + (b - a) * x;
+function set(el, { x = 0, y = 0, s = 1, r = 0, o = 1 } = {}) { el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`; el.style.opacity = o; }
+function rise(el, t, a, d = 0.3, dist = 50) { const k = eo(P(t, a, a + d)); set(el, { y: (1 - k) * dist, o: k }); }
+function inout(el, t, a, b, dist = 40) { const ki = eo(P(t, a, a + 0.3)), ko = P(t, b - 0.2, b); set(el, { y: (1 - ki) * dist - ko * dist, o: ki * (1 - ko) }); }
+function slam(el, t, a, d = 0.2, from = 2.4, r = 0) { const k = P(t, a, a + d); set(el, { s: lerp(from, 1, eo(k)), r, o: k > 0 ? Math.min(1, k * 3) : 0 }); }
+function shakeXY(t, hits, amp = 14) { let dx = 0, dy = 0; for (const h of hits) { const k = P(t, h, h + 0.2); if (k > 0 && k < 1) { const a = (1 - k) * amp; dx += Math.sin(k * 40) * a; dy += Math.cos(k * 33) * a; } } return [dx, dy]; }
+function typed(el, text, t, a, cps = 16, active = true) { const n = Math.floor(cl((t - a) * cps, 0, text.length)); el.innerHTML = ""; el.append(text.slice(0, n)); const on = t >= a - 0.3 && active; el.classList.toggle("on", on); if (on && Math.floor(t * 2.5) % 2 === 0) { const c = document.createElement("span"); c.className = "caret"; el.append(c); } return n; }
+
+// ---------- timeline (filled from narration) ----------
+let S = [], D = [], SC = {}, EV = [], BURSTS = [];
+window.setup = function (T) {
+  S = T.map(x => x.start); D = T.map(x => x.dur);
+  const end = S[14] + D[14] + 2.0; window.DURATION = end;
+  SC = { A: [0, S[1] - 0.15], B: [S[1] - 0.15, S[3] - 0.2], C: [S[3] - 0.2, S[4] - 0.2], D: [S[4] - 0.2, S[6] - 0.2], E: [S[6] - 0.2, S[7] - 0.2],
+         F: [S[7] - 0.2, S[9] - 0.2], G: [S[9] - 0.2, S[12] - 0.2], H: [S[12] - 0.2, S[13] - 0.2], I: [S[13] - 0.2, end + 1] };
+  // key moments
+  const K = window.K = {
+    st: [S[0] + 1.25, S[0] + 1.6, S[0] + 1.95],
+    bx: [S[1] + 0.1, S[1] + 0.55, S[2] + 0.75], bq: S[2] + D[2] - 0.6,
+    pix: S[3] + D[3] - 0.55,
+    type1: S[4] + 0.9, type2: S[5] + 0.25, gifts: [S[5] + 1.2, S[5] + 1.65, S[5] + 2.1], dbtn: S[5] + D[5] - 0.2,
+    msg: [S[6] + 0.25, S[6] + 1.2, S[6] + 1.75, S[6] + 2.3],
+    tap: S[7] + 1.1, sheet: S[7] + 1.3, notif: S[8] + 0.85,
+    semtaxa: S[9] + 1.05, count: [S[10] + 1.2, S[10] + 3.1], strike: S[10] + D[10] - 0.35, zero: S[11] + 0.35,
+    occ: [S[12] + 0.45, S[12] + 1.15, S[12] + 1.85, S[12] + 2.55],
+    logo: S[13] + 0.05, slogan: S[13] + 1.0, cta: S[14] + 0.1, bio: S[14] + 1.3,
+  };
+  BURSTS = [
+    { t: K.pix + 0.12, x: 540, y: 900, n: 140, kind: "confetti", seed: 1 },
+    { t: K.notif + 0.25, x: 760, y: 1360, n: 70, kind: "coins", seed: 2 },
+    { t: K.zero + 0.2, x: 540, y: 1080, n: 150, kind: "confetti", seed: 3 },
+    { t: K.logo + 0.4, x: 540, y: 430, n: 110, kind: "confetti", seed: 4 },
+  ];
+  // sound events for the mixer
+  EV = [];
+  const ev = (t, type, g = 1) => EV.push({ t: +t.toFixed(3), type, g });
+  Object.entries(SC).forEach(([k, [a]], i) => { if (i) ev(a - 0.05, "whoosh", 0.6); });
+  ev(0.05, "whoosh", 0.5); K.st.forEach(t => ev(t + 0.18, "thud"));
+  K.bx.forEach(t => ev(t + 0.45, "thud", 0.8)); ev(K.bq, "pop", 0.8);
+  ev(K.pix, "pop", 1); ev(K.pix + 0.1, "sparkle", 0.8);
+  for (const [txt, a] of [["Ana & Pedro", K.type1], ["ana@email.com", K.type2]]) for (let i = 0; i < txt.length; i++) ev(a + i / 16, "key", 0.5);
+  K.gifts.forEach(t => ev(t, "pop", 0.7)); ev(K.dbtn, "click", 0.8);
+  ev(K.msg[0], "send", 0.8); K.msg.slice(1).forEach(t => ev(t, "msg", 0.7));
+  ev(K.tap, "click", 0.9); ev(K.sheet, "whoosh", 0.35); ev(K.notif, "chime", 1); ev(K.notif + 0.25, "coins", 0.7);
+  ev(K.semtaxa, "thud", 0.8);
+  for (let t = K.count[0]; t < K.count[1]; t += 0.06) ev(t, "tick", 0.3);
+  ev(K.strike, "whoosh", 0.6); ev(K.zero + 0.18, "thud", 1); ev(K.zero + 0.2, "sparkle", 0.7);
+  K.occ.forEach(t => ev(t, "pop", 0.8));
+  ev(K.logo + 0.3, "sparkle", 0.8); ev(K.cta + 0.2, "pop", 0.7); ev(K.bio, "chime2", 0.6);
+  return { duration: end, events: EV };
+};
+
+// ---------- particles ----------
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const COLORS = ["#FF5B2E", "#FFE07A", "#12A67A", "#FFFFFF", "#B9A6FF", "#22123A"];
+const PCACHE = {};
+function particles(b) { if (PCACHE[b.seed]) return PCACHE[b.seed]; const r = rng(b.seed * 9973); const ps = [];
+  for (let i = 0; i < b.n; i++) { const a = r() * Math.PI * 2, sp = 500 + r() * 1300;
+    ps.push({ vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 700, rot: r() * 6, vr: (r() - .5) * 18, w: 14 + r() * 18, h: 8 + r() * 12, c: COLORS[Math.floor(r() * COLORS.length)], drag: .9 + r() * .3 }); }
+  return PCACHE[b.seed] = ps; }
+const ctx = $("fx").getContext("2d");
+function drawFx(t) { ctx.clearRect(0, 0, 1080, 1920);
+  for (const b of BURSTS) { const dt = t - b.t; if (dt < 0 || dt > 2.6) continue; const al = 1 - P(dt, 1.8, 2.6);
+    for (const p of particles(b)) { const k = (1 - Math.exp(-p.drag * 2.2 * dt)) / (p.drag * 2.2);
+      const x = b.x + p.vx * k, y = b.y + p.vy * k + 900 * dt * dt * 0.6; ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(p.rot + p.vr * dt);
+      if (b.kind === "coins") { const s = 1 + p.w / 20; ctx.scale(Math.abs(Math.cos(p.rot + p.vr * dt * .6)) * .9 + .1, 1); ctx.fillStyle = "#F5C542"; ctx.beginPath(); ctx.arc(0, 0, 16 * s, 0, 7); ctx.fill(); ctx.strokeStyle = "#D99A1E"; ctx.lineWidth = 4; ctx.stroke(); ctx.fillStyle = "#D99A1E"; ctx.font = `800 ${18 * s}px Bricolage`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("$", 0, 1); }
+      else { ctx.scale(1, Math.cos(p.rot * 2 + dt * 9)); ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); }
+      ctx.restore(); } } }
+
+// ---------- render ----------
+const ORDER = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+const WIPE_ORIGINS = { B: "50% 45%", C: "80% 20%", D: "50% 50%", E: "20% 30%", F: "50% 60%", G: "85% 50%", H: "50% 40%", I: "50% 45%" };
+function render(t) {
+  ORDER.forEach((id, i) => { const [a, b] = SC[id]; const el = $(id); const vis = t >= a && t < b + 0.45; el.style.visibility = vis ? "visible" : "hidden"; el.style.zIndex = i + 1;
+    if (i && vis) { const k = eo(P(t, a, a + 0.42)); el.style.clipPath = k < 1 ? `circle(${k * 2300}px at ${WIPE_ORIGINS[id]})` : "none"; }
+    el.firstElementChild.style.transform = `scale(${1 + 0.035 * P(t, a, b)})`; });
+  const K = window.K;
+
+  // A
+  rise($("a1"), t, 0, 0.25, 40);
+  { const k = eb(P(t, 0.15, 0.5)); set($("a2"), { s: lerp(1.25, 1, k), o: P(t, 0.15, 0.3) }); }
+  [["st1", K.st[0], 150, 900, -9], ["st2", K.st[1], 520, 1010, 6], ["st3", K.st[2], 250, 1130, -4]].forEach(([id, a, x, y, r]) => { const e = $(id); e.style.left = x + "px"; e.style.top = y + "px"; slam(e, t, a, 0.18, 2.6, r); });
+  { const [dx, dy] = shakeXY(t, K.st.map(x => x + 0.18)); $("A").style.translate = `${dx}px ${dy}px`; }
+
+  // B
+  inout($("b1"), t, S[1], S[2] - 0.05); inout($("b2"), t, S[2], SC.B[1] + 0.3);
+  [["bx1", K.bx[0], -2], ["bx2", K.bx[1], 3], ["bx3", K.bx[2], 7]].forEach(([id, a, r]) => { const k = P(t, a, a + 0.55); set($(id), { y: lerp(-1300, 0, bounce(k)), r: r * (k > 0 ? 1 : 0), o: k > 0 ? 1 : 0 }); });
+  { const k = P(t, K.bq, K.bq + 0.25); set($("bq"), { s: lerp(0.2, 1, eb(k)), r: 12 + Math.sin(t * 6) * 4, o: k > 0 ? 1 : 0 }); }
+  { const [dx, dy] = shakeXY(t, K.bx.map(x => x + 0.45), 10); $("B").style.translate = `${dx}px ${dy}px`; }
+
+  // C
+  rise($("c1"), t, S[3] - 0.05, 0.35, 60);
+  { const k = P(t, K.pix, K.pix + 0.35); set($("c2"), { s: lerp(0.2, 1, eb(k)) * (1 + Math.max(0, Math.sin((t - K.pix - 0.35) * 5)) * 0.02 * (t > K.pix + 0.35)), r: lerp(-16, -4, eo(k)), o: k > 0 ? 1 : 0 }); }
+
+  // D
+  inout($("d1"), t, S[4] - 0.1, S[5] - 0.1); inout($("d2"), t, S[5] - 0.1, SC.D[1] + 0.3);
+  { const k = eo(P(t, SC.D[0] + 0.05, SC.D[0] + 0.6)); $("dphone").style.transform = `translateY(${(1 - k) * 800}px) rotate(${(1 - k) * 6}deg) scale(1.12)`; }
+  typed($("in1"), "Ana & Pedro", t, K.type1, 16, t < K.type2 - 0.2);
+  typed($("in2"), "ana@email.com", t, K.type2, 16, t < K.gifts[0]);
+  ["g1", "g2", "g3"].forEach((id, i) => { const k = P(t, K.gifts[i], K.gifts[i] + 0.3); set($(id), { x: (1 - eo(k)) * 300, s: lerp(0.8, 1, eb(k)), o: k > 0 ? 1 : 0 }); });
+  { const k = P(t, K.dbtn, K.dbtn + 0.25); const pulse = t > K.dbtn ? 1 + Math.sin((t - K.dbtn) * 10) * 0.03 * (1 - P(t, K.dbtn, K.dbtn + 1.2)) : 1; set($("dbtn"), { s: (1 - Math.sin(Math.PI * k) * 0.06) * pulse }); }
+
+  // E
+  inout($("e1"), t, S[6] - 0.1, SC.E[1] + 0.3);
+  { const k = eo(P(t, SC.E[0] + 0.05, SC.E[0] + 0.55)); $("ephone").style.transform = `translateY(${(1 - k) * 800}px) rotate(${(1 - k) * -6}deg) scale(1.12)`; }
+  ["m1", "m2", "m3", "m4"].forEach((id, i) => { const k = P(t, K.msg[i], K.msg[i] + 0.3); set($(id), { y: (1 - eo(k)) * 40, s: lerp(0.7, 1, eb(k)), o: k > 0 ? 1 : 0 }); $(id).style.transformOrigin = i ? "0 100%" : "100% 100%"; });
+
+  // F
+  inout($("f1"), t, S[7] - 0.1, S[8] + 0.6); inout($("f2"), t, S[8] + 0.6, SC.F[1] + 0.3);
+  const fk = eo(P(t, SC.F[0] + 0.05, SC.F[0] + 0.6)); const bump = P(t, K.notif + 0.1, K.notif + 0.3) - P(t, K.notif + 0.3, K.notif + 0.55);
+  $("fphone").style.transform = `translateY(${(1 - fk) * 800}px) rotate(${(1 - fk) * -6}deg) scale(${1.12 + bump * 0.035})`;
+  { const rb = $("tagB").getBoundingClientRect(); const fx1 = rb.left + rb.width / 2, fy1 = rb.top + rb.height / 2, fx0 = 880, fy0 = 1560;
+    const k = eo(P(t, K.tap - 0.8, K.tap - 0.1)); const press = P(t, K.tap - 0.08, K.tap) - P(t, K.tap, K.tap + 0.15);
+    const vis = P(t, K.tap - 0.9, K.tap - 0.75) * (1 - P(t, K.tap + 0.35, K.tap + 0.5));
+    $("finger").style.left = lerp(fx0, fx1, k) - 46 + "px"; $("finger").style.top = lerp(fy0, fy1, k) - 46 + "px"; set($("finger"), { s: 1 - press * 0.18, o: vis });
+    const rk = P(t, K.tap, K.tap + 0.45); $("ripple").style.left = fx1 - 46 + "px"; $("ripple").style.top = fy1 - 46 + "px"; set($("ripple"), { s: lerp(0.6, 2.4, eo(rk)), o: rk > 0 && rk < 1 ? 1 - rk : 0 });
+    set($("tagB"), { s: 1 - press * 0.05 }); }
+  { const k = eo(P(t, K.sheet, K.sheet + 0.45)); $("sheet").style.transform = `translateY(${(1 - k) * 800}px)`; $("veil").style.opacity = k; }
+  { const k = P(t, K.notif, K.notif + 0.35); set($("notif"), { y: lerp(-180, 0, eb(k)), o: k > 0 ? 1 : 0 }); }
+  { const k = P(t, K.notif + 0.2, K.notif + 0.65); set($("money"), { y: -eo(k) * 120 - P(t, K.notif + 0.7, SC.F[1]) * 40, s: lerp(0.4, 1, eb(k)), r: -6, o: k > 0 ? 1 : 0 }); }
+
+  // G
+  rise($("g_1"), t, S[9] - 0.05, 0.3, 40); slam($("g_2"), t, K.semtaxa, 0.2, 2.2, -2);
+  { const out = P(t, S[10] - 0.25, S[10]); $("g_1").style.opacity *= 1 - out; $("g_2").style.opacity *= 1 - out; }
+  { const k = P(t, S[10], S[10] + 0.3); set($("g_3"), { y: (1 - eo(k)) * 40, o: eo(k) }); }
+  { const k = P(t, K.count[0], K.count[1]); $("g_old").textContent = "R$ " + Math.round(eo(k) * 300); const fade = P(t, K.zero - 0.05, K.zero + 0.15);
+    set($("g_old"), { o: k > 0 ? 1 - fade * 0.55 : 0, s: (1 - fade * 0.15) * (1 + (k > 0 && k < 1 ? Math.sin(t * 40) * 0.01 : 0)) }); }
+  { const k = eo(P(t, K.strike, K.strike + 0.3)); const fade = P(t, K.zero - 0.05, K.zero + 0.15); $("g_strike").style.transform = `rotate(-4deg) scaleX(${k}) scale(${1 - fade * 0.15})`; $("g_strike").style.opacity = 1 - fade * 0.55; }
+  rise($("g_aq"), t, S[11] - 0.05, 0.25, 30); slam($("g_zero"), t, K.zero, 0.2, 2.6, -3);
+  { const [dx, dy] = shakeXY(t, [K.semtaxa + 0.18, K.zero + 0.18], 16); $("G").style.translate = `${dx}px ${dy}px`; }
+
+  // H
+  rise($("h0"), t, SC.H[0] + 0.1, 0.25, 30);
+  const OCC = [["h1", "#FF5B2E", "#fff"], ["h2", "#FFE07A", "#22123A"], ["h3", "#12A67A", "#fff"], ["h4", "#F1ECFF", "#22123A"]];
+  let bg = "#22123A";
+  OCC.forEach(([id, c, fg], i) => { const a = K.occ[i], b = i < 3 ? K.occ[i + 1] : SC.H[1] + 0.4; const on = t >= a && t < b; if (on) bg = c;
+    const k = P(t, a, a + 0.22); set($(id), { s: on ? lerp(1.6, 1, eo(k)) : 1, r: on ? lerp(-8, 0, eo(k)) : 0, o: on ? 1 : 0 }); $(id).style.color = fg; });
+  $("H").style.background = bg; $("h0").style.color = bg === "#FFE07A" || bg === "#F1ECFF" ? "#22123A" : "#F1ECFF";
+
+  // I
+  { const k = P(t, K.logo, K.logo + 0.55); set($("logo"), { s: lerp(0.2, 1, eb(k)), r: lerp(-40, 0, eo(k)) + (t > K.logo + 0.55 ? Math.sin((t - K.logo) * 3) * 4 : 0), o: k > 0 ? 1 : 0 }); }
+  rise($("i1"), t, K.logo + 0.3, 0.35, 40); rise($("i2"), t, K.slogan, 0.3, 30);
+  { const k = P(t, K.cta, K.cta + 0.3); const pulse = t > K.cta + 0.6 ? 1 + Math.sin((t - K.cta) * 6) * 0.025 : 1; set($("i3"), { s: lerp(0.5, 1, eb(k)) * pulse, o: k > 0 ? 1 : 0 }); }
+  { const k = P(t, K.bio, K.bio + 0.3); set($("i4"), { y: (1 - eo(k)) * 30 + (t > K.bio + 0.3 ? Math.abs(Math.sin((t - K.bio) * 4)) * 14 : 0), o: eo(k) }); }
+
+  drawFx(t);
+}
+window.render = render;
+</script>
+</body>
+</html>
