@@ -1,0 +1,27 @@
+@font-face { font-family: "Bricolage"; font-weight: 700; src: url(../anuncio/fonts/bricolage-grotesque-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: "Bricolage"; font-weight: 800; src: url(../anuncio/fonts/bricolage-grotesque-latin-800-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 400; src: url(../anuncio/fonts/figtree-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 600; src: url(../anuncio/fonts/figtree-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 700; src: url(../anuncio/fonts/figtree-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: "Figtree"; font-weight: 800; src: url(../anuncio/fonts/figtree-latin-800-normal.woff2) format("woff2"); }
+:root { --lilas: #F1ECFF; --ameixa: #22123A; --tang: #FF5B2E; --mant: #FFE07A; --menta: #12A67A; --suave: #6A5C80; --linha: #DDD3F5; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: #000; }
+#stage { position: relative; width: 1080px; height: 1350px; overflow: hidden; font-family: "Figtree", sans-serif; color: var(--ameixa); }
+.scene { position: absolute; inset: 0; visibility: hidden; overflow: hidden; }
+.abs { position: absolute; }
+.center { left: 0; right: 0; text-align: center; }
+.disp { font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -0.045em; line-height: .92; }
+.hl { padding: 0 70px; }
+em { font-style: normal; color: var(--tang); }
+canvas#fx { position: absolute; inset: 0; z-index: 100; pointer-events: none; }
+#end { background: var(--ameixa); color: var(--lilas); }
+.cta { left: 220px; width: 640px; background: var(--tang); color: #fff; font-weight: 800; font-size: 54px; border-radius: 999px; padding: 30px 0; text-align: center; }
+.tag { position: relative; background: var(--mant); border-radius: 10px 28px 28px 10px; padding: 26px 26px 24px 58px; display: grid; gap: 8px; box-shadow: 0 20px 40px rgba(34,18,58,.16); }
+.tag::before { content: ""; position: absolute; left: 20px; top: 34px; width: 18px; height: 18px; border-radius: 50%; background: var(--lilas); }
+.tag b { font-weight: 600; font-size: 34px; line-height: 1.15; }
+.tag i { font-style: normal; font-family: "Bricolage"; font-weight: 800; font-size: 60px; letter-spacing: -0.03em; }
+.notif { background: var(--ameixa); color: #fff; border-radius: 30px; padding: 22px 26px; display: flex; gap: 18px; align-items: center; box-shadow: 0 18px 36px rgba(0,0,0,.28); }
+.notif svg { width: 60px; height: 60px; flex: none; }
+.notif strong { display: block; font-size: 32px; }
+.notif span { font-size: 24px; opacity: .8; }

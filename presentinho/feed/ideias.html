@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Feed · 5 ideias</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  #s1 { background: var(--lilas); }
+  #save { top: 330px; }
+  #save span { display: inline-block; background: var(--ameixa); color: var(--mant); font-weight: 800; font-size: 32px; padding: 12px 28px; border-radius: 999px; }
+  .item { left: 80px; top: 500px; width: 900px; display: grid; grid-template-columns: 170px 1fr; gap: 34px; align-items: start; }
+  .num { width: 170px; height: 170px; border-radius: 50%; background: var(--tang); color: #fff; display: grid; place-items: center; font-family: "Bricolage"; font-weight: 800; font-size: 110px; }
+  .item .tag { transform: rotate(-3deg); }
+  .item .tag b { font-size: 42px; } .item .tag i { font-size: 80px; }
+  .item .tip { grid-column: 2; font-size: 42px; color: var(--suave); font-weight: 600; line-height: 1.3; margin-top: 18px; }
+  #count { right: 60px; top: 1210px; font-family: "Bricolage"; font-weight: 800; font-size: 50px; color: var(--suave); }
+  #grid { left: 70px; top: 440px; width: 940px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  #grid .tag { padding: 18px 18px 16px 46px; } #grid .tag::before { left: 16px; top: 26px; width: 14px; height: 14px; }
+  #grid .tag b { font-size: 32px; } #grid .tag i { font-size: 54px; }
+  #sum { top: 1180px; }
+</style></head>
+<body><div id="stage">
+  <section class="scene" id="s1">
+    <p class="abs center disp hl" id="title" style="top:80px;font-size:80px">5 ideias de presente para sua lista em <em>Pix</em></p>
+    <p class="abs center" id="save"><span>Salve para montar a sua</span></p>
+    <div id="items"></div>
+    <p class="abs" id="count">1/5</p>
+    <div class="abs" id="grid"></div>
+    <p class="abs center disp" id="sum" style="font-size:64px">Monte a sua em <em>2 minutos</em></p>
+  </section>
+  <section class="scene" id="end"></section>
+  <canvas id="fx" width="1080" height="1350"></canvas>
+</div>
+<script src="base.js"></script>
+<script>
+$("end").innerHTML = END_HTML;
+const IDEAS = [
+  ["Jantar romântico na lua de mel", "R$ 180", "Fácil de entender e todo convidado sabe para onde vai o dinheiro.", "#FFE07A"],
+  ["Passeio no destino da viagem", "R$ 250", "O convidado participa de uma memória da viagem.", "#FFFFFF"],
+  ["Uma parte da passagem", "R$ 150", "Ajuda no gasto que mais pesa no orçamento.", "#FFE07A"],
+  ["Jogo de cama novo", "R$ 220", "Para quem prefere dar algo para a casa.", "#FFFFFF"],
+  ["Contribuição livre", "Você escolhe", "Para quem quer dar outro valor.", "#FFE07A"],
+];
+const START = 1.4, STEP = 1.95, GRID = START + 5 * STEP + 0.1, END = GRID + 2.4;
+window.DURATION = END + 3.6;
+window.MUSIC = { bpm: 104, prog: 2, start: 0.3 };
+BURSTS = [{ t: END + 0.4, x: 540, y: 440, n: 110, kind: "confetti", seed: 21 }];
+$("items").innerHTML = IDEAS.map(([n, v, tip, c], i) => `<div class="abs item" id="it${i}"><span class="num">${i + 1}</span><div class="tag" style="background:${c}"><b>${n}</b><i>${v}</i></div><p class="tip">${tip}</p></div>`).join("");
+$("grid").innerHTML = IDEAS.map(([n, v, , c], i) => `<div class="tag" id="gi${i}" style="background:${c}${i === 4 ? ";grid-column:1/3;justify-self:center;width:460px" : ""}"><b>${n}</b><i>${v}</i></div>`).join("");
+window.EVENTS = [{ t: 0.05, type: "whoosh", g: .5 }, { t: 0.8, type: "pop", g: .6 },
+  ...IDEAS.flatMap((_, i) => [{ t: START + i * STEP, type: "whoosh", g: .45 }, { t: START + i * STEP + 0.25, type: "pop", g: .8 }]),
+  ...IDEAS.map((_, i) => ({ t: GRID + 0.1 + i * 0.12, type: "pop", g: .5 })), { t: GRID + 1.1, type: "chime2", g: .6 },
+  { t: END - 0.05, type: "whoosh", g: .6 }, { t: END + 0.3, type: "sparkle", g: .8 }, { t: END + 0.9, type: "pop", g: .7 }];
+function render(t) {
+  $("s1").style.visibility = t < END + 0.45 ? "visible" : "hidden";
+  const e = $("end"); e.style.visibility = t >= END ? "visible" : "hidden"; e.style.zIndex = 5;
+  e.style.clipPath = t >= END && t < END + 0.42 ? `circle(${eo(P(t, END, END + 0.42)) * 1800}px at 50% 50%)` : "none";
+  rise($("title"), t, 0, 0.35, 50);
+  { const k = P(t, 0.8, 1.1), out = P(t, GRID - 0.2, GRID); set($("save"), { s: lerp(0.5, 1, eb(k)), o: (k > 0 ? 1 : 0) * (1 - out) }); }
+  IDEAS.forEach((_, i) => { const a = START + i * STEP, b = a + STEP; const ki = eo(P(t, a, a + 0.4)), ko = eo(P(t, b - 0.05, b + 0.3));
+    const el = $("it" + i); set(el, { x: (1 - ki) * 1100 - ko * 1100, r: (1 - ki) * 8 - ko * 8, o: ki > 0 && ko < 1 ? 1 : 0 });
+    el.querySelector(".num").style.transform = `scale(${lerp(0.3, 1, eb(P(t, a + 0.15, a + 0.45)))})`; });
+  { const i = Math.min(4, Math.max(0, Math.floor((t - START) / STEP))); $("count").textContent = (i + 1) + "/5"; set($("count"), { o: P(t, START, START + .2) * (1 - P(t, GRID - .2, GRID)) }); }
+  IDEAS.forEach((_, i) => { const a = GRID + 0.1 + i * 0.12; pop($("gi" + i), t, a, 0.3, 0.4, [-3, 2, -2, 3, 0][i]); });
+  rise($("sum"), t, GRID + 1.0, 0.35, 30);
+  endCard(t, END + 0.1);
+  drawFx($("fx").getContext("2d"), t);
+}
+window.render = render;
+</script></body></html>

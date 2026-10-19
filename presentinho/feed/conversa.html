@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Feed · Conversa</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  #s1 { background: var(--lilas); }
+  .chat { left: 90px; top: 300px; width: 900px; height: 1000px; background: #EFE7DE; border-radius: 44px; overflow: hidden; box-shadow: 0 30px 70px rgba(34,18,58,.22); }
+  .chat-head { position: absolute; left: 0; right: 0; top: 0; height: 120px; background: var(--ameixa); color: #fff; display: flex; gap: 20px; align-items: center; padding: 0 30px; z-index: 3; }
+  .av { width: 74px; height: 74px; border-radius: 50%; background: var(--mant); color: var(--ameixa); display: grid; place-items: center; font-weight: 800; font-size: 34px; }
+  .chat-head b { display: block; font-size: 34px; } .chat-head span { font-size: 24px; opacity: .8; }
+  .viewport { position: absolute; left: 0; right: 0; top: 120px; bottom: 0; overflow: hidden; }
+  .msgs { position: absolute; left: 0; right: 0; top: 0; padding: 28px 26px; display: grid; gap: 18px; align-content: start; }
+  .bub { max-width: 80%; background: #fff; border-radius: 26px; padding: 18px 24px; font-size: 34px; line-height: 1.3; box-shadow: 0 1px 2px rgba(0,0,0,.08); transform-origin: 0 100%; }
+  .bub.me { justify-self: end; background: #DCF3E6; transform-origin: 100% 100%; }
+  .linkcard { background: #fff; border-radius: 18px; overflow: hidden; margin-bottom: 10px; }
+  .linkcard .th { height: 200px; background: var(--lilas); display: grid; place-items: center; }
+  .linkcard .th svg { width: 140px; height: 140px; }
+  .linkcard .tx { padding: 14px 18px; font-size: 26px; color: var(--suave); } .linkcard .tx b { display: block; font-size: 30px; color: var(--ameixa); }
+  #nt { left: 120px; right: 120px; top: 330px; z-index: 6; }
+</style></head>
+<body><div id="stage">
+  <section class="scene" id="s1">
+    <p class="abs center disp hl" id="title" style="top:70px;font-size:74px">Quando a tia pergunta o que vocês querem de <em>presente…</em></p>
+    <div class="abs chat" id="chat">
+      <div class="chat-head"><span class="av">M</span><div><b>Tia Marta</b><span id="status">online</span></div></div>
+      <div class="viewport"><div class="msgs" id="msgs">
+        <div class="bub" id="m0">Ana, o que vocês querem de presente de casamento?</div>
+        <div class="bub me" id="m1">A gente fez uma lista em Pix!</div>
+        <div class="bub me" id="m2"><div class="linkcard"><div class="th"><svg viewBox="0 0 64 64" class="mk"></svg></div><div class="tx"><b>Lista de presentes · Ana &amp; Pedro</b>presentinhopix.vercel.app</div></div>Escolhe o que quiser, tia</div>
+        <div class="bub" id="m3">Que chique! Já dei o jantar da lua de mel</div>
+        <div class="bub" id="m4">Já caiu aí?</div>
+        <div class="bub me" id="m5">Caiu na hora! Obrigada, tia!!</div>
+      </div></div>
+    </div>
+    <div class="abs notif" id="nt"><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="14" fill="#12A67A"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Pix recebido · R$ 180,00</strong><span>Marta Souza</span></div></div>
+  </section>
+  <section class="scene" id="end"></section>
+  <canvas id="fx" width="1080" height="1350"></canvas>
+</div>
+<script src="base.js"></script>
+<script>
+$("end").innerHTML = END_HTML;
+document.querySelectorAll(".mk").forEach(s => s.innerHTML = MARK("#F1ECFF", "#22123A"));
+const T = [1.7, 2.6, 3.3, 5.0, 7.9, 8.8];          // quando cada mensagem aparece
+const TYPING = [[0.9, 1.7], [4.2, 5.0], [7.2, 7.9]]; // tia digitando
+const NOTIF = 6.1, END = 10.4;
+window.DURATION = 14;
+window.MUSIC = { bpm: 112, prog: 0, start: 0.6 };
+BURSTS = [{ t: NOTIF + 0.25, x: 900, y: 560, n: 50, kind: "coins", seed: 7 }, { t: END + 0.4, x: 540, y: 440, n: 110, kind: "confetti", seed: 8 }];
+window.EVENTS = [{ t: 0.05, type: "whoosh", g: .5 }, { t: 0.6, type: "whoosh", g: .4 },
+  ...T.map((t, i) => ({ t, type: i === 2 ? "send" : "msg", g: .7 })),
+  ...TYPING.flatMap(([a, b]) => Array.from({ length: Math.floor((b - a) / 0.12) }, (_, k) => ({ t: a + k * 0.12, type: "key", g: .25 }))),
+  { t: NOTIF, type: "chime", g: 1 }, { t: NOTIF + 0.25, type: "coins", g: .7 },
+  { t: END - 0.05, type: "whoosh", g: .6 }, { t: END + 0.3, type: "sparkle", g: .8 }, { t: END + 0.9, type: "pop", g: .7 }];
+let targets = null;
+function render(t) {
+  $("s1").style.visibility = t < END + 0.45 ? "visible" : "hidden";
+  const e = $("end"); e.style.visibility = t >= END ? "visible" : "hidden"; e.style.zIndex = 5;
+  e.style.clipPath = t >= END && t < END + 0.42 ? `circle(${eo(P(t, END, END + 0.42)) * 1800}px at 50% 50%)` : "none";
+  rise($("title"), t, 0, 0.35, 50);
+  { const k = eo(P(t, 0.5, 1.0)); $("chat").style.transform = `translateY(${(1 - k) * 900}px)`; }
+  $("status").textContent = TYPING.some(([a, b]) => t >= a && t < b) ? "digitando…" : "online";
+  const msgs = [...document.querySelectorAll(".bub")];
+  msgs.forEach((m, i) => { const k = P(t, T[i], T[i] + 0.28); set(m, { y: (1 - eo(k)) * 30, s: lerp(0.7, 1, eb(k)), o: k > 0 ? 1 : 0 }); });
+  if (!targets) { const vh = $("msgs").parentElement.clientHeight; targets = msgs.map(m => Math.max(0, m.offsetTop + m.offsetHeight + 28 - vh)); }
+  let off = 0; for (let i = 0; i < T.length; i++) if (t >= T[i]) off = lerp(i ? targets[i - 1] : 0, targets[i], eo(P(t, T[i], T[i] + 0.3)));
+  $("msgs").style.top = -off + "px";
+  { const k = P(t, NOTIF, NOTIF + 0.35), out = P(t, 7.0, 7.3); set($("nt"), { y: lerp(-260, 0, eb(k)) - out * 260, o: k > 0 ? 1 - out : 0 }); }
+  endCard(t, END + 0.1);
+  drawFx($("fx").getContext("2d"), t);
+}
+window.render = render;
+</script></body></html>
