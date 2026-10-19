@@ -4,14 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Lista de presentes em Pix para casamento, chá de bebê e aniversário. O dinheiro cai direto na sua conta, sem taxa.">
-<meta property="og:title" content="Lista de presentes em Pix">
+<meta property="og:title" content="Lista de presentes em Pix · presentinho">
 <meta property="og:description" content="Escolha um presente e pague pelo Pix. Direto para a conta de quem organizou, sem taxa.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://proxy-pdf-lino.vercel.app/">
+<meta property="og:image" content="https://proxy-pdf-lino.vercel.app/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#22123A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2218%22 fill=%22%2322123A%22/%3E%3Cg transform=%22translate(9 9) scale(.72) rotate(-12 32 32)%22%3E%3Cpath d=%22M10 32 L24 16 H52 a4 4 0 0 1 4 4 V44 a4 4 0 0 1 -4 4 H24 Z%22 fill=%22%23FF5B2E%22 stroke=%22%23FF5B2E%22 stroke-width=%224%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2223%22 cy=%2232%22 r=%224.5%22 fill=%22%2322123A%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="icone.png">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<noscript><p style="padding:24px;font-family:sans-serif">O presentinho precisa de JavaScript ligado para funcionar.</p></noscript>
 <title>Presentinho Pix</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -221,6 +228,8 @@
   .final { background: var(--faixa); color: var(--sobre-faixa); text-align: center; }
   .final .wrap { padding-block: 104px; display: grid; gap: 28px; justify-items: center; }
   .final h2 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); max-width: 14ch; }
+  .foot-links { display: inline-flex; flex-wrap: wrap; gap: 16px; justify-content: center; font-size: .85rem; }
+  .foot-links a { color: var(--tinta-suave); }
   .footer { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; color: var(--tinta-suave); font-size: .9rem; }
 
   /* ---------- guest page ---------- */
@@ -321,6 +330,9 @@
   }
 
   /* ================= Dinheiro ================= */
+  // E-mail público para contato e denúncias. Vazio = os links de contato não aparecem.
+  const CONTACT = "";
+
   const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
   function parseMoney(s) {
     let t = String(s || "").replace(/[R$\s]/g, "");
@@ -440,7 +452,8 @@
         el("span", null, "O Pix vai direto para a conta de ", el("strong", { text: state.r.nm || "quem organizou" }), ". Sem intermediários e sem taxa.")),
       keyInfo.error && opts.preview ? el("p", { class: "alert", text: "A chave Pix ainda está inválida. Corrija no passo 2." }) : null,
       tags.length ? el("div", { class: "tags" }, tags) : el("p", { class: "empty", text: "Adicione presentes para eles aparecerem aqui." }),
-      el("footer", { class: "guest-foot" }, el("span", { text: "Lista feita no presentinho" }), el("a", { href: siteBase(), text: "Crie a sua lista grátis →" })));
+      el("footer", { class: "guest-foot" }, el("span", { text: "Lista feita no presentinho" }), el("a", { href: siteBase(), text: "Crie a sua lista grátis →" }),
+        el("span", { class: "foot-links" }, el("a", { href: "termos.html", text: "Termos" }), CONTACT ? el("a", { href: "mailto:" + CONTACT + "?subject=" + encodeURIComponent("Denúncia de lista"), text: "Denunciar esta lista" }) : null)));
   }
 
   /* ================= Pay sheet ================= */
@@ -605,6 +618,7 @@
         el("div", { class: "btn-row" },
           el("a", { class: "btn btn-ok", href: "https://wa.me/?text=" + encodeURIComponent(invite), target: "_blank", rel: "noopener" }, "Enviar no WhatsApp"),
           el("a", { class: "btn btn-outline", href: url, target: "_blank", rel: "noopener" }, "Abrir como convidado")),
+        el("p", { class: "hint", text: "Antes de mandar para os convidados, abra como convidado e faça um Pix de R$ 1 para você mesmo. Assim você confere que a chave está certa." }),
         el("p", { class: "hint", text: "Guarde esse link. Os dados da lista ficam dentro dele; para mudar algo, edite aqui e gere um link novo." }));
       shareBox.hidden = false;
       shareBox.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "nearest" });
@@ -686,7 +700,10 @@
       el("section", { class: "final" }, el("div", { class: "wrap" },
         el("h2", { text: "Sua festa merece uma lista à altura." }),
         el("a", { class: "btn btn-primary", href: "#criar", text: "Criar lista grátis" }))),
-      el("footer", { class: "wrap footer" }, brand(true), el("span", { text: "Feito no Brasil, para o Pix." })));
+      el("footer", { class: "wrap footer" }, brand(true),
+        el("span", { class: "foot-links" }, el("a", { href: "termos.html", text: "Termos e privacidade" }),
+          CONTACT ? el("a", { href: "mailto:" + CONTACT, text: "Contato e denúncias" }) : null,
+          el("span", { text: "Feito no Brasil, para o Pix." }))));
   }
   function exampleUrl() {
     const s = JSON.parse(JSON.stringify(EXAMPLE)); delete s.ex;

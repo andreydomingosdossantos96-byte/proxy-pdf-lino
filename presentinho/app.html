@@ -207,6 +207,8 @@
   .final { background: var(--faixa); color: var(--sobre-faixa); text-align: center; }
   .final .wrap { padding-block: 104px; display: grid; gap: 28px; justify-items: center; }
   .final h2 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); max-width: 14ch; }
+  .foot-links { display: inline-flex; flex-wrap: wrap; gap: 16px; justify-content: center; font-size: .85rem; }
+  .foot-links a { color: var(--tinta-suave); }
   .footer { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; color: var(--tinta-suave); font-size: .9rem; }
 
   /* ---------- guest page ---------- */
@@ -307,6 +309,9 @@
   }
 
   /* ================= Dinheiro ================= */
+  // E-mail público para contato e denúncias. Vazio = os links de contato não aparecem.
+  const CONTACT = "";
+
   const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
   function parseMoney(s) {
     let t = String(s || "").replace(/[R$\s]/g, "");
@@ -426,7 +431,8 @@
         el("span", null, "O Pix vai direto para a conta de ", el("strong", { text: state.r.nm || "quem organizou" }), ". Sem intermediários e sem taxa.")),
       keyInfo.error && opts.preview ? el("p", { class: "alert", text: "A chave Pix ainda está inválida. Corrija no passo 2." }) : null,
       tags.length ? el("div", { class: "tags" }, tags) : el("p", { class: "empty", text: "Adicione presentes para eles aparecerem aqui." }),
-      el("footer", { class: "guest-foot" }, el("span", { text: "Lista feita no presentinho" }), el("a", { href: siteBase(), text: "Crie a sua lista grátis →" })));
+      el("footer", { class: "guest-foot" }, el("span", { text: "Lista feita no presentinho" }), el("a", { href: siteBase(), text: "Crie a sua lista grátis →" }),
+        el("span", { class: "foot-links" }, el("a", { href: "termos.html", text: "Termos" }), CONTACT ? el("a", { href: "mailto:" + CONTACT + "?subject=" + encodeURIComponent("Denúncia de lista"), text: "Denunciar esta lista" }) : null)));
   }
 
   /* ================= Pay sheet ================= */
@@ -591,6 +597,7 @@
         el("div", { class: "btn-row" },
           el("a", { class: "btn btn-ok", href: "https://wa.me/?text=" + encodeURIComponent(invite), target: "_blank", rel: "noopener" }, "Enviar no WhatsApp"),
           el("a", { class: "btn btn-outline", href: url, target: "_blank", rel: "noopener" }, "Abrir como convidado")),
+        el("p", { class: "hint", text: "Antes de mandar para os convidados, abra como convidado e faça um Pix de R$ 1 para você mesmo. Assim você confere que a chave está certa." }),
         el("p", { class: "hint", text: "Guarde esse link. Os dados da lista ficam dentro dele; para mudar algo, edite aqui e gere um link novo." }));
       shareBox.hidden = false;
       shareBox.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "nearest" });
@@ -672,7 +679,10 @@
       el("section", { class: "final" }, el("div", { class: "wrap" },
         el("h2", { text: "Sua festa merece uma lista à altura." }),
         el("a", { class: "btn btn-primary", href: "#criar", text: "Criar lista grátis" }))),
-      el("footer", { class: "wrap footer" }, brand(true), el("span", { text: "Feito no Brasil, para o Pix." })));
+      el("footer", { class: "wrap footer" }, brand(true),
+        el("span", { class: "foot-links" }, el("a", { href: "termos.html", text: "Termos e privacidade" }),
+          CONTACT ? el("a", { href: "mailto:" + CONTACT, text: "Contato e denúncias" }) : null,
+          el("span", { text: "Feito no Brasil, para o Pix." }))));
   }
   function exampleUrl() {
     const s = JSON.parse(JSON.stringify(EXAMPLE)); delete s.ex;
