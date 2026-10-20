@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 440 230" role="img" aria-label="Sandália rasteira caramelo com tiras cruzadas e tachas douradas">
+<path fill="#A98457" d="M70 160C70 108 118 82 176 86L350 106C420 114 452 150 450 186C448 224 402 242 346 238L170 228C106 224 70 206 70 160Z"/>
+<path fill="#E4CDA8" d="M70 150C70 98 118 72 176 76L350 96C420 104 452 140 450 176C448 214 402 232 346 228L170 218C106 214 70 196 70 150Z"/>
+<path fill="#D7BD93" d="M70 150C70 120 90 100 120 90C104 110 104 150 126 190C140 206 160 214 170 218C106 214 70 196 70 150Z"/>
+<path fill="#F2E2C6" d="M176 76L350 96C392 101 422 120 436 144C414 128 384 118 346 114L176 94C150 91 128 96 112 106C124 86 148 74 176 76Z"/>
+<path fill="none" stroke="#C4A67A" stroke-width="2" stroke-dasharray="5 4" d="M90 154C90 112 130 92 176 94L346 114C402 120 432 148 430 176"/>
+<g fill="none" stroke-linecap="round">
+<path stroke="#7D5330" stroke-width="38" d="M246 94C292 128 330 176 348 226" transform="translate(2 4)"/>
+<path stroke="#B9814F" stroke-width="32" d="M246 94C292 128 330 176 348 226"/>
+<path stroke="#D6A273" stroke-width="8" d="M240 90C284 124 322 170 340 218"/>
+<path stroke="#7D5330" stroke-width="38" d="M346 108C316 150 276 192 232 222" transform="translate(2 4)"/>
+<path stroke="#B9814F" stroke-width="32" d="M346 108C316 150 276 192 232 222"/>
+<path stroke="#D6A273" stroke-width="8" d="M340 102C310 144 270 186 226 216"/>
+</g>
+<g fill="#C9A24E"><circle cx="268" cy="112" r="6"/><circle cx="296" cy="136" r="6"/><circle cx="320" cy="166" r="6"/><circle cx="336" cy="198" r="6"/><circle cx="326" cy="130" r="6"/><circle cx="302" cy="160" r="6"/><circle cx="276" cy="186" r="6"/><circle cx="252" cy="208" r="6"/></g>
+<g fill="#F3DFA0"><circle cx="266" cy="110" r="2.4"/><circle cx="294" cy="134" r="2.4"/><circle cx="318" cy="164" r="2.4"/><circle cx="334" cy="196" r="2.4"/><circle cx="324" cy="128" r="2.4"/><circle cx="300" cy="158" r="2.4"/><circle cx="274" cy="184" r="2.4"/><circle cx="250" cy="206" r="2.4"/></g>
+</svg>

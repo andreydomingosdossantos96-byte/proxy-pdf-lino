@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 10 300 540" role="img" aria-label="Conjunto de academia: top rosa e legging grafite com detalhe vermelho">
+<path fill="#DC9583" d="M126 46L156 36C168 78 252 78 264 36L294 46C304 106 294 166 300 252H120C126 166 116 106 126 46Z"/>
+<path fill="#F1B4A4" d="M122 42L152 32C164 74 256 74 268 32L298 42C308 102 298 162 304 248H116C122 162 112 102 122 42Z"/>
+<path fill="#F8D3C8" d="M122 42L152 32C146 80 138 150 134 248H116C122 162 112 102 122 42Z" opacity=".7"/>
+<path fill="#DC9583" d="M152 32C164 74 256 74 268 32L260 30C246 62 174 62 160 30Z"/>
+<path fill="none" stroke="#EE1C12" stroke-width="7" stroke-linecap="round" d="M122 160C170 172 250 172 298 160"/>
+<path fill="#1C1A17" d="M118 282H302L330 530H232L210 392L188 530H90Z"/>
+<path fill="#2B2426" d="M116 278H300L326 526H230L208 388L186 526H92Z"/>
+<path fill="#4A4142" d="M116 278L134 526H92Z" opacity=".6"/>
+<path fill="#EE1C12" d="M116 278H300V298H116Z"/>
+<path fill="none" stroke="#EE1C12" stroke-width="6" stroke-linecap="round" d="M128 304L108 520M290 304L314 520"/>
+<path fill="#1C1A17" opacity=".35" d="M208 388L230 526H212L204 396Z"/>
+</svg>

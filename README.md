@@ -11,6 +11,8 @@ HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem
 > A pasta `multiplos/` tem o site do **Multiplos Atacado** (veja `multiplos/README.md`), em `/multiplos/` na prévia.
 >
 > A pasta `zerograu/` tem o site da **Zero Grau Frios & Cortes** (veja `zerograu/README.md`), em `/zerograu/` na prévia.
+>
+> A pasta `lojasdaniela/` tem o site das **Lojas Daniela** (veja `lojasdaniela/README.md`), em `/lojasdaniela/` na prévia.
 
 ## Estrutura
 
