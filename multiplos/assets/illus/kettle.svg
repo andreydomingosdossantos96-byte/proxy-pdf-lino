@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="42 112 394 352">
+<defs>
+<pattern id="kettle-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.6" fill="#0E1B3D" opacity=".22"/></pattern>
+<clipPath id="kettle-clip"><path d="M126 150C102 200 76 290 80 380A140 30 0 0 0 360 380C364 290 338 200 314 150A94 20 0 0 0 126 150Z"/></clipPath>
+<clipPath id="kettle-band"><path d="M80 352A140 30 0 0 0 360 352H400V480H40V352Z"/></clipPath>
+</defs>
+<g stroke="#0E1B3D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M54 396V418A166 34 0 0 0 386 418V396Z" fill="#0E1B3D"/>
+<ellipse cx="220" cy="396" rx="166" ry="34" fill="#083A7A"/>
+<path d="M300 140H372Q422 140 422 190V280Q422 328 372 340L354 344L348 312L368 307Q388 302 388 280V196Q388 176 368 176H300Z" fill="#083A7A"/>
+<path d="M405 152Q422 166 422 190V280Q422 328 372 340L368 326Q405 316 405 280Z" fill="#0E1B3D" stroke="none"/>
+<path d="M330 150H372" stroke="#0B4EA2" stroke-width="5"/>
+<path d="M136 160C116 156 94 146 78 126Q66 114 62 130C70 166 96 204 118 228Z" fill="#DCE3EA"/>
+<path d="M136 160C116 156 94 146 78 126C88 150 108 166 132 174Z" fill="#B4C0CC" stroke-width="4"/>
+<path d="M62 130C70 166 96 204 118 228L124 204C100 186 78 160 62 130Z" fill="#B4C0CC" stroke="none"/>
+<path d="M136 160C116 156 94 146 78 126Q66 114 62 130C70 166 96 204 118 228Z" fill="none"/>
+<path d="M126 150C102 200 76 290 80 380A140 30 0 0 0 360 380C364 290 338 200 314 150A94 20 0 0 0 126 150Z" fill="#DCE3EA"/>
+<g clip-path="url(#kettle-clip)" stroke="none">
+<path d="M282 130C304 200 314 300 310 460H400V130Z" fill="#B4C0CC"/>
+<path d="M282 130C304 200 314 300 310 460H400V130Z" fill="url(#kettle-dots)"/>
+<path d="M146 150C126 200 106 290 108 400H128C126 290 144 200 164 150Z" fill="#FFF8E6"/>
+<path d="M178 150C164 200 152 290 152 400H162C162 290 172 200 187 150Z" fill="#FFF8E6"/>
+<g clip-path="url(#kettle-band)">
+<rect x="40" y="340" width="400" height="140" fill="#083A7A"/>
+<path d="M282 130C304 200 314 300 310 460H400V130Z" fill="#0E1B3D"/>
+</g>
+</g>
+<path d="M126 150C102 200 76 290 80 380A140 30 0 0 0 360 380C364 290 338 200 314 150A94 20 0 0 0 126 150Z" fill="none"/>
+<path d="M80 352A140 30 0 0 0 360 352" fill="none" stroke-width="5"/>
+<ellipse cx="220" cy="150" rx="94" ry="20" fill="#DCE3EA"/>
+<ellipse cx="220" cy="149" rx="76" ry="14" fill="#B4C0CC" stroke-width="4"/>
+<path d="M198 146V132A22 7 0 0 1 242 132V146A22 7 0 0 1 198 146Z" fill="#083A7A"/>
+<ellipse cx="220" cy="132" rx="22" ry="7" fill="#0B4EA2" stroke-width="4"/>
+<rect x="206" y="436" width="28" height="10" rx="5" fill="#2AA6DC" stroke-width="3"/>
+<path d="M176 204Q180 218 194 222Q180 226 176 240Q172 226 158 222Q172 218 176 204Z" fill="#FFF8E6" stroke-width="3"/>
+</g>
+</svg>

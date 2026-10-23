@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 98 396 302">
+<defs>
+<pattern id="butterdish-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.6" fill="#0E1B3D" opacity=".22"/></pattern>
+<clipPath id="butterdish-clip"><path d="M64,326C64,206 136,146 220,146C304,146 376,206 376,326A156,38 0 0 1 64,326Z"/></clipPath>
+</defs>
+<g stroke="#0E1B3D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M34,330V344A186,46 0 0 0 406,344V330Z" fill="#B4C0CC"/>
+<path d="M330,381A186,46 0 0 0 406,344V330H330Z" fill="url(#butterdish-dots)" stroke="none"/>
+<path d="M34,330V344A186,46 0 0 0 406,344V330" fill="none"/>
+<ellipse cx="220" cy="330" rx="186" ry="46" fill="#DCE3EA"/>
+<path d="M58,348Q96,370 150,374" fill="none" stroke="#FFF8E6" stroke-width="5"/>
+<path d="M64,326C64,206 136,146 220,146C304,146 376,206 376,326A156,38 0 0 1 64,326Z" fill="#DCE3EA" fill-opacity=".55"/>
+<g clip-path="url(#butterdish-clip)">
+<path d="M64,326A156,38 0 0 1 376,326" fill="none" stroke-width="4"/>
+<path d="M306,140C346,190 358,260 354,380H400V140Z" fill="#B4C0CC" fill-opacity=".8" stroke="none"/>
+<path d="M276,256L332,224V294L276,326Z" fill="#E0A800" stroke-width="5"/>
+<path d="M276,256L332,224V294L276,326Z" fill="url(#butterdish-dots)" stroke="none"/>
+<path d="M136,256H276V326H136Z" fill="#FFCC00" stroke-width="5"/>
+<path d="M136,256L192,224H332L276,256Z" fill="#FFCC00" stroke-width="5"/>
+<path d="M152,250L184,232" stroke="#FFF8E6" stroke-width="4"/>
+<path d="M150,270V312" stroke="#FFF8E6" stroke-width="5"/>
+<path d="M92,306C92,246 114,204 156,176" fill="none" stroke="#FFF8E6" stroke-opacity=".85" stroke-width="12"/>
+<path d="M118,310C118,262 132,228 160,204" fill="none" stroke="#FFF8E6" stroke-opacity=".85" stroke-width="5"/>
+</g>
+<path d="M64,326C64,206 136,146 220,146C304,146 376,206 376,326A156,38 0 0 1 64,326Z" fill="none"/>
+<rect x="208" y="122" width="24" height="28" rx="4" fill="#DCE3EA" stroke-width="5"/>
+<path d="M190,116V124A30,9 0 0 0 250,124V116Z" fill="#B4C0CC"/>
+<ellipse cx="220" cy="116" rx="30" ry="9" fill="#DCE3EA"/>
+<path d="M204,114Q212,110 222,110" fill="none" stroke="#FFF8E6" stroke-width="4"/>
+<path d="M318,186Q320,198 332,200Q320,202 318,214Q316,202 304,200Q316,198 318,186Z" fill="#FFF8E6" stroke-width="3"/>
+</g>
+</svg>
