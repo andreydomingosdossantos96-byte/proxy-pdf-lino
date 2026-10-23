@@ -13,6 +13,8 @@ HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem
 > A pasta `zerograu/` tem o site da **Zero Grau Frios & Cortes** (veja `zerograu/README.md`), em `/zerograu/` na prévia.
 >
 > A pasta `lojasdaniela/` tem o site das **Lojas Daniela** (veja `lojasdaniela/README.md`), em `/lojasdaniela/` na prévia.
+>
+> A pasta `ludis/` tem o site da **Ludi's Biscoiteria** (veja `ludis/README.md`), em `/ludis/` na prévia.
 
 ## Estrutura
 
