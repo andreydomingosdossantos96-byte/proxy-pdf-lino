@@ -18,7 +18,7 @@ Início (hero com vídeo) · faixa em movimento · Serviços (6) · Método (4 e
 
 ## Animações
 
-Entrada do hero (título que se revela, palavra final que gira), título das seções que se revela palavra por palavra, cartões que aparecem em sequência com ícones que se desenham, brilho que segue o cursor (hero e cards), botões magnéticos, faixa em movimento, linha do método que acende com a rolagem, alavanca que gira com a rolagem, polígono de Arquimedes (6 → 96 lados, com os limites do π ao vivo), gotas do "Eureka", anéis orbitando o retrato, parallax do vídeo e borda giratória no contato. Com `prefers-reduced-motion` tudo aparece parado e o vídeo pausa.
+Entrada do hero (título que se revela, palavra final que gira), título das seções que se revela palavra por palavra, cartões que aparecem em sequência com ícones que se desenham, brilho que segue o cursor (hero e cards), botões magnéticos, faixa em movimento, linha do método que acende com a rolagem, alavanca que gira com a rolagem, polígono de Arquimedes (6 → 96 lados, com os limites do π ao vivo), gotas do "Eureka", luz dourada girando na moldura do retrato, parallax do vídeo e borda giratória no contato. Com `prefers-reduced-motion` tudo aparece parado e o vídeo pausa.
 
 ## Editar
 
@@ -34,7 +34,7 @@ python3 src/build.py
 | Textos, serviços, perguntas | `src/body.html` |
 | Cores (marfim sobre preto, medidas na logo) e espaçamentos | topo de `src/style.css` (`:root`) |
 | Tom do vídeo | `filter` em `.hero-video` (`src/style.css`); apague para ver as cores originais |
-| Imagens e fonte | `assets/` (Sora variável, logo recortada em dois tamanhos, favicon) |
+| Imagens e fonte | `assets/` (Sora variável, ícone da logo no menu e no rodapé, favicon, gravura do compasso da seção "Por que Arquimedes") |
 
 ## Vídeo e pôster
 
@@ -44,4 +44,4 @@ URLs remotas (CloudFront), exatamente como enviadas, sem baixar nem hospedar aqu
 
 - Os textos de serviços, método e perguntas foram escritos como rascunho: confira se descrevem como você realmente trabalha (prazos, aprovação, suporte).
 - Já existe um software brasileiro chamado "Arquimedes" (orçamento de obras). Consulte o INPI (classes 9, 35 e 42) antes de investir na marca.
-- `assets/logo-arquimedes.png` é a logo recortada em 1024 px (a página usa versões menores, embutidas).
+- `assets/logo-arquimedes.png` é a logo recortada em 1024 px (a página usa uma versão menor, embutida, no menu e no rodapé).

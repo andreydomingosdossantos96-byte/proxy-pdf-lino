@@ -6,7 +6,7 @@ d = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(d)
 txt = lambda f: open(f'{d}/{f}', encoding='utf-8').read().strip()
 b64 = lambda f: base64.b64encode(open(f'{root}/assets/{f}', 'rb').read()).decode()
 css = txt('style.css').replace('[[FONT]]', b64('sora-latin-wght-normal.woff2'))
-body = txt('body.html').replace('[[MARK]]', b64('mark-132.webp')).replace('[[PORTRAIT]]', b64('portrait-560.webp')).replace('[[WA]]', txt('wa-path.txt'))
+body = txt('body.html').replace('[[MARK]]', b64('mark-132.webp')).replace('[[PORTRAIT]]', b64('compasso-600.webp')).replace('[[WA]]', txt('wa-path.txt'))
 js = txt('app.js')
 ld = '{"@context":"https://schema.org","@type":"ProfessionalService","name":"Arquimedes","description":"Criação de sites, landing pages, aplicativos, sistemas e automações sob medida.","telephone":"+55 69 99248-4874","serviceType":["Criação de sites","Landing pages","Aplicativos","Sistemas sob medida","Automações e integrações"]}'
 html = f'''<!doctype html>
