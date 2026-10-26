@@ -1,44 +1,47 @@
-# Domingos Tech — site institucional
+# Arquimedes — site institucional
 
-Página de uma tela (sem scroll) da **Domingos Tech**, empresa de criação de sites, páginas, aplicativos e soluções tecnológicas. Arquivo único, HTML + CSS + JS puro, sem build e sem dependências. A fonte (Sora variável) e a logo do cabeçalho estão embutidas no próprio `index.html`.
+Site completo da **Arquimedes**, empresa de criação de sites, landing pages, aplicativos, sistemas e automações. Arquivo único (`index.html`), HTML + CSS + JS puro, sem dependências: fonte, logo e ícone estão embutidos. Na prévia da Vercel fica em `/arquimedes/`.
 
-Na prévia da Vercel fica em `/domingostech/`.
+O nome vem do retrato da logo: é o próprio Arquimedes de Siracusa. O site usa isso na história da marca (alavanca, polígono de 96 lados, "Eureka").
 
-## Design
+## Seções
 
-Segue o design system enviado pelo cliente:
+Início (hero com vídeo) · faixa em movimento · Serviços (6) · Método (4 etapas) · Por que Arquimedes · Em todo projeto + Para quem · Perguntas frequentes · Contato (formulário) · Rodapé. Botão flutuante de WhatsApp.
 
-- **Escala por unidade única** (`--u`): no desktop (>= 1200px) a composição de 1536x1024 é travada e só escala; abaixo disso vira fluxo em coluna, com o menu atrás do hambúrguer (checkbox + CSS, sem JS).
-- **Fundo**: vídeo em loop + véu de legibilidade; no celular o véu é reapontado para o texto.
-- **CTA de vidro** com borda em gradiente (pseudo-elemento com máscara), entrada animada de ~2,1s e `prefers-reduced-motion` respeitado (inclusive pausando o vídeo).
-- **Cores medidas na logo**: preto `#020202` e marfim `#F8ECDE` (tokens no topo do `<style>`). O vídeo original é dourado/azul, então recebe `filter: grayscale(1) sepia(.38)` na classe `.art` para ficar no mesmo tom da marca. Para ver as cores originais do vídeo, apague essa linha.
+## O que funciona
 
-Diferenças em relação à spec original (que tinha o texto de outra marca):
+- **WhatsApp**: todos os botões abrem `wa.me/5569992484874` com mensagem pronta.
+- **Formulário**: valida nome e telefone (máscara `(69) 99999-9999`), monta a mensagem e abre o WhatsApp. Não há servidor; nada é guardado. A tela de sucesso tem um link de reserva caso o navegador bloqueie a janela.
+- **"Quero isso"** nos cards escolhe o serviço no formulário e rola até ele.
+- Menu hambúrguer no celular, perguntas em acordeão, link ativo no menu conforme a seção, barra de progresso de leitura.
+- Eventos para `dataLayer` (`whatsapp_click`, `form_submit`, `service_select`), caso você ligue o Google Tag Manager.
 
-- Marca no cabeçalho: medalhão da logo (WebP embutido) + `DOMINGOS TECH`.
-- Textos em português; as posições à esquerda (menu, itens inferiores, CTA) foram recalculadas para o novo tamanho dos textos.
-- Fonte: Sora variável, subconjunto latino embutido em base64 (eixo de peso 100–800).
-- Correção: no desktop o `main.hero` cobria a barra e bloqueava os cliques de "Falar no WhatsApp" e "Fale conosco"; agora só o CTA recebe clique no hero.
-- O espaçamento negativo dos itens inferiores foi relaxado (os valores originais eram do texto em inglês).
+## Animações
 
-## Contato
+Entrada do hero (título que se revela, palavra final que gira), título das seções que se revela palavra por palavra, cartões que aparecem em sequência com ícones que se desenham, brilho que segue o cursor (hero e cards), botões magnéticos, faixa em movimento, linha do método que acende com a rolagem, alavanca que gira com a rolagem, polígono de Arquimedes (6 → 96 lados, com os limites do π ao vivo), gotas do "Eureka", anéis orbitando o retrato, parallax do vídeo, borda giratória no contato, botão de WhatsApp com pulso. Com `prefers-reduced-motion` tudo aparece parado e o vídeo pausa.
 
-O botão **Pedir orçamento**, o **Falar no WhatsApp** e o **Fale conosco** abrem o WhatsApp (69) 99248-4874 com a mensagem "Olá! Vim pelo site da Domingos Tech e quero um orçamento." Para trocar o número ou a mensagem, edite o último `<script>` do `index.html`:
+## Editar
 
-```js
-var WA='5569992484874', MAIL='',   // WhatsApp só com dígitos (55 + DDD); se WA estiver vazio e MAIL preenchido, abre o e-mail
-    msg='Olá! Vim pelo site da Domingos Tech e quero um orçamento.',
+Os fontes ficam em `src/`; o `index.html` é gerado:
+
+```bash
+python3 src/build.py
 ```
 
-Os links **Sobre**, **Serviços** e **Soluções** ainda não apontam para nada: a spec define uma tela única sem scroll.
+| O quê | Onde |
+|---|---|
+| Número do WhatsApp | `var WA` no começo de `src/app.js` **e** os textos `data-wa` em `src/body.html` (só a mensagem) |
+| Textos, serviços, perguntas | `src/body.html` |
+| Cores (marfim sobre preto, medidas na logo) e espaçamentos | topo de `src/style.css` (`:root`) |
+| Tom do vídeo | `filter` em `.hero-video` (`src/style.css`); apague para ver as cores originais |
+| Imagens e fonte | `assets/` (Sora variável, logo recortada em dois tamanhos, favicon) |
 
 ## Vídeo e pôster
 
-Usa as URLs remotas da spec, exatamente como enviadas (CloudFront), sem baixar nem hospedar aqui. Se um dia os links saírem do ar, o fundo cai no preto da marca.
+URLs remotas (CloudFront), exatamente como enviadas, sem baixar nem hospedar aqui. Se os links saírem do ar, o fundo cai no preto da marca. O ideal é hospedar o vídeo você mesmo.
 
-## Arquivos
+## Atenção
 
-```
-index.html                       página completa (CSS, JS, fonte e logo do cabeçalho embutidos)
-assets/logo-domingos-tech.png    logo recortada em 1024x1024 (para uso futuro; a página não carrega este arquivo)
-```
+- Os textos de serviços, método e perguntas foram escritos como rascunho: confira se descrevem como você realmente trabalha (prazos, aprovação, suporte).
+- Já existe um software brasileiro chamado "Arquimedes" (orçamento de obras). Consulte o INPI (classes 9, 35 e 42) antes de investir na marca.
+- `assets/logo-arquimedes.png` é a logo recortada em 1024 px (a página usa versões menores, embutidas).

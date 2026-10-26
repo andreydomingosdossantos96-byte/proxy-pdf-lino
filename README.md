@@ -16,7 +16,7 @@ HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem
 >
 > A pasta `ludis/` tem o site da **Ludi's Biscoiteria** (veja `ludis/README.md`), em `/ludis/` na prévia.
 >
-> A pasta `domingostech/` tem o site da **Domingos Tech** (veja `domingostech/README.md`), em `/domingostech/` na prévia.
+> A pasta `arquimedes/` tem o site da **Arquimedes** (veja `arquimedes/README.md`), em `/arquimedes/` na prévia.
 
 ## Estrutura
 
