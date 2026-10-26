@@ -21,15 +21,14 @@ Diferenças em relação à spec original (que tinha o texto de outra marca):
 - Correção: no desktop o `main.hero` cobria a barra e bloqueava os cliques de "Falar no WhatsApp" e "Fale conosco"; agora só o CTA recebe clique no hero.
 - O espaçamento negativo dos itens inferiores foi relaxado (os valores originais eram do texto em inglês).
 
-## Falta preencher
+## Contato
 
-O botão **Pedir orçamento**, o **Falar no WhatsApp** e o **Fale conosco** estão com `href="#"` até você informar o contato. No fim do `index.html`, no último `<script>`, preencha:
+O botão **Pedir orçamento**, o **Falar no WhatsApp** e o **Fale conosco** abrem o WhatsApp (69) 99248-4874 com a mensagem "Olá! Vim pelo site da Domingos Tech e quero um orçamento." Para trocar o número ou a mensagem, edite o último `<script>` do `index.html`:
 
 ```js
-var WA='5569XXXXXXXXX', MAIL='';   // WhatsApp só com dígitos (55 + DDD) e/ou e-mail
+var WA='5569992484874', MAIL='',   // WhatsApp só com dígitos (55 + DDD); se WA estiver vazio e MAIL preenchido, abre o e-mail
+    msg='Olá! Vim pelo site da Domingos Tech e quero um orçamento.',
 ```
-
-Com o WhatsApp preenchido, os três botões abrem a conversa com a mensagem pronta; só com e-mail, abrem o e-mail.
 
 Os links **Sobre**, **Serviços** e **Soluções** ainda não apontam para nada: a spec define uma tela única sem scroll.
 
