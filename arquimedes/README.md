@@ -6,7 +6,7 @@ O nome vem do retrato da logo: é o próprio Arquimedes de Siracusa. O site usa 
 
 ## Seções
 
-Início (hero com vídeo) · faixa em movimento · Serviços (6) · Método (4 etapas) · Por que Arquimedes · Em todo projeto + Para quem · Perguntas frequentes · Contato (formulário) · Rodapé. Botão flutuante de WhatsApp.
+Início (hero com vídeo) · faixa em movimento · Serviços (6) · Método (4 etapas) · Por que Arquimedes · Em todo projeto + Para quem · Perguntas frequentes · Contato (formulário) · Rodapé.
 
 ## O que funciona
 
@@ -18,7 +18,7 @@ Início (hero com vídeo) · faixa em movimento · Serviços (6) · Método (4 e
 
 ## Animações
 
-Entrada do hero (título que se revela, palavra final que gira), título das seções que se revela palavra por palavra, cartões que aparecem em sequência com ícones que se desenham, brilho que segue o cursor (hero e cards), botões magnéticos, faixa em movimento, linha do método que acende com a rolagem, alavanca que gira com a rolagem, polígono de Arquimedes (6 → 96 lados, com os limites do π ao vivo), gotas do "Eureka", anéis orbitando o retrato, parallax do vídeo, borda giratória no contato, botão de WhatsApp com pulso. Com `prefers-reduced-motion` tudo aparece parado e o vídeo pausa.
+Entrada do hero (título que se revela, palavra final que gira), título das seções que se revela palavra por palavra, cartões que aparecem em sequência com ícones que se desenham, brilho que segue o cursor (hero e cards), botões magnéticos, faixa em movimento, linha do método que acende com a rolagem, alavanca que gira com a rolagem, polígono de Arquimedes (6 → 96 lados, com os limites do π ao vivo), gotas do "Eureka", anéis orbitando o retrato, parallax do vídeo e borda giratória no contato. Com `prefers-reduced-motion` tudo aparece parado e o vídeo pausa.
 
 ## Editar
 

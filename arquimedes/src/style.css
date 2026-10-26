@@ -107,11 +107,7 @@ button{background:none;border:0;cursor:pointer;padding:0}
 .hero-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(560px circle at var(--hx,50%) var(--hy,46%),rgba(255,226,178,.11),transparent 64%)}
 .hero-in{width:100%;max-width:1280px;will-change:opacity,transform}
-.tag{display:inline-flex;align-items:center;gap:11px;padding:9px 18px;border:1px solid var(--hair2);border-radius:999px;font-size:12px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--gold);font-variation-settings:'wght' 560;background:rgba(2,2,2,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(233,207,158,.55);animation:ping 2.4s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(233,207,158,.55)}70%,100%{box-shadow:0 0 0 12px rgba(233,207,158,0)}}
-.hero h1{margin-top:26px;font-size:clamp(34px,5vw,78px);line-height:1.04;letter-spacing:-.022em;font-variation-settings:'wght' 440;font-weight:400}
+.hero h1{margin-top:0;font-size:clamp(34px,5vw,78px);line-height:1.04;letter-spacing:-.022em;font-variation-settings:'wght' 440;font-weight:400}
 .ln{display:block}
 .ln-i{display:inline-block;text-wrap:balance}
 .rot{position:relative;display:inline-block;vertical-align:bottom;height:1.14em;overflow:hidden;color:var(--gold);transition:width .7s var(--ease-out);white-space:nowrap}
@@ -138,7 +134,6 @@ button{background:none;border:0;cursor:pointer;padding:0}
 .hdr .nav .lk{animation:en-lift .6s var(--ease-soft) backwards}
 .hdr .nav .lk:nth-child(1){animation-delay:.2s}.hdr .nav .lk:nth-child(2){animation-delay:.26s}.hdr .nav .lk:nth-child(3){animation-delay:.32s}.hdr .nav .lk:nth-child(4){animation-delay:.38s}
 .hdr .pill{animation:en-settle .7s var(--ease-soft) .46s backwards}
-.hero .tag{animation:en-lift .8s var(--ease-soft) .2s backwards}
 .hero h1 .ln:nth-child(1) .ln-i{animation:en-wipe 1.05s var(--ease-out) .34s backwards}
 .hero h1 .ln:nth-child(2) .ln-i{animation:en-wipe 1.05s var(--ease-out) .48s backwards}
 .hero .sub{animation:en-lift .8s var(--ease-soft) .8s backwards}
@@ -341,16 +336,6 @@ button{background:none;border:0;cursor:pointer;padding:0}
 .top-link svg{width:12px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;transition:transform .5s var(--ease-out)}
 .top-link:hover svg{transform:translateY(-4px)}
 
-/* botão flutuante do WhatsApp */
-.fab{position:fixed;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);z-index:90;width:62px;height:62px;border-radius:50%;background:var(--ink);color:#0a0907;display:grid;place-items:center;
-  box-shadow:0 12px 44px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12);opacity:0;transform:scale(.5) translateY(24px);pointer-events:none;transition:opacity .5s,transform .7s var(--ease-out)}
-.fab.show{opacity:1;transform:none;pointer-events:auto}
-.fab:hover{transform:scale(1.08)}
-.fab svg{width:30px;height:30px;fill:currentColor}
-.fab::before{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--gold);animation:fabp 2.6s var(--ease-out) infinite}
-@keyframes fabp{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
-.fab span{position:absolute;right:76px;white-space:nowrap;padding:9px 16px;border-radius:999px;background:var(--ink);color:#0a0907;font-size:13px;font-variation-settings:'wght' 560;opacity:0;transform:translateX(10px);pointer-events:none;transition:opacity .35s,transform .5s var(--ease-out)}
-.fab:hover span{opacity:1;transform:none}
 
 /* ============ responsivo ============ */
 @media (max-width:1080px){
@@ -403,5 +388,4 @@ button{background:none;border:0;cursor:pointer;padding:0}
   .eyebrow::before{transform:scaleX(1)!important}
   .rw{transform:none!important;opacity:0}
   .rw:first-child{opacity:1!important}
-  .fab{opacity:1;transform:none;pointer-events:auto}
 }

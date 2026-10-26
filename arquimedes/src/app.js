@@ -121,13 +121,12 @@ if(FINE){
 
 /* ---------- scroll: progresso, cabeçalho, parallax, linha do método, alavanca ---------- */
 (function(){
-  var prog=$('.progress'),heroIn=$('#heroIn'),fab=$('#fab'),tl=$('#tl'),steps=$$('.step'),lever=$('#lever'),ticking=false;
+  var prog=$('.progress'),heroIn=$('#heroIn'),tl=$('#tl'),steps=$$('.step'),lever=$('#lever'),ticking=false;
   function frame(){
     ticking=false;
     var y=window.pageYOffset||root.scrollTop,vh=window.innerHeight,max=root.scrollHeight-vh;
     prog.style.setProperty('--sp',max>0?(y/max).toFixed(4):'0');
     hdr.classList.toggle('stuck',y>30);
-    if(fab)fab.classList.toggle('show',y>vh*.65);
     if(!RM&&y<vh*1.4&&vid&&heroIn){
       vid.style.setProperty('--py',(y*.3).toFixed(1)+'px');
       vid.style.setProperty('--ps',(1.02+y/vh*.06).toFixed(4));
