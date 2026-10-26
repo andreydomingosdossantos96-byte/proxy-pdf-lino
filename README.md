@@ -15,6 +15,8 @@ HTML/CSS/JS puro, sem build e sem dependências. Funciona em qualquer hospedagem
 > A pasta `lojasdaniela/` tem o site das **Lojas Daniela** (veja `lojasdaniela/README.md`), em `/lojasdaniela/` na prévia.
 >
 > A pasta `ludis/` tem o site da **Ludi's Biscoiteria** (veja `ludis/README.md`), em `/ludis/` na prévia.
+>
+> A pasta `domingostech/` tem o site da **Domingos Tech** (veja `domingostech/README.md`), em `/domingostech/` na prévia.
 
 ## Estrutura
 
