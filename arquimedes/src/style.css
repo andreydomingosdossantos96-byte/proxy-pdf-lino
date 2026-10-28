@@ -46,8 +46,8 @@ button{background:none;border:0;cursor:pointer;padding:0}
 .hdr.stuck{background:rgba(2,2,2,.62);-webkit-backdrop-filter:blur(18px) saturate(.6);backdrop-filter:blur(18px) saturate(.6);border-bottom-color:var(--hair)}
 .hdr-in{height:100%;max-width:var(--maxw);margin:auto;padding-inline:var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:12px;position:relative;z-index:2}
-.brand img{width:42px;height:42px;border-radius:50%;transition:transform .8s var(--ease-out)}
-.brand:hover img{transform:rotate(-8deg) scale(1.06)}
+.brand img{width:auto;height:40px;display:block;transform-origin:62% 70%;transition:transform .8s var(--ease-out)}
+.brand:hover img{transform:rotate(-4deg)}
 .brand b{font-weight:400;font-size:16px;letter-spacing:.26em;font-variation-settings:'wght' 531;color:var(--ink)}
 .nav{display:flex;align-items:center;gap:4px}
 .nav a.lk{position:relative;padding:10px 14px;font-size:13.5px;color:var(--nav);font-variation-settings:'wght' 506;opacity:.8;transition:opacity .25s}

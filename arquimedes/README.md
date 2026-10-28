@@ -2,7 +2,7 @@
 
 Site completo da **Arquimedes**, empresa de criação de sites, landing pages, aplicativos, sistemas e automações. Arquivo único (`index.html`), HTML + CSS + JS puro, sem dependências: fonte, logo e ícone estão embutidos. Na prévia da Vercel fica em `/arquimedes/`.
 
-O nome vem do retrato da logo: é o próprio Arquimedes de Siracusa. O site usa isso na história da marca (alavanca, polígono de 96 lados, "Eureka").
+O nome vem de Arquimedes de Siracusa. A logo principal é a alavanca: um clique (o cursor) aperta a alavanca sobre o ponto de apoio e levanta o globo, o negócio do cliente. A gravura do retrato continua como selo de origem. O site usa essa história na marca (alavanca, polígono de 96 lados, "Eureka").
 
 ## Seções
 
@@ -34,7 +34,7 @@ python3 src/build.py
 | Textos, serviços, perguntas | `src/body.html` |
 | Cores (marfim sobre preto, medidas na logo) e espaçamentos | topo de `src/style.css` (`:root`) |
 | Tom do vídeo | `filter` em `.hero-video` (`src/style.css`); apague para ver as cores originais |
-| Imagens e fonte | `assets/` (Sora variável, ícone da logo no menu e no rodapé, favicon, gravura do compasso da seção "Por que Arquimedes") |
+| Imagens e fonte | `assets/` (Sora variável, símbolo da alavanca no menu e no rodapé (`simbolo.svg`), favicon, gravura do compasso da seção "Por que Arquimedes") |
 
 ## Vídeo e pôster
 
@@ -44,4 +44,5 @@ URLs remotas (CloudFront), exatamente como enviadas, sem baixar nem hospedar aqu
 
 - Os textos de serviços, método e perguntas foram escritos como rascunho: confira se descrevem como você realmente trabalha (prazos, aprovação, suporte).
 - Já existe um software brasileiro chamado "Arquimedes" (orçamento de obras). Consulte o INPI (classes 9, 35 e 42) antes de investir na marca.
-- `assets/logo-arquimedes.png` é a logo recortada em 1024 px (a página usa uma versão menor, embutida, no menu e no rodapé).
+- `assets/simbolo.svg` é o símbolo da logo principal (alavanca), embutido no menu e no rodapé; `assets/favicon-64.png` é o ícone da aba.
+- `assets/logo-arquimedes.png` é a gravura antiga (retrato no medalhão), mantida como selo de origem; a página não usa mais.
