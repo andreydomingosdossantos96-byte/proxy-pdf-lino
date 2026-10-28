@@ -140,7 +140,7 @@ if(FINE){
     }
     if(lever){
       var lr=lever.getBoundingClientRect();
-      lever.style.setProperty('--ang',(-11+25*clamp((vh-lr.top)/(vh+lr.height),0,1)).toFixed(2)+'deg');
+      lever.style.setProperty('--ang',(8-19*clamp((vh-lr.top)/(vh+lr.height),0,1)).toFixed(2)+'deg');   // o clique desce a ponta longa e o globo sobe
     }
   }
   function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}

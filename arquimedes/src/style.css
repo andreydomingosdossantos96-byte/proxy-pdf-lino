@@ -232,7 +232,7 @@ button{background:none;border:0;cursor:pointer;padding:0}
 .readout{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;color:var(--mute);letter-spacing:.04em}
 .readout b{font-weight:400;font-variation-settings:'wght' 560;color:var(--gold);font-size:14px;font-feature-settings:'tnum'}
 /* alavanca */
-.lever-bar{transform-box:view-box;transform-origin:105px 128px;transform:rotate(var(--ang,-10deg))}
+.lever-bar{transform-box:view-box;transform-origin:200px 128px;transform:rotate(var(--ang,8deg))}
 /* gotas / eureka */
 .rip{transform-box:fill-box;transform-origin:center;opacity:0;animation:rip 3.8s var(--ease-soft) infinite}
 .rip:nth-of-type(2){animation-delay:.22s}.rip:nth-of-type(3){animation-delay:.44s}
