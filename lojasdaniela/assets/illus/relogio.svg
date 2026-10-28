@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 0 200 460" role="img" aria-label="Smartwatch com pulseira de silicone bege">
+<path fill="#CDB894" d="M84 18H180L172 134H92Z"/>
+<path fill="#E6D5BA" d="M84 18H168L162 134H92Z"/>
+<path fill="#CDB894" d="M92 326H172L180 442H84Z"/>
+<path fill="#E6D5BA" d="M92 326H166L172 442H84Z"/>
+<g fill="#B9A27E"><circle cx="128" cy="372" r="5"/><circle cx="128" cy="392" r="5"/><circle cx="128" cy="412" r="5"/></g>
+<rect x="212" y="188" width="14" height="46" rx="5" fill="#4A4142"/>
+<rect x="38" y="118" width="178" height="218" rx="46" fill="#2B2426"/>
+<rect x="38" y="118" width="178" height="218" rx="46" fill="none" stroke="#4A4142" stroke-width="3"/>
+<rect x="52" y="132" width="150" height="190" rx="34" fill="#0E0B0C"/>
+<g fill="none" stroke-linecap="round" stroke-width="13">
+<circle cx="127" cy="227" r="52" stroke="#3B1512"/><path stroke="#EF1410" d="M127 175A52 52 0 1 1 82 253"/>
+<circle cx="127" cy="227" r="34" stroke="#3A3010"/><path stroke="#F2BF45" d="M127 193A34 34 0 0 1 161 227"/>
+<circle cx="127" cy="227" r="16" stroke="#10302B"/><path stroke="#3DD9B3" d="M127 211A16 16 0 1 1 111 227"/>
+</g>
+<rect x="84" y="150" width="86" height="8" rx="4" fill="#FBF7F0" opacity=".75"/>
+<path fill="#FFFFFF" opacity=".08" d="M60 138H150L60 270Z"/>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 18 448 278">
+<defs><pattern id="truck-dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.6" fill="#0E1B3D" opacity=".22"/></pattern></defs>
+<g stroke="#0E1B3D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<circle cx="168" cy="208" r="46" fill="#083A7A"/>
+<circle cx="378" cy="208" r="46" fill="#083A7A"/>
+<path d="M64.4,222A54,54 0 0 1 167.6,222ZM274.4,222A54,54 0 0 1 377.6,222Z" fill="#0E1B3D"/>
+<path d="M138.8,277.9L152.8,269.9A46,46 0 0 0 107.2,190.1L93.2,198.1A46,46 0 0 0 138.8,277.9Z" fill="#083A7A"/>
+<circle cx="116" cy="238" r="46" fill="#0B4EA2"/>
+<path d="M80.3,225A38,38 0 0 1 97,205.1" fill="none" stroke="#FFF8E6" stroke-width="5"/>
+<circle cx="116" cy="238" r="20" fill="#FFF8E6" stroke-width="5"/>
+<circle cx="116" cy="238" r="7" fill="#F0E3C2" stroke-width="4"/>
+<path d="M348.8,277.9L362.8,269.9A46,46 0 0 0 317.2,190.1L303.2,198.1A46,46 0 0 0 348.8,277.9Z" fill="#083A7A"/>
+<circle cx="326" cy="238" r="46" fill="#0B4EA2"/>
+<path d="M290.3,225A38,38 0 0 1 307,205.1" fill="none" stroke="#FFF8E6" stroke-width="5"/>
+<circle cx="326" cy="238" r="20" fill="#FFF8E6" stroke-width="5"/>
+<circle cx="326" cy="238" r="7" fill="#F0E3C2" stroke-width="4"/>
+<path d="M44,172H246L298,142H96Z" fill="#FFCC00"/>
+<path d="M238,96L290,66V142L238,172Z" fill="#8E0D22"/>
+<path d="M28,96H238V172H64Q56,172 53,165Z" fill="#C4122F"/>
+<path d="M33,108H238" fill="none" stroke-width="4"/>
+<rect x="100" y="108" width="14" height="64" rx="3" fill="#C4122F" stroke-width="4"/>
+<rect x="166" y="108" width="14" height="64" rx="3" fill="#C4122F" stroke-width="4"/>
+<path d="M28,96L80,66H290L238,96Z" fill="#C4122F"/>
+<path d="M48,90L80,72H270L238,90Z" fill="#8E0D22" stroke-width="4"/>
+<path d="M48,90L80,72H270L238,90Z" fill="url(#truck-dots)" stroke="none"/>
+<path d="M80,72L87,90" fill="none" stroke-width="3"/>
+<path d="M44,222V172H246V84Q246,70 260,70H330L338,78V146H382L390,154V222H377.6A54,54 0 0 0 274.4,222H167.6A54,54 0 0 0 64.4,222Z" fill="#FFCC00"/>
+<path d="M252,72L304,42Q307,40 312,40H382L330,70H260Q255,70 252,72Z" fill="#FFCC00"/>
+<path d="M330,70L382,40L390,48L338,78Z" fill="#FFCC00"/>
+<path d="M338,78L390,48V116L338,146Z" fill="#E0A800"/>
+<path d="M338,146H382L434,116H390Z" fill="#FFCC00"/>
+<path d="M382,146L434,116L442,124L390,154Z" fill="#FFCC00"/>
+<path d="M390,154L442,124V192L390,222Z" fill="#E0A800"/>
+<path d="M390,154L442,124V192L390,222Z" fill="url(#truck-dots)" stroke="none"/>
+<path d="M345,84L383,62V108L345,130Z" fill="#2AA6DC" stroke-width="4"/>
+<path d="M352,114L364,82M362,112L369,95" stroke="#FFF8E6" stroke-width="5" fill="none"/>
+<rect x="256" y="82" width="68" height="46" rx="10" fill="#2AA6DC" stroke-width="4"/>
+<path d="M268,118L282,92M281,118L289,103" stroke="#FFF8E6" stroke-width="5" fill="none"/>
+<path d="M298,144H314" stroke-width="5"/>
+<rect x="188" y="184" width="70" height="26" rx="13" fill="#DCE3EA" stroke-width="5"/>
+<path d="M198,203H248" stroke="#B4C0CC" stroke-width="5"/>
+<path d="M210,186V208M236,186V208" stroke-width="3"/>
+<rect x="48" y="180" width="10" height="14" rx="3" fill="#C4122F" stroke-width="4"/>
+<path d="M405.6,157L426.4,145V175L405.6,187Z" fill="#DCE3EA" stroke-width="4"/>
+<path d="M405.6,167L426.4,155M405.6,177L426.4,165" stroke-width="3"/>
+<circle r="7" transform="matrix(.87 -.5 0 1 397.8 167.5)" fill="#FFF8E6" stroke-width="4"/>
+<circle r="7" transform="matrix(.87 -.5 0 1 434.2 146.5)" fill="#FFF8E6" stroke-width="4"/>
+<path d="M390,200H396L448,170V188L396,218H390Z" fill="#DCE3EA"/>
+<path d="M396,200V218" stroke-width="3"/>
+<path d="M312,56V46A9,9 0 0 1 330,46V56A9,4 0 0 1 312,56Z" fill="#C4122F" stroke-width="5"/>
+<path d="M318,49V44" stroke="#FFF8E6" stroke-width="3"/>
+<rect x="236" y="48" width="12" height="124" rx="5" fill="#DCE3EA" stroke-width="5"/>
+<path d="M54,48Q54,58 64,58Q54,58 54,68Q54,58 44,58Q54,58 54,48Z" fill="#FFF8E6" stroke-width="3"/>
+<path d="M412,72Q412,78 418,78Q412,78 412,84Q412,78 406,78Q412,78 412,72Z" fill="#FFF8E6" stroke-width="3"/>
+</g>
+</svg>

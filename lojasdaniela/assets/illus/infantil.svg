@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 30 340 480" role="img" aria-label="Conjunto infantil: camiseta amarela com carinha sorridente e short azul">
+<path fill="#D49D24" d="M112 70L162 52C182 76 238 76 258 52L308 70L360 132L316 164L296 140V330H124V140L104 164L60 132Z"/>
+<path fill="#F2BF45" d="M112 66L162 48C182 72 238 72 258 48L308 66L360 128L316 160L296 136V326H124V136L104 160L60 128Z"/>
+<path fill="#F8D97F" d="M112 66L162 48C150 70 140 90 138 124L124 136V326H110Z" opacity=".55"/>
+<path fill="#D49D24" d="M162 48C182 72 238 72 258 48L266 52C242 86 178 86 154 52Z"/>
+<path fill="#F2BF45" d="M162 48C182 72 238 72 258 48L252 46C232 66 188 66 168 46Z" opacity="0"/>
+<circle cx="210" cy="200" r="46" fill="#EE1C12"/>
+<circle cx="210" cy="200" r="46" fill="none" stroke="#B8140C" stroke-width="4"/>
+<circle cx="194" cy="188" r="6.5" fill="#FBF7F0"/><circle cx="226" cy="188" r="6.5" fill="#FBF7F0"/>
+<circle cx="195" cy="189" r="3" fill="#1C1A17"/><circle cx="227" cy="189" r="3" fill="#1C1A17"/>
+<path fill="none" stroke="#FBF7F0" stroke-width="6" stroke-linecap="round" d="M188 212C198 230 222 230 232 212"/>
+<path fill="#2A4D7C" d="M112 352H308L330 478H238L210 430L182 478H90Z"/>
+<path fill="#3B6EA8" d="M112 348H308L326 474H236L210 426L184 474H94Z"/>
+<path fill="#2A4D7C" d="M112 348H308V366H112Z"/>
+<path fill="#F2BF45" d="M112 358H308V362H112Z"/>
+<path fill="#5C8BC4" d="M112 348L126 474H94Z" opacity=".5"/>
+<path fill="none" stroke="#2A4D7C" stroke-width="2.4" stroke-dasharray="5 4" d="M121 372L106 464M299 372L314 464"/>
+<rect x="198" y="370" width="24" height="10" rx="5" fill="#FBF7F0" opacity=".85"/>
+</svg>

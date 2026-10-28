@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Lojas Daniela">
+<circle cx="100" cy="100" r="100" fill="#E2150D"/>
+<path fill="#FBF7F0" d="M62 112L88 38Q90 32 97 32H109L81 112Z"/>
+<path fill="#FBF7F0" opacity=".85" d="M90 112L114 52Q116 46 122 46H132L108 112Z"/>
+<path fill="#FBF7F0" opacity=".6" d="M116 112L136 66Q138 60 144 60H152L136 112Z"/>
+<path fill="none" stroke="#FBF7F0" stroke-width="15" stroke-linejoin="round" transform="translate(44 134) scale(0.1824)" d="M7.5 0V100M7.5 7.5H44A30 30 0 0 1 74 37.5V62.5A30 30 0 0 1 44 92.5H7.5M111.5 100L148 7.5L184.5 100M125 70H171M222 100V7.5L280.5 92.5V0M325.5 0V100M425 7.5H370.5V92.5H425M370.5 50H418M462.5 7.5V92.5H511M541 100L577.5 7.5L614 100M554.5 70H600.5"/>
+</svg>
