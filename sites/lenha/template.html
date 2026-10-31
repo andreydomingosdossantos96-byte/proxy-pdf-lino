@@ -5,132 +5,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lenha</title>
 <meta name="description" content="Cozinha de fogo. Doze lugares no balcão, de quinta a sábado. Menu de sete tempos.">
-<meta name="theme-color" content="#0f0b09">
+<meta name="theme-color" content="#0d0907">
 <style>
   @font-face { font-family: "Shoulders"; font-weight: 500 900; font-display: block; src: url(@font:bigshoulders) format("woff2"); }
   @font-face { font-family: "News"; font-style: normal; font-weight: 300 600; font-display: block; src: url(@font:newsreader) format("woff2"); }
   @font-face { font-family: "News"; font-style: italic; font-weight: 300 600; font-display: block; src: url(@font:newsreader-italic) format("woff2"); }
 
-  /* Layout: one night of service. The fire is high when you arrive, drops to embers through the menu, and flares again at the reservation. */
+  /* Layout: one night of service, read as heat. Fire at the door, a pinned walk through seven courses,
+     a thermometer that drops from flame to smoke, and the fire again at the reservation. */
   :root {
-    --soot: #0f0b09;
-    --char: #1c1512;
-    --bone: #efe5d6;
-    --bone-dim: rgba(239,229,214,.66);
-    --ash: #8d8278;
-    --ember: #f2913f;
-    --coal: #c7461b;
-    --rule: rgba(239,229,214,.14);
+    --soot: #0d0907;
+    --char: #19120e;
+    --bone: #f1e6d4;
+    --bone-dim: rgba(241,230,212,.64);
+    --ash: #8f8378;
+    --ember: #ff8a3a;
+    --coal: #d0461a;
+    --rule: rgba(241,230,212,.14);
     --display: "Shoulders", "Arial Narrow", sans-serif;
     --serif: "News", Georgia, serif;
-    --gutter: clamp(22px, 5vw, 72px);
+    --gutter: clamp(20px, 4.5vw, 64px);
   }
-
   *, *::before, *::after { box-sizing: border-box; }
-  html { background: var(--soot); color-scheme: dark; scrollbar-color: rgba(239,229,214,.2) var(--soot); }
+  html { background: var(--soot); color-scheme: dark; scrollbar-color: rgba(241,230,212,.2) var(--soot); }
   html.rec { scrollbar-width: none; }
   html.rec::-webkit-scrollbar { display: none; }
-  body {
-    margin: 0; background: var(--soot); color: var(--bone);
-    font: 400 18px/1.55 var(--serif);
-    -webkit-font-smoothing: antialiased; overflow-x: clip;
-  }
+  body { margin: 0; background: var(--soot); color: var(--bone); font: 400 18px/1.55 var(--serif); -webkit-font-smoothing: antialiased; overflow-x: clip; }
   ::selection { background: var(--ember); color: var(--soot); }
   :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
   a { color: inherit; }
 
-  canvas#fire { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; }
+  #fire { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; z-index: 0; display: block; }
+  .grain { position: fixed; inset: -50%; z-index: 30; pointer-events: none; opacity: .13; mix-blend-mode: overlay; }
 
-  .nav {
-    position: fixed; z-index: 5; top: 0; left: 0; right: 0;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: max(16px, env(safe-area-inset-top)) var(--gutter) 16px;
-    background: linear-gradient(to bottom, rgba(15,11,9,.85), rgba(15,11,9,0));
-  }
-  .logo { font: 800 24px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
-  .pill {
-    font: 700 13px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
-    padding: 12px 18px; border: 1px solid rgba(242,145,63,.55); border-radius: 999px; color: var(--bone);
-    background: rgba(15,11,9,.4); transition: background .25s, color .25s; cursor: pointer;
-  }
-  .pill:hover { background: var(--ember); color: var(--soot); }
-  .pill--fill { background: var(--ember); color: var(--soot); border-color: var(--ember); }
-  .pill--fill:hover { background: #f7a964; }
+  .nav { position: fixed; z-index: 20; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center;
+    padding: max(16px, env(safe-area-inset-top)) var(--gutter) 14px; }
+  .logo { font: 800 22px/1 var(--display); letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
+  .pill { font: 700 13px/1 var(--display); letter-spacing: .18em; text-transform: uppercase; text-decoration: none; cursor: pointer;
+    padding: 12px 18px; border: 1px solid rgba(255,138,58,.6); border-radius: 999px; color: var(--bone); background: rgba(13,9,7,.35);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .25s, color .25s; }
+  .pill:hover, .pill--fill { background: var(--ember); color: var(--soot); border-color: var(--ember); }
 
   main { position: relative; z-index: 2; }
-  .wrap { padding: 0 var(--gutter); }
 
-  .hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 18vh; text-align: center; }
-  .hero h1 {
-    margin: 0; font: 900 clamp(120px, 31vw, 420px)/.8 var(--display);
-    letter-spacing: -.01em; text-transform: uppercase; color: var(--bone);
-    text-shadow: 0 0 60px rgba(242,145,63,.25);
-  }
-  .hero p { margin: 22px auto 0; max-width: 30ch; font-size: clamp(19px, 2.2vw, 24px); color: var(--bone); }
-  .hero p em { color: var(--ember); font-style: italic; }
+  /* hero */
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; display: grid; grid-template-rows: auto 1fr auto auto; padding: 84px var(--gutter) 0; }
+  .meta { display: flex; justify-content: space-between; font: 700 12px/1.4 var(--display); letter-spacing: .22em; text-transform: uppercase; color: var(--bone-dim); }
+  .hero h1 { align-self: center; margin: 0; text-align: center; font: 900 clamp(118px, 30vw, 440px)/.78 var(--display); letter-spacing: -.012em;
+    text-transform: uppercase; color: var(--bone); filter: url(#haze); text-shadow: 0 0 80px rgba(255,138,58,.35); }
+  .hero .sub { text-shadow: 0 2px 18px rgba(0,0,0,.85), 0 0 4px rgba(0,0,0,.6); text-align: center; margin: 0 auto 26px; max-width: 30ch; font-size: clamp(19px, 2vw, 24px); }
+  .hero .sub em { color: #ffd2a8; }
+  .marquee { margin: 0 calc(-1 * var(--gutter)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; white-space: nowrap;
+    background: rgba(13,9,7,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .marquee span { display: inline-block; padding: 14px 0; font: 700 15px/1 var(--display); letter-spacing: .3em; text-transform: uppercase; color: var(--bone); will-change: transform; }
+  .marquee i { color: var(--ember); font-style: normal; margin: 0 18px; }
 
-  .manifesto { min-height: 90vh; display: grid; place-items: center; text-align: center; }
-  .manifesto p {
-    margin: 0; max-width: 20ch; font: 300 clamp(30px, 5vw, 64px)/1.12 var(--serif); letter-spacing: -.01em;
-    text-wrap: balance;
-  }
-  .manifesto p em { font-style: italic; color: var(--ember); }
+  /* manifesto: words ignite as you read */
+  .manifesto { min-height: 130vh; display: flex; align-items: center; padding: 0 var(--gutter); background: linear-gradient(to bottom, rgba(13,9,7,0), var(--soot) 18%, var(--soot) 82%, rgba(13,9,7,0)); }
+  .manifesto p { margin: 0 auto; max-width: 17ch; font: 300 clamp(36px, 6.4vw, 92px)/1.06 var(--serif); letter-spacing: -.02em; text-wrap: balance; position: sticky; top: 30vh; }
+  .manifesto .w { color: rgba(241,230,212,.16); transition: none; }
+  .manifesto .w.hot { color: var(--ember); }
+  .manifesto .w.lit { color: var(--bone); }
+  .manifesto .w.it { font-style: italic; }
 
-  .menu { padding-top: 10vh; padding-bottom: 16vh; }
-  .menu header { max-width: 720px; margin: 0 auto 40px; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; }
-  .menu h2 { margin: 0; font: 800 clamp(48px, 7vw, 96px)/.9 var(--display); text-transform: uppercase; letter-spacing: .01em; }
-  .menu header span { font: 400 16px/1.3 var(--serif); font-style: italic; color: var(--bone-dim); }
-  .menu ol { list-style: none; margin: 0 auto; padding: 0; max-width: 720px; border-top: 1px solid var(--rule); }
-  .course {
-    display: grid; grid-template-columns: 54px 1fr; gap: 6px 18px;
-    padding: 26px 0; border-bottom: 1px solid var(--rule);
-    transition: none;
-  }
-  .course .n { grid-row: span 2; font: 700 15px/1.6 var(--display); letter-spacing: .14em; color: var(--ash); text-transform: uppercase; }
-  .course h3 { margin: 0; font: 500 clamp(22px, 2.6vw, 30px)/1.2 var(--serif); letter-spacing: -.005em; }
-  .course .fire { font: 700 13px/1.4 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ash); font-variant-numeric: tabular-nums; }
-  .course.on .n, .course.on .fire { color: var(--ember); }
+  /* menu: pinned horizontal track */
+  .menu { position: relative; height: 640vh; background: var(--soot); }
+  .menu .stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; flex-direction: column; }
+  .menu .head { display: flex; justify-content: space-between; align-items: baseline; padding: 84px var(--gutter) 0; gap: 16px; }
+  .menu h2 { margin: 0; font: 800 clamp(40px, 6vw, 84px)/.9 var(--display); text-transform: uppercase; }
+  .menu .count { font: 700 14px/1 var(--display); letter-spacing: .2em; color: var(--bone-dim); font-variant-numeric: tabular-nums; }
+  .track { flex: 1; display: flex; will-change: transform; }
+  .course { flex: 0 0 min(100vw, 620px); display: grid; grid-template-rows: 1fr auto; padding: 18px var(--gutter) 34px; position: relative; }
+  .course + .course { border-left: 1px solid var(--rule); }
+  .course canvas { width: min(82vw, 52vh, 520px); aspect-ratio: 1; height: auto; justify-self: center; align-self: center; }
+  .course .num { position: absolute; top: 4px; left: var(--gutter); font: 900 clamp(90px, 15vh, 150px)/.8 var(--display); color: transparent; -webkit-text-stroke: 1px rgba(241,230,212,.28); }
+  .course h3 { margin: 0 0 10px; font: 500 clamp(24px, 3vw, 34px)/1.12 var(--serif); letter-spacing: -.01em; max-width: 22ch; }
+  .course .tech { display: flex; gap: 16px; flex-wrap: wrap; font: 700 13px/1 var(--display); letter-spacing: .18em; text-transform: uppercase; color: var(--ember); font-variant-numeric: tabular-nums; }
+  .course .tech span:last-child { color: var(--ash); }
+  .progress { height: 2px; margin: 0 var(--gutter) 22px; background: var(--rule); position: relative; }
+  .progress b { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ember); }
 
-  .chef { min-height: 80vh; display: grid; place-items: center; }
-  .chef > div { max-width: 640px; }
-  .chef blockquote { margin: 0; font: italic 400 clamp(26px, 3.6vw, 42px)/1.22 var(--serif); text-wrap: balance; }
-  .chef cite { display: block; margin-top: 22px; font: 700 14px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; font-style: normal; color: var(--ash); }
+  /* heat scale */
+  .heat { position: relative; height: 420vh; }
+  .heat .stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 6vw, 90px);
+    align-items: center; padding: 70px var(--gutter) 40px; }
+  .heat .bg { position: absolute; inset: 0; z-index: -1; }
+  .scale { position: relative; height: 72vh; width: 66px; }
+  .scale .bar { position: absolute; left: 30px; top: 0; bottom: 0; width: 4px; border-radius: 4px; background: linear-gradient(to bottom, #fff2c8, #ffb347 18%, #ff6a1f 40%, #a3341a 66%, #4a3a33 100%); }
+  .scale .tick { position: absolute; left: 0; width: 66px; display: flex; align-items: center; gap: 8px; font: 700 12px/1 var(--display); letter-spacing: .1em; color: var(--bone-dim); font-variant-numeric: tabular-nums; }
+  .scale .tick::after { content: ""; width: 12px; height: 1px; background: var(--bone-dim); margin-left: auto; margin-right: 26px; order: -1; }
+  .scale .knob { position: absolute; left: 22px; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: var(--bone); box-shadow: 0 0 0 6px rgba(255,138,58,.25), 0 0 30px 6px rgba(255,138,58,.6); }
+  .reading .deg { font: 900 clamp(84px, 16vw, 220px)/.85 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .reading .deg small { font-size: .35em; vertical-align: .9em; margin-left: 4px; }
+  .reading h3 { margin: 18px 0 8px; font: 800 clamp(30px, 4vw, 54px)/1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+  .reading p { margin: 0; max-width: 34ch; color: var(--bone-dim); }
 
-  .book { min-height: 100vh; display: grid; place-items: center; padding-bottom: 12vh; }
-  .book > div { width: 100%; max-width: 640px; }
-  .book h2 { margin: 0 0 10px; font: 800 clamp(48px, 7vw, 96px)/.9 var(--display); text-transform: uppercase; }
-  .book p { margin: 0 0 26px; color: var(--bone-dim); }
-  .dates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .date {
-    display: grid; gap: 4px; text-align: left; cursor: pointer;
-    padding: 14px; border-radius: 12px; border: 1px solid var(--rule); background: rgba(28,21,18,.72);
-    color: var(--bone); font: inherit;
-  }
-  .date b { font: 800 26px/1 var(--display); letter-spacing: .02em; }
-  .date span { font: 700 11px/1.3 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ash); }
+  /* chef */
+  .chef { padding: 22vh var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; align-items: end; max-width: 1280px; margin: 0 auto; background: var(--soot); }
+  .chef blockquote { margin: 0; font: italic 300 clamp(32px, 4.4vw, 62px)/1.1 var(--serif); letter-spacing: -.01em; }
+  .chef cite { display: block; margin-top: 22px; font: 700 13px/1 var(--display); letter-spacing: .22em; text-transform: uppercase; font-style: normal; color: var(--ember); }
+  .facts { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+  .facts div { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .facts b { font: 800 clamp(40px, 5vw, 64px)/1 var(--display); font-variant-numeric: tabular-nums; }
+  .facts span { color: var(--bone-dim); text-align: right; max-width: 22ch; }
+
+  /* reservation ticket */
+  .book { min-height: 110vh; display: grid; place-items: center; padding: 14vh var(--gutter); position: relative; }
+  .ticket { width: 100%; max-width: 560px; background: rgba(25,18,14,.86); border: 1px solid var(--rule); border-radius: 22px; position: relative;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 40px 80px -30px rgba(0,0,0,.8); }
+  .ticket .top { padding: 30px 28px 24px; }
+  .ticket .top h2 { margin: 0 0 6px; font: 800 clamp(44px, 6vw, 72px)/.9 var(--display); text-transform: uppercase; }
+  .ticket .top p { margin: 0; color: var(--bone-dim); font-size: 16px; }
+  .perf { position: relative; height: 0; border-top: 2px dashed rgba(241,230,212,.18); margin: 0 18px; }
+  .perf::before, .perf::after { content: ""; position: absolute; top: -13px; width: 24px; height: 24px; border-radius: 50%; background: var(--soot); }
+  .perf::before { left: -32px; } .perf::after { right: -32px; }
+  .ticket .bottom { padding: 24px 28px 28px; display: grid; gap: 16px; }
+  .dates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .date { display: grid; gap: 4px; text-align: left; cursor: pointer; padding: 12px; border-radius: 12px; border: 1px solid var(--rule); background: transparent; color: var(--bone); font: inherit; }
+  .date span { font: 700 11px/1.2 var(--display); letter-spacing: .18em; text-transform: uppercase; color: var(--ash); }
+  .date b { font: 800 26px/1 var(--display); }
   .date small { font-size: 13px; color: var(--bone-dim); }
-  .date[aria-pressed="true"] { border-color: var(--ember); background: rgba(242,145,63,.12); }
-  .date:disabled { opacity: .45; cursor: not-allowed; }
-  .row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
-  .seats { display: flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
-  .seats button { background: none; border: 0; color: var(--bone); font: 700 18px/1 var(--display); width: 44px; height: 46px; cursor: pointer; }
-  .seats output { min-width: 92px; display: grid; place-items: center; font: 700 14px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; }
-  .book .pill--fill { padding: 16px 24px; font-size: 14px; }
-  .status { min-height: 1.6em; margin: 14px 0 0; color: var(--ember); font-size: 16px; }
+  .date[aria-pressed="true"] { border-color: var(--ember); background: rgba(255,138,58,.12); }
+  .date:disabled { opacity: .4; cursor: not-allowed; }
+  .row { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .seats { display: flex; border: 1px solid var(--rule); border-radius: 999px; }
+  .seats button { background: none; border: 0; color: var(--bone); font: 700 20px/1 var(--display); width: 46px; height: 48px; cursor: pointer; }
+  .seats output { min-width: 96px; display: grid; place-items: center; font: 700 14px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+  .total { font: 800 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .total small { display: block; font: 700 11px/1.4 var(--display); letter-spacing: .18em; color: var(--ash); text-transform: uppercase; }
+  .ticket .pill--fill { padding: 18px; font-size: 15px; text-align: center; }
+  .status { min-height: 1.5em; margin: 0; color: var(--ember); font-size: 15px; }
 
-  footer { position: relative; z-index: 2; padding: 30px var(--gutter) 60px; font-size: 13px; color: rgba(239,229,214,.45); text-align: center; }
+  footer { position: relative; z-index: 2; background: var(--soot); padding: 40px var(--gutter) 50px; overflow: hidden; }
+  footer .big { font: 900 clamp(90px, 26vw, 380px)/.8 var(--display); text-transform: uppercase; color: transparent; -webkit-text-stroke: 1px rgba(241,230,212,.2); margin: 0 0 20px; white-space: nowrap; }
+  footer p { margin: 0; font-size: 13px; color: rgba(241,230,212,.45); }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     body { font-size: 17px; }
-    .hero { padding-top: 20vh; }
-    .dates { grid-template-columns: repeat(3, 1fr); }
-    .date { padding: 12px 10px; }
-    .date b { font-size: 22px; }
+    .meta span:last-child { display: none; }
+    .heat .stick { grid-template-columns: 58px 1fr; gap: 20px; }
+    .scale { height: 60vh; width: 58px; }
+    .chef { grid-template-columns: 1fr; padding: 16vh var(--gutter); }
+    .ticket .top, .ticket .bottom { padding-left: 20px; padding-right: 20px; }
   }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="haze" x="-10%" y="-20%" width="120%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="2" seed="4" result="n"/>
+    <feOffset in="n" id="hazeShift" dx="0" dy="0" result="m"/>
+    <feDisplacementMap in="SourceGraphic" in2="m" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
 <canvas id="fire" aria-hidden="true"></canvas>
+<div class="grain" id="grain" aria-hidden="true"></div>
 
 <header class="nav">
   <a class="logo" href="#top">Lenha</a>
@@ -138,223 +167,345 @@
 </header>
 
 <main id="top">
-  <section class="hero wrap">
-    <h1 data-reveal>Lenha</h1>
-    <p data-reveal>Cozinha de fogo. <em>Doze lugares</em> no balcão, de quinta a sábado.</p>
+  <section class="hero">
+    <div class="meta"><span>Cozinha de fogo · São Paulo</span><span>Quinta a sábado · 20h</span></div>
+    <h1>Lenha</h1>
+    <p class="sub">Doze lugares no balcão. <em>Sete tempos</em> que passam pela brasa, pela cinza e pela fumaça.</p>
+    <div class="marquee" aria-hidden="true"><span id="marq"></span></div>
   </section>
 
-  <section class="manifesto wrap">
-    <p data-reveal>Aqui não tem fogão. Tudo passa pela <em>brasa</em>, pela <em>cinza</em> ou pela <em>fumaça</em>.</p>
+  <section class="manifesto" id="manifesto">
+    <p id="mtext">Aqui não tem fogão. A lenha é acesa às duas da tarde e o jantar só começa quando a brasa diz que está pronta.</p>
   </section>
 
-  <section class="menu wrap" aria-labelledby="menu-t">
-    <header data-reveal><h2 id="menu-t">Sete tempos</h2><span>o menu muda com a lenha da semana</span></header>
-    <ol id="courses">
-      <li class="course"><span class="n">1º</span><h3>Pão de fermentação natural, manteiga defumada</h3><span class="fire">Pedra a 300 °C · 9 min</span></li>
-      <li class="course"><span class="n">2º</span><h3>Ostra na brasa, limão-cravo e pimenta-de-cheiro</h3><span class="fire">Brasa direta · 90 s</span></li>
-      <li class="course"><span class="n">3º</span><h3>Abóbora assada na cinza, coalhada e semente tostada</h3><span class="fire">Enterrada na cinza · 3 h</span></li>
-      <li class="course"><span class="n">4º</span><h3>Peixe do dia no galho de goiabeira</h3><span class="fire">Fumaça de goiabeira · 40 min</span></li>
-      <li class="course"><span class="n">5º</span><h3>Costela no fogo de chão, farofa de banana-da-terra</h3><span class="fire">Fogo de chão · 14 h</span></li>
-      <li class="course"><span class="n">6º</span><h3>Queijo da Canastra, mel de engenho queimado</h3><span class="fire">Chapa de ferro · 2 min</span></li>
-      <li class="course"><span class="n">7º</span><h3>Banana na palha, sorvete de rapadura</h3><span class="fire">Na palha, sobre a brasa · 25 min</span></li>
-    </ol>
-  </section>
-
-  <section class="chef wrap">
-    <div data-reveal>
-      <blockquote>“Lenha boa não tem pressa. A gente acende o fogo às duas da tarde para servir às oito.”</blockquote>
-      <cite>Inês Taborda, chef</cite>
+  <section class="menu" id="menu" aria-labelledby="menu-t">
+    <div class="stick">
+      <div class="head"><h2 id="menu-t">Sete tempos</h2><span class="count" id="count">01 / 07</span></div>
+      <div class="track" id="track"></div>
+      <div class="progress"><b id="prog"></b></div>
     </div>
   </section>
 
-  <section class="book wrap" id="reserva" aria-labelledby="book-t">
-    <div data-reveal>
-      <h2 id="book-t">Reserve o balcão</h2>
-      <p>R$ 480 por pessoa. Harmonização opcional, R$ 260. Jantar único às 20h.</p>
-      <div class="dates" id="dates" role="group" aria-label="Escolha a data">
-        <button class="date" type="button" aria-pressed="true" data-left="4"><span>Quinta</span><b>06/11</b><small>4 lugares</small></button>
-        <button class="date" type="button" aria-pressed="false" data-left="2"><span>Sexta</span><b>07/11</b><small>2 lugares</small></button>
-        <button class="date" type="button" aria-pressed="false" data-left="0" disabled><span>Sábado</span><b>08/11</b><small>Lotado</small></button>
+  <section class="heat" id="heat" aria-labelledby="heat-t">
+    <div class="stick">
+      <canvas class="bg" id="heatbg" aria-hidden="true"></canvas>
+      <div class="scale" id="scale"><div class="bar"></div><div class="knob" id="knob"></div></div>
+      <div class="reading" aria-live="polite">
+        <div class="deg"><span id="deg">900</span><small>°C</small></div>
+        <h3 id="heat-t">Chama</h3>
+        <p id="heatp">A ostra abre em noventa segundos sobre a chama alta.</p>
       </div>
-      <div class="row">
-        <div class="seats" role="group" aria-label="Número de pessoas">
-          <button type="button" id="less" aria-label="Menos uma pessoa">−</button>
-          <output id="count" aria-live="polite">2 pessoas</output>
-          <button type="button" id="more" aria-label="Mais uma pessoa">+</button>
+    </div>
+  </section>
+
+  <section class="chef">
+    <div>
+      <blockquote>“Lenha boa não tem pressa. Quem cozinha com fogo aprende a esperar.”</blockquote>
+      <cite>Inês Taborda, chef</cite>
+    </div>
+    <div class="facts">
+      <div><b>14 h</b><span>de fogo de chão para a costela do quinto tempo</span></div>
+      <div><b>3</b><span>lenhas na casa: angico, goiabeira e laranjeira</span></div>
+      <div><b>12</b><span>lugares, todos de frente para a brasa</span></div>
+    </div>
+  </section>
+
+  <section class="book" id="reserva" aria-labelledby="book-t">
+    <div class="ticket">
+      <div class="top">
+        <h2 id="book-t">Reserve o balcão</h2>
+        <p>Jantar único às 20h. R$ 480 por pessoa, harmonização opcional R$ 260.</p>
+      </div>
+      <div class="perf" aria-hidden="true"></div>
+      <div class="bottom">
+        <div class="dates" role="group" aria-label="Escolha a data">
+          <button class="date" type="button" aria-pressed="true" data-left="4"><span>Quinta</span><b>06/11</b><small>4 lugares</small></button>
+          <button class="date" type="button" aria-pressed="false" data-left="2"><span>Sexta</span><b>07/11</b><small>2 lugares</small></button>
+          <button class="date" type="button" aria-pressed="false" data-left="0" disabled><span>Sábado</span><b>08/11</b><small>Lotado</small></button>
         </div>
-        <button class="pill pill--fill" type="button" id="reserve">Reservar</button>
+        <div class="row">
+          <div class="seats" role="group" aria-label="Número de pessoas">
+            <button type="button" id="less" aria-label="Menos uma pessoa">−</button>
+            <output id="pcount" aria-live="polite">2 pessoas</output>
+            <button type="button" id="more" aria-label="Mais uma pessoa">+</button>
+          </div>
+          <div class="total"><small>Total</small><span id="total">R$ 960</span></div>
+        </div>
+        <button class="pill pill--fill" type="button" id="reserve">Confirmar reserva</button>
+        <p class="status" id="status" role="status"></p>
       </div>
-      <p class="status" id="status" role="status"></p>
     </div>
   </section>
 </main>
 
-<footer>Lenha é um restaurante fictício, criado como exemplo de site.</footer>
+<footer>
+  <p class="big" aria-hidden="true">Lenha</p>
+  <p>Lenha é um restaurante fictício, criado como exemplo de site.</p>
+</footer>
 
 <script>
 (() => {
   const rec = /[?&]rec\b/.test(location.search);
   if (rec) document.documentElement.classList.add("rec");
-
-  const canvas = document.getElementById("fire");
-  const ctx = canvas.getContext("2d");
-  const reveals = Array.from(document.querySelectorAll("[data-reveal]"));
-  const courses = Array.from(document.querySelectorAll(".course"));
-  const book = document.getElementById("reserva");
-
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const smooth = (a, b, v) => { const x = clamp((v - a) / (b - a)); return x * x * (3 - 2 * x); };
+  const mix = (a, b, k) => a + (b - a) * k;
+  const $ = id => document.getElementById(id);
 
-  // seeded RNG so a recorded run is identical every time
-  let seed = 7;
-  const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
-
-  let W = 0, H = 0, dpr = 1;
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = innerWidth; H = canvas.clientHeight || innerHeight;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  // pre-rendered soft sprite for additive flame particles
-  const sprite = document.createElement("canvas");
-  sprite.width = sprite.height = 64;
-  { const s = sprite.getContext("2d"), g = s.createRadialGradient(32, 32, 0, 32, 32, 32);
-    g.addColorStop(0, "rgba(255,255,255,1)"); g.addColorStop(.35, "rgba(255,255,255,.55)"); g.addColorStop(1, "rgba(255,255,255,0)");
-    s.fillStyle = g; s.fillRect(0, 0, 64, 64); }
-  const tinted = {};
-  function tint(r, g, b) {
-    const k = r + "," + g + "," + b; if (tinted[k]) return tinted[k];
-    const c = document.createElement("canvas"); c.width = c.height = 64;
-    const x = c.getContext("2d"); x.drawImage(sprite, 0, 0); x.globalCompositeOperation = "source-in";
-    x.fillStyle = `rgb(${k})`; x.fillRect(0, 0, 64, 64); return (tinted[k] = c);
-  }
-  // flame colour ramp by particle age: white-yellow core to orange to deep red
-  const ramp = [[255, 238, 190], [255, 196, 108], [250, 140, 52], [214, 78, 26], [120, 34, 14]];
-  const sprites = ramp.map(c => tint(...c));
-
-  const flames = [], embers = [];
-  function spawn(intensity) {
-    const n = Math.round(14 * intensity);
-    const base = Math.min(W * 0.9, 900);
-    for (let i = 0; i < n; i++) {
-      const u = (rand() + rand() + rand()) / 3 - 0.5;          // clustered toward the centre
-      flames.push({ x: W / 2 + u * base, y: H + 10, vx: (rand() - .5) * 18, vy: -(90 + rand() * 140) * (0.6 + intensity * 0.6),
-        life: 0, max: 0.9 + rand() * 0.9, size: (28 + rand() * 46) * (0.55 + 0.45 * intensity) * (1 - Math.abs(u) * 0.9), ph: rand() * 6.28 });
+  /* ---------- WebGL fire ---------- */
+  const cv = $("fire");
+  const gl = cv.getContext("webgl", { preserveDrawingBuffer: true, antialias: false, alpha: false });
+  const FS = `precision highp float;
+  uniform vec2 R; uniform float T; uniform float I;
+  float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+  float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
+    return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
+  float fbm(vec2 p){ float s = 0., a = .5; for (int i = 0; i < 5; i++){ s += a*n(p); p = p*2.03 + 7.1; a *= .5; } return s; }
+  void main(){
+    vec2 uv = gl_FragCoord.xy / R;
+    float asp = R.x / R.y;
+    vec2 p = vec2((uv.x - .5) * asp, uv.y);
+    float w = min(asp, 1.15);
+    // flame body: one wide fire built from two fbm flame fields
+    float hgt = .34 + .74 * I;
+    vec2 u2 = vec2(p.x / (1.35 * w + .5 * max(0., asp - 1.)) + .5, p.y / hgt);
+    vec2 q = vec2((u2.x - .5) * .95, u2.y * 1.2 - .25);
+    float n1 = fbm(3.2 * q - vec2(0., T * 1.9));
+    float n2 = fbm(5.1 * q - vec2(T * .2, T * 2.6) + 4.);
+    float nz = mix(n1, n2, .38);
+    float c = 1. - 13. * pow(max(0., length(q * vec2(1.5 + q.y * 1.4, .72)) - nz * max(0., q.y + .3)), 1.15);
+    float f = clamp(nz * c * (1.6 - pow(1.1 * u2.y, 4.)) * 1.5, 0., 1.);
+    vec3 col = vec3(1.5 * f, 1.45 * f * f * f, f * f * f * f * f * f);
+    // coal bed glow and smoke-dark sky
+    col += vec3(.55, .16, .04) * exp(-p.y * 3.2) * (.35 + .65 * I) * (.7 + .3 * fbm(vec2(p.x * 6., T * .6)));
+    // embers: three layers of rising sparks
+    for (int L = 0; L < 3; L++){
+      float fl = float(L);
+      vec2 g = vec2(p.x * (14. + fl * 9.), p.y * (8. + fl * 5.) - T * (1.2 + fl * .5));
+      g.x += sin(g.y * .7 + fl) * .6;
+      vec2 id = floor(g), gv = fract(g) - .5;
+      float r = h(id + fl * 13.);
+      if (r > .9 - .08 * I){
+        vec2 o = vec2(h(id + 3.) - .5, h(id + 9.) - .5) * .6;
+        float d = length(gv - o);
+        float tw = .6 + .4 * sin(T * 9. + r * 40.);
+        col += vec3(1., .55, .18) * smoothstep(.09, .0, d) * tw * (1.2 - p.y * .5) * (.4 + .6 * I);
+      }
     }
-    if (rand() < 0.5 + intensity * 0.5) embers.push({ x: W / 2 + (rand() - .5) * base, y: H - 20 * rand(), vx: (rand() - .5) * 30, vy: -(40 + rand() * 90),
-      life: 0, max: 3 + rand() * 5, r: 0.8 + rand() * 1.6, ph: rand() * 6.28 });
+    col = 1. - exp(-col * 1.25);           // filmic roll-off
+    col *= mix(.55, 1., smoothstep(1.2, .0, abs(p.x) / asp * 2.)); // vignette
+    gl_FragColor = vec4(col * vec3(1., .96, .92) + vec3(.05, .035, .028), 1.);
+  }`;
+  const VS = "attribute vec2 a; void main(){ gl_Position = vec4(a, 0., 1.); }";
+  function prog(vs, fs) {
+    const p = gl.createProgram();
+    for (const [t, s] of [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]]) {
+      const sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(sh));
+      gl.attachShader(p, sh);
+    }
+    gl.linkProgram(p); return p;
+  }
+  let P, uR, uT, uI;
+  if (gl) {
+    P = prog(VS, FS); gl.useProgram(P);
+    const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(P, "a"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    uR = gl.getUniformLocation(P, "R"); uT = gl.getUniformLocation(P, "T"); uI = gl.getUniformLocation(P, "I");
+  }
+  function sizeFire() {
+    const s = Math.min(window.devicePixelRatio || 1, 2) * 0.6;   // half-res is plenty for fire
+    cv.width = Math.round(innerWidth * s); cv.height = Math.round((cv.clientHeight || innerHeight) * s);
+    if (gl) gl.viewport(0, 0, cv.width, cv.height);
+  }
+  function drawFire(t, intensity) {
+    if (!gl) return;
+    gl.uniform2f(uR, cv.width, cv.height); gl.uniform1f(uT, t); gl.uniform1f(uI, intensity);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
-  function step(dt, t, intensity) {
-    spawn(intensity);
-    for (const p of flames) {
-      p.life += dt;
-      p.vx += Math.sin(t * 3 + p.ph + p.y * 0.012) * 40 * dt + (W / 2 - p.x) * 0.9 * dt;
-      p.x += p.vx * dt; p.y += p.vy * dt;
+  /* ---------- grain ---------- */
+  { const g = document.createElement("canvas"); g.width = g.height = 160; const x = g.getContext("2d"), d = x.createImageData(160, 160);
+    let s = 11; for (let i = 0; i < d.data.length; i += 4) { s = (s * 16807) % 2147483647; const v = s % 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+    x.putImageData(d, 0, 0); $("grain").style.backgroundImage = `url(${g.toDataURL()})`; }
+
+  /* ---------- marquee ---------- */
+  const words = ["Brasa", "Cinza", "Fumaça", "Lenha de angico", "Doze lugares", "Sete tempos", "Fogo de chão"];
+  $("marq").innerHTML = Array(4).fill(words.map(w => `${w}<i>✦</i>`).join("")).join("");
+
+  /* ---------- manifesto words ---------- */
+  const mt = $("mtext");
+  const accent = new Set(["fogão.", "brasa"]);
+  mt.innerHTML = mt.textContent.split(" ").map(w => `<span class="w${accent.has(w) ? " it" : ""}">${w}</span>`).join(" ");
+  const mw = Array.from(mt.querySelectorAll(".w"));
+
+  /* ---------- courses with generated plates ---------- */
+  const COURSES = [
+    ["Pão de fermentação natural, manteiga defumada", "Pedra · 300 °C", "9 min", "bread"],
+    ["Ostra na brasa, limão-cravo e pimenta-de-cheiro", "Chama · 900 °C", "90 s", "oyster"],
+    ["Abóbora assada na cinza, coalhada e sementes", "Cinza · 150 °C", "3 h", "pumpkin"],
+    ["Peixe do dia no galho de goiabeira", "Fumaça · 80 °C", "40 min", "fish"],
+    ["Costela no fogo de chão, farofa de banana-da-terra", "Brasa · 600 °C", "14 h", "rib"],
+    ["Queijo da Canastra, mel de engenho queimado", "Chapa · 350 °C", "2 min", "cheese"],
+    ["Banana na palha, sorvete de rapadura", "Brasa · 400 °C", "25 min", "banana"],
+  ];
+  const track = $("track");
+  track.innerHTML = COURSES.map((c, i) => `<article class="course"><span class="num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+    <canvas width="640" height="640" data-kind="${c[3]}" role="img" aria-label="Ilustração do prato: ${c[0]}"></canvas>
+    <div><h3>${c[0]}</h3><div class="tech"><span>${c[1]}</span><span>${c[2]}</span></div></div></article>`).join("");
+
+  function rng(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function plate(cx, kind) {
+    const S = 640, c = S / 2, r = rng(kind.length * 977 + 13);
+    cx.clearRect(0, 0, S, S);
+    // stoneware plate: dark glaze with a speckled rim
+    let g = cx.createRadialGradient(c - 60, c - 80, 20, c, c, 300);
+    g.addColorStop(0, "#3a2f2a"); g.addColorStop(.7, "#211915"); g.addColorStop(1, "#120d0b");
+    cx.fillStyle = g; cx.beginPath(); cx.arc(c, c, 296, 0, 7); cx.fill();
+    cx.strokeStyle = "rgba(241,230,212,.10)"; cx.lineWidth = 2; cx.beginPath(); cx.arc(c, c, 232, 0, 7); cx.stroke();
+    for (let i = 0; i < 260; i++) { const a = r() * 6.283, d = 236 + r() * 56; cx.fillStyle = `rgba(241,230,212,${.05 + r() * .1})`; cx.fillRect(c + Math.cos(a) * d, c + Math.sin(a) * d, 1.6, 1.6); }
+    const blob = (x, y, rx, ry, rot, c1, c2) => { const gg = cx.createRadialGradient(x - rx * .3, y - ry * .35, 2, x, y, Math.max(rx, ry)); gg.addColorStop(0, c1); gg.addColorStop(1, c2);
+      cx.save(); cx.translate(x, y); cx.rotate(rot); cx.fillStyle = gg; cx.beginPath(); cx.ellipse(0, 0, rx, ry, 0, 0, 7); cx.fill(); cx.restore(); };
+    const dots = (n, x, y, sp, rad, col) => { for (let i = 0; i < n; i++) { cx.fillStyle = col; cx.beginPath(); cx.arc(x + (r() - .5) * sp, y + (r() - .5) * sp, rad * (.5 + r()), 0, 7); cx.fill(); } };
+    const char = (x, y, len, ang, n) => { cx.strokeStyle = "rgba(20,12,8,.75)"; cx.lineWidth = 7; cx.lineCap = "round";
+      for (let i = 0; i < n; i++) { const o = (i - n / 2) * 26; cx.beginPath(); cx.moveTo(x + Math.cos(ang + 1.57) * o - Math.cos(ang) * len / 2, y + Math.sin(ang + 1.57) * o - Math.sin(ang) * len / 2);
+        cx.lineTo(x + Math.cos(ang + 1.57) * o + Math.cos(ang) * len / 2, y + Math.sin(ang + 1.57) * o + Math.sin(ang) * len / 2); cx.stroke(); } };
+    const drizzle = (pts, col, w) => { cx.strokeStyle = col; cx.lineWidth = w; cx.lineCap = "round"; cx.beginPath(); cx.moveTo(pts[0], pts[1]);
+      for (let i = 2; i < pts.length; i += 4) cx.quadraticCurveTo(pts[i], pts[i + 1], pts[i + 2], pts[i + 3]); cx.stroke(); };
+    switch (kind) {
+      case "bread":
+        blob(c - 20, c + 10, 150, 112, -.3, "#e2b26f", "#8a4f22"); cx.strokeStyle = "rgba(255,230,190,.55)"; cx.lineWidth = 5;
+        for (let i = -1; i <= 1; i++) { cx.beginPath(); cx.ellipse(c - 20 + i * 44, c + 10, 14, 80, -.3, 0, 7); cx.stroke(); }
+        char(c - 20, c + 10, 220, -.3 + 1.57, 3);
+        blob(c + 150, c - 110, 46, 34, .4, "#fff3d6", "#d9b98a"); dots(14, c + 150, c - 110, 70, 2, "rgba(60,40,30,.6)"); break;
+      case "oyster":
+        for (let k = 0; k < 3; k++) { const a = k * 2.094 + .3, x = c + Math.cos(a) * 120, y = c + Math.sin(a) * 120;
+          blob(x, y, 98, 70, a, "#9c958c", "#3d3631"); blob(x, y, 66, 44, a, "#efe7d8", "#b9ad97");
+          cx.strokeStyle = "rgba(40,30,25,.4)"; cx.lineWidth = 2; for (let j = 0; j < 5; j++) { cx.beginPath(); cx.ellipse(x, y, 98 - j * 6, 70 - j * 5, a, 0, 7); cx.stroke(); }
+          dots(8, x, y, 60, 4, "rgba(90,140,40,.9)"); dots(4, x, y, 40, 5, "rgba(214,60,30,.95)"); }
+        blob(c, c, 34, 34, 0, "#d9f07a", "#7c9a2a"); break;
+      case "pumpkin":
+        cx.save(); cx.translate(c, c); cx.rotate(-.5); const pg = cx.createLinearGradient(-170, 0, 170, 0); pg.addColorStop(0, "#f39a3a"); pg.addColorStop(1, "#b5501c");
+        cx.fillStyle = pg; cx.beginPath(); cx.moveTo(-180, 40); cx.quadraticCurveTo(0, -150, 180, 40); cx.quadraticCurveTo(0, 0, -180, 40); cx.fill();
+        cx.restore(); char(c, c - 30, 200, -.5, 4);
+        for (let i = 0; i < 7; i++) blob(c - 120 + i * 40, c + 90 + Math.sin(i) * 20, 22, 18, 0, "#fffaf0", "#e8dcc8");
+        dots(22, c, c + 60, 260, 5, "#c8b27a"); dots(30, c, c, 360, 1.5, "rgba(30,20,15,.8)"); break;
+      case "fish":
+        cx.strokeStyle = "#5b4a3b"; cx.lineWidth = 6; cx.beginPath(); cx.moveTo(c - 230, c + 150); cx.quadraticCurveTo(c, c + 40, c + 230, c - 160); cx.stroke();
+        for (let i = 0; i < 6; i++) blob(c - 160 + i * 70, c + 110 - i * 50, 26, 12, -.8, "#6e8a4a", "#344a22");
+        blob(c, c - 10, 170, 74, -.45, "#f4e9d8", "#cdb89c");
+        cx.save(); cx.beginPath(); cx.ellipse(c, c - 10, 170, 74, -.45, 0, 7); cx.clip(); cx.strokeStyle = "rgba(120,80,50,.35)"; cx.lineWidth = 3;
+        for (let i = -12; i <= 12; i++) { cx.beginPath(); cx.moveTo(c + i * 22 - 200, c - 200); cx.lineTo(c + i * 22 + 200, c + 200); cx.stroke(); } cx.restore();
+        drizzle([c - 150, c + 60, c - 60, c + 110, c + 40, c + 70, c + 120, c + 40, c + 160, c - 20], "rgba(214,170,60,.9)", 6); break;
+      case "rib":
+        blob(c, c + 10, 170, 110, .2, "#7a3a20", "#2a120a"); cx.fillStyle = "rgba(255,180,120,.12)"; cx.beginPath(); cx.ellipse(c - 40, c - 20, 90, 40, .2, 0, 7); cx.fill();
+        cx.strokeStyle = "#efe2c8"; cx.lineWidth = 22; cx.lineCap = "round"; cx.beginPath(); cx.moveTo(c - 210, c - 40); cx.lineTo(c - 120, c - 18); cx.stroke();
+        char(c + 10, c + 10, 240, .2, 4); dots(160, c + 110, c + 170, 170, 3, "#c99a4a"); dots(40, c + 110, c + 170, 140, 2.5, "#7a5228"); break;
+      case "cheese":
+        cx.save(); cx.translate(c - 10, c + 10); cx.rotate(-.25); const cg = cx.createLinearGradient(-160, -90, 160, 90); cg.addColorStop(0, "#fff0c4"); cg.addColorStop(1, "#d8b46a");
+        cx.fillStyle = cg; cx.beginPath(); cx.moveTo(-170, 90); cx.lineTo(170, 90); cx.lineTo(0, -140); cx.closePath(); cx.fill();
+        cx.fillStyle = "#b5823e"; cx.fillRect(-170, 82, 340, 16); cx.restore();
+        drizzle([c - 200, c - 160, c - 80, c - 40, c, c - 20, c + 80, c, c + 140, c + 120, c + 200, c + 180, c + 220, c + 200], "rgba(190,110,20,.95)", 9);
+        drizzle([c - 200, c - 160, c - 80, c - 40, c, c - 20, c + 80, c, c + 140, c + 120], "rgba(255,200,90,.6)", 3); dots(10, c + 120, c - 150, 90, 5, "#3b2a1c"); break;
+      case "banana":
+        blob(c, c, 230, 130, -.6, "#7c8a3a", "#2e3a16"); cx.strokeStyle = "rgba(20,30,10,.5)"; cx.lineWidth = 2;
+        for (let i = -6; i <= 6; i++) { cx.beginPath(); cx.moveTo(c + i * 30 - 80, c + i * 18 + 120); cx.lineTo(c + i * 30 + 80, c + i * 18 - 120); cx.stroke(); }
+        cx.save(); cx.translate(c - 30, c + 10); cx.rotate(-.6); const bg = cx.createLinearGradient(0, -40, 0, 40); bg.addColorStop(0, "#ffe2a0"); bg.addColorStop(1, "#c9853a");
+        cx.fillStyle = bg; cx.beginPath(); cx.moveTo(-170, 0); cx.quadraticCurveTo(0, -90, 170, 0); cx.quadraticCurveTo(0, -30, -170, 0); cx.fill(); cx.restore();
+        char(c - 30, c - 20, 160, -.6, 3); blob(c + 120, c + 90, 64, 58, 0, "#f6e0b8", "#c49a62"); dots(16, c + 120, c + 90, 80, 2.5, "rgba(90,50,20,.7)"); break;
     }
-    for (const e of embers) {
-      e.life += dt;
-      e.vx += Math.sin(t * 1.4 + e.ph + e.y * 0.01) * 22 * dt;
-      e.x += e.vx * dt; e.y += e.vy * dt;
-    }
-    for (let i = flames.length - 1; i >= 0; i--) if (flames[i].life > flames[i].max) flames.splice(i, 1);
-    for (let i = embers.length - 1; i >= 0; i--) if (embers[i].life > embers[i].max || embers[i].y < -10) embers.splice(i, 1);
+    // soft steam highlight
+    g = cx.createRadialGradient(c - 90, c - 120, 0, c - 90, c - 120, 260); g.addColorStop(0, "rgba(255,240,220,.12)"); g.addColorStop(1, "rgba(255,240,220,0)");
+    cx.fillStyle = g; cx.beginPath(); cx.arc(c, c, 296, 0, 7); cx.fill();
+  }
+  const plates = Array.from(track.querySelectorAll("canvas"));
+  plates.forEach(p => plate(p.getContext("2d"), p.dataset.kind));
+
+  /* ---------- heat scale ---------- */
+  const STOPS = [
+    [900, "Chama", "A ostra abre em noventa segundos sobre a chama alta."],
+    [600, "Brasa viva", "A costela passa catorze horas no fogo de chão, virada à mão."],
+    [300, "Pedra", "O pão assa na pedra refratária que dormiu dentro do forno."],
+    [150, "Cinza", "A abóbora fica enterrada na cinza quente por três horas."],
+    [80, "Fumaça", "O peixe defuma devagar no galho de goiabeira."],
+  ];
+  const scale = $("scale");
+  STOPS.forEach((s, i) => { const t = document.createElement("div"); t.className = "tick"; t.style.top = `calc(${i / (STOPS.length - 1) * 100}% - 6px)`; t.textContent = s[0]; scale.appendChild(t); });
+  const hb = $("heatbg"), hctx = hb.getContext("2d");
+
+  /* ---------- frame ---------- */
+  const hero = document.querySelector(".hero"), manifesto = $("manifesto"), menu = $("menu"), heat = $("heat"), book = $("reserva");
+  const marq = $("marq"), hazeShift = $("hazeShift"), grain = $("grain");
+  let lastDeg = -1, lastCourse = -1, lastStop = -1;
+  function top(el, y) { return el.getBoundingClientRect().top + y; }
+
+  function render(t, y) {
+    const vh = innerHeight, vw = innerWidth;
+    // fire: full at the door, low through the menu, gone in the heat section, back at the reservation
+    const bTop = top(book, y), hTop = top(heat, y);
+    const atDoor = 1 - smooth(0, vh * 0.9, y);
+    const atBook = smooth(bTop - vh, bTop - vh * 0.15, y);
+    drawFire(t, Math.max(0.12 + 0.88 * atDoor, atBook * 0.85));
+
+    hazeShift.setAttribute("dy", (-t * 40 % 400).toFixed(1));
+    marq.style.transform = `translate3d(${-((t * 40 + y * 0.35) % (marq.scrollWidth / 4))}px,0,0)`;
+    grain.style.transform = `translate(${(Math.sin(t * 13.7) * 40) | 0}px,${(Math.cos(t * 11.3) * 40) | 0}px)`;
+
+    // manifesto: words light up one by one, the newest still glowing hot
+    const mTop = top(manifesto, y), mh = manifesto.offsetHeight;
+    const mp = clamp((y - mTop + vh * 0.55) / (mh - vh * 0.4));
+    const lit = mp * (mw.length + 2);
+    mw.forEach((w, i) => { w.classList.toggle("lit", i < lit - 1.5); w.classList.toggle("hot", i < lit && i >= lit - 1.5); });
+
+    // menu: vertical scroll drives the horizontal track
+    const mT = top(menu, y), span = menu.offsetHeight - vh;
+    const k = clamp((y - mT) / span);
+    const maxX = Math.max(0, track.scrollWidth - vw);
+    // each course holds centred for a beat, then slides to the next
+    const cpos = k * 6, base = Math.floor(cpos), held = Math.min(6, base + smooth(0.45, 1, cpos - base));
+    track.style.transform = `translate3d(${-(held / 6) * maxX}px,0,0)`;
+    $("prog").style.width = (k * 100).toFixed(2) + "%";
+    const ci = Math.min(6, Math.round(k * 6));
+    if (ci !== lastCourse) { lastCourse = ci; $("count").textContent = `${String(ci + 1).padStart(2, "0")} / 07`; }
+    plates.forEach((p, i) => { p.style.transform = `rotate(${((k * 6 - i) * 14).toFixed(2)}deg)`; });
+
+    // heat: the knob slides from flame to smoke, the room cools
+    const hk = clamp((y - hTop) / (heat.offsetHeight - vh));
+    const pos = hk * (STOPS.length - 1), si = Math.min(STOPS.length - 1, Math.round(pos));
+    const lo = Math.floor(pos), hi = Math.min(STOPS.length - 1, lo + 1);
+    const deg = Math.round(mix(STOPS[lo][0], STOPS[hi][0], smooth(0, 1, pos - lo)));
+    $("knob").style.top = (hk * 100).toFixed(2) + "%";
+    if (deg !== lastDeg) { lastDeg = deg; $("deg").textContent = deg; }
+    if (si !== lastStop) { lastStop = si; $("heat-t").textContent = STOPS[si][1]; $("heatp").textContent = STOPS[si][2]; }
+    const hot = clamp((deg - 80) / 820);
+    if (hb.width !== Math.round(vw / 4)) { hb.width = Math.round(vw / 4); hb.height = Math.round(vh / 4); }
+    const gg = hctx.createRadialGradient(hb.width * .2, hb.height * .55, 0, hb.width * .2, hb.height * .55, hb.width * 1.1);
+    gg.addColorStop(0, `rgba(${Math.round(mix(60, 255, hot))},${Math.round(mix(52, 120, hot))},${Math.round(mix(48, 40, hot))},${mix(.35, .75, hot)})`);
+    gg.addColorStop(1, "rgba(13,9,7,1)");
+    hctx.fillStyle = gg; hctx.fillRect(0, 0, hb.width, hb.height);
+    hb.style.width = "100%"; hb.style.height = "100%";
   }
 
-  function draw(intensity, t) {
-    ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "#0f0b09"; ctx.fillRect(0, 0, W, H);
-    // floor glow of the coal bed
-    const glow = ctx.createRadialGradient(W / 2, H + 40, 0, W / 2, H + 40, Math.max(W, H) * (0.45 + 0.35 * intensity));
-    glow.addColorStop(0, `rgba(199,70,27,${0.55 * intensity + 0.12})`); glow.addColorStop(1, "rgba(199,70,27,0)");
-    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
-
-    ctx.globalCompositeOperation = "lighter";
-    for (const p of flames) {
-      const k = p.life / p.max;
-      const idx = Math.min(ramp.length - 1, Math.floor(k * ramp.length));
-      const s = p.size * (1 - k * 0.7);
-      ctx.globalAlpha = Math.min(1, (1 - k) * 0.55);
-      ctx.drawImage(sprites[idx], p.x - s * 0.4, p.y - s, s * 0.8, s * 2);   // tall, narrow tongues read as flame
-    }
-    for (const e of embers) {
-      const k = e.life / e.max, fl = 0.6 + 0.4 * Math.sin(t * 9 + e.ph);
-      ctx.globalAlpha = (1 - k) * fl;
-      const s = e.r * 7;
-      ctx.drawImage(sprites[1], e.x - s / 2, e.y - s / 2, s, s);
-    }
-    ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
-  }
-
-  function intensityAt(y) {
-    const vh = innerHeight;
-    const low = 0.22;
-    const fall = smooth(0, vh * 0.9, y);                         // fire settles after the hero
-    const br = book.getBoundingClientRect().top + y;
-    const flare = smooth(br - vh, br - vh * 0.2, y);             // and flares at the reservation
-    return Math.max(1 - fall * (1 - low), low + flare * 0.6);
-  }
-
-  function layoutFx() {
-    for (const el of reveals) {
-      const r = el.getBoundingClientRect();
-      const c = (r.top + r.height / 2) / innerHeight;
-      const k = 1 - smooth(0, 0.45, Math.abs(c - 0.5) - 0.2);
-      el.style.opacity = (0.3 + 0.7 * k).toFixed(3);
-      el.style.transform = `translate3d(0,${((1 - k) * 22 * Math.sign(c - 0.5)).toFixed(1)}px,0)`;
-    }
-    let best = null, bd = 1e9;
-    for (const c of courses) {
-      const r = c.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - innerHeight * 0.5);
-      if (d < bd) { bd = d; best = c; }
-    }
-    for (const c of courses) c.classList.toggle("on", c === best && bd < innerHeight * 0.3);
-  }
-
-  // fixed-step simulation: recording replays exactly
-  const DT = 1 / 60;
-  let simT = 0;
-  function advance(to, y) {
-    const it = intensityAt(y);
-    let guard = 0;
-    while (simT + DT <= to && guard++ < 600) { simT += DT; step(DT, simT, it); }
-    if (to - simT > 10) simT = to;   // after a long pause, do not replay minutes
-    draw(it, simT); layoutFx();
-  }
-
-  resize();
-  addEventListener("resize", resize);
-  // warm the fire up so the first frame already burns
-  for (let i = 0; i < 120; i++) { simT += DT; step(DT, simT, 1); }
-  const t0 = simT;
-
+  sizeFire(); addEventListener("resize", sizeFire);
   if (rec) {
-    window.__rec = { frame(t, y) { window.scrollTo(0, y); advance(t0 + t, y); }, max: () => document.documentElement.scrollHeight - innerHeight };
-    advance(t0, 0);
+    window.__rec = { frame(t, y) { window.scrollTo(0, y); render(t, y); }, max: () => document.documentElement.scrollHeight - innerHeight };
+    render(0, 0);
   } else {
-    let start = null;
-    const loop = (now) => { if (start === null) start = now; advance(t0 + (now - start) / 1000, scrollY); requestAnimationFrame(loop); };
+    const loop = now => { render(now / 1000, scrollY); requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
   }
 
-  // reservation controls
+  /* ---------- reservation ---------- */
   let people = 2;
   const dates = Array.from(document.querySelectorAll(".date"));
-  const count = document.getElementById("count"), status = document.getElementById("status");
   const picked = () => dates.find(d => d.getAttribute("aria-pressed") === "true");
-  const sync = () => { count.textContent = people + (people === 1 ? " pessoa" : " pessoas"); status.textContent = ""; };
-  dates.forEach(d => d.addEventListener("click", () => { dates.forEach(x => x.setAttribute("aria-pressed", String(x === d))); people = Math.min(people, +d.dataset.left); sync(); }));
-  document.getElementById("less").addEventListener("click", () => { people = Math.max(1, people - 1); sync(); });
-  document.getElementById("more").addEventListener("click", () => {
-    const left = +picked().dataset.left;
-    if (people < left) { people++; sync(); } else status.textContent = `Só restam ${left} lugares nessa data.`;
-  });
-  document.getElementById("reserve").addEventListener("click", () => {
-    const d = picked();
-    status.textContent = `Balcão reservado para ${people} na ${d.querySelector("span").textContent.toLowerCase()}, ${d.querySelector("b").textContent}, às 20h. A confirmação chega por WhatsApp.`;
-  });
+  const sync = () => { $("pcount").textContent = people + (people === 1 ? " pessoa" : " pessoas"); $("total").textContent = "R$ " + (people * 480).toLocaleString("pt-BR"); $("status").textContent = ""; };
+  dates.forEach(d => d.addEventListener("click", () => { dates.forEach(x => x.setAttribute("aria-pressed", String(x === d))); people = Math.max(1, Math.min(people, +d.dataset.left)); sync(); }));
+  $("less").addEventListener("click", () => { people = Math.max(1, people - 1); sync(); });
+  $("more").addEventListener("click", () => { const left = +picked().dataset.left; if (people < left) { people++; sync(); } else $("status").textContent = `Só restam ${left} lugares nessa data.`; });
+  $("reserve").addEventListener("click", () => { const d = picked();
+    $("status").textContent = `Balcão reservado para ${people} na ${d.querySelector("span").textContent.toLowerCase()}, ${d.querySelector("b").textContent}, às 20h. A confirmação chega por WhatsApp.`; });
 })();
 </script>
 </body>
