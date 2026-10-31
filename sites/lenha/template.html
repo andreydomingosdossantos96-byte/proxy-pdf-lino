@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lenha</title>
+<meta name="description" content="Cozinha de fogo. Doze lugares no balcão, de quinta a sábado. Menu de sete tempos.">
+<meta name="theme-color" content="#0f0b09">
+<style>
+  @font-face { font-family: "Shoulders"; font-weight: 500 900; font-display: block; src: url(@font:bigshoulders) format("woff2"); }
+  @font-face { font-family: "News"; font-style: normal; font-weight: 300 600; font-display: block; src: url(@font:newsreader) format("woff2"); }
+  @font-face { font-family: "News"; font-style: italic; font-weight: 300 600; font-display: block; src: url(@font:newsreader-italic) format("woff2"); }
+
+  /* Layout: one night of service. The fire is high when you arrive, drops to embers through the menu, and flares again at the reservation. */
+  :root {
+    --soot: #0f0b09;
+    --char: #1c1512;
+    --bone: #efe5d6;
+    --bone-dim: rgba(239,229,214,.66);
+    --ash: #8d8278;
+    --ember: #f2913f;
+    --coal: #c7461b;
+    --rule: rgba(239,229,214,.14);
+    --display: "Shoulders", "Arial Narrow", sans-serif;
+    --serif: "News", Georgia, serif;
+    --gutter: clamp(22px, 5vw, 72px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--soot); color-scheme: dark; scrollbar-color: rgba(239,229,214,.2) var(--soot); }
+  html.rec { scrollbar-width: none; }
+  html.rec::-webkit-scrollbar { display: none; }
+  body {
+    margin: 0; background: var(--soot); color: var(--bone);
+    font: 400 18px/1.55 var(--serif);
+    -webkit-font-smoothing: antialiased; overflow-x: clip;
+  }
+  ::selection { background: var(--ember); color: var(--soot); }
+  :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+  a { color: inherit; }
+
+  canvas#fire { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; }
+
+  .nav {
+    position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: max(16px, env(safe-area-inset-top)) var(--gutter) 16px;
+    background: linear-gradient(to bottom, rgba(15,11,9,.85), rgba(15,11,9,0));
+  }
+  .logo { font: 800 24px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+  .pill {
+    font: 700 13px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+    padding: 12px 18px; border: 1px solid rgba(242,145,63,.55); border-radius: 999px; color: var(--bone);
+    background: rgba(15,11,9,.4); transition: background .25s, color .25s; cursor: pointer;
+  }
+  .pill:hover { background: var(--ember); color: var(--soot); }
+  .pill--fill { background: var(--ember); color: var(--soot); border-color: var(--ember); }
+  .pill--fill:hover { background: #f7a964; }
+
+  main { position: relative; z-index: 2; }
+  .wrap { padding: 0 var(--gutter); }
+
+  .hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 18vh; text-align: center; }
+  .hero h1 {
+    margin: 0; font: 900 clamp(120px, 31vw, 420px)/.8 var(--display);
+    letter-spacing: -.01em; text-transform: uppercase; color: var(--bone);
+    text-shadow: 0 0 60px rgba(242,145,63,.25);
+  }
+  .hero p { margin: 22px auto 0; max-width: 30ch; font-size: clamp(19px, 2.2vw, 24px); color: var(--bone); }
+  .hero p em { color: var(--ember); font-style: italic; }
+
+  .manifesto { min-height: 90vh; display: grid; place-items: center; text-align: center; }
+  .manifesto p {
+    margin: 0; max-width: 20ch; font: 300 clamp(30px, 5vw, 64px)/1.12 var(--serif); letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+  .manifesto p em { font-style: italic; color: var(--ember); }
+
+  .menu { padding-top: 10vh; padding-bottom: 16vh; }
+  .menu header { max-width: 720px; margin: 0 auto 40px; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+  .menu h2 { margin: 0; font: 800 clamp(48px, 7vw, 96px)/.9 var(--display); text-transform: uppercase; letter-spacing: .01em; }
+  .menu header span { font: 400 16px/1.3 var(--serif); font-style: italic; color: var(--bone-dim); }
+  .menu ol { list-style: none; margin: 0 auto; padding: 0; max-width: 720px; border-top: 1px solid var(--rule); }
+  .course {
+    display: grid; grid-template-columns: 54px 1fr; gap: 6px 18px;
+    padding: 26px 0; border-bottom: 1px solid var(--rule);
+    transition: none;
+  }
+  .course .n { grid-row: span 2; font: 700 15px/1.6 var(--display); letter-spacing: .14em; color: var(--ash); text-transform: uppercase; }
+  .course h3 { margin: 0; font: 500 clamp(22px, 2.6vw, 30px)/1.2 var(--serif); letter-spacing: -.005em; }
+  .course .fire { font: 700 13px/1.4 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ash); font-variant-numeric: tabular-nums; }
+  .course.on .n, .course.on .fire { color: var(--ember); }
+
+  .chef { min-height: 80vh; display: grid; place-items: center; }
+  .chef > div { max-width: 640px; }
+  .chef blockquote { margin: 0; font: italic 400 clamp(26px, 3.6vw, 42px)/1.22 var(--serif); text-wrap: balance; }
+  .chef cite { display: block; margin-top: 22px; font: 700 14px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; font-style: normal; color: var(--ash); }
+
+  .book { min-height: 100vh; display: grid; place-items: center; padding-bottom: 12vh; }
+  .book > div { width: 100%; max-width: 640px; }
+  .book h2 { margin: 0 0 10px; font: 800 clamp(48px, 7vw, 96px)/.9 var(--display); text-transform: uppercase; }
+  .book p { margin: 0 0 26px; color: var(--bone-dim); }
+  .dates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .date {
+    display: grid; gap: 4px; text-align: left; cursor: pointer;
+    padding: 14px; border-radius: 12px; border: 1px solid var(--rule); background: rgba(28,21,18,.72);
+    color: var(--bone); font: inherit;
+  }
+  .date b { font: 800 26px/1 var(--display); letter-spacing: .02em; }
+  .date span { font: 700 11px/1.3 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ash); }
+  .date small { font-size: 13px; color: var(--bone-dim); }
+  .date[aria-pressed="true"] { border-color: var(--ember); background: rgba(242,145,63,.12); }
+  .date:disabled { opacity: .45; cursor: not-allowed; }
+  .row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+  .seats { display: flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+  .seats button { background: none; border: 0; color: var(--bone); font: 700 18px/1 var(--display); width: 44px; height: 46px; cursor: pointer; }
+  .seats output { min-width: 92px; display: grid; place-items: center; font: 700 14px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; }
+  .book .pill--fill { padding: 16px 24px; font-size: 14px; }
+  .status { min-height: 1.6em; margin: 14px 0 0; color: var(--ember); font-size: 16px; }
+
+  footer { position: relative; z-index: 2; padding: 30px var(--gutter) 60px; font-size: 13px; color: rgba(239,229,214,.45); text-align: center; }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .hero { padding-top: 20vh; }
+    .dates { grid-template-columns: repeat(3, 1fr); }
+    .date { padding: 12px 10px; }
+    .date b { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="fire" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="logo" href="#top">Lenha</a>
+  <a class="pill" href="#reserva">Reservar</a>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <h1 data-reveal>Lenha</h1>
+    <p data-reveal>Cozinha de fogo. <em>Doze lugares</em> no balcão, de quinta a sábado.</p>
+  </section>
+
+  <section class="manifesto wrap">
+    <p data-reveal>Aqui não tem fogão. Tudo passa pela <em>brasa</em>, pela <em>cinza</em> ou pela <em>fumaça</em>.</p>
+  </section>
+
+  <section class="menu wrap" aria-labelledby="menu-t">
+    <header data-reveal><h2 id="menu-t">Sete tempos</h2><span>o menu muda com a lenha da semana</span></header>
+    <ol id="courses">
+      <li class="course"><span class="n">1º</span><h3>Pão de fermentação natural, manteiga defumada</h3><span class="fire">Pedra a 300 °C · 9 min</span></li>
+      <li class="course"><span class="n">2º</span><h3>Ostra na brasa, limão-cravo e pimenta-de-cheiro</h3><span class="fire">Brasa direta · 90 s</span></li>
+      <li class="course"><span class="n">3º</span><h3>Abóbora assada na cinza, coalhada e semente tostada</h3><span class="fire">Enterrada na cinza · 3 h</span></li>
+      <li class="course"><span class="n">4º</span><h3>Peixe do dia no galho de goiabeira</h3><span class="fire">Fumaça de goiabeira · 40 min</span></li>
+      <li class="course"><span class="n">5º</span><h3>Costela no fogo de chão, farofa de banana-da-terra</h3><span class="fire">Fogo de chão · 14 h</span></li>
+      <li class="course"><span class="n">6º</span><h3>Queijo da Canastra, mel de engenho queimado</h3><span class="fire">Chapa de ferro · 2 min</span></li>
+      <li class="course"><span class="n">7º</span><h3>Banana na palha, sorvete de rapadura</h3><span class="fire">Na palha, sobre a brasa · 25 min</span></li>
+    </ol>
+  </section>
+
+  <section class="chef wrap">
+    <div data-reveal>
+      <blockquote>“Lenha boa não tem pressa. A gente acende o fogo às duas da tarde para servir às oito.”</blockquote>
+      <cite>Inês Taborda, chef</cite>
+    </div>
+  </section>
+
+  <section class="book wrap" id="reserva" aria-labelledby="book-t">
+    <div data-reveal>
+      <h2 id="book-t">Reserve o balcão</h2>
+      <p>R$ 480 por pessoa. Harmonização opcional, R$ 260. Jantar único às 20h.</p>
+      <div class="dates" id="dates" role="group" aria-label="Escolha a data">
+        <button class="date" type="button" aria-pressed="true" data-left="4"><span>Quinta</span><b>06/11</b><small>4 lugares</small></button>
+        <button class="date" type="button" aria-pressed="false" data-left="2"><span>Sexta</span><b>07/11</b><small>2 lugares</small></button>
+        <button class="date" type="button" aria-pressed="false" data-left="0" disabled><span>Sábado</span><b>08/11</b><small>Lotado</small></button>
+      </div>
+      <div class="row">
+        <div class="seats" role="group" aria-label="Número de pessoas">
+          <button type="button" id="less" aria-label="Menos uma pessoa">−</button>
+          <output id="count" aria-live="polite">2 pessoas</output>
+          <button type="button" id="more" aria-label="Mais uma pessoa">+</button>
+        </div>
+        <button class="pill pill--fill" type="button" id="reserve">Reservar</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer>Lenha é um restaurante fictício, criado como exemplo de site.</footer>
+
+<script>
+(() => {
+  const rec = /[?&]rec\b/.test(location.search);
+  if (rec) document.documentElement.classList.add("rec");
+
+  const canvas = document.getElementById("fire");
+  const ctx = canvas.getContext("2d");
+  const reveals = Array.from(document.querySelectorAll("[data-reveal]"));
+  const courses = Array.from(document.querySelectorAll(".course"));
+  const book = document.getElementById("reserva");
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const smooth = (a, b, v) => { const x = clamp((v - a) / (b - a)); return x * x * (3 - 2 * x); };
+
+  // seeded RNG so a recorded run is identical every time
+  let seed = 7;
+  const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+
+  let W = 0, H = 0, dpr = 1;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = canvas.clientHeight || innerHeight;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // pre-rendered soft sprite for additive flame particles
+  const sprite = document.createElement("canvas");
+  sprite.width = sprite.height = 64;
+  { const s = sprite.getContext("2d"), g = s.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, "rgba(255,255,255,1)"); g.addColorStop(.35, "rgba(255,255,255,.55)"); g.addColorStop(1, "rgba(255,255,255,0)");
+    s.fillStyle = g; s.fillRect(0, 0, 64, 64); }
+  const tinted = {};
+  function tint(r, g, b) {
+    const k = r + "," + g + "," + b; if (tinted[k]) return tinted[k];
+    const c = document.createElement("canvas"); c.width = c.height = 64;
+    const x = c.getContext("2d"); x.drawImage(sprite, 0, 0); x.globalCompositeOperation = "source-in";
+    x.fillStyle = `rgb(${k})`; x.fillRect(0, 0, 64, 64); return (tinted[k] = c);
+  }
+  // flame colour ramp by particle age: white-yellow core to orange to deep red
+  const ramp = [[255, 238, 190], [255, 196, 108], [250, 140, 52], [214, 78, 26], [120, 34, 14]];
+  const sprites = ramp.map(c => tint(...c));
+
+  const flames = [], embers = [];
+  function spawn(intensity) {
+    const n = Math.round(14 * intensity);
+    const base = Math.min(W * 0.9, 900);
+    for (let i = 0; i < n; i++) {
+      const u = (rand() + rand() + rand()) / 3 - 0.5;          // clustered toward the centre
+      flames.push({ x: W / 2 + u * base, y: H + 10, vx: (rand() - .5) * 18, vy: -(90 + rand() * 140) * (0.6 + intensity * 0.6),
+        life: 0, max: 0.9 + rand() * 0.9, size: (28 + rand() * 46) * (0.55 + 0.45 * intensity) * (1 - Math.abs(u) * 0.9), ph: rand() * 6.28 });
+    }
+    if (rand() < 0.5 + intensity * 0.5) embers.push({ x: W / 2 + (rand() - .5) * base, y: H - 20 * rand(), vx: (rand() - .5) * 30, vy: -(40 + rand() * 90),
+      life: 0, max: 3 + rand() * 5, r: 0.8 + rand() * 1.6, ph: rand() * 6.28 });
+  }
+
+  function step(dt, t, intensity) {
+    spawn(intensity);
+    for (const p of flames) {
+      p.life += dt;
+      p.vx += Math.sin(t * 3 + p.ph + p.y * 0.012) * 40 * dt + (W / 2 - p.x) * 0.9 * dt;
+      p.x += p.vx * dt; p.y += p.vy * dt;
+    }
+    for (const e of embers) {
+      e.life += dt;
+      e.vx += Math.sin(t * 1.4 + e.ph + e.y * 0.01) * 22 * dt;
+      e.x += e.vx * dt; e.y += e.vy * dt;
+    }
+    for (let i = flames.length - 1; i >= 0; i--) if (flames[i].life > flames[i].max) flames.splice(i, 1);
+    for (let i = embers.length - 1; i >= 0; i--) if (embers[i].life > embers[i].max || embers[i].y < -10) embers.splice(i, 1);
+  }
+
+  function draw(intensity, t) {
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "#0f0b09"; ctx.fillRect(0, 0, W, H);
+    // floor glow of the coal bed
+    const glow = ctx.createRadialGradient(W / 2, H + 40, 0, W / 2, H + 40, Math.max(W, H) * (0.45 + 0.35 * intensity));
+    glow.addColorStop(0, `rgba(199,70,27,${0.55 * intensity + 0.12})`); glow.addColorStop(1, "rgba(199,70,27,0)");
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+
+    ctx.globalCompositeOperation = "lighter";
+    for (const p of flames) {
+      const k = p.life / p.max;
+      const idx = Math.min(ramp.length - 1, Math.floor(k * ramp.length));
+      const s = p.size * (1 - k * 0.7);
+      ctx.globalAlpha = Math.min(1, (1 - k) * 0.55);
+      ctx.drawImage(sprites[idx], p.x - s * 0.4, p.y - s, s * 0.8, s * 2);   // tall, narrow tongues read as flame
+    }
+    for (const e of embers) {
+      const k = e.life / e.max, fl = 0.6 + 0.4 * Math.sin(t * 9 + e.ph);
+      ctx.globalAlpha = (1 - k) * fl;
+      const s = e.r * 7;
+      ctx.drawImage(sprites[1], e.x - s / 2, e.y - s / 2, s, s);
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
+  }
+
+  function intensityAt(y) {
+    const vh = innerHeight;
+    const low = 0.22;
+    const fall = smooth(0, vh * 0.9, y);                         // fire settles after the hero
+    const br = book.getBoundingClientRect().top + y;
+    const flare = smooth(br - vh, br - vh * 0.2, y);             // and flares at the reservation
+    return Math.max(1 - fall * (1 - low), low + flare * 0.6);
+  }
+
+  function layoutFx() {
+    for (const el of reveals) {
+      const r = el.getBoundingClientRect();
+      const c = (r.top + r.height / 2) / innerHeight;
+      const k = 1 - smooth(0, 0.45, Math.abs(c - 0.5) - 0.2);
+      el.style.opacity = (0.3 + 0.7 * k).toFixed(3);
+      el.style.transform = `translate3d(0,${((1 - k) * 22 * Math.sign(c - 0.5)).toFixed(1)}px,0)`;
+    }
+    let best = null, bd = 1e9;
+    for (const c of courses) {
+      const r = c.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - innerHeight * 0.5);
+      if (d < bd) { bd = d; best = c; }
+    }
+    for (const c of courses) c.classList.toggle("on", c === best && bd < innerHeight * 0.3);
+  }
+
+  // fixed-step simulation: recording replays exactly
+  const DT = 1 / 60;
+  let simT = 0;
+  function advance(to, y) {
+    const it = intensityAt(y);
+    let guard = 0;
+    while (simT + DT <= to && guard++ < 600) { simT += DT; step(DT, simT, it); }
+    if (to - simT > 10) simT = to;   // after a long pause, do not replay minutes
+    draw(it, simT); layoutFx();
+  }
+
+  resize();
+  addEventListener("resize", resize);
+  // warm the fire up so the first frame already burns
+  for (let i = 0; i < 120; i++) { simT += DT; step(DT, simT, 1); }
+  const t0 = simT;
+
+  if (rec) {
+    window.__rec = { frame(t, y) { window.scrollTo(0, y); advance(t0 + t, y); }, max: () => document.documentElement.scrollHeight - innerHeight };
+    advance(t0, 0);
+  } else {
+    let start = null;
+    const loop = (now) => { if (start === null) start = now; advance(t0 + (now - start) / 1000, scrollY); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+
+  // reservation controls
+  let people = 2;
+  const dates = Array.from(document.querySelectorAll(".date"));
+  const count = document.getElementById("count"), status = document.getElementById("status");
+  const picked = () => dates.find(d => d.getAttribute("aria-pressed") === "true");
+  const sync = () => { count.textContent = people + (people === 1 ? " pessoa" : " pessoas"); status.textContent = ""; };
+  dates.forEach(d => d.addEventListener("click", () => { dates.forEach(x => x.setAttribute("aria-pressed", String(x === d))); people = Math.min(people, +d.dataset.left); sync(); }));
+  document.getElementById("less").addEventListener("click", () => { people = Math.max(1, people - 1); sync(); });
+  document.getElementById("more").addEventListener("click", () => {
+    const left = +picked().dataset.left;
+    if (people < left) { people++; sync(); } else status.textContent = `Só restam ${left} lugares nessa data.`;
+  });
+  document.getElementById("reserve").addEventListener("click", () => {
+    const d = picked();
+    status.textContent = `Balcão reservado para ${people} na ${d.querySelector("span").textContent.toLowerCase()}, ${d.querySelector("b").textContent}, às 20h. A confirmação chega por WhatsApp.`;
+  });
+})();
+</script>
+</body>
+</html>

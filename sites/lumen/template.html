@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lúmen Dermatologia</title>
+<meta name="description" content="Dermatologia clínica e estética. Consulta de 50 minutos com dermatoscopia digital.">
+<meta name="theme-color" content="#fbf6f4">
+<style>
+  @font-face { font-family: "Instrument"; font-style: normal; font-weight: 400; font-display: block; src: url(@font:instrument) format("woff2"); }
+  @font-face { font-family: "Instrument"; font-style: italic; font-weight: 400; font-display: block; src: url(@font:instrument-italic) format("woff2"); }
+  @font-face { font-family: "Figtree"; font-weight: 300 700; font-display: block; src: url(@font:figtree) format("woff2"); }
+
+  /* Layout: a microscope lens stays in view while the page scrolls through one skin cycle, day 1 to day 28. */
+  :root {
+    --paper: #fbf6f4;
+    --blush: #f3e2dc;
+    --ink: #2a1d1b;
+    --ink-soft: #5e4a46;
+    --teal: #24615c;
+    --teal-ink: #f4fbfa;
+    --rule: rgba(42,29,27,.14);
+    --display: "Instrument", Georgia, serif;
+    --text: "Figtree", system-ui, sans-serif;
+    --gutter: clamp(22px, 5vw, 80px);
+    --lens: min(36vw, 74vh);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--paper); color-scheme: light; scrollbar-color: rgba(42,29,27,.25) var(--paper); }
+  html.rec { scrollbar-width: none; }
+  html.rec::-webkit-scrollbar { display: none; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.6 var(--text); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  ::selection { background: var(--teal); color: var(--teal-ink); }
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+  a { color: inherit; }
+
+  .nav {
+    position: fixed; z-index: 10; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: max(16px, env(safe-area-inset-top)) var(--gutter) 16px;
+    background: linear-gradient(to bottom, var(--paper) 55%, rgba(251,246,244,0));
+  }
+  .brand { font: 400 26px/1 var(--display); text-decoration: none; letter-spacing: -.01em; }
+  .brand i { font-style: italic; color: var(--teal); }
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font: 600 14px/1 var(--text); text-decoration: none; cursor: pointer;
+    padding: 13px 20px; border-radius: 999px; border: 0;
+    background: var(--teal); color: var(--teal-ink);
+    box-shadow: 0 6px 18px -8px rgba(36,97,92,.55);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(36,97,92,.6); }
+  .cta--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--rule); }
+
+  /* lens */
+  .lens {
+    position: fixed; z-index: 1; top: 50%; right: var(--gutter);
+    width: var(--lens); height: var(--lens); margin-top: calc(var(--lens) / -2 + 20px);
+    will-change: transform;
+  }
+  .lens canvas { width: 100%; height: 100%; display: block; border-radius: 50%;
+    box-shadow: 0 30px 60px -30px rgba(120,60,50,.45), 0 0 0 1px rgba(42,29,27,.08); }
+  .lens::after { /* glass rim */
+    content: ""; position: absolute; inset: -10px; border-radius: 50%;
+    border: 1px solid var(--rule); pointer-events: none;
+  }
+  .readout {
+    position: absolute; left: 50%; bottom: -46px; transform: translateX(-50%);
+    display: flex; gap: 16px; white-space: nowrap;
+    font: 500 12px/1 var(--text); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .readout b { color: var(--ink); font-weight: 600; }
+
+  main { position: relative; z-index: 2; }
+  .col { padding: 0 var(--gutter); max-width: calc(100vw - var(--lens) - var(--gutter) * 2); }
+  .screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  h1 { margin: 0; font: 400 clamp(54px, 7.4vw, 112px)/.95 var(--display); letter-spacing: -.025em; text-wrap: balance; max-width: 11ch; }
+  h1 i, h2 i { color: var(--teal); }
+  h2 { margin: 0 0 18px; font: 400 clamp(40px, 5vw, 72px)/1 var(--display); letter-spacing: -.02em; text-wrap: balance; max-width: 13ch; }
+  p { margin: 0 0 14px; color: var(--ink-soft); max-width: 44ch; }
+  .lede { margin-top: 24px; font-size: 19px; color: var(--ink); }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+
+  .treat { padding: 18vh var(--gutter) 10vh; }
+  .treat h2 { max-width: 16ch; }
+  .rows { margin-top: 36px; border-top: 1px solid var(--rule); max-width: 980px; }
+  .rowt {
+    display: grid; grid-template-columns: 1.2fr 1fr auto; gap: 8px 30px; align-items: baseline;
+    padding: 24px 0; border-bottom: 1px solid var(--rule);
+  }
+  .rowt h3 { margin: 0; font: 400 clamp(26px, 2.6vw, 34px)/1.1 var(--display); }
+  .rowt p { margin: 0; }
+  .rowt span { font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .care { padding: 16vh var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; align-items: start; max-width: 1200px; }
+  .care blockquote { margin: 0; font: italic 400 clamp(30px, 3.4vw, 46px)/1.15 var(--display); }
+  .care cite { display: block; margin-top: 18px; font: 600 13px/1.3 var(--text); letter-spacing: .06em; text-transform: uppercase; font-style: normal; color: var(--ink-soft); }
+  .care ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+  .care li { padding: 16px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 14px; align-items: baseline; }
+  .care li svg { flex: none; width: 18px; height: 18px; color: var(--teal); transform: translateY(3px); }
+
+  .book { padding: 14vh var(--gutter) 16vh; background: var(--blush); }
+  .book > div { max-width: 620px; }
+  fieldset { border: 0; padding: 0; margin: 22px 0 0; }
+  legend { font: 600 12px/1 var(--text); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font: 500 15px/1 var(--text); color: var(--ink); cursor: pointer;
+    padding: 12px 16px; border-radius: 999px; border: 0; background: var(--paper);
+    box-shadow: inset 0 0 0 1px var(--rule); font-variant-numeric: tabular-nums;
+  }
+  .chip[aria-pressed="true"] { background: var(--teal); color: var(--teal-ink); box-shadow: none; }
+  .book .cta { margin-top: 26px; padding: 16px 26px; }
+  .status { margin: 16px 0 0; min-height: 1.6em; color: var(--teal); font-weight: 500; }
+
+  footer { padding: 30px var(--gutter) 50px; font-size: 13px; color: var(--ink-soft); background: var(--blush); }
+
+  .shade { display: none; }
+  @media (max-width: 860px) {
+    :root { --lens: min(58vw, 36vh); }
+    .lens { top: 72px; right: 50%; margin: 0 calc(var(--lens) / -2) 0 0; z-index: 4; }
+    .shade {
+      display: block; position: fixed; z-index: 3; left: 0; right: 0; top: 0;
+      height: calc(72px + var(--lens) + 110px);
+      background: linear-gradient(to bottom, var(--paper) 84%, rgba(251,246,244,0));
+      will-change: transform;
+    }
+    .readout { bottom: -36px; }
+    .col { max-width: none; }
+    .screen { justify-content: flex-end; padding-bottom: 9vh; }
+    .rowt { grid-template-columns: 1fr; }
+    .care { grid-template-columns: 1fr; }
+    body { font-size: 16px; }
+    h1 { font-size: clamp(46px, 13vw, 72px); }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top">Lúmen <i>derma</i></a>
+  <a class="cta" href="#agenda">Agendar</a>
+</header>
+
+<div class="shade" id="shade" aria-hidden="true"></div>
+<div class="lens" id="lens" aria-hidden="true">
+  <canvas id="cells"></canvas>
+  <div class="readout"><span>dia <b id="day">01</b> de 28</span><span>aumento 400×</span></div>
+</div>
+
+<main id="top">
+  <section class="col screen">
+    <div data-reveal>
+      <h1>Pele que se renova <i>no seu tempo.</i></h1>
+      <p class="lede">Dermatologia clínica e estética, sem pressa e sem exagero.</p>
+      <div class="actions"><a class="cta" href="#agenda">Agendar consulta</a><a class="cta cta--ghost" href="#tratamentos">Ver tratamentos</a></div>
+    </div>
+  </section>
+
+  <section class="col screen">
+    <div data-reveal>
+      <h2>A cada 28 dias, sua pele é <i>outra.</i></h2>
+      <p>As células da superfície nascem lá embaixo, sobem e se soltam em cerca de quatro semanas. Os bons tratamentos trabalham a favor desse ciclo, não contra ele.</p>
+      <p>Role a página e acompanhe a renovação na lente.</p>
+    </div>
+  </section>
+
+  <section class="treat" id="tratamentos" aria-labelledby="t-t">
+    <h2 id="t-t" data-reveal>Tratamentos que respeitam o ciclo.</h2>
+    <div class="rows">
+      <div class="rowt" data-reveal><h3>Luz pulsada</h3><p>Manchas de sol e vasinhos aparentes.</p><span>30 min · 3 a 5 sessões</span></div>
+      <div class="rowt" data-reveal><h3>Microagulhamento</h3><p>Textura irregular e marcas de acne.</p><span>45 min · 3 sessões</span></div>
+      <div class="rowt" data-reveal><h3>Peeling médio</h3><p>Viço e uniformidade do tom.</p><span>40 min · 1 a 2 sessões</span></div>
+      <div class="rowt" data-reveal><h3>Bioestimulador</h3><p>Firmeza, estimulando o seu próprio colágeno.</p><span>30 min · 1 a 2 sessões</span></div>
+    </div>
+  </section>
+
+  <section class="care" aria-label="Como atendemos">
+    <div data-reveal>
+      <blockquote>“Antes de indicar qualquer procedimento, eu preciso entender a sua pele e a sua rotina.”</blockquote>
+      <cite>Dra. Helena Vasconcelos, dermatologista</cite>
+    </div>
+    <ul data-reveal>
+      <li><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5l4 4 8-9"/></svg><span>Consulta de 50 minutos, não de 10.</span></li>
+      <li><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5l4 4 8-9"/></svg><span>Dermatoscopia digital com mapeamento de pintas.</span></li>
+      <li><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5l4 4 8-9"/></svg><span>Plano escrito, com valores, antes de começar.</span></li>
+      <li><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5l4 4 8-9"/></svg><span>Retorno incluído em 30 dias.</span></li>
+    </ul>
+  </section>
+
+  <section class="book" id="agenda" aria-labelledby="b-t">
+    <div data-reveal>
+      <h2 id="b-t">Agende sua <i>primeira consulta.</i></h2>
+      <p>Avenida Paulista, 1.200, 8º andar. Segunda a sábado.</p>
+      <fieldset><legend>Tipo</legend>
+        <div class="chips" data-group="tipo">
+          <button class="chip" type="button" aria-pressed="true">Primeira consulta</button>
+          <button class="chip" type="button" aria-pressed="false">Mapeamento de pintas</button>
+          <button class="chip" type="button" aria-pressed="false">Procedimento</button>
+        </div>
+      </fieldset>
+      <fieldset><legend>Próximos horários</legend>
+        <div class="chips" data-group="hora">
+          <button class="chip" type="button" aria-pressed="false">Ter 04 · 09:00</button>
+          <button class="chip" type="button" aria-pressed="true">Ter 04 · 14:30</button>
+          <button class="chip" type="button" aria-pressed="false">Qui 06 · 11:00</button>
+          <button class="chip" type="button" aria-pressed="false">Sáb 08 · 10:00</button>
+        </div>
+      </fieldset>
+      <button class="cta" type="button" id="go">Confirmar horário</button>
+      <p class="status" id="status" role="status"></p>
+    </div>
+  </section>
+</main>
+<footer>Lúmen Dermatologia é uma clínica fictícia, criada como exemplo de site. Resultados de tratamentos variam de pessoa para pessoa.</footer>
+
+<script>
+(() => {
+  const rec = /[?&]rec\b/.test(location.search);
+  if (rec) document.documentElement.classList.add("rec");
+
+  const lens = document.getElementById("lens");
+  const shade = document.getElementById("shade");
+  const canvas = document.getElementById("cells");
+  const ctx = canvas.getContext("2d");
+  const dayEl = document.getElementById("day");
+  const treat = document.getElementById("tratamentos");
+  const reveals = Array.from(document.querySelectorAll("[data-reveal]"));
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const smooth = (a, b, v) => { const x = clamp((v - a) / (b - a)); return x * x * (3 - 2 * x); };
+  const rnd = i => { const x = Math.sin(i * 91.17 + 17.3) * 43758.5453; return x - Math.floor(x); };
+
+  // low-res cell field, upscaled with smoothing for a soft microscope look
+  const N = 150;                            // buffer is N×N
+  const buf = document.createElement("canvas"); buf.width = buf.height = N;
+  const bctx = buf.getContext("2d");
+  const img = bctx.createImageData(N, N);
+  const G = 9;                              // seeds on a G×G jittered grid
+  const cell = N / G;
+
+  function seeds(t, renew) {
+    const s = [];
+    for (let j = -1; j <= G; j++) for (let i = -1; i <= G; i++) {
+      const k = (j + 2) * 31 + (i + 2);
+      const cx = (i + 0.5) * cell, cy = (j + 0.5) * cell;
+      const front = clamp((i + 0.5) / G * 1.15 - renew * 1.3 + 0.15);   // 1 = still tired, 0 = renewed
+      const jit = 0.18 + 0.32 * front;
+      const wob = 0.06 * Math.sin(t * 0.6 + k);
+      s.push({
+        x: cx + (rnd(k) - .5) * cell * 2 * jit + wob * cell,
+        y: cy + (rnd(k + 400) - .5) * cell * 2 * jit + wob * cell * 0.7,
+        tired: front, tone: rnd(k + 900)
+      });
+    }
+    return s;
+  }
+
+  function paint(t, renew) {
+    const s = seeds(t, renew), cols = G + 2;
+    const d = img.data;
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+      const gi = Math.floor(x / cell) + 1, gj = Math.floor(y / cell) + 1;
+      let f1 = 1e9, f2 = 1e9, best = null;
+      for (let dj = -1; dj <= 1; dj++) for (let di = -1; di <= 1; di++) {
+        const q = s[(gj + dj) * cols + (gi + di)];
+        if (!q) continue;
+        const dx = q.x - x, dy = q.y - y, dd = dx * dx + dy * dy;
+        if (dd < f1) { f2 = f1; f1 = dd; best = q; } else if (dd < f2) f2 = dd;
+      }
+      const a = Math.sqrt(f1), b = Math.sqrt(f2);
+      const edge = smooth(0, 2.2, b - a);                  // 0 on the membrane
+      const core = 1 - smooth(0, cell * 0.55, a);          // glow toward the nucleus
+      const tired = best.tired;
+      // renewed cells: luminous peach; tired cells: duller, mottled
+      const lum = 0.95 + 0.06 * core - tired * (0.08 + 0.08 * best.tone);
+      const grey = tired * 0.35;                           // tired cells lose colour
+      let r = 252 * lum, g = (222 + 20 * core) * lum, bl = (210 + 14 * core) * lum;
+      const m = (r + g + bl) / 3; r = r + (m - r) * grey; g = g + (m - g) * grey; bl = bl + (m - bl) * grey;
+      const w = (1 - edge) * 0.42;                         // membrane: soft rose line
+      r = r * (1 - w) + 205 * w; g = g * (1 - w) + 132 * w; bl = bl * (1 - w) + 124 * w;
+      const o = (y * N + x) * 4;
+      d[o] = r; d[o + 1] = g; d[o + 2] = bl; d[o + 3] = 255;
+    }
+    bctx.putImageData(img, 0, 0);
+    const S = canvas.width;
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(buf, 0, 0, S, S);
+    // vignette of the lens
+    const v = ctx.createRadialGradient(S / 2, S / 2, S * 0.3, S / 2, S / 2, S * 0.52);
+    v.addColorStop(0, "rgba(255,255,255,0)"); v.addColorStop(1, "rgba(150,86,76,.22)");
+    ctx.fillStyle = v; ctx.fillRect(0, 0, S, S);
+    // soft specular highlight on the glass
+    const h = ctx.createRadialGradient(S * 0.32, S * 0.26, 0, S * 0.32, S * 0.26, S * 0.35);
+    h.addColorStop(0, "rgba(255,255,255,.35)"); h.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = h; ctx.fillRect(0, 0, S, S);
+  }
+
+  function size() {
+    const r = canvas.getBoundingClientRect();
+    const S = Math.round(r.width * Math.min(devicePixelRatio || 1, 2));
+    if (canvas.width !== S) { canvas.width = canvas.height = S; }
+  }
+
+  let lastDay = -1;
+  function render(t, y) {
+    const vh = innerHeight;
+    const lensBottom = lens.offsetTop + lens.offsetHeight + 56;
+    const storyEnd = treat.getBoundingClientRect().top + y - lensBottom;
+    const renew = smooth(vh * 0.15, storyEnd, y);
+    paint(t, renew);
+    const day = Math.max(1, Math.round(1 + renew * 27));
+    if (day !== lastDay) { lastDay = day; dayEl.textContent = String(day).padStart(2, "0"); }
+    // the lens rides up and away once the story is told
+    const leave = Math.max(0, y - storyEnd);
+    lens.style.transform = `translate3d(0,${-leave}px,0)`;
+    shade.style.transform = `translate3d(0,${-leave}px,0)`;
+    shade.style.opacity = smooth(0, vh * 0.12, y).toFixed(3);   // the hero needs no band; text only slides under once you scroll
+
+    for (const el of reveals) {
+      const r = el.getBoundingClientRect();
+      const c = (r.top + r.height / 2) / vh;
+      const k = 1 - smooth(0, 0.45, Math.abs(c - 0.55) - 0.25);
+      el.style.opacity = (0.3 + 0.7 * k).toFixed(3);
+      el.style.transform = `translate3d(0,${((1 - k) * 20 * Math.sign(c - 0.55)).toFixed(1)}px,0)`;
+    }
+  }
+
+  size(); addEventListener("resize", size);
+  if (rec) {
+    window.__rec = { frame(t, y) { window.scrollTo(0, y); render(t, y); }, max: () => document.documentElement.scrollHeight - innerHeight };
+    render(0, 0);
+  } else {
+    const loop = now => { render(now / 1000, scrollY); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+
+  // booking chips
+  document.querySelectorAll(".chips").forEach(g => g.addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    g.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    document.getElementById("status").textContent = "";
+  }));
+  document.getElementById("go").addEventListener("click", () => {
+    const pick = n => document.querySelector(`[data-group="${n}"] [aria-pressed="true"]`).textContent;
+    document.getElementById("status").textContent = `${pick("tipo")} reservada para ${pick("hora").replace(" · ", " às ")}. Enviamos a confirmação por WhatsApp.`;
+  });
+})();
+</script>
+</body>
+</html>
