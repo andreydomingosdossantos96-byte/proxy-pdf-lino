@@ -25,8 +25,8 @@ const SITES = {
     keys: [[0, 0], [5.0, 0], [7.2, ["#manifesto", 0.55]], [8.4, ["#menu", 0]], [12.6, ["#menu", 1]], [15.6, ["#heat", 0.9]], [17.6, ["#reserva", 0.2]]],
   },
   lumen: {
-    accent: "#9fe0d2", hook: ["Sua clínica", "merece um site *assim?*"],
-    keys: [[0, 0], [6.4, 0], [9.4, ["#cycle", 0]], [14.0, ["#cycle", 1]], [15.0, [".treat", 0.18]], [17.0, [".treat", 0.92]], [18.6, ["#agenda", 0]]],
+    accent: "#9fe0d2", light: true, hook: ["Sua clínica", "merece um site *assim?*"],
+    keys: [[0, 0], [8.9, 0], [10.2, ["#cycle", 0]], [14.2, ["#cycle", 1]], [15.2, [".treat", 0.18]], [17.2, [".treat", 0.92]], [18.4, ["#agenda", 0]]],
   },
 };
 const site = SITES[slug];
@@ -77,7 +77,7 @@ const smooth = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x
     return keys[keys.length - 1][1];
   };
 
-  await page.evaluate(({ font, accent, hook }) => {
+  await page.evaluate(({ font, accent, hook, light }) => {
     const css = document.createElement("style");
     css.textContent = `
       @font-face { font-family: "RecUI"; font-weight: 300 700; src: url(data:font/woff2;base64,${font}) format("woff2"); }
@@ -94,6 +94,13 @@ const smooth = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x
         font: 700 37px/1.12 "RecUI"; letter-spacing: -.02em; text-transform: uppercase;
         text-shadow: 0 3px 0 rgba(0,0,0,.25), 0 6px 22px rgba(0,0,0,.65); }
       #ov .cap .w.on { background: ${accent}; color: #111; text-shadow: none; box-shadow: 0 8px 24px -6px rgba(0,0,0,.5); }
+      /* light sites: ink type on a soft white halo, teal chip */
+      #ov.light .shade, #ov.light .hshade { background: radial-gradient(70% 50% at 50% 50%, rgba(255,255,255,.85), rgba(255,255,255,0)); }
+      #ov.light .hook .l, #ov.light .cap .w { color: #1d1514; text-shadow: 0 0 18px rgba(255,255,255,.9); }
+      #ov.light .hook .acc { color: #1b5752; }
+      #ov.light .hook .pill { background: #1b5752; color: #f2faf8; }
+      #ov.light .cap .w.on { background: #1b5752; color: #f2faf8; }
+      #ov .hshade { position: absolute; left: 0; right: 0; top: 4%; height: 28%; background: radial-gradient(75% 55% at 50% 50%, rgba(0,0,0,.45), rgba(0,0,0,0)); }
       #ov .end { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 26px;
         padding: 0 8%; text-align: center; background: rgba(8,8,8,.66); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); }
       #ov .end h2 { margin: 0; font: 700 42px/1.02 "RecUI"; letter-spacing: -.04em; }
@@ -108,17 +115,18 @@ const smooth = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x
     ov.id = "ov";
     const hookHtml = hook.map(line => `<span class="l">${line.split(" ").map(w => {
       const acc = /^\*.*\*$/.test(w); return `<span class="w${acc ? " acc" : ""}">${w.replace(/\*/g, "")}</span>`; }).join("")}</span>`).join("");
-    ov.innerHTML = `<div class="shade"></div><div class="hook"><span class="pill">Site de exemplo</span>${hookHtml}</div><div class="cap"></div>
+    ov.innerHTML = `<div class="shade"></div><div class="hshade"></div><div class="hook"><span class="pill">Site de exemplo</span>${hookHtml}</div><div class="cap"></div>
       <div class="end"><h2>Quer um site <em>assim</em> para a sua empresa?</h2>
       <span class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7z"/></svg>Me chama no direct</span>
       <small>Site fictício, criado como demonstração.</small></div>`;
     document.body.appendChild(ov);
     const hw = Array.from(ov.querySelectorAll(".hook .w")), pill = ov.querySelector(".pill");
-    const cap = ov.querySelector(".cap"), end = ov.querySelector(".end"), shade = ov.querySelector(".shade");
+    const cap = ov.querySelector(".cap"), end = ov.querySelector(".end"), shade = ov.querySelector(".shade"), hshade = ov.querySelector(".hshade");
     const sm = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
     let lastKey = "";
     window.__ov = s => {
       // hook: the label, then the words rise in one after another, then all leave together
+      hshade.style.opacity = s.hookIn[0] * s.hookOut;
       pill.style.opacity = s.hookIn[0] * s.hookOut; pill.style.transform = `translateY(${(1 - s.hookIn[0]) * 10}px)`;
       hw.forEach((w, i) => { const k = s.hookIn[i + 1] ?? 1; w.style.opacity = k * s.hookOut; w.style.transform = `translateY(${(1 - k) * 22 + (1 - s.hookOut) * -16}px) scale(${.92 + .08 * k})`; });
       // captions: the spoken word sits on an accent chip
@@ -134,7 +142,8 @@ const smooth = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x
       end.children[0].style.transform = `translateY(${(1 - s.end) * 20}px)`;
       end.children[1].style.transform = `scale(${.9 + .1 * sm(s.end2)})`;
     };
-  }, { font, accent: site.accent, hook: site.hook });
+    if (light) ov.classList.add("light");
+  }, { font, accent: site.accent, hook: site.hook, light: !!site.light });
 
   const ff = spawn("ffmpeg", ["-loglevel", "error", "-y",
     "-f", "image2pipe", "-framerate", String(FPS), "-i", "-",
