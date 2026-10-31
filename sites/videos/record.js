@@ -26,7 +26,7 @@ const SITES = {
   },
   lumen: {
     accent: "#9fe0d2", light: true, hook: ["Sua clínica", "merece um site *assim?*"],
-    keys: [[0, 0], [8.9, 0], [10.2, ["#cycle", 0]], [14.2, ["#cycle", 1]], [15.2, [".treat", 0.18]], [17.2, [".treat", 0.92]], [18.4, ["#agenda", 0]]],
+    keys: [[0, 0], [8.9, 0], [10.2, ["#cycle", 0]], [14.2, ["#cycle", 1]], [15.0, [".treat", 0.18]], [16.6, [".treat", 0.92]], [17.6, ["#agenda", 0]]],
   },
 };
 const site = SITES[slug];
